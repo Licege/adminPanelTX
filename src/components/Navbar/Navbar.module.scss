@@ -1,0 +1,54 @@
+.nav {
+    grid-area: n;
+    background: white;
+    width: 300px;
+    height: 100%;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    overflow: auto;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin-bottom: 0;
+    width: 100%;
+    cursor: pointer;
+}
+
+.item {
+    display: block;
+    width: 100%;
+    color: black;
+    padding: 15px 25px 15px 36px;
+    cursor: pointer;
+    text-decoration: none;
+    border-left: 4px solid transparent;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.item:visited {
+    text-decoration: none;
+}
+
+.arrow {
+    width: 25px;
+    height: 25px;
+}
+
+.active {
+    border-left-color: saddlebrown;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}

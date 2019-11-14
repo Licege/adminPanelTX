@@ -1,0 +1,96 @@
+.page {
+  &-header {
+    height: 60px;
+    width: 100%;
+    background-color: $white;
+    border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+      &.-action {
+        justify-content: space-between;
+      }
+
+      &-title {
+        margin: 0 30px;
+        font-weight: bold;
+
+        a, a:hover, a:focus, a:active, a:visited {
+          color: inherit;
+          text-decoration: inherit;
+        }
+      }
+  }
+
+  &-container {
+    padding: 0 30px 30px;
+
+    &-card {
+      &.-full {
+        min-height: calc(100vh - 190px);
+      }
+
+      &-main {
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 20px;
+      }
+    }
+  }
+
+  &-navbar {
+    grid-area: n;
+    background: white;
+    width: 300px;
+    height: 100%;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    overflow: auto;
+    z-index: 1;
+
+    &-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      margin-bottom: 0;
+      width: 100%;
+      cursor: pointer;
+
+      &-item {
+        display: block;
+        width: 100%;
+        color: black;
+        padding: 15px 25px 15px 36px;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:hover {
+          color: gold;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+
+}
+
+
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #E0E0E0;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 7px;
+}

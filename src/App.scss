@@ -1,0 +1,42 @@
+
+/*@import './components/assets/sass/variables/fonts';
+@import './components/assets/sass/variables/bootstrap-variables';
+@import '~bootstrap/scss/bootstrap';
+
+@import './components/assets/sass/elements/defaultElements/table.scss';*/
+@import './components/assets/sass/main.scss';
+.app-wrapper {
+  margin: 0 auto;
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  grid-template-areas: "h h" "n c";
+
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 300px 1fr;
+}
+
+.app-wrapper-content {
+  grid-area: c;
+  background: white;
+}
+
+a:hover {
+  color: inherit;
+}
+
+
+
+
+
+
+
+
+/*
+
+$card-cap-bg: white;
+$font-family-base: 'Roboto';
+
+@import '~bootstrap/scss/bootstrap';
+
+ */
