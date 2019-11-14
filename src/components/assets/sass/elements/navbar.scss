@@ -1,43 +1,53 @@
 .navbar {
   grid-area: n;
   background: white;
+  position: relative;
   width: 300px;
-  height: 100%;
+ // height: 100%;
   box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
   overflow: auto;
   z-index: 1;
 
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    margin-bottom: 0;
+  &-accordion {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    cursor: pointer;
 
-    &-item {
-      display: block;
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      margin-bottom: 0;
       width: 100%;
-      color: black;
-      padding: 15px 25px 15px 36px;
       cursor: pointer;
-      text-decoration: none;
-      border-left: 4px solid transparent;
 
-      &:hover, &:visited {
+      &-item {
+        display: block;
+        width: 100%;
+        color: black;
+        padding: 15px 25px 15px 36px;
+        cursor: pointer;
         text-decoration: none;
-      }
+        border-left: 4px solid transparent;
 
-      .active {
-        border-left-color: $brown;
+        &:hover, &:visited {
+          text-decoration: none;
+        }
+
+        &.-active {
+          border-left-color: $brown;
+        }
       }
-    }
-    &-arrow {
-      width: 25px;
-      height: 25px;
+      &-arrow {
+        width: 25px;
+        height: 25px;
+      }
     }
   }
+
+
 }
 /*
 .active {
