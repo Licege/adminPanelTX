@@ -12,6 +12,6 @@ class UsersContainer extends React.Component {
     render() {
         return <Menu />
     }
-};
+}
 
 export default UsersContainer;

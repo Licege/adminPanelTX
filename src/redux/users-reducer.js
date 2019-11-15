@@ -4,7 +4,10 @@ const GET_USERS = 'GET-USERS';
 const GET_USER_BY_ID = 'GET-USERS-BY-ID';
 
 let initialState = {
-    users: []
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 19,
+    currentPage: 1
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -48,3 +51,17 @@ export const createUserAC = (user) => ({type: CREATE_USER, user});
 export const changeUserAC = (user) => ({type: UPDATE_USER, user});
 
 export default usersReducer;
+/*
+export const getUsers = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toogleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalUsersCount));
+        })
+    }
+}
+
+ */

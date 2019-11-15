@@ -9,17 +9,26 @@ class UsersContainer extends React.Component {
         usersAPI.getUsers().then(data =>{
             this.props.getUsers(data);
             console.log(data)
-        })
+        });
+        //this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     render() {
-        return <Users users={this.props.users}/>
+        let onPageChanged = (page) => {
+            console.log(page)
+            return this.currentPage === page
+        };
+        return <Users users={this.props.users}
+                      onPageChanged={onPageChanged}/>
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage
     }
 };
 let mapDispatchToProps = (dispatch) => {

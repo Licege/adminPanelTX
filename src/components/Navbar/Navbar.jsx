@@ -39,6 +39,10 @@ const Navbar = () => {
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
                              to='/employees'>Сотрудники</NavLink>
                 </Accordion.Collapse>
+                <Accordion.Collapse eventKey="0">
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/vacancies'>Вакансии</NavLink>
+                </Accordion.Collapse>
 
                 <Accordion.Toggle as={Figure} className='navbar-accordion-header' variant="link" eventKey="1">
                     Посетители
@@ -79,6 +83,11 @@ const Navbar = () => {
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/access-templates'>Шаблоны
                         доступа</NavLink>
                 </Accordion.Collapse>
+
+                <Accordion.Toggle as={Figure} className='navbar-accordion-header' variant="link" eventKey="4">
+                    Статистика и отчеты
+                    <img className='navbar-accordion-header-arrow' src={arrowDown}/>
+                </Accordion.Toggle>
             </Accordion>
         </nav>
     )

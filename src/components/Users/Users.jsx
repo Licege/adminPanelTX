@@ -1,6 +1,7 @@
 import styles from "../assets/styles/styles";
 import React from "react";
 import {Table} from "react-bootstrap";
+import Paginator from "../common/Paginator";
 
 const Users = (props) => {
     return (
@@ -20,7 +21,7 @@ const Users = (props) => {
                         </div>
                         <div className='filter-actions'>
                             <span className='filter-actions-reset'>Сбросить</span>
-                            <span className='filter-actions-apply'>Сбросить</span>
+                            <span className='filter-actions-apply'>Фильтровать</span>
                         </div>
                     </div>
                 </div>
@@ -48,6 +49,7 @@ const Users = (props) => {
                             ))}
                         </tbody>
                     </Table>
+                    <Paginator totalItemsCount={323} currentPage={2} pageSize={10} onPageChanged={props.onPageChanged} />
                 </div>
             </div>
         </div>

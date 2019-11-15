@@ -6,12 +6,22 @@ $grid-breakpoints: (
         xl: 1300px
 );
 
-$white: #FFFFFF;
-$brown: #440506;
+$white:              #FFFFFF;
+$grey:               #FBFBFB;
+$brown:              #440506;
+$black:              #333333;
 
 
 
+$yiq: $brown;
+$primary: orange;
 $card-cap-bg: $white;
+$component-active-color: $black;
+
+$input-bg: $white;
+$input-disabled-bg: $grey;
+
+
 
 $font-family-base: 'Roboto';
 
