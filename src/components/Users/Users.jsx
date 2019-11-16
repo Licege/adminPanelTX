@@ -4,6 +4,7 @@ import {Table} from "react-bootstrap";
 import Paginator from "../common/Paginator";
 
 const Users = (props) => {
+    console.log(props)
     return (
         <div>
             <div style={styles.Header}>
@@ -49,7 +50,7 @@ const Users = (props) => {
                             ))}
                         </tbody>
                     </Table>
-                    <Paginator totalItemsCount={323} currentPage={2} pageSize={10} onPageChanged={props.onPageChanged} />
+                    <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} pageSize={10} onPageChanged={props.onPageChanged} />
                 </div>
             </div>
         </div>

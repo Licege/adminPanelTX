@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Pagination} from "react-bootstrap";
 
 let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
-
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
 
     let pages = [];
