@@ -7,12 +7,12 @@ import {NavLink} from "react-router-dom";
 const Users = (props) => {
     return (
         <div>
-            <div style={styles.Header}>
-                <div style={styles.HeaderTitle}>
+            <div className='page-header'>
+                <div className='page-header-title'>
                     Пользователи
                 </div>
             </div>
-            <div style={styles.Page}>
+            <div className='page-container'>
                 <div className='card filter'>
                     <div className='card-body filter-container'>
                         <span className='filter-header'>Фильтры</span>

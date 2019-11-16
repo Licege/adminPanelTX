@@ -4,12 +4,12 @@ import React from "react";
 const Vacancy = (props) => {
     return (
         <div>
-            <div style={styles.Header}>
-                <div style={styles.HeaderTitle}>
+            <div className='page-header'>
+                <div className='page-header-title'>
                     Вакансии
                 </div>
             </div>
-            <div style={styles.Page}>
+            <div className='page-container'>
                 <div style={styles.Card}>
                     13
                 </div>

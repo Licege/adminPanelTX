@@ -5,12 +5,12 @@ import {Table} from "react-bootstrap";
 const Employees = (props) => {
     return (
         <div>
-            <div style={styles.Header}>
-                <div style={styles.HeaderTitle}>
+            <div className='page-header'>
+                <div className='page-header-title'>
                     Сотрудники
                 </div>
             </div>
-            <div style={styles.Page}>
+            <div className='page-container'>
                 <div className='card filter'>
                     <div className='card-body filter-container'>
                         <span className='filter-header'>Фильтры</span>

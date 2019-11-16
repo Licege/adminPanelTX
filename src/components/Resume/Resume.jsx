@@ -4,12 +4,12 @@ import React from "react";
 const Resume = (props) => {
     return (
         <div>
-            <div style={styles.Header}>
-                <div style={styles.HeaderTitle}>
+            <div className='page-header'>
+                <div className='page-header-title'>
                     Резюме
                 </div>
             </div>
-            <div style={styles.Page}>
+            <div className='page-container'>
                 <div style={styles.Card}>
                     123
                 </div>
