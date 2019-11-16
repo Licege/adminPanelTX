@@ -16,6 +16,12 @@ export const usersAPI = {
             .then(responce => {
                 return responce.data;
             });
+    },
+    getUserById(id) {
+        return axios.get(baseUrl + `/users/${id}`)
+            .then(responce => {
+                return responce;
+            });
     }
 };
 

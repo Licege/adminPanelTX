@@ -9,7 +9,6 @@ class UsersContainer extends React.Component {
         usersAPI.getUsers().then(data =>{
             this.props.getUsers(data.users);
             this.props.setTotalUsersCount(data.total_count);
-            console.log(this.props.totalUsersCount)
         });
     }
 
@@ -17,8 +16,11 @@ class UsersContainer extends React.Component {
         this.props.setCurrentPage(page);
         usersAPI.getUsers(page).then(data =>{
             this.props.getUsers(data.users);
-            this.props.setTotalUsersCount(data.total_count);
         });
+    };
+
+    detail = (id) => {
+        this.props.history.push(`users/${id}`)
     };
 
     render() {
@@ -26,6 +28,7 @@ class UsersContainer extends React.Component {
                       currentPage={this.props.currentPage}
                       totalUsersCount={this.props.totalUsersCount}
                       onPageChanged={this.onPageChanged}
+                      detail={this.detail}
         />
     }
 }
@@ -35,7 +38,7 @@ let mapStateToProps = (state) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
     }
 };
 

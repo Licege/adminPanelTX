@@ -22,6 +22,7 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
                 .filter(page => page >= leftPortionPageNumber && page <=rightPortionPageNumber)
                 .map(page => {
                 return <Pagination.Item
+                    key={page}
                     active={page === currentPage}
                     onClick={(e) => {
                         onPageChanged(page)
