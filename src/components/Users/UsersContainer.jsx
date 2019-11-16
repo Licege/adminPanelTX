@@ -15,7 +15,8 @@ class UsersContainer extends React.Component {
 
     render() {
         let onPageChanged = (page) => {
-            console.log(page)
+            console.log(page);
+            
             return this.currentPage === page
         };
         return <Users users={this.props.users}
