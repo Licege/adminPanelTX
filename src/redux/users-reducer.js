@@ -88,6 +88,7 @@ export const requestCurrentUser = (id) => {
         let response = await usersAPI.getUserById(id);
         dispatch(toggleIsFetching(false));
         dispatch(getUserById(response.data));
+        console.log('Юзер получен', response.data)
     }
 }
 

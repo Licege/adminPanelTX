@@ -1,6 +1,4 @@
-import React from "react";
-import {NavLink} from "react-router-dom";
-import styles from "../../assets/styles/styles";
+import React, {useState} from "react";
 
 
 const User = (props) => {
@@ -14,11 +12,11 @@ const User = (props) => {
                 <div className='page-container'>
                     <div className='card'>
                         <div className='card-body'>
-                            <div>{props.user.surname}</div>
-                            <div>{props.user.name}</div>
-                            <div>{props.user.email}</div>
-                            <div>{props.user.phone}</div>
-                            <div>{props.user.bonus_points}</div>
+                                <div>Фамилия: <input value={props.user.surname} /></div>
+                                <div>Имя: <input value={props.user.name} /></div>
+                                <div>E-mail: <input value={props.user.email} /></div>
+                                <div>Телефон: <input value={props.user.phone} /></div>
+                                <div>Бонусы: <input value={props.user.bonus_points} /></div>
                         </div>
                     </div>
                 </div>
