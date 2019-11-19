@@ -1,22 +1,23 @@
-import React, {useState} from "react";
+import React from "react";
 
 
-const User = (props) => {
+const User = ({user, goEditMode}) => {
     return (
-            <div>
+        user && <div>
                 <div className='page-header'>
                     <div className='page-header-title'>
-                        Редактирование профиля: {props.user.name}
+                        Редактирование профиля: {user.name}
                     </div>
                 </div>
                 <div className='page-container'>
                     <div className='card'>
                         <div className='card-body'>
-                                <div>Фамилия: <input value={props.user.surname} /></div>
-                                <div>Имя: <input value={props.user.name} /></div>
-                                <div>E-mail: <input value={props.user.email} /></div>
-                                <div>Телефон: <input value={props.user.phone} /></div>
-                                <div>Бонусы: <input value={props.user.bonus_points} /></div>
+                            <div>Фамилия: {user.surname}</div>
+                            <div>Имя: {user.name}</div>
+                            <div>E-mail: {user.email}</div>
+                            <div>Телефон: {user.phone}</div>
+                            <div>Бонусы: {user.bonus_points}</div>
+                            <button onClick={goEditMode}>Изменить</button>
                         </div>
                     </div>
                 </div>

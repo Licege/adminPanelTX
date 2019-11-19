@@ -20,7 +20,7 @@ function App() {
                 <div className='app-wrapper-content'>
                     <Route exact path='/menu' component={MenuContainer}/>
                     <Route exact path='/users' component={UsersContainer}/>
-                    <Route exact path='/users/:id' component={UserContainer} />
+                    <Route exact path='/user/:id' component={UserContainer} />
                     <Route exact path='/employees' component={EmployeesContainer}/>
                     <Route exact path='/resume' component={Resume}/>
                     <Route exact path='/messages' component={Messages}/>

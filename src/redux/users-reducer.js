@@ -10,12 +10,12 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
-    currentUser: {},
+    currentUser: null,
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: false
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -81,16 +81,11 @@ export const requestUsers = (page) => {
     }
 };
 
-export const requestCurrentUser = (id) => {
-    return async (dispatch) => {
-        dispatch(toggleIsFetching(true));
+export const requestCurrentUser = (id) => async (dispatch) => {
+    let response = await usersAPI.getUserById(id);
+    dispatch(getUserById(response.data));
+};
 
-        let response = await usersAPI.getUserById(id);
-        dispatch(toggleIsFetching(false));
-        dispatch(getUserById(response.data));
-        console.log('Юзер получен', response.data)
-    }
-}
 
 /*
 export const requestCurrentUser = (id) => async (dispatch) => {
@@ -98,7 +93,7 @@ export const requestCurrentUser = (id) => async (dispatch) => {
     dispatch(getUserById(response.data));
     console.log(response)
 }
+*/
 
- */
 
 export default usersReducer;

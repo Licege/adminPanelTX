@@ -3,10 +3,9 @@ import {reduxForm} from "redux-form";
 import {createField, Input} from "../../common/FormsControls";
 
 const UserEditForm = ({handleSubmit, profile}) => {
-    console.log(profile)
-    debugger;
+    console.log('Профиль ', profile)
     return (
-        <>
+        <div>
             <div className='page-header'>
                 <div className='page-header-title'>
                     Редактирование пользователя: {profile.email}
@@ -14,6 +13,9 @@ const UserEditForm = ({handleSubmit, profile}) => {
             </div>
             <form onSubmit={handleSubmit}>
                 <button>Сохранить</button>
+                <div>
+                    {createField("ID", "id", [], Input)}
+                </div>
                 <div>
                     {createField("Фамилия", "surname", [], Input)}
                 </div>
@@ -33,8 +35,9 @@ const UserEditForm = ({handleSubmit, profile}) => {
                 <div>
                     {createField("Бонус", "bonus_points", [], Input)}
                 </div>
+                <input type="text" value={profile.name}/>
             </form>
-        </>
+        </div>
         )
 };
 
