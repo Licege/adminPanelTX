@@ -1,8 +1,6 @@
 import React from "react";
-import User from "./User";
-import {requestCurrentUser} from "../../../redux/users-reducer";
+import {requestCurrentUser, updateCurrentUser} from "../../../redux/users-reducer";
 import {connect} from "react-redux";
-import UserEditForm from "./UserEditForm";
 import Profile from "../Profile/Profile";
 import {withRouter} from "react-router-dom";
 
@@ -24,9 +22,8 @@ class UserContainer extends React.Component{
     }
 
     render() {
-
         return (
-            <Profile user={this.props.currentUser} />
+            <Profile user={this.props.currentUser} updateProfile={this.props.updateCurrentUser} />
         );
     }
 }
@@ -39,5 +36,5 @@ let mapStateToProps = (state) => {
 
 let WithUrlDataUserContainer = withRouter(UserContainer);
 
-export default connect(mapStateToProps, {getUserById: requestCurrentUser})(WithUrlDataUserContainer)
+export default connect(mapStateToProps, {getUserById: requestCurrentUser, updateCurrentUser})(WithUrlDataUserContainer)
 

@@ -1,8 +1,6 @@
-import styles from "../assets/styles/styles";
 import React from "react";
 import {Table} from "react-bootstrap";
 import Paginator from "../common/Paginator";
-import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
     return (
@@ -27,30 +25,32 @@ const Users = (props) => {
                     </div>
                 </div>
 
-                <div style={styles.Card}>
-                    <Table responsive>
-                        <thead className='table-thread'>
-                        <tr>
-                            <th>Фамилия</th>
-                            <th>Имя</th>
-                            <th>E-mail</th>
-                            <th>Телефон</th>
-                            <th>Баллы</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {props.users.map(user => (
-                            <tr key={user.id} onClick={(e) => props.detail(user.id)}>
-                                <td>{user.surname}</td>
-                                <td>{user.name}</td>
-                                <td>{user.email}</td>
-                                <td>{user.phone}</td>
-                                <td>{user.bonus_points}</td>
+                <div className='card'>
+                    <div className='card-body'>
+                        <Table responsive>
+                            <thead className='table-thread'>
+                            <tr>
+                                <th>Фамилия</th>
+                                <th>Имя</th>
+                                <th>E-mail</th>
+                                <th>Телефон</th>
+                                <th>Баллы</th>
                             </tr>
-                        ))}
-                        </tbody>
-                    </Table>
-                    <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} pageSize={10} onPageChanged={props.onPageChanged} />
+                            </thead>
+                            <tbody>
+                            {props.users.map(user => (
+                                <tr key={user.id} onClick={(e) => props.detail(user.id)}>
+                                    <td>{user.surname}</td>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.phone}</td>
+                                    <td>{user.bonus_points}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </Table>
+                        <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} pageSize={10} onPageChanged={props.onPageChanged} />
+                    </div>
                 </div>
             </div>
         </div>

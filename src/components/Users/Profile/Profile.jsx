@@ -10,7 +10,13 @@ const Profile = (props) => {
     }
 
     const onSubmit = (formData) => {
-        setEditMode(false);
+        let data = {...formData};
+        data.bonus_points = parseInt(data.bonus_points, 10);
+        props.updateProfile(data).then(
+            () => {
+                setEditMode(false);
+            }
+        );
     };
 
     return (

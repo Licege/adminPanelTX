@@ -1,4 +1,3 @@
-import styles from "../assets/styles/styles";
 import React from "react";
 import {Table} from "react-bootstrap";
 
@@ -25,29 +24,31 @@ const Employees = (props) => {
                     </div>
                 </div>
 
-                <div style={styles.Card}>
-                    <Table responsive>
-                        <thead className='table-thread'>
-                        <tr>
-                            <th>Должность</th>
-                            <th>Фамилия</th>
-                            <th>Имя</th>
-                            <th>Телефон</th>
-                            <th>Адрес</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        { props.employees.map(employee => (
-                            <tr key={employee.id}>
-                                <td>{employee.profession}</td>
-                                <td>{employee.surname}</td>
-                                <td>{employee.name}</td>
-                                <td>{employee.phone}</td>
-                                <td>{employee.address}</td>
+                <div className='card'>
+                    <div className='card-body'>
+                        <Table responsive>
+                            <thead className='table-thread'>
+                            <tr>
+                                <th>Должность</th>
+                                <th>Фамилия</th>
+                                <th>Имя</th>
+                                <th>Телефон</th>
+                                <th>Адрес</th>
                             </tr>
-                        ))}
-                        </tbody>
-                    </Table>
+                            </thead>
+                            <tbody>
+                            { props.employees.map(employee => (
+                                <tr key={employee.id}>
+                                    <td>{employee.profession}</td>
+                                    <td>{employee.surname}</td>
+                                    <td>{employee.name}</td>
+                                    <td>{employee.phone}</td>
+                                    <td>{employee.address}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </div>
             </div>
         </div>

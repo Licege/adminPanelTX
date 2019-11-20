@@ -1,9 +1,8 @@
 import React from 'react';
 import {reduxForm} from "redux-form";
-import {createField, Input} from "../../common/FormsControls";
+import {createField, Input, isNumber} from "../../common/FormsControls";
 
 const UserEditForm = ({handleSubmit, profile}) => {
-    console.log('Профиль ', profile)
     return (
         <div>
             <div className='page-header'>
@@ -33,9 +32,8 @@ const UserEditForm = ({handleSubmit, profile}) => {
                 </div>
 
                 <div>
-                    {createField("Бонус", "bonus_points", [], Input)}
+                    {createField("Бонус", "bonus_points", [], Input, 'number')}
                 </div>
-                <input type="text" value={profile.name}/>
             </form>
         </div>
         )

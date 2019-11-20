@@ -11,8 +11,10 @@ const Menu = () => {
                 </div>
             </div>
             <div className='page-container'>
-                <div style={styles.Card}>
-                    <input type='file' accept="image/png, image/jpeg, image/svg+xml, image/svg"/>
+                <div className='card'>
+                    <div className='card-body'>
+                        <input type='file' accept="image/png, image/jpeg, image/svg+xml, image/svg"/>
+                    </div>
                 </div>
                 Скоро будет меню...
             </div>

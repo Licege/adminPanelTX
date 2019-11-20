@@ -31,13 +31,8 @@ const usersReducer = (state = initialState, action) => {
         case UPDATE_USER:
             return {
                 ...state,
-                users: state.users.map(user => {
-                    if (user.id === action.id) {
-                        return state //надо заменить вернуть юзера с измененеиями
-                    }
-                    return user; //вернули, если не нашли
-                })
-            };
+                user: action.currentUser,
+                };
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
@@ -56,6 +51,7 @@ const usersReducer = (state = initialState, action) => {
 
 export const getUsers = (users) => ({type: GET_USERS, users});
 export const getUserById = (currentUser) => ({type: GET_USER_BY_ID, currentUser});
+export const updateUser = (currentUser) => ({type: UPDATE_USER, currentUser});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
 export const createUser = (user) => ({type: CREATE_USER, user});
@@ -84,6 +80,11 @@ export const requestUsers = (page) => {
 export const requestCurrentUser = (id) => async (dispatch) => {
     let response = await usersAPI.getUserById(id);
     dispatch(getUserById(response.data));
+};
+
+export const updateCurrentUser = (profile) => async (dispatch) => {
+    let response = await usersAPI.updateUser(profile);
+    dispatch(updateUser(response.data));
 };
 
 

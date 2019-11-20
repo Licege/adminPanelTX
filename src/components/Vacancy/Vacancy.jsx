@@ -1,4 +1,3 @@
-import styles from "../assets/styles/styles";
 import React from "react";
 
 const Vacancy = (props) => {
@@ -10,8 +9,10 @@ const Vacancy = (props) => {
                 </div>
             </div>
             <div className='page-container'>
-                <div style={styles.Card}>
-                    13
+                <div className='card'>
+                    <div className='card-body'>
+                        321
+                    </div>
                 </div>
             </div>
         </div>
