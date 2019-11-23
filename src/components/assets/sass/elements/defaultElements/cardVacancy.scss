@@ -1,0 +1,30 @@
+.card_vacancy {
+  width: 300px;
+  letter-spacing: 1px;
+
+  &-img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  &-title {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 24px;
+    height: 48px;
+    background-color: sandybrown;
+    color: saddlebrown;
+  }
+
+  b {
+    display: block;
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 48px;
+    letter-spacing: 1px;
+  }
+}

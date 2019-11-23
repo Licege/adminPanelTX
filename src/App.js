@@ -10,6 +10,7 @@ import EmployeesContainer from "./components/Employees/EmployeesContainer";
 import Resume from "./components/Resume/Resume";
 import Messages from "./components/Messages/Messages";
 import UserContainer from "./components/Users/id/UserContainer";
+import Vacancies from "./components/Vacancies/Vacancies";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route exact path='/user/:id' component={UserContainer} />
                     <Route exact path='/employees' component={EmployeesContainer}/>
                     <Route exact path='/resume' component={Resume}/>
+                    <Route exact path='/vacancies' component={Vacancies}/>
                     <Route exact path='/messages' component={Messages}/>
                 </div>
             </div>

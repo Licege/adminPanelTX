@@ -1,34 +1,46 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Accordion, Card, Figure, useAccordionToggle} from "react-bootstrap";
 import arrowDown from './../../static/img/menu-arrow-down.png';
 import arrowUp from './../../static/img/menu-arrow-up.png';
 
 function CustomToggle({children, eventKey}) {
-    let activ = false
+    let [active, setActive] = useState(false);
+    console.log(eventKey)
+    console.log(active)
     const changeArrow = useAccordionToggle(eventKey, () =>
-            console.log(eventKey),
-        activ = !activ
+            setActive(!active)
     );
+    console.log(active)
+
 
     return (
-        <Card.Header
-            variant="link"
-            onClick={changeArrow}
-        >
-            {children}
-        </Card.Header>
+        <>
+            <Figure
+                className='navbar-accordion-header'
+                variant="link"
+                onClick={changeArrow}
+            >
+                {children}
+            </Figure>
+        </>
     )
+}
+
+const test = (value) => {
+    console.log('1')
 }
 
 const Navbar = () => {
     return (
         <nav className='navbar'>
             <Accordion className='navbar-accordion'>
-                <Accordion.Toggle as={Figure} className='navbar-accordion-header' variant="link" eventKey="0">
+                <CustomToggle as={Figure} in={test} className='navbar-accordion-header' variant="link" eventKey="0">
                     Ресторан
-                    <img className='navbar-accordion-header-arrow' src={arrowDown}/>
-                </Accordion.Toggle>
+                    {1 == 1
+                        ? <img className='navbar-accordion-header-arrow' src={arrowDown}/>
+                        :  <img className='navbar-accordion-header-arrow' src={arrowUp}/>}
+                </CustomToggle>
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className={'navbar-accordion-header-item'} to='/menu'>Меню</NavLink>
                 </Accordion.Collapse>
@@ -44,10 +56,10 @@ const Navbar = () => {
                              to='/vacancies'>Вакансии</NavLink>
                 </Accordion.Collapse>
 
-                <Accordion.Toggle as={Figure} className='navbar-accordion-header' variant="link" eventKey="1">
+                <CustomToggle as={Figure} in={test} className='navbar-accordion-header' variant="link" eventKey="1">
                     Посетители
                     <img className='navbar-accordion-header-arrow' src={arrowDown}/>
-                </Accordion.Toggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey="1">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/users'>Все
                         посетители</NavLink>

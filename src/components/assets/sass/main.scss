@@ -4,6 +4,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import "pages/layout";
+
 @import "elements/defaultElements/table";
+@import "elements/defaultElements/cardVacancy";
 @import "elements/navbar";
 @import "elements/filter";
+
+@import "pages/vacancies";
