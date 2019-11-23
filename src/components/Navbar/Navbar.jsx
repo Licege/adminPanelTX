@@ -1,45 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {Accordion, Card, Figure, useAccordionToggle} from "react-bootstrap";
+import {Accordion, Figure} from "react-bootstrap";
 import arrowDown from './../../static/img/menu-arrow-down.png';
 import arrowUp from './../../static/img/menu-arrow-up.png';
-
-function CustomToggle({children, eventKey}) {
-    let [active, setActive] = useState(false);
-    console.log(eventKey)
-    console.log(active)
-    const changeArrow = useAccordionToggle(eventKey, () =>
-            setActive(!active)
-    );
-    console.log(active)
-
-
-    return (
-        <>
-            <Figure
-                className='navbar-accordion-header'
-                variant="link"
-                onClick={changeArrow}
-            >
-                {children}
-            </Figure>
-        </>
-    )
-}
-
-const test = (value) => {
-    console.log('1')
-}
+import CustomToggle from "../common/element/Toggle";
 
 const Navbar = () => {
     return (
         <nav className='navbar'>
             <Accordion className='navbar-accordion'>
-                <CustomToggle as={Figure} in={test} className='navbar-accordion-header' variant="link" eventKey="0">
+                <CustomToggle className='navbar-accordion-header' eventKey='0'>
                     Ресторан
-                    {1 == 1
-                        ? <img className='navbar-accordion-header-arrow' src={arrowDown}/>
-                        :  <img className='navbar-accordion-header-arrow' src={arrowUp}/>}
                 </CustomToggle>
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className={'navbar-accordion-header-item'} to='/menu'>Меню</NavLink>
@@ -56,9 +27,8 @@ const Navbar = () => {
                              to='/vacancies'>Вакансии</NavLink>
                 </Accordion.Collapse>
 
-                <CustomToggle as={Figure} in={test} className='navbar-accordion-header' variant="link" eventKey="1">
+                <CustomToggle className='navbar-accordion-header' eventKey='1'>
                     Посетители
-                    <img className='navbar-accordion-header-arrow' src={arrowDown}/>
                 </CustomToggle>
                 <Accordion.Collapse eventKey="1">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/users'>Все
@@ -75,18 +45,16 @@ const Navbar = () => {
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/resume'>Резюме</NavLink>
                 </Accordion.Collapse>
 
-                <Accordion.Toggle as={Figure} className='navbar-accordion-header' variant="link" eventKey="2">
+                <CustomToggle className='navbar-accordion-header' eventKey='2'>
                     Программа лояльности
-                    <img className='navbar-accordion-header-arrow' src={arrowDown}/>
-                </Accordion.Toggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey="2">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/promos'>Акции</NavLink>
                 </Accordion.Collapse>
 
-                <Accordion.Toggle as={Figure} className='navbar-accordion-header' variant="link" eventKey="3">
+                <CustomToggle className='navbar-accordion-header' eventKey='3'>
                     Администраторы
-                    <img className='navbar-accordion-header-arrow' src={arrowDown}/>
-                </Accordion.Toggle>
+                </CustomToggle>
                 <Accordion.Collapse eventKey="3">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
                              to='/admin'>Администраторы</NavLink>
@@ -96,10 +64,9 @@ const Navbar = () => {
                         доступа</NavLink>
                 </Accordion.Collapse>
 
-                <Accordion.Toggle as={Figure} className='navbar-accordion-header' variant="link" eventKey="4">
+                <CustomToggle className='navbar-accordion-header' eventKey='4'>
                     Статистика и отчеты
-                    <img className='navbar-accordion-header-arrow' src={arrowDown}/>
-                </Accordion.Toggle>
+                </CustomToggle>
             </Accordion>
         </nav>
     )

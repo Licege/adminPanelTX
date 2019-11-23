@@ -1,0 +1,29 @@
+.promos {
+
+}
+
+.questions {
+
+  &-question {
+    position: relative;
+    margin-bottom: 8px;
+    overflow: hidden;
+
+    &-input {
+      width: 100%;
+    }
+
+    &-add {
+
+    }
+
+    &-delete {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: none;
+      width: 36px;
+      height: 36px;
+    }
+  }
+}

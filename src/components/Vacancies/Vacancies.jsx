@@ -2,16 +2,9 @@ import React from "react";
 import CardVacancy from '../common/element/CardVacancy';
 
 const Vacancies = (props) => {
-    /*
-    let test = {
-        title: 'Тест',
-        requirements: 'Требования',
-        description: 'Описание вакансии',
-        salary_from: 27000,
-        salary_to: 29000
-    };*/
     let testMas = [
         {
+            id: 1,
             title: 'Тест',
             requirements: 'Требования',
             description: 'Описание вакансии',
@@ -19,6 +12,7 @@ const Vacancies = (props) => {
             salary_to: 29000
         },
         {
+            id: 2,
             title: 'Тест',
             requirements: 'Требования',
             description: 'Описание вакансии',
@@ -26,6 +20,7 @@ const Vacancies = (props) => {
             salary_to: 29000
         },
         {
+            id: 3,
             title: 'Тест',
             requirements: 'Требования',
             description: 'Описание вакансии',
@@ -44,8 +39,8 @@ const Vacancies = (props) => {
                 <div className='card'>
                     <div className='card-body vacancies'>
                         {testMas.map((test) => (
-                            <CardVacancy card={test}/>
-                        ))};
+                            <CardVacancy card={test} key={test.id}/>
+                        ))}
 
                     </div>
                 </div>

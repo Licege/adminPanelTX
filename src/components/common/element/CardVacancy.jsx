@@ -2,7 +2,6 @@ import React from 'react';
 import altImg from '../../../static/img/vacancy.png'
 
 let CardVacancy = ({card, img}) => {
-    console.log(card.requirements)
     return (
         <div className='card card_vacancy'>
             <div className='card-body'>
