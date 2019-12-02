@@ -3,10 +3,10 @@ import deleteBucket from '../../../static/img/delete.png';
 
 
 const Question = ({quest}) => {
+    console.log(quest)
     let answers = [...quest, ''];
 
     const addAnswer = () => {
-        console.log('1')
         answers.push('')
     };
 

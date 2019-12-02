@@ -11,6 +11,7 @@ import Messages from "./components/Messages/Messages";
 import UserContainer from "./components/Users/id/UserContainer";
 import Vacancies from "./components/Vacancies/Vacancies";
 import ContainerPromos from "./components/Promos/ContainerPromos";
+import VacanciesContainer from "./components/Vacancies/VacanciesContainer";
 
 function App() {
     return (
@@ -24,7 +25,7 @@ function App() {
                     <Route exact path='/user/:id' component={UserContainer} />
                     <Route exact path='/employees' component={EmployeesContainer}/>
                     <Route exact path='/resume' component={Resume}/>
-                    <Route exact path='/vacancies' component={Vacancies}/>
+                    <Route exact path='/vacancies' component={VacanciesContainer}/>
                     <Route exact path='/messages' component={Messages}/>
                     <Route exact path='/promos' component={ContainerPromos}/>
                 </div>

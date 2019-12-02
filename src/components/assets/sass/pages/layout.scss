@@ -21,6 +21,15 @@
           text-decoration: inherit;
         }
       }
+    &-action {
+      margin: 0 30px;
+      display: flex;
+      align-items: center;
+
+      .btn-delete {
+        margin-right: 100px;
+      }
+    }
   }
 
   &-container {

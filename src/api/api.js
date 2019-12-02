@@ -39,3 +39,12 @@ export const employeesAPI = {
             });
     }
 };
+
+export const vacancyAPI = {
+    getVacancies() {
+        return axios.get(baseUrl + `/vacancy/`)
+            .then(response => {
+                return response;
+            })
+    }
+};
