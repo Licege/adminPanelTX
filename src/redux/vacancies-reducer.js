@@ -46,10 +46,17 @@ export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFe
 export const requestVacancies = () => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        let data = await vacancyAPI.getVacancies();
+        let response = await vacancyAPI.getVacancies();
         dispatch(toggleIsFetching(false));
-        dispatch(getVacancies(data.data))
+        dispatch(getVacancies(response.data))
     }
+};
+
+export const createNewVacancy = (vacancy) => async(dispatch) => {
+    dispatch(toggleIsFetching(true));
+    let response = await vacancyAPI.createVacancy(vacancy);
+    dispatch(toggleIsFetching(false));
+    dispatch(createVacancy(response));
 };
 
 export default vacanciesReducer;

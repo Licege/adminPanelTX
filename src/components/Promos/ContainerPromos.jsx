@@ -11,12 +11,12 @@ class ContainerPromos extends React.Component {
     promos = [...this.props.promos];
 
     addAnswer = () => {
+        console.log('12')
         this.test.push('')
     };
 
     render() {
-
-        return <Promos promos={this.promos} />
+        return <Promos promos={this.promos} addAnswer={this.addAnswer}/>
     }
 
 }

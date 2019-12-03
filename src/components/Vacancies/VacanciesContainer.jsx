@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {requestVacancies} from "../../redux/vacancies-reducer";
+import {createNewVacancy, requestVacancies} from "../../redux/vacancies-reducer";
 import Vacancies from "./Vacancies";
 
 class VacanciesContainer extends React.Component {
@@ -11,7 +11,7 @@ class VacanciesContainer extends React.Component {
     render() {
         return <>
             {this.props.isFetching ? 'Показать прелоадер' : null}
-            <Vacancies vacancies={this.props.vacancies}/>
+            <Vacancies vacancies={this.props.vacancies} createVacancy={this.props.createVacancy} />
             </>
     }
 
@@ -26,5 +26,8 @@ let mapStateToProps = (state) => {
 };
 
 export default connect (mapStateToProps,
-    {getVacancies: requestVacancies})
+    {
+        getVacancies: requestVacancies,
+        createVacancy: createNewVacancy
+    })
 (VacanciesContainer)

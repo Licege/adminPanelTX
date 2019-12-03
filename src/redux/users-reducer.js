@@ -31,7 +31,7 @@ const usersReducer = (state = initialState, action) => {
         case UPDATE_USER:
             return {
                 ...state,
-                user: action.currentUser,
+                currentUser: action.currentUser,
                 };
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
@@ -85,6 +85,9 @@ export const requestCurrentUser = (id) => async (dispatch) => {
 export const updateCurrentUser = (profile) => async (dispatch) => {
     let response = await usersAPI.updateUser(profile);
     dispatch(updateUser(response.data));
+
+    //Добавить проверку
+
 };
 
 

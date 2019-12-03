@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import Question from "./elements/question";
 import {Form} from "react-bootstrap";
 
-const Promo = ({promo}) => {
-    console.log(promo)
+const Promo = (props) => {
+    console.log(props)
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = event => {
@@ -16,7 +16,7 @@ const Promo = ({promo}) => {
     };
 
     return (
-        <>
+        <div>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <div className='page-header -action'>
                     <div className='page-header-title'>
@@ -43,12 +43,17 @@ const Promo = ({promo}) => {
                             {/*{promo.questions.map(question => {
                                 return <Question quest={question}/>
                             })}*/}
-                            {/*<Question quest={questions}/>*/}
+                            {
+                                props.promo.questions.map((question, key) => {
+                                    return <Question question={question} addAnsver={props.addAnswer} key={key}/>
+                                })
+                            }
+
                         </div>
                     </div>
                 </div>
             </Form>
-        </>
+        </div>
     )
 };
 

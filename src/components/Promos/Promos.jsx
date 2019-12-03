@@ -2,7 +2,7 @@ import React from 'react';
 import Question from "./elements/question";
 import Promo from "./Promo";
 
-const Promos = ({promos}) => {
+const Promos = (props) => {
     return (
         <>
             <div className='page-header'>
@@ -18,8 +18,8 @@ const Promos = ({promos}) => {
                     </div>
                 </div>
                 {
-                    promos.map(promo => {
-                        return <Promo promo={promo} />
+                    props.promos.map((promo, key) => {
+                        return <Promo promo={promo} addAnswer={props.addAnswer} key={key} />
                     })
                 }
             </div>

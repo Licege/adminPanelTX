@@ -46,5 +46,11 @@ export const vacancyAPI = {
             .then(response => {
                 return response;
             })
+    },
+    createVacancy(vacancy) {
+        return axios.post(baseUrl + `/vacancy/`, vacancy)
+            .then(response => {
+                return response;
+            });
     }
 };
