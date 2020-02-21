@@ -1,6 +1,6 @@
 import React from 'react';
 import {reduxForm} from "redux-form";
-import {createField, Input, isNumber} from "../../common/FormsControls";
+import {createField, Input} from "../../common/FormsControls";
 
 const UserEditForm = ({handleSubmit, profile}) => {
     return (

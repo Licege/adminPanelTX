@@ -8,12 +8,22 @@ class EmployeesContainer extends React.Component {
     componentDidMount() {
         employeesAPI.getEmployees().then(data =>{
             this.props.getEmployees(data);
-            console.log(data)
         })
     }
 
+    detail = (id) => {
+        this.props.history.push(`employees/edit/${id}`)
+    };
+
+    createNewEmployee = () => {
+        this.props.history.push(`employees/new`)
+    }
+
     render() {
-        return <Employees employees={this.props.employees}/>
+        return <Employees
+            employees={this.props.employees}
+            detail={this.detail}
+            createNewEmployee={this.createNewEmployee} />
     }
 }
 

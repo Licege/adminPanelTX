@@ -1,3 +1,5 @@
+import {employeesAPI} from "../api/api";
+
 const CREATE_EMPLOYEE = 'CREATE_EMPLOYEE';
 const UPDATE_EMPLOYEE = 'UPDATE-EMPLOYEE';
 const DELETE_EMPLOYEE = 'DELETE-EMPLOYEE';
@@ -5,7 +7,15 @@ const GET_EMPLOYEES = 'GET_EMPLOYEES';
 const GET_EMPLOYEE_BY_ID = 'GET-EMPLOYEE-BY-ID';
 
 let initialState = {
-    employees: []
+    currentEmployee: null,
+    employees: [],
+    newEmployee: {
+        name: "",
+        surname: "",
+        phone: "",
+        address: "",
+        profession: ""
+    }
 };
 
 const employeesReducer = (state = initialState, action) => {
@@ -13,19 +23,11 @@ const employeesReducer = (state = initialState, action) => {
         case GET_EMPLOYEES:
             return { ...state, employees: action.employees };
         case GET_EMPLOYEE_BY_ID:
-
-            return state;
+            return {...state, currentEmployee: action.currentEmployee};
 
         case CREATE_EMPLOYEE:
-            let newEmployees = {
-                name: "Маша",
-                surname: "Немаша",
-                email: "neMashaYa@masha.ne",
-                phone: "+79091234567"
-            };
-
             return { ...state,
-                employees: [...state, newEmployees]
+                employees: [...state.employees, state.newEmployee]
             };
 
         case UPDATE_EMPLOYEE:
@@ -44,8 +46,21 @@ const employeesReducer = (state = initialState, action) => {
     }
 };
 
+export const createEmployee = (newEmployee) => ({type: CREATE_EMPLOYEE, newEmployee});
 export const getEmployeesAC = (employees) => ({type: GET_EMPLOYEES, employees});
+export const getEmployeesById = (currentEmployee) => ({type: GET_EMPLOYEE_BY_ID, currentEmployee});
 export const createEmployeeAC = (employee) => ({type: CREATE_EMPLOYEE, employee});
 export const changeEmployeeAC = (employee) => ({type: UPDATE_EMPLOYEE, employee});
+
+
+export const createNewEmployee = (newEmployee) => async (dispatch) => {
+    let response = await employeesAPI.createEmployees(newEmployee);
+    dispatch(createEmployee(response.data))
+};
+
+export const requestCurrentEmployee = (id) => async (dispatch) => {
+    let response = await employeesAPI.getEmployeeById(id);
+    dispatch(getEmployeesById(response.data));
+};
 
 export default employeesReducer;

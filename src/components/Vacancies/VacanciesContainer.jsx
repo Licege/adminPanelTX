@@ -29,5 +29,4 @@ export default connect (mapStateToProps,
     {
         getVacancies: requestVacancies,
         createVacancy: createNewVacancy
-    })
-(VacanciesContainer)
+    })(VacanciesContainer)

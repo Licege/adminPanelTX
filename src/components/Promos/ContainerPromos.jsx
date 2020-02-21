@@ -1,5 +1,4 @@
 import React from 'react';
-import Promo from "./Promo";
 import {connect} from "react-redux";
 import Promos from "./Promos";
 

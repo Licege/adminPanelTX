@@ -1,8 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import {Accordion, Figure} from "react-bootstrap";
-import arrowDown from './../../static/img/menu-arrow-down.png';
-import arrowUp from './../../static/img/menu-arrow-up.png';
+import { NavLink } from 'react-router-dom';
+import { Accordion } from "react-bootstrap";
 import CustomToggle from "../common/element/Toggle";
 
 const Navbar = () => {
@@ -12,6 +10,9 @@ const Navbar = () => {
                 <CustomToggle className='navbar-accordion-header' eventKey='0'>
                     Ресторан
                 </CustomToggle>
+                <Accordion.Collapse eventKey="0">
+                    <NavLink activeClassName='-active' className={'navbar-accordion-header-item'} to='/news'>Новости</NavLink>
+                </Accordion.Collapse>
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className={'navbar-accordion-header-item'} to='/menu'>Меню</NavLink>
                 </Accordion.Collapse>

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styles from '../assets/styles/styles';
-
 const Menu = () => {
     return (
         <div>

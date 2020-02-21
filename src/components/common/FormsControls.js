@@ -1,9 +1,8 @@
 import React from "react";
-import {placeholder} from "@babel/types";
 import {Field} from "redux-form";
 
 const FormControl  = ({input, meta: {touched, error}, children}) => {
-    const hasError = touched && error;
+    //const hasError = touched && error;
     return (
         <div>
             {children}
@@ -12,7 +11,7 @@ const FormControl  = ({input, meta: {touched, error}, children}) => {
 };
 
 export const onlyNumber = (value) => {
-    const regEx = /[^0-9]/gi;
+    //const regEx = /[^0-9]/gi;
     return parseInt(value, 10)
 };
 

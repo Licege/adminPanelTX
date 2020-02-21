@@ -19,8 +19,8 @@ const CustomToggle = ({children, eventKey}) => {
         >
             {children}
             {active
-                ? <img className='navbar-accordion-header-arrow' src={arrowUp} />
-                : <img className='navbar-accordion-header-arrow' src={arrowDown} />}
+                ? <img className='navbar-accordion-header-arrow' src={arrowUp} alt="" />
+                : <img className='navbar-accordion-header-arrow' src={arrowDown} alt="" />}
         </Figure>
     )
 };

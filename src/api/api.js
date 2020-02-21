@@ -32,10 +32,28 @@ export const usersAPI = {
 };
 
 export const employeesAPI = {
+    createEmployee(profile) {
+        return axios.post(baseUrl + `/employees/`, profile)
+            .then(response => {
+                return response;
+            })
+    },
     getEmployees() {
         return axios.get(baseUrl + `/employees/`)
             .then(responce => {
                 return responce.data;
+            });
+    },
+    getEmployeeById(id) {
+        return axios.get(baseUrl + `/employees/${id}`)
+            .then(response => {
+                return response;
+            });
+    },
+    updateEmployee(profile) {
+        return axios.put(baseUrl + `/employees/${profile.id}`, profile)
+            .then(response => {
+                return response;
             });
     }
 };
