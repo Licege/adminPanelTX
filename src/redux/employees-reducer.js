@@ -9,13 +9,6 @@ const GET_EMPLOYEE_BY_ID = 'GET-EMPLOYEE-BY-ID';
 let initialState = {
     currentEmployee: null,
     employees: [],
-    newEmployee: {
-        name: "",
-        surname: "",
-        phone: "",
-        address: "",
-        profession: ""
-    }
 };
 
 const employeesReducer = (state = initialState, action) => {
@@ -54,7 +47,7 @@ export const changeEmployeeAC = (employee) => ({type: UPDATE_EMPLOYEE, employee}
 
 
 export const createNewEmployee = (newEmployee) => async (dispatch) => {
-    let response = await employeesAPI.createEmployees(newEmployee);
+    let response = await employeesAPI.createEmployee(newEmployee);
     dispatch(createEmployee(response.data))
 };
 

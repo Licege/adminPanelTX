@@ -17,13 +17,18 @@ class EmployeesContainer extends React.Component {
 
     createNewEmployee = () => {
         this.props.history.push(`employees/new`)
-    }
+    };
+
+    delete = (id) => {
+        console.log(id)
+    };
 
     render() {
         return <Employees
             employees={this.props.employees}
             detail={this.detail}
-            createNewEmployee={this.createNewEmployee} />
+            createNewEmployee={this.createNewEmployee}
+            delete={this.delete}/>
     }
 }
 

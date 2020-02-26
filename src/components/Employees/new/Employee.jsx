@@ -1,8 +1,8 @@
 import React from 'react';
 import {createField, Input} from "../../common/FormsControls";
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 
-const CreateProfile = ({postNewEmployee}) => {
+const CreateProfile = ({handleSubmit, employee}) => {
     return (
         <div>
             <div className='page-header'>
@@ -13,9 +13,9 @@ const CreateProfile = ({postNewEmployee}) => {
             <div className='page-container'>
                 <div className='card'>
                     <div className='card-body'>
-                        <form onSubmit={postNewEmployee}>
+                        <form onSubmit={handleSubmit}>
                             <div>
-                                {createField("Фамилия", "surname", [], Input)}
+                                {createField("Фамилия", "surname",[], Input)}
                             </div>
 
                             <div>
@@ -45,6 +45,14 @@ const CreateProfile = ({postNewEmployee}) => {
 
                             <div>
                                 {createField("Адрес", "address", [], Input)}
+                            </div>
+
+                            <div>
+                                {createField("id_профессии", "profession", [], Input)}
+                            </div>
+
+                            <div>
+                                {createField("fileId", "fileId", [], Input)}
                             </div>
 
                             <button type='submit'>Сохранить</button>

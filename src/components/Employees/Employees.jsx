@@ -1,5 +1,6 @@
 import React from "react";
 import {Table} from "react-bootstrap";
+import deleteButton from "../../static/img/close.png"
 
 const Employees = (props) => {
     return (
@@ -49,7 +50,7 @@ const Employees = (props) => {
                                     <td>{employee.name}</td>
                                     <td>{employee.phone}</td>
                                     <td>{employee.address}</td>
-                                    <td>Кнопка удалить</td>
+                                    <td><img src={deleteButton} alt="Удалить" onClick={(e) => props.delete(employee.id)} /></td>
                                 </tr>
                             ))}
                             </tbody>
