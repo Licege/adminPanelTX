@@ -2,12 +2,13 @@ import React from 'react';
 import {createField, Input} from "../../common/FormsControls";
 import {Field, reduxForm} from "redux-form";
 
-const CreateProfile = ({handleSubmit, professions, cancel}) => {
+const CreateDish = ( {handleSubmit, categories, cancel} ) => {
+    console.log(categories)
     return (
         <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Добавление нового сотрудника
+                    Добавление нового блюда
                 </div>
             </div>
             <div className='page-container'>
@@ -15,35 +16,35 @@ const CreateProfile = ({handleSubmit, professions, cancel}) => {
                     <div className='card-body'>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                {createField("Фамилия", "surname",[], Input)}
+                                {createField("Название", "title",[], Input)}
                             </div>
 
                             <div>
-                                {createField("Имя", "name", [], Input)}
+                                {createField("Описание", "description", [], Input)}
                             </div>
 
                             <div>
-                                <label>Должность</label>
+                                <label>Категории</label>
                                 <div>
-                                    <Field name="profession" component="select" >
+                                    <Field name="category_id" component="select" >
                                         <option></option>
-                                        {professions.map(p => {
-                                            return <option value={p.id} key={p.id}>{p.profession}</option>
+                                        {categories.map(p => {
+                                            return <option value={p.id} key={p.id}>{p.title}</option>
                                         })}
                                     </Field>
                                 </div>
                             </div>
 
                             <div>
-                                {createField("Телефон", "phone", [], Input)}
+                                {createField("Вес порции (г.)", "weight", [], Input)}
                             </div>
 
                             <div>
-                                {createField("Адрес", "address", [], Input)}
+                                {createField("Цена", "price", [], Input)}
                             </div>
 
                             <div>
-                                {createField("fileId", "file_id", [], Input)}
+                                {createField("url", "url", [], Input)}
                             </div>
 
                             <button type='submit'>Сохранить</button>
@@ -56,5 +57,5 @@ const CreateProfile = ({handleSubmit, professions, cancel}) => {
     )
 };
 
-const EmployeeEditReduxForm = reduxForm({form: 'create-employee'})(CreateProfile);
-export default EmployeeEditReduxForm;
+const CreateDishReduxForm = reduxForm({form: 'create-dish'})(CreateDish);
+export default CreateDishReduxForm;

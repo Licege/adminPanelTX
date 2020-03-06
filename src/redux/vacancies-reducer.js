@@ -6,10 +6,12 @@ const GET_VACANCIES = 'GET_VACANCIES';
 const GET_VACANCY_BY_ID = 'GET_VACANCY_BY_ID';
 const UPDATE_VACANCY = 'UPDATE_VACANCY';
 const CLOSE_VACANCY = 'CLOSE_VACANCY';
+const DELETE_VACANCY = 'DELETE_VACANCY';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     vacancies: [],
+    newVacancy: null,
     currentVacancy: null,
     isFetching: false
 };
@@ -17,7 +19,7 @@ let initialState = {
 const vacanciesReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_VACANCY: {
-            return;
+            return { ...state, vacancies: [...state.vacancies, action.vacancy]};
         }
         case GET_VACANCIES: {
             return { ...state, vacancies: action.vacancies};
@@ -29,8 +31,10 @@ const vacanciesReducer = (state = initialState, action) => {
             return { ...state, currentVacancy: action.vacancy};
         }
         case CLOSE_VACANCY: {
-            return;
+            return ;
         }
+        case DELETE_VACANCY:
+            return { ...state, vacancies: state.vacancies.filter(e => e.id !== action.id) };
         default:
             return state;
     }
@@ -41,6 +45,7 @@ export const getVacancies = (vacancies) => ({type: GET_VACANCIES, vacancies});
 export const getVacancyById = (vacancy) => ({type: GET_VACANCY_BY_ID, vacancy});
 export const updateVacancy = (vacancy) => ({type: UPDATE_VACANCY, vacancy});
 export const closeVacancy = (id) => ({type: CLOSE_VACANCY, id});
+export const deleteVacancyAC = (id) => ({type: DELETE_VACANCY, id});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 
 export const requestVacancies = () => {
@@ -56,7 +61,12 @@ export const createNewVacancy = (vacancy) => async(dispatch) => {
     dispatch(toggleIsFetching(true));
     let response = await vacancyAPI.createVacancy(vacancy);
     dispatch(toggleIsFetching(false));
-    dispatch(createVacancy(response));
+    dispatch(createVacancy(vacancy));
+};
+
+export const deleteVacancy = (id) => async(dispatch) => {
+    let response = await vacancyAPI.deleteVacancy(id);
+    dispatch(deleteVacancyAC(id))
 };
 
 export default vacanciesReducer;

@@ -1,20 +1,33 @@
 import React from 'react';
+import CardDish from "../common/element/CardDish";
 
-const Menu = () => {
+const Menu = ({dishes, newDish, deleteDish, onPhotoSelected}) => {
+    console.log(dishes)
     return (
         <div>
-            <div className='page-header'>
+            <div className='page-header -action'>
                 <div className='page-header-title'>
                     Меню
                 </div>
+                <div className='page-header-action'>
+                    <button className='btn btn-primary' onClick={(e) => newDish()}>Добавить блюдо</button>
+                </div>
             </div>
             <div className='page-container'>
-                <div className='card'>
+                <div className='card mb-4'>
                     <div className='card-body'>
-                        <input type='file' accept="image/png, image/jpeg, image/svg+xml, image/svg"/>
+                        <h4>PDF-меню:</h4>
+                        <input type='file' accept="image/png, image/jpeg, image/svg+xml, image/svg" onChange={onPhotoSelected}/>
                     </div>
                 </div>
-                Скоро будет меню...
+
+                <div className='card'>
+                    <h4 className='menu-header'>~Блюда~</h4>
+                    <div className='card-body menu-content'>
+                        {dishes.map((dish, key) =>
+                        <CardDish card={dish} key={key} remove={deleteDish} /> )}
+                    </div>
+                </div>
             </div>
         </div>
     )

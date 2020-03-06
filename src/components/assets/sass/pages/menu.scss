@@ -1,0 +1,11 @@
+.menu {
+  &-header {
+    margin: 0.5rem auto auto;
+  }
+
+  &-content {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

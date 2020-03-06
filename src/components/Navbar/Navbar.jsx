@@ -16,9 +16,11 @@ const Navbar = () => {
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className={'navbar-accordion-header-item'} to='/menu'>Меню</NavLink>
                 </Accordion.Collapse>
+                {/*
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/bar'>Бар</NavLink>
                 </Accordion.Collapse>
+                */}
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
                              to='/employees'>Сотрудники</NavLink>
@@ -26,6 +28,10 @@ const Navbar = () => {
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
                              to='/vacancies'>Вакансии</NavLink>
+                </Accordion.Collapse>
+                <Accordion.Collapse eventKey="0">
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/contacts'>Контакты</NavLink>
                 </Accordion.Collapse>
 
                 <CustomToggle className='navbar-accordion-header' eventKey='1'>

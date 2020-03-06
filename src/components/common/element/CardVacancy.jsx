@@ -1,7 +1,7 @@
 import React from 'react';
 import altImg from '../../../static/img/vacancy.png'
 
-let CardVacancy = ({card, img}) => {
+let CardVacancy = ({card, img, change, remove}) => {
     return (
         <div className='card card_vacancy'>
             <div className='card-body'>
@@ -13,7 +13,8 @@ let CardVacancy = ({card, img}) => {
                     ? <p>Заработная плата от {card.salary_from} до {card.salary_to} ₽</p>
                     : card.salary_from || card.salary_to
                         ? <p>Заработная плата: {card.salary_from || card.salary_to} ₽</p> : ''}
-                <button className='btn btn-primary'>Изменить</button>
+                <button className='btn btn-primary mb-2' onClick={(e) => change(card.id)}>Изменить</button>
+                <button className='btn btn-danger' onClick={(e) => remove(card.id)}>Удалить</button>
             </div>
         </div>
     )

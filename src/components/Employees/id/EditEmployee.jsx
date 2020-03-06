@@ -1,13 +1,15 @@
-import React from 'react';
+import React from "react";
 import {createField, Input} from "../../common/FormsControls";
 import {Field, reduxForm} from "redux-form";
 
-const CreateProfile = ({handleSubmit, professions, cancel}) => {
+
+const EditEmployee = ({employee, handleSubmit, professions, cancel}) => {
+    console.log(handleSubmit)
     return (
-        <div>
+        employee && <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Добавление нового сотрудника
+                    Редактирование профиля: {employee.surname + ' ' + employee.name}
                 </div>
             </div>
             <div className='page-container'>
@@ -26,7 +28,6 @@ const CreateProfile = ({handleSubmit, professions, cancel}) => {
                                 <label>Должность</label>
                                 <div>
                                     <Field name="profession" component="select" >
-                                        <option></option>
                                         {professions.map(p => {
                                             return <option value={p.id} key={p.id}>{p.profession}</option>
                                         })}
@@ -43,7 +44,7 @@ const CreateProfile = ({handleSubmit, professions, cancel}) => {
                             </div>
 
                             <div>
-                                {createField("fileId", "file_id", [], Input)}
+                                {createField("file_id", "file_id", [], Input)}
                             </div>
 
                             <button type='submit'>Сохранить</button>
@@ -56,5 +57,5 @@ const CreateProfile = ({handleSubmit, professions, cancel}) => {
     )
 };
 
-const EmployeeEditReduxForm = reduxForm({form: 'create-employee'})(CreateProfile);
+const EmployeeEditReduxForm = reduxForm({form: 'edit-employee'})(EditEmployee);
 export default EmployeeEditReduxForm;

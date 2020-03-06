@@ -1,9 +1,22 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {createNewVacancy, requestVacancies} from "../../redux/vacancies-reducer";
+import {createNewVacancy, deleteVacancy, requestVacancies} from "../../redux/vacancies-reducer";
 import Vacancies from "./Vacancies";
 
 class VacanciesContainer extends React.Component {
+    createNewVacancy = () => {
+        this.props.history.push(`vacancies/new`)
+    };
+
+    removeVacancy = (id) => {
+        this.props.deleteVacancy(id);
+        console.log(id)
+    };
+
+    changeVacancy = (id) => {
+        console.log(id)
+    };
+
     componentDidMount() {
         this.props.getVacancies()
     }
@@ -11,7 +24,10 @@ class VacanciesContainer extends React.Component {
     render() {
         return <>
             {this.props.isFetching ? 'Показать прелоадер' : null}
-            <Vacancies vacancies={this.props.vacancies} createVacancy={this.props.createVacancy} />
+            <Vacancies vacancies={this.props.vacancies}
+                       createVacancy={this.createNewVacancy}
+                       changeVacancy={this.changeVacancy}
+                       removeVacancy={this.removeVacancy} />
             </>
     }
 
@@ -28,5 +44,6 @@ let mapStateToProps = (state) => {
 export default connect (mapStateToProps,
     {
         getVacancies: requestVacancies,
-        createVacancy: createNewVacancy
+        createVacancy: createNewVacancy,
+        deleteVacancy: deleteVacancy
     })(VacanciesContainer)

@@ -44,13 +44,13 @@ const Employees = (props) => {
                             </thead>
                             <tbody>
                             { props.employees.map(employee => (
-                                <tr key={employee.id} onClick={(e) => props.detail(employee.id)}>
-                                    <td>{employee.profession}</td>
-                                    <td>{employee.surname}</td>
-                                    <td>{employee.name}</td>
-                                    <td>{employee.phone}</td>
-                                    <td>{employee.address}</td>
-                                    <td><img src={deleteButton} alt="Удалить" onClick={(e) => props.delete(employee.id)} /></td>
+                                <tr key={employee.id}>
+                                    <td onClick={(e) => props.detail(employee.id)}>{employee.profession}</td>
+                                    <td onClick={(e) => props.detail(employee.id)}>{employee.surname}</td>
+                                    <td onClick={(e) => props.detail(employee.id)}>{employee.name}</td>
+                                    <td onClick={(e) => props.detail(employee.id)}>{employee.phone}</td>
+                                    <td onClick={(e) => props.detail(employee.id)}>{employee.address}</td>
+                                    <td><button onClick={(e) => props.delete(employee.id)}><img src={deleteButton} alt="Удалить" /></button></td>
                                 </tr>
                             ))}
                             </tbody>

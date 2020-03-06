@@ -14,6 +14,9 @@ import VacanciesContainer from "./components/Vacancies/VacanciesContainer";
 import NewsContainer from "./components/News/NewsContainer";
 import EmployeeContainer from "./components/Employees/id/EmployeeContainer";
 import CreateEmployee from "./components/Employees/new/EmployeeContainer";
+import CreateVacancy from "./components/Vacancies/new/CreateVacancy";
+import ContactsContainer from "./components/Contacts/ContactsContainer";
+import CreateDishContainer from "./components/Menu/new/CreateDishContainer";
 
 function App() {
     return (
@@ -24,6 +27,7 @@ function App() {
                 <div className='app-wrapper-content'>
                     {/*Меню*/}
                     <Route exact path='/menu' component={MenuContainer}/>
+                    <Route exact path='/menu/new' component={CreateDishContainer} />
 
                     {/*Пользователи*/}
                     <Route exact path='/users' component={UsersContainer}/>
@@ -34,12 +38,19 @@ function App() {
                     <Route exact path='/employees/edit/:id' component={EmployeeContainer}/>
                     <Route exact path='/employees/new' component={CreateEmployee}/>
 
-
+                    {/*Резюме*/}
                     <Route exact path='/resume' component={Resume}/>
+
+                    {/*Вакансии*/}
                     <Route exact path='/vacancies' component={VacanciesContainer}/>
+                    <Route exact path='/vacancies/edit/:id' component={VacanciesContainer}/>
+                    <Route exact path='/vacancies/new' component={CreateVacancy}/>
+
+
                     <Route exact path='/messages' component={Messages}/>
                     <Route exact path='/promos' component={ContainerPromos}/>
                     <Route exact path='/news' component={NewsContainer}/>
+                    <Route exact path='/contacts' component={ContactsContainer} />
                 </div>
             </div>
         </BrowserRouter>

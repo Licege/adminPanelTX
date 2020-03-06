@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Card, CardGroup } from "react-bootstrap";
-import { render } from "react-dom";
 
 class MenuBlock extends Component {
     constructor(props, context) {

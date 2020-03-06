@@ -1,6 +1,5 @@
 import {usersAPI} from "../api/api";
 
-const CREATE_USER = 'CREATE_USER';
 const UPDATE_USER = 'UPDATE-USER';
 const GET_USERS = 'GET-USERS';
 const GET_USER_BY_ID = 'GET-USERS-BY-ID';
@@ -29,10 +28,7 @@ const usersReducer = (state = initialState, action) => {
         case GET_USER_BY_ID:
              return { ...state, currentUser: action.currentUser};
         case UPDATE_USER:
-            return {
-                ...state,
-                currentUser: action.currentUser,
-                };
+            return { ...state, currentUser: action.currentUser};
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
@@ -54,8 +50,6 @@ export const getUserById = (currentUser) => ({type: GET_USER_BY_ID, currentUser}
 export const updateUser = (currentUser) => ({type: UPDATE_USER, currentUser});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
-export const createUser = (user) => ({type: CREATE_USER, user});
-export const changeUser = (user) => ({type: UPDATE_USER, user});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleFollowingProgress = (isFetching, userId) => ({
     type: TOGGLE_IS_FOLLOWING_PROGRESS,
@@ -69,7 +63,6 @@ export const requestUsers = (page) => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true));
         dispatch(setCurrentPage(page));
-
         let data = await usersAPI.getUsers(page);
         dispatch(toggleIsFetching(false));
         dispatch(getUsers(data.users));

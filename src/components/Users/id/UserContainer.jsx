@@ -11,6 +11,10 @@ class UserContainer extends React.Component{
         this.props.getUserById(id);
     }
 
+    cancel = () => {
+        this.props.history.goBack();
+    };
+
     componentDidMount() {
         this.refreshProfile();
     }
@@ -23,7 +27,7 @@ class UserContainer extends React.Component{
 
     render() {
         return (
-            <Profile user={this.props.currentUser} updateProfile={this.props.updateCurrentUser} />
+            <Profile user={this.props.currentUser} updateProfile={this.props.updateCurrentUser} cancel={this.cancel} />
         );
     }
 }

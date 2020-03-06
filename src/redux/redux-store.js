@@ -6,6 +6,8 @@ import { reducer as formReducer } from 'redux-form'
 import thunkMiddleWare from "redux-thunk";
 import vacanciesReducer from "./vacancies-reducer";
 import promosReducer from "./promos-reducer";
+import contactsReducer from "./contacts-reducer";
+import menuReducer from "./menu-reducer";
 
 let reducers = combineReducers({
     auth: authReducer,
@@ -13,6 +15,8 @@ let reducers = combineReducers({
     employeesPage: employeesReducer,
     vacanciesPage: vacanciesReducer,
     promosPage: promosReducer,
+    contactsPage: contactsReducer,
+    menuPage: menuReducer,
     form: formReducer,
 });
 

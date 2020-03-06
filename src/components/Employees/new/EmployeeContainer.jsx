@@ -1,27 +1,36 @@
 import React from 'react';
 import CreateProfile from "./Employee";
-import {createNewEmployee} from "../../../redux/employees-reducer";
+import {createNewEmployee, getProfessionsAC} from "../../../redux/employees-reducer";
 import {connect} from "react-redux";
+import {employeesAPI} from "../../../api/api";
 
 class CreateEmployee extends React.Component {
+    componentDidMount() {
+        if (this.props.professions.length === 0) {
+            employeesAPI.getProfessions().then(data => {
+                this.props.getProfessions(data);
+            })
+        }
+    }
+
     postEmployee = (profile) => {
-        console.log(profile)
         let data = {...profile};
         data.profession = parseInt(data.profession, 10);
-        data.fileId = parseInt(data.fileId, 10);
-        console.log(data)
-        /*
-        employeesAPI.createNewEmployee(data).then(data => {
-            this.props.createEmployee(data)
-        });
-         */
-        this.props.createNewEmployee(data);
+        data.file_id = parseInt(data.file_id, 10);
+        this.props.createEmployee(data);
+        this.props.history.goBack();
+    };
+
+    cancel = () => {
+        this.props.history.goBack();
     };
 
     render() {
         return (
             <CreateProfile initialValues={this.props.employee}
                            employee={this.props.employee}
+                           professions={this.props.professions}
+                           cancel={this.cancel}
                            onSubmit={this.postEmployee} />
         )
     }
@@ -29,15 +38,19 @@ class CreateEmployee extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        employee: state.employeesPage.currentEmployee
+        employee: state.employeesPage.newEmployee,
+        professions: state.employeesPage.professions
     }
 };
 let mapDispatchToProps = (dispatch) => {
     return {
         createEmployee: (profile) => {
             dispatch(createNewEmployee(profile))
+        },
+        getProfessions: (professions) => {
+            dispatch(getProfessionsAC(professions))
         }
     }
 };
 
-export default connect(mapStateToProps, {createNewEmployee}) (CreateEmployee);
+export default connect(mapStateToProps, mapDispatchToProps) (CreateEmployee);

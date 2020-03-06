@@ -22,8 +22,8 @@ const Profile = (props) => {
     return (
         <>
             {editMode
-                ? <UserEditForm initialValues={props.user} profile={props.user} onSubmit={onSubmit}/>
-                : <User user={props.user} goEditMode={() => {setEditMode(true)}}/>}
+                ? <UserEditForm initialValues={props.user} profile={props.user} cancel={props.cancel} onSubmit={onSubmit}/>
+                : <User user={props.user} cancel={props.cancel} goEditMode={() => {setEditMode(true)}}/>}
         </>
     )
 };

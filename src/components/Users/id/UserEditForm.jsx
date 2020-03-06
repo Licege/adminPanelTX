@@ -2,7 +2,7 @@ import React from 'react';
 import {reduxForm} from "redux-form";
 import {createField, Input} from "../../common/FormsControls";
 
-const UserEditForm = ({handleSubmit, profile}) => {
+const UserEditForm = ({handleSubmit, profile, cancel}) => {
     return (
         <div>
             <div className='page-header'>
@@ -10,31 +10,38 @@ const UserEditForm = ({handleSubmit, profile}) => {
                     Редактирование пользователя: {profile.email}
                 </div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <button>Сохранить</button>
-                <div>
-                    {createField("ID", "id", [], Input)}
-                </div>
-                <div>
-                    {createField("Фамилия", "surname", [], Input)}
-                </div>
+            <div className='page-container'>
+                <div className='card'>
+                    <div className='card-body'>
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                {createField("ID", "id", [], Input)}
+                            </div>
+                            <div>
+                                {createField("Фамилия", "surname", [], Input)}
+                            </div>
 
-                <div>
-                    {createField("Имя", "name", [], Input)}
-                </div>
+                            <div>
+                                {createField("Имя", "name", [], Input)}
+                            </div>
 
-                <div>
-                    {createField("E-mail", "email", [], Input)}
-                </div>
+                            <div>
+                                {createField("E-mail", "email", [], Input)}
+                            </div>
 
-                <div>
-                    {createField("Телефон", "phone", [], Input)}
-                </div>
+                            <div>
+                                {createField("Телефон", "phone", [], Input)}
+                            </div>
 
-                <div>
-                    {createField("Бонус", "bonus_points", [], Input, 'number')}
+                            <div>
+                                {createField("Бонус", "bonus_points", [], Input, 'number')}
+                            </div>
+                            <button type='submit'>Сохранить</button>
+                            <button type='button' onClick={cancel}>Отменить</button>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
         )
 };

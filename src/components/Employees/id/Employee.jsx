@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 
-
-const Profile = ({employee}) => {
+const Employee = ({ employee, goEditMode, cancel }) => {
     return (
         employee && <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Редактирование профиля: {employee.name}
+                    Редактирование профиля: {employee.surname + ' ' + employee.name}
                 </div>
             </div>
             <div className='page-container'>
@@ -14,10 +13,12 @@ const Profile = ({employee}) => {
                     <div className='card-body'>
                         <div>Фамилия: {employee.surname}</div>
                         <div>Имя: {employee.name}</div>
-                        <div>E-mail: {employee.email}</div>
+                        <div>Должность: {employee.profession}</div>
                         <div>Телефон: {employee.phone}</div>
-                        <div>Бонусы: {employee.bonus_points}</div>
-                        <button>Сохранить</button>
+                        <div>Адрес: {employee.address}</div>
+                        <div>ID файла: {employee.file_id}</div>
+                        <button onClick={goEditMode}>Изменить</button>
+                        <button onClick={cancel}>Назад</button>
                     </div>
                 </div>
             </div>
@@ -25,4 +26,4 @@ const Profile = ({employee}) => {
     )
 };
 
-export default Profile;
+export default Employee;
