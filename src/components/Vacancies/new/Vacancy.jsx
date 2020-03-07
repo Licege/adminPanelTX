@@ -35,7 +35,7 @@ const Vacancy = ( {handleSubmit, cancel} ) => {
                             </div>
 
                             <div>
-                                {createField("fileId", "file_id", [], Input)}
+                                {createField("url", "url", [], Input)}
                             </div>
 
                             <button type='submit'>Сохранить</button>

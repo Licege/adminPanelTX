@@ -20,7 +20,7 @@ class CreateVacancy extends React.Component {
         let data = { ...vacancy };
         data.salary_from = parseInt(data.salary_from, 10);
         data.salary_to = parseInt(data.salary_to, 10);
-        data.file_id = parseInt(data.file_id, 10);
+        console.log(data)
         this.props.createVacancy(data);
         this.props.history.goBack();
     };

@@ -46,7 +46,7 @@ export const getVacancyById = (vacancy) => ({type: GET_VACANCY_BY_ID, vacancy});
 export const updateVacancy = (vacancy) => ({type: UPDATE_VACANCY, vacancy});
 export const closeVacancy = (id) => ({type: CLOSE_VACANCY, id});
 export const deleteVacancyAC = (id) => ({type: DELETE_VACANCY, id});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export const requestVacancies = () => {
     return async (dispatch) => {
