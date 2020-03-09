@@ -1,7 +1,8 @@
 import React from 'react';
 import altImg from '../../../static/img/dish.svg';
+import {getCategoryNameById} from "../../../plagins/helpers";
 
-let CardDish = ({card, img, change, remove}) => {
+let CardDish = ({card, categories, img, change, remove}) => {
     return (
         <div className='card card_vacancy'>
             <div className='card-body'>
@@ -10,7 +11,7 @@ let CardDish = ({card, img, change, remove}) => {
                 {card.description && <p><b>Описание:</b> {card.description}</p>}
                 {card.weight && <p><b>Вес:</b> {card.weight + ' г.'}</p>}
                 {card.price && <p><b>Цена:</b> {card.price + ' ₽'} </p>}
-                {card.category_id && <p>Категория: {card.category_id}</p>}
+                {card.category_id && categories.length && <p>Категория: {getCategoryNameById(categories, card.category_id)}</p>}
                 <button className='btn btn-primary mb-2' onClick={(e) => change(card.id)}>Изменить</button>
                 <button className='btn btn-danger' onClick={(e) => remove(card.id)}>Удалить</button>
             </div>

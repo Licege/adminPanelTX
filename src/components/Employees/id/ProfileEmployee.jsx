@@ -16,6 +16,7 @@ const ProfileEmployee = (props) => {
                               cancel={props.cancel}/>
             :
                 <Employee employee={props.employee}
+                          professions={props.professions}
                           goEditMode={() => { setEditMode(true)} }
                           cancel={props.cancel} />
             }

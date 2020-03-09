@@ -4,6 +4,10 @@ import {createNewVacancy, deleteVacancy, requestVacancies} from "../../redux/vac
 import Vacancies from "./Vacancies";
 
 class VacanciesContainer extends React.Component {
+    componentDidMount() {
+        if (!this.props.vacancies.length) this.props.getVacancies()
+    };
+
     createNewVacancy = () => {
         this.props.history.push(`vacancies/new`)
     };
@@ -16,10 +20,6 @@ class VacanciesContainer extends React.Component {
     changeVacancy = (id) => {
         console.log(id)
     };
-
-    componentDidMount() {
-        this.props.getVacancies()
-    }
 
     render() {
         return <>

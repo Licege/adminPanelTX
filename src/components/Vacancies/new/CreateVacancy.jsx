@@ -18,7 +18,7 @@ class CreateVacancy extends React.Component {
 
     postVacancy = (vacancy) => {
         let data = { ...vacancy };
-        data.salary_from = parseInt(data.salary_from, 10);
+        if (data.salary_from) data.salary_from = parseInt(data.salary_from, 10);
         data.salary_to = parseInt(data.salary_to, 10);
         console.log(data)
         this.props.createVacancy(data);

@@ -48,6 +48,16 @@ export const deleteEmployeeAC = (id) => ({type: DELETE_EMPLOYEE, id});
 export const getProfessionsAC = (professions) => ({type: GET_PROFESSIONS, professions});
 
 
+export const requestEmployees = () => async (dispatch) => {
+    let response = await employeesAPI.getEmployees();
+    dispatch(getEmployeesAC(response))
+};
+
+export const requestProfessins = () => async (dispatch) => {
+    let response = await employeesAPI.getProfessions();
+    dispatch(getProfessionsAC(response))
+};
+
 export const createNewEmployee = (profile) => async (dispatch) => {
     let response = await employeesAPI.createEmployee(profile);
     dispatch(createEmployeeAC(response.data))

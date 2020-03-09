@@ -5,7 +5,7 @@ import CreateDish from "./CreateDish";
 
 class CreateDishContainer extends React.Component {
     componentDidMount() {
-        this.props.getCategories()
+        if (!this.props.categories.length) this.props.getCategories()
     }
 
     createDish = (dish) => {

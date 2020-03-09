@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 class ContactsContainer extends React.Component {
     componentDidMount() {
-        this.props.getContacts();
+        if (!this.props.contacts) this.props.getContacts();
     }
 
     updateContacts = (contacts) => {

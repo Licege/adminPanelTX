@@ -1,11 +1,12 @@
 import React from 'react'
 import Menu from "./Menu";
-import {deleteDish, requestDishes} from "../../redux/menu-reducer";
+import {deleteDish, requestCategories, requestDishes} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
 
 class MenuContainer extends React.Component {
     componentDidMount() {
-        this.props.getDishes();
+        if (!this.props.dishes.length) this.props.getDishes();
+        if (!this.props.categories.length) this.props.getCategories();
     }
 
     create = (dish) => {
@@ -34,6 +35,7 @@ class MenuContainer extends React.Component {
 
     render() {
         return <Menu dishes={this.props.dishes}
+                     categories={this.props.categories}
                      newDish={this.newDish}
                      deleteDish={this.deleteDish}
                      onPhotoSelected={this.onPhotoSelected} />
@@ -42,7 +44,8 @@ class MenuContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        dishes: state.menuPage.dishes
+        dishes: state.menuPage.dishes,
+        categories: state.menuPage.categories
     }
 };
 
@@ -50,6 +53,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         getDishes: () => {
             dispatch(requestDishes())
+        },
+        getCategories: () => {
+            dispatch(requestCategories())
         },
         deleteDish: (id) => {
             dispatch(deleteDish(id))

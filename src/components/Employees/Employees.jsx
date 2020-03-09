@@ -1,8 +1,11 @@
 import React from "react";
 import {Table} from "react-bootstrap";
 import deleteButton from "../../static/img/close.png"
+import {getProfessionNameById} from "../../plagins/helpers";
 
 const Employees = (props) => {
+    console.log(props.professions)
+    console.log(props.employees)
     return (
         <div>
             <div className='page-header -action'>
@@ -32,7 +35,7 @@ const Employees = (props) => {
 
                 <div className='card'>
                     <div className='card-body'>
-                        <Table responsive>
+                        {props.employees.length && props.professions.length && <Table responsive>
                             <thead className='table-thread'>
                             <tr>
                                 <th>Должность</th>
@@ -45,7 +48,7 @@ const Employees = (props) => {
                             <tbody>
                             { props.employees.map(employee => (
                                 <tr key={employee.id}>
-                                    <td onClick={(e) => props.detail(employee.id)}>{employee.profession}</td>
+                                    <td onClick={(e) => props.detail(employee.id)}>{getProfessionNameById(props.professions, employee.profession)}</td>
                                     <td onClick={(e) => props.detail(employee.id)}>{employee.surname}</td>
                                     <td onClick={(e) => props.detail(employee.id)}>{employee.name}</td>
                                     <td onClick={(e) => props.detail(employee.id)}>{employee.phone}</td>
@@ -54,7 +57,7 @@ const Employees = (props) => {
                                 </tr>
                             ))}
                             </tbody>
-                        </Table>
+                        </Table>}
                     </div>
                 </div>
             </div>

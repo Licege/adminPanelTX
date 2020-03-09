@@ -2,16 +2,12 @@ import React from 'react'
 import {employeesAPI} from "../../api/api";
 import Employees from './Employees';
 import {connect} from "react-redux";
-import {deleteEmployeeAC, getEmployeesAC, getProfessionsAC} from "../../redux/employees-reducer";
+import {deleteEmployeeAC, requestEmployees, requestProfessins} from "../../redux/employees-reducer";
 
 class EmployeesContainer extends React.Component {
     componentDidMount() {
-        employeesAPI.getEmployees().then(data =>{
-            this.props.getEmployees(data);
-        });
-        employeesAPI.getProfessions().then(data => {
-            this.props.getProfessions(data);
-        })
+        if (!this.props.employees.length) this.props.getEmployees();
+        if (!this.props.professions.length) this.props.getProfessions();
     }
 
     detail = (id) => {
@@ -45,14 +41,14 @@ let mapStateToProps = (state) => {
 };
 let mapDispatchToProps = (dispatch) => {
     return {
-        getEmployees: (employees) => {
-            dispatch(getEmployeesAC(employees))
+        getEmployees: () => {
+            dispatch(requestEmployees())
         },
         deleteEmployee: (id) => {
             dispatch(deleteEmployeeAC(id))
         },
-        getProfessions: (professions) => {
-            dispatch(getProfessionsAC(professions))
+        getProfessions: () => {
+            dispatch(requestProfessins())
         }
     }
 };

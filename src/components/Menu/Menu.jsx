@@ -1,8 +1,7 @@
 import React from 'react';
 import CardDish from "../common/element/CardDish";
 
-const Menu = ({dishes, newDish, deleteDish, onPhotoSelected}) => {
-    console.log(dishes)
+const Menu = ({dishes, categories, newDish, deleteDish, onPhotoSelected}) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -25,7 +24,7 @@ const Menu = ({dishes, newDish, deleteDish, onPhotoSelected}) => {
                     <h4 className='menu-header'>~ Блюда ~</h4>
                     <div className='card-body menu-content'>
                         {dishes.map((dish, key) =>
-                        <CardDish card={dish} key={key} remove={deleteDish} /> )}
+                        <CardDish card={dish} key={key} categories={categories} remove={deleteDish} /> )}
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
+import {getProfessionNameById} from "../../../plagins/helpers";
 
-const Employee = ({ employee, goEditMode, cancel }) => {
+const Employee = ({ employee, professions, goEditMode, cancel }) => {
     return (
         employee && <div>
             <div className='page-header'>
@@ -13,7 +14,7 @@ const Employee = ({ employee, goEditMode, cancel }) => {
                     <div className='card-body'>
                         <div>Фамилия: {employee.surname}</div>
                         <div>Имя: {employee.name}</div>
-                        <div>Должность: {employee.profession}</div>
+                        <div>Должность: {getProfessionNameById(professions, employee.profession)}</div>
                         <div>Телефон: {employee.phone}</div>
                         <div>Адрес: {employee.address}</div>
                         <div>ID файла: {employee.file_id}</div>

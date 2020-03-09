@@ -9,7 +9,7 @@ const DELETE_DISH = 'DELETE_DISH';
 const GET_CATEGORIES = 'GET_CATEGORIES';
 
 let initialState = {
-    dish: {},
+    dish: null,
     dishes: [],
     categories: []
 };
