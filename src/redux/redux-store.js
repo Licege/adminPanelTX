@@ -8,8 +8,12 @@ import vacanciesReducer from "./vacancies-reducer";
 import promosReducer from "./promos-reducer";
 import contactsReducer from "./contacts-reducer";
 import menuReducer from "./menu-reducer";
+import newsReducer from "./news-reducer";
+import ordersReducer from "./orders-reducer";
+import reviewsReducer from "./reviews-reducer";
+import messageReducer from "./message-reducer";
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     auth: authReducer,
     usersPage: usersReducer,
     employeesPage: employeesReducer,
@@ -17,10 +21,14 @@ let reducers = combineReducers({
     promosPage: promosReducer,
     contactsPage: contactsReducer,
     menuPage: menuReducer,
+    newsPage: newsReducer,
+    ordersPage: ordersReducer,
+    reviewsPage: reviewsReducer,
+    messagesPage: messageReducer,
     form: formReducer,
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleWare));
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleWare));
 
 window.store = store;
 

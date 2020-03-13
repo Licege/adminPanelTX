@@ -125,6 +125,12 @@ export const menuAPI = {
                 return response
             });
     },
+    updateDish(dish) {
+        return axios.put(baseUrl + `/menu/${dish.id}`, dish)
+            .then(response => {
+                return response
+            })
+    },
     deleteDish(id) {
         return axios.delete(baseUrl + `/menu/${id}`)
             .then(response => {
@@ -132,4 +138,88 @@ export const menuAPI = {
             });
     }
 
+};
+
+export const newsAPI = {
+    getNews() {
+        return axios.get(baseUrl + `/news/`)
+            .then(response => {
+                return response
+            })
+    },
+    getCurrentNews(id) {
+        return axios.get(baseUrl + `/news/${id}`)
+            .then(response => {
+                return response
+            })
+    },
+    postNews(news) {
+        return axios.post(baseUrl + `/news/`, news)
+            .then(response => {
+                return response
+            })
+    },
+    updateNews(news) {
+        return axios.put(baseUrl + `/news/${news.id}`, news)
+            .then(response => {
+                return response
+            })
+    },
+    deleteNews(id) {
+        return axios.delete(baseUrl + `/news/${id}`)
+            .then(response => {
+                return response
+            })
+    }
+};
+
+export const ordersAPI = {
+    getOrders() {
+        return axios.get(baseUrl + `/orders/`)
+            .then(response => {
+                return response;
+            })
+    }
+};
+
+export const reviewsAPI = {
+    getReviews() {
+        return axios.get(baseUrl + `/reviews/`)
+            .then(response => {
+                return response
+            })
+    },
+    postAnswer(answer) {
+        return axios.post(baseUrl + `/reviews/`, answer)
+            .then(response => {
+                return response
+            })
+    },
+    approveReview(id) {
+        return axios.post(baseUrl + `/reviews/${id}`)
+            .then(response => {
+                return response
+            })
+    }
+};
+
+export const messagesAPI = {
+    getMessages() {
+        return axios.get(baseUrl + `/messages/`)
+            .then(response => {
+                return response
+            })
+    },
+    getMessage(id) {
+        return axios.get(baseUrl + `/messages/${id}`)
+            .then(response => {
+                return response
+            })
+    },
+    deleteMessage(id) {
+        return axios.delete(baseUrl + `/messages/${id}`)
+            .then(response => {
+                return response
+            })
+    }
 };

@@ -1,18 +1,54 @@
 import React from 'react';
 import News from './News';
+import {createNewNews, deleteNews, getNews} from "../../redux/news-reducer";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import Preloader from "../common/Preloader/Preloader";
 
 
 class NewsContainer extends React.Component{
     componentDidMount() {
-
+        if (!this.props.news.length) this.props.getNews()
     }
+
+    detail = (id) => {
+        this.props.history.push(`news/edit/${id}`)
+    };
+
+    createNews = () => {
+        this.props.history.push(`news/new`)
+    };
+
+    deleteNews = (id) => {
+        this.props.deleteNews(id);
+    };
 
     render() {
         return <>
-                {this.props.isFetching ? 'Показать прелоадер' : null}
-                <News />
-                </>
+            {this.props.isFetching ? <Preloader /> : null}
+            <News news={this.props.news} createNews={this.createNews} deleteNews={this.deleteNews} detail={this.detail} />
+        </>
     }
 }
 
-export default NewsContainer;
+let mapStateToProps = (state) => {
+    return {
+        news: state.newsPage.news
+    }
+};
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        createNews: (news) => {
+            dispatch(createNewNews(news))
+        },
+        getNews: () => {
+            dispatch(getNews())
+        },
+        deleteNews: (id) => {
+            dispatch(deleteNews(id))
+        }
+    }
+};
+
+export default compose(connect(mapStateToProps, mapDispatchToProps)) (NewsContainer);

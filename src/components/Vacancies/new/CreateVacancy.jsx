@@ -4,15 +4,7 @@ import {createNewVacancy} from "../../../redux/vacancies-reducer";
 import Vacancy from "./Vacancy";
 
 class CreateVacancy extends React.Component {
-    componentDidMount() {
-    }
-
     cancel = () => {
-        this.props.history.goBack();
-    };
-
-    onSubmit = (vacancy) => {
-        console.log(vacancy)
         this.props.history.goBack();
     };
 
@@ -20,7 +12,6 @@ class CreateVacancy extends React.Component {
         let data = { ...vacancy };
         if (data.salary_from) data.salary_from = parseInt(data.salary_from, 10);
         data.salary_to = parseInt(data.salary_to, 10);
-        console.log(data)
         this.props.createVacancy(data);
         this.props.history.goBack();
     };
@@ -33,8 +24,7 @@ class CreateVacancy extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    return {
-    }
+    return {}
 };
 
 let mapDispatchToProps = (dispatch) => {

@@ -13,8 +13,10 @@ let CardVacancy = ({card, img, change, remove}) => {
                     ? <p>Заработная плата от {card.salary_from} до {card.salary_to} ₽</p>
                     : card.salary_from || card.salary_to
                         ? <p>Заработная плата: {card.salary_from || card.salary_to} ₽</p> : ''}
-                <button className='btn btn-primary mb-2' onClick={(e) => change(card.id)}>Изменить</button>
-                <button className='btn btn-danger' onClick={(e) => remove(card.id)}>Удалить</button>
+                <div className='card_vacancy-actions'>
+                    <button className='btn btn-primary mb-2' onClick={(e) => change(card.id)}>Изменить</button>
+                    <button className='btn btn-danger' onClick={(e) => remove(card.id)}>Удалить</button>
+                </div>
             </div>
         </div>
     )

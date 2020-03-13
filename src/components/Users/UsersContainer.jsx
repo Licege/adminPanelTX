@@ -20,7 +20,7 @@ class UsersContainer extends React.Component {
     };
 
     detail = (id) => {
-        this.props.history.push(`user/${id}`)
+        this.props.history.push(`users/${id}`)
     };
 
     render() {

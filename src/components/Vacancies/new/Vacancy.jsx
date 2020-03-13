@@ -7,7 +7,7 @@ const Vacancy = ( {handleSubmit, cancel} ) => {
         <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Добавление новой вакансии
+                    Создание вакансии
                 </div>
             </div>
             <div className='page-container'>

@@ -51,6 +51,9 @@ const Navbar = () => {
                 <Accordion.Collapse eventKey="1">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/resume'>Резюме</NavLink>
                 </Accordion.Collapse>
+                <Accordion.Collapse eventKey="1">
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/orders'>Заявки на бронирование</NavLink>
+                </Accordion.Collapse>
 
                 <CustomToggle className='navbar-accordion-header' eventKey='2'>
                     Программа лояльности
