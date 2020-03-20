@@ -20,7 +20,7 @@ const Users = (props) => {
                         </div>
                         <div className='filter-actions'>
                             <span className='filter-actions-reset'>Сбросить</span>
-                            <span className='filter-actions-apply'>Фильтровать</span>
+                            <span className='filter-actions-apply' onClick={(e) => props.filterApply(props.filters)}>Фильтровать</span>
                         </div>
                     </div>
                 </div>

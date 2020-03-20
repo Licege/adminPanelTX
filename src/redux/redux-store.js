@@ -12,6 +12,7 @@ import newsReducer from "./news-reducer";
 import ordersReducer from "./orders-reducer";
 import reviewsReducer from "./reviews-reducer";
 import messageReducer from "./message-reducer";
+import toggleReducer from "./toogle-reducer";
 
 let rootReducer = combineReducers({
     auth: authReducer,
@@ -25,6 +26,7 @@ let rootReducer = combineReducers({
     ordersPage: ordersReducer,
     reviewsPage: reviewsReducer,
     messagesPage: messageReducer,
+    toggleComponent: toggleReducer,
     form: formReducer,
 });
 

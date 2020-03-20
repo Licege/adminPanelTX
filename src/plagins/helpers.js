@@ -23,8 +23,8 @@ const arrMonth = [
 
 export function tsToDate (timestamp, type) {
     let date = new Date(timestamp);
-    let hh = date.getHours();
-    let mm = date.getMinutes();
+    let hh = date.getHours(); hh = hh < 10 ? '0' + hh : hh;
+    let mm = date.getMinutes(); mm = mm < 10 ? '0' + mm : mm;
     let dd = date.getDate(); dd = dd < 10 ? '0'+ dd : dd;
     let MM = date.getMonth() + 1; MM = MM < 10 ? '0' + MM : MM;
     let YYYY = date.getFullYear();

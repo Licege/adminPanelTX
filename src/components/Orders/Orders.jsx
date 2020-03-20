@@ -1,6 +1,7 @@
 import React from 'react';
 import {Nav, Tab} from "react-bootstrap";
 import OrdersTable from "./Tabs/OrdersTable";
+import OrdersBanquet from "./Tabs/OrdersBanquet";
 
 const Orders = ( {orders} ) => {
     console.log(orders);
@@ -23,10 +24,10 @@ const Orders = ( {orders} ) => {
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey='table'>
-                            <OrdersTable />
+                            <OrdersTable ordersTable={orders} />
                         </Tab.Pane>
                         <Tab.Pane eventKey='banquet'>
-                            321
+                            <OrdersBanquet ordersBanquet={orders} />
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>

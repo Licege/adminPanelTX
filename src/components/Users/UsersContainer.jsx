@@ -19,15 +19,21 @@ class UsersContainer extends React.Component {
         });
     };
 
+    filterApply = (filters) => {
+        console.log(filters)
+    };
+
     detail = (id) => {
         this.props.history.push(`users/${id}`)
     };
 
     render() {
         return <Users users={this.props.users}
+                      filters={this.props.filters}
                       currentPage={this.props.currentPage}
                       totalUsersCount={this.props.totalUsersCount}
                       onPageChanged={this.onPageChanged}
+                      filterApply={this.filterApply}
                       detail={this.detail}
         />
     }
@@ -36,6 +42,7 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
+        filters: state.usersPage.filters,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
