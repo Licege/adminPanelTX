@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Accordion } from "react-bootstrap";
 //import CustomToggle from "../common/element/Toggle";
-import CustomToggle from "../common/element/Toogle/Toggle";
+import CustomToggle from "../common/element/Toggle";
 
 const Navbar = () => {
     return (
