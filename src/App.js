@@ -21,6 +21,7 @@ import OrdersContainer from "./components/Orders/OrdersContainer";
 import DetailNewsContainer from "./components/News/id/DetailNewsContainer";
 import CreateNewsContainer from "./components/News/new/CreateNewsContainer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
+import SettingsContainer from "./components/Delivery/Settings/SettingsContainer";
 
 function App() {
     return (
@@ -57,6 +58,8 @@ function App() {
                     <Route exact path='/news/edit/:id' component={DetailNewsContainer} />
                     <Route exact path='/news/new' component={CreateNewsContainer} />
 
+                    {/*Доставка*/}
+                    <Route exact path='/delivery-settings' component={SettingsContainer} />
 
                     <Route exact path='/messages' component={MessagesContainer}/>
                     <Route exact path='/promos' component={ContainerPromos}/>

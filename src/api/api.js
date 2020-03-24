@@ -223,3 +223,49 @@ export const messagesAPI = {
             })
     }
 };
+
+export const deliveryAPI = {
+
+};
+
+export const deliverySettingsAPI = {
+    getSettings() {
+        return axios.get(baseUrl + `/delivery/settings/`)
+            .then(response => {
+                return response
+            })
+    },
+    updateSettings(settings) {
+        return axios.put(baseUrl + `/delivery/settings/`, settings)
+            .then(response => {
+                return response
+            })
+    },
+    createSettings(settings) {
+        return axios.post(baseUrl + `/delivery/settings/`, settings)
+            .then(response => {
+                return response
+            })
+    },
+    deleteSettings(id) {
+        return axios.delete(baseUrl + `/delivery/settings/${id}`)
+            .then(response => {
+                return response
+            })
+    }
+};
+
+export const deliveryGlobalSettingsAPI = {
+    getSettings() {
+        return axios.get(baseUrl + `/delivery/global-settings/`)
+            .then(response => {
+                return response
+            })
+    },
+    updateSettings(settings) {
+        return axios.put(baseUrl + `/delivery/global-settings/`, settings)
+            .then(response => {
+                return response
+            })
+    }
+};

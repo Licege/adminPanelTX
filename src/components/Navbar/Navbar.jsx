@@ -35,12 +35,21 @@ const Navbar = () => {
                              to='/contacts'>Контакты</NavLink>
                 </Accordion.Collapse>
 
+                <CustomToggle className='navbar-accordion-header' eventKey='4'>
+                    Доставка
+                </CustomToggle>
+                <Accordion.Collapse eventKey="4">
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery'>Заказ на доставку</NavLink>
+                </Accordion.Collapse>
+                <Accordion.Collapse eventKey="4">
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery-settings'>Настройки доставки</NavLink>
+                </Accordion.Collapse>
+
                 <CustomToggle className='navbar-accordion-header' eventKey='1'>
                     Посетители
                 </CustomToggle>
                 <Accordion.Collapse eventKey="1">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/users'>Все
-                        посетители</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/users'>Все посетители</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="1">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/reviews'>Отзывы</NavLink>

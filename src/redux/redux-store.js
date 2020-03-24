@@ -13,6 +13,7 @@ import ordersReducer from "./orders-reducer";
 import reviewsReducer from "./reviews-reducer";
 import messageReducer from "./message-reducer";
 import toggleReducer from "./toogle-reducer";
+import deliverySettingsReducer from "./delivery-settings-reducer";
 
 let rootReducer = combineReducers({
     auth: authReducer,
@@ -27,6 +28,7 @@ let rootReducer = combineReducers({
     reviewsPage: reviewsReducer,
     messagesPage: messageReducer,
     toggleComponent: toggleReducer,
+    deliverySettingsPage: deliverySettingsReducer,
     form: formReducer,
 });
 
