@@ -4,7 +4,6 @@ import OrdersTable from "./Tabs/OrdersTable";
 import OrdersBanquet from "./Tabs/OrdersBanquet";
 
 const Orders = ( {orders} ) => {
-    console.log(orders);
     return (
         <div>
             <div className='page-header'>

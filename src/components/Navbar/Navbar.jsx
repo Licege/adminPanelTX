@@ -39,7 +39,7 @@ const Navbar = () => {
                     Доставка
                 </CustomToggle>
                 <Accordion.Collapse eventKey="4">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery'>Заказ на доставку</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery'>Заказы</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="4">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery-settings'>Настройки доставки</NavLink>

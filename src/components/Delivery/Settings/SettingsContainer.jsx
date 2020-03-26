@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {
-    createDeliverySettings, deleteDeliverySettings,
+    createDeliverySettings, deleteDeliverySettings, requestCities,
     requestDeliverySettings,
-    requestGlobalDeliverySettings, updateDeliverySettings,
+    requestGlobalDeliverySettings, updateCity, updateDeliverySettings,
     updateGlobalDeliverySettings
 } from "../../../redux/delivery-settings-reducer";
 import Settings from "./Settings";
@@ -11,18 +11,33 @@ import Settings from "./Settings";
 class SettingsContainer extends React.Component {
     componentDidMount() {
         if (!this.props.settings.length) this.props.getSettings();
-        this.props.getGlobalSettings();
+         this.props.getGlobalSettings();
+        if (!this.props.cities.length) this.props.getCities();
     }
 
+    postGlobalSettings = (settings) => {
+        this.props.updateGlobalSettings(settings);
+        console.log(settings)
+    };
+
+    postSettings = (settings) => {
+        console.log(settings)
+    };
+
     render() {
-        return <Settings settings={this.props.settings} global_settings={this.props.global_settings} />
+        return <Settings settings={this.props.settings}
+                         global_settings={this.props.global_settings}
+                         cities={this.props.cities}
+                         postSettings={this.postSettings}
+                         postGlobalSettings={this.postGlobalSettings} />
     }
 }
 
 let mapStateToProps = (state) => {
     return {
         settings: state.deliverySettingsPage.settings,
-        global_settings: state.deliverySettingsPage.global_settings
+        global_settings: state.deliverySettingsPage.global_settings,
+        cities: state.deliverySettingsPage.cities
     }
 };
 
@@ -45,6 +60,12 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteSettings: (id) => {
             dispatch(deleteDeliverySettings(id))
+        },
+        getCities: () => {
+            dispatch(requestCities())
+        },
+        updateCity: (city) => {
+            dispatch(updateCity(city))
         }
     }
 };
