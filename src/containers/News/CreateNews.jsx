@@ -1,7 +1,7 @@
 import React from 'react'
-import {createNewNews} from "../../../redux/news-reducer";
+import {createNewNews} from "../../redux/news-reducer";
 import {connect} from "react-redux";
-import CreateNews from "./CreateNews";
+import CreateNews from "../../components/News/new/CreateNews";
 
 class CreateNewsContainer extends React.Component{
     postNews = (news) => {

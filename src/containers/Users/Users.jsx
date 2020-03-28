@@ -1,6 +1,6 @@
 import React from 'react'
 import {usersAPI} from "../../api/api";
-import Users from './Users';
+import Users from '../../components/Users/Users';
 import {connect} from "react-redux";
 import {getUsers, setCurrentPage, setTotalUsersCount} from "../../redux/users-reducer";
 

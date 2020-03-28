@@ -3,7 +3,7 @@ import {reduxForm} from "redux-form";
 import {createField, Input, Textarea} from "../../common/FormsControls";
 import {Button} from "react-bootstrap";
 
-const DetailNews = ( {handleSubmit, deleteNews, cancel} ) => {
+const EditNews = ( {handleSubmit, deleteNews, cancel} ) => {
     return (
         <div className='card'>
             <div className='card-body'>
@@ -25,5 +25,5 @@ const DetailNews = ( {handleSubmit, deleteNews, cancel} ) => {
     )
 };
 
-const EditNewsReduxForm = reduxForm({form: 'edit-news'}) (DetailNews);
+const EditNewsReduxForm = reduxForm({form: 'edit-news'}) (EditNews);
 export default EditNewsReduxForm;

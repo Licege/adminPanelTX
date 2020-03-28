@@ -1,6 +1,6 @@
 import React from 'react'
 import {employeesAPI} from "../../api/api";
-import Employees from './Employees';
+import Employees from '../../components/Employees/Employees';
 import {connect} from "react-redux";
 import {deleteEmployeeAC, requestEmployees, requestProfessins} from "../../redux/employees-reducer";
 

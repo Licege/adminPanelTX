@@ -1,9 +1,9 @@
 import React from 'react';
-import {getProfessionsAC, requestCurrentEmployee, updateCurrentEmployee} from "../../../redux/employees-reducer";
+import {getProfessionsAC, requestCurrentEmployee, updateCurrentEmployee} from "../../redux/employees-reducer";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {employeesAPI} from "../../../api/api";
-import ProfileEmployee from "./ProfileEmployee";
+import {employeesAPI} from "../../api/api";
+import ProfileEmployee from "../../components/Employees/id/ProfileEmployee";
 
 class EmployeeContainer extends React.Component{
     refreshEmployee() {

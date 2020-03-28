@@ -6,7 +6,7 @@ import {
     requestGlobalDeliverySettings, updateCity, updateDeliverySettings,
     updateGlobalDeliverySettings
 } from "../../../redux/delivery-settings-reducer";
-import Settings from "./Settings";
+import Settings from "../../../components/Delivery/Settings/Settings";
 
 class SettingsContainer extends React.Component {
     componentDidMount() {

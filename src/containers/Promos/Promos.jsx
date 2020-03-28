@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import Promos from "./Promos";
+import Promos from "../../components/Promos/Promos";
 
 
 class ContainerPromos extends React.Component {

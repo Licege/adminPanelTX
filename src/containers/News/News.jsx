@@ -1,9 +1,9 @@
 import React from 'react';
-import News from './News';
+import News from '../../components/News/News';
 import {createNewNews, deleteNews, getNews} from "../../redux/news-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import Preloader from "../common/Preloader/Preloader";
+import Preloader from "../../components/common/Preloader/Preloader";
 
 
 class NewsContainer extends React.Component{

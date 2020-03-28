@@ -2,26 +2,26 @@ import React from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import MenuContainer from './components/Menu/MenuContainer';
+import MenuContainer from './containers/Menu/Menu';
 import {BrowserRouter, Route} from 'react-router-dom';
-import UsersContainer from "./components/Users/UsersContainer";
-import EmployeesContainer from "./components/Employees/EmployeesContainer";
+import UsersContainer from "./containers/Users/Users";
+import EmployeesContainer from "./containers/Employees/Employees";
 import Resume from "./components/Resume/Resume";
-import UserContainer from "./components/Users/id/UserContainer";
-import ContainerPromos from "./components/Promos/ContainerPromos";
-import VacanciesContainer from "./components/Vacancies/VacanciesContainer";
-import NewsContainer from "./components/News/NewsContainer";
-import EmployeeContainer from "./components/Employees/id/EmployeeContainer";
-import CreateEmployee from "./components/Employees/new/EmployeeContainer";
-import CreateVacancy from "./components/Vacancies/new/CreateVacancy";
-import ContactsContainer from "./components/Contacts/ContactsContainer";
-import CreateDishContainer from "./components/Menu/new/CreateDishContainer";
-import HomeContainer from "./components/Home/HomeContainer";
-import OrdersContainer from "./components/Orders/OrdersContainer";
-import DetailNewsContainer from "./components/News/id/DetailNewsContainer";
-import CreateNewsContainer from "./components/News/new/CreateNewsContainer";
-import MessagesContainer from "./components/Messages/MessagesContainer";
-import SettingsContainer from "./components/Delivery/Settings/SettingsContainer";
+import UserContainer from "./containers/Users/UserEdit";
+import ContainerPromos from "./containers/Promos/Promos";
+import VacanciesContainer from "./containers/Vacancies/Vacancies";
+import NewsContainer from "./containers/News/News";
+import EmployeeContainer from "./containers/Employees/EmployeeEdit";
+import CreateEmployee from "./containers/Employees/EmployeeNew";
+import CreateVacancy from "./containers/Vacancies/CreateVacancy";
+import ContactsContainer from "./containers/Contacts/Contacts";
+import CreateDishContainer from "./containers/Menu/CreateDish";
+import HomeContainer from "./containers/Home/Home";
+import OrdersContainer from "./containers/Orders/Orders";
+import DetailNewsContainer from "./containers/News/NewsEdit";
+import CreateNewsContainer from "./containers/News/CreateNews";
+import MessagesContainer from "./containers/Messages/Messages";
+import SettingsDelivery from "./containers/Delivery/Settings/Settings";
 
 function App() {
     return (
@@ -59,7 +59,7 @@ function App() {
                     <Route exact path='/news/new' component={CreateNewsContainer} />
 
                     {/*Доставка*/}
-                    <Route exact path='/delivery-settings' component={SettingsContainer} />
+                    <Route exact path='/delivery-settings' component={SettingsDelivery} />
 
                     <Route exact path='/messages' component={MessagesContainer}/>
                     <Route exact path='/promos' component={ContainerPromos}/>

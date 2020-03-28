@@ -1,7 +1,7 @@
 import React from 'react';
-import {createDish, requestCategories} from "../../../redux/menu-reducer";
+import {createDish, requestCategories} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
-import CreateDish from "./CreateDish";
+import CreateDish from "../../components/Menu/new/CreateDish";
 
 class CreateDishContainer extends React.Component {
     componentDidMount() {

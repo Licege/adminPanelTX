@@ -1,5 +1,5 @@
 import React from 'react'
-import Menu from "./Menu";
+import Menu from "../../components/Menu/Menu";
 import {deleteDish, requestCategories, requestDishes} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
 

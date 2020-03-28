@@ -2,7 +2,7 @@ import React from 'react'
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {requestOrders} from "../../redux/orders-reducer";
-import Orders from "./Orders";
+import Orders from "../../components/Orders/Orders";
 
 class OrdersContainer extends React.Component {
     componentDidMount() {

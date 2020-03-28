@@ -1,11 +1,11 @@
 import React from 'react';
-import {deleteNews, getCurrentNews, updateNews} from "../../../redux/news-reducer";
+import {deleteNews, getCurrentNews, updateNews} from "../../redux/news-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import DetailNews from "./DetailNews";
-import Preloader from "../../common/Preloader/Preloader";
+import NewsEdit from "../../components/News/id/NewsEdit";
+import Preloader from "../../components/common/Preloader/Preloader";
 
-class DetailNewsContainer extends React.Component{
+class EditNewsContainer extends React.Component{
     refreshDetailNews () {
         let id = this.props.match.params.id;
         this.props.getCurrentNews(id)
@@ -38,10 +38,10 @@ class DetailNewsContainer extends React.Component{
     render() {
         return <>
             {this.props.isFetching ? <Preloader /> : null}
-            <DetailNews initialValues={this.props.currentNews}
-                        onSubmit={this.updateNews}
-                        deleteNews={this.deleteNews}
-                        cancel={this.cancel} />
+            <NewsEdit initialValues={this.props.currentNews}
+                      onSubmit={this.updateNews}
+                      deleteNews={this.deleteNews}
+                      cancel={this.cancel} />
             </>
     }
 }
@@ -67,4 +67,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (DetailNewsContainer);
+export default compose(connect(mapStateToProps, mapDispatchToProps)) (EditNewsContainer);

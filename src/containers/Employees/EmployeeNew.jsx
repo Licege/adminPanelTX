@@ -1,8 +1,8 @@
 import React from 'react';
-import CreateProfile from "./Employee";
-import {createNewEmployee, getProfessionsAC} from "../../../redux/employees-reducer";
+import CreateProfile from "../../components/Employees/new/Employee";
+import {createNewEmployee, getProfessionsAC} from "../../redux/employees-reducer";
 import {connect} from "react-redux";
-import {employeesAPI} from "../../../api/api";
+import {employeesAPI} from "../../api/api";
 
 class CreateEmployee extends React.Component {
     componentDidMount() {

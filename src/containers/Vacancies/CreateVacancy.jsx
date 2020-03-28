@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {createNewVacancy} from "../../../redux/vacancies-reducer";
-import Vacancy from "./Vacancy";
+import {createNewVacancy} from "../../redux/vacancies-reducer";
+import Vacancy from "../../components/Vacancies/new/Vacancy";
 
 class CreateVacancy extends React.Component {
     cancel = () => {

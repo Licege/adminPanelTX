@@ -1,7 +1,7 @@
 import React from "react";
-import {requestCurrentUser, updateCurrentUser} from "../../../redux/users-reducer";
+import {requestCurrentUser, updateCurrentUser} from "../../redux/users-reducer";
 import {connect} from "react-redux";
-import Profile from "../Profile/Profile";
+import Profile from "../../components/Users/Profile/Profile";
 import {withRouter} from "react-router-dom";
 
 
