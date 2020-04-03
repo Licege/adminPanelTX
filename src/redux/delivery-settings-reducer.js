@@ -12,7 +12,7 @@ const GET_CITIES = 'GET_CITIES';
 const UPDATE_CITIES = 'UPDATE_CITIES';
 
 let initialState = {
-    global_settings: null,
+    global_settings: {},
     settings: [],
     cities: []
 };
@@ -58,7 +58,7 @@ export const requestGlobalDeliverySettings = () => async(dispatch) => {
 
 export const updateGlobalDeliverySettings = (settings) => async(dispatch) => {
     let response = await deliveryGlobalSettingsAPI.updateSettings(settings);
-    dispatch(updateGlobalDeliverySettingsAC(response.data))
+    dispatch(updateGlobalDeliverySettingsAC(settings))
 };
 
 export const requestDeliverySettings = () => async(dispatch) => {

@@ -11,7 +11,7 @@ import Settings from "../../../components/Delivery/Settings/Settings";
 class SettingsContainer extends React.Component {
     componentDidMount() {
         if (!this.props.settings.length) this.props.getSettings();
-         this.props.getGlobalSettings();
+        if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings();
         if (!this.props.cities.length) this.props.getCities();
     }
 

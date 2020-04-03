@@ -46,6 +46,6 @@ const UserEditForm = ({handleSubmit, profile, cancel}) => {
         )
 };
 
-const UserEditReduxForm = reduxForm({form: 'edit-user'})(UserEditForm);
+const UserEditReduxForm = reduxForm({form: 'edit-user', enableReinitialize: true})(UserEditForm);
 
 export default UserEditReduxForm;

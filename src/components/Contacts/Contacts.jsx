@@ -57,5 +57,5 @@ const Contact = ( {contacts, handleSubmit, cancel} ) => {
     )
 };
 
-const ContactEditReduxForm = reduxForm({form: 'contact'})(Contact);
+const ContactEditReduxForm = reduxForm({form: 'contact', enableReinitialize: true})(Contact);
 export default ContactEditReduxForm;

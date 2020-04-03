@@ -49,7 +49,7 @@ export const getCategoriesAC = (categories) => ({type: GET_CATEGORIES, categorie
 
 export const createDish = (dish) => async (dispatch) => {
     let response = await menuAPI.createDish(dish);
-    dispatch(createDishAC(response.data));
+    dispatch(createDishAC(dish));
 };
 
 export const requestDishes = () => async (dispatch) => {

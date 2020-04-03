@@ -57,5 +57,5 @@ const EditEmployee = ({employee, handleSubmit, professions, cancel}) => {
     )
 };
 
-const EmployeeEditReduxForm = reduxForm({form: 'edit-employee'})(EditEmployee);
+const EmployeeEditReduxForm = reduxForm({form: 'edit-employee', enableReinitialize: true})(EditEmployee);
 export default EmployeeEditReduxForm;

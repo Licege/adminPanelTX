@@ -29,5 +29,5 @@ const GlobalSettingsForm = ( {handleSubmit} ) => {
     )
 };
 
-const GlobalSettingsReduxForm = reduxForm({form: 'global-delivery-settings'}) (GlobalSettingsForm);
+const GlobalSettingsReduxForm = reduxForm({form: 'global-delivery-settings', enableReinitialize: true}) (GlobalSettingsForm);
 export default GlobalSettingsReduxForm;

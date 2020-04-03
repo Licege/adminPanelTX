@@ -4,7 +4,7 @@ const GET_CONTACTS = 'GET_CONTACTS';
 const UPDATE_CONTACTS = 'UPDATE_CONTACTS';
 
 let initialState = {
-    contacts: null
+    contacts: {}
 };
 
 const contactsReducer = (state = initialState, action) => {
