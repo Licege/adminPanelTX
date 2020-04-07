@@ -11,7 +11,7 @@ const GET_CATEGORIES = 'GET_CATEGORIES';
 let initialState = {
     dish: null,
     dishes: [],
-    categories: []
+    categories: [],
 };
 
 const menuReducer = (state = initialState, action) => {

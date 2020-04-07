@@ -225,7 +225,12 @@ export const messagesAPI = {
 };
 
 export const deliveryAPI = {
-
+    getOrders() {
+        return axios.get(baseUrl + `/delivery/`)
+            .then(response => {
+                return response
+            })
+    }
 };
 
 export const deliverySettingsAPI = {
@@ -281,6 +286,21 @@ export const citiesAPI = {
         return axios.put(baseUrl + `/cities/${city.id}`, city)
             .then(response => {
                 return response
+            })
+    }
+};
+
+export const fileAPI = {
+    postFile(file) {
+        return axios.post(baseUrl + `/file/`, file)
+            .then(response => {
+                return response
+            })
+    },
+    deleteFile(id) {
+        return axios.delete(baseUrl + `/file/${id}`)
+            .then(respone => {
+                return respone
             })
     }
 };

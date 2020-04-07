@@ -1,8 +1,9 @@
 import React from 'react';
 import {createField, Input} from "../../common/FormsControls";
 import {Field, reduxForm} from "redux-form";
+import ImageInput from "../../common/imageInput";
 
-const CreateDish = ( {handleSubmit, categories, cancel} ) => {
+const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) => {
     console.log(categories)
     return (
         <div>
@@ -44,11 +45,16 @@ const CreateDish = ( {handleSubmit, categories, cancel} ) => {
                             </div>
 
                             <div>
-                                {createField("url", "url", [], Input)}
+                                <input type='file' onChange={postFile} />
                             </div>
+
+                            {/*<div>
+                                {createField("url", "url", [], Input)}
+                            </div>*/}
 
                             <button type='submit'>Сохранить</button>
                             <button type='button' onClick={(e) => cancel()}>Отменить</button>
+                            <ImageInput onChange={e => console.log(e)} allowClear={true} />
                         </form>
                     </div>
                 </div>

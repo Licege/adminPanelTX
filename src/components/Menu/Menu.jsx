@@ -24,7 +24,7 @@ const Menu = ({dishes, categories, newDish, deleteDish, onPhotoSelected}) => {
                     <h4 className='menu-header'>~ Блюда ~</h4>
                     <div className='card-body menu-content'>
                         {dishes.map((dish, key) =>
-                        <CardDish card={dish} key={key} categories={categories} remove={deleteDish} /> )}
+                        <CardDish dish={dish} key={key} categories={categories} remove={deleteDish} /> )}
                     </div>
                 </div>
             </div>

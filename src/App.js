@@ -22,6 +22,7 @@ import DetailNewsContainer from "./containers/News/NewsEdit";
 import CreateNewsContainer from "./containers/News/CreateNews";
 import MessagesContainer from "./containers/Messages/Messages";
 import SettingsDelivery from "./containers/Delivery/Settings/Settings";
+import DeliveryContainer from "./containers/Delivery/Delivery"
 
 function App() {
     return (
@@ -59,6 +60,7 @@ function App() {
                     <Route exact path='/news/new' component={CreateNewsContainer} />
 
                     {/*Доставка*/}
+                    <Route exact path='/delivery' component={DeliveryContainer} />
                     <Route exact path='/delivery-settings' component={SettingsDelivery} />
 
                     <Route exact path='/messages' component={MessagesContainer}/>
