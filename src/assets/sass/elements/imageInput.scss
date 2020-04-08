@@ -121,7 +121,7 @@
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
-    background: #415058 url("../../../../static/img/close-small-white.png") center no-repeat;
+    background: #415058 url("../../../static/img/close-small-white.png") center no-repeat;
     position: absolute;
     top: 8px;
     right: 8px;
@@ -132,7 +132,7 @@
 
 .Input_Preview {
   &-Dish {
-    background: lightblue url("../../../../static/img/female_cook.png") center no-repeat;
+    background: lightblue url("../../../static/img/female_cook.png") center no-repeat;
     background-size: 42px;
   }
 }

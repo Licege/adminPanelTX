@@ -4,7 +4,6 @@ import {Field, reduxForm} from "redux-form";
 import ImageInput from "../../common/imageInput";
 
 const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) => {
-    console.log(categories)
     return (
         <div>
             <div className='page-header'>
@@ -19,11 +18,9 @@ const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) 
                             <div>
                                 {createField("Название", "title",[], Input)}
                             </div>
-
                             <div>
                                 {createField("Описание", "description", [], Input)}
                             </div>
-
                             <div>
                                 <label>Категории</label>
                                 <div>
@@ -35,7 +32,6 @@ const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) 
                                     </Field>
                                 </div>
                             </div>
-
                             <div>
                                 {createField("Вес порции (г.)", "weight", [], Input)}
                             </div>
@@ -43,15 +39,9 @@ const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) 
                             <div>
                                 {createField("Цена", "price", [], Input)}
                             </div>
-
                             <div>
                                 <input type='file' onChange={postFile} />
                             </div>
-
-                            {/*<div>
-                                {createField("url", "url", [], Input)}
-                            </div>*/}
-
                             <button type='submit'>Сохранить</button>
                             <button type='button' onClick={(e) => cancel()}>Отменить</button>
                             <ImageInput onChange={e => console.log(e)} allowClear={true} />

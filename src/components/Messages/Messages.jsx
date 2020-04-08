@@ -1,4 +1,3 @@
-import styles from "../assets/styles/styles";
 import React from "react";
 import {Table} from "react-bootstrap";
 import deleteButton from "../../static/img/close.png";
@@ -13,7 +12,7 @@ const Messages = ( {messages, deleteMessage} ) => {
                 </div>
             </div>
             <div className='page-container'>
-                <div style={styles.Card}>
+                <div className='card'>
                     {messages && messages.length ? <Table responsive>
                         <thead className='table-thread'>
                             <tr>

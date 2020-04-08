@@ -1,4 +1,3 @@
-import styles from "../assets/styles/styles";
 import React from "react";
 
 const Resume = (props) => {
@@ -10,7 +9,7 @@ const Resume = (props) => {
                 </div>
             </div>
             <div className='page-container'>
-                <div style={styles.Card}>
+                <div className='card'>
                     123
                 </div>
             </div>

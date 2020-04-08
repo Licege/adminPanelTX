@@ -41,3 +41,10 @@ export function tsToDate (timestamp, type) {
             return dd + ':' + MM + ':' + YYYY;
     }
 }
+
+export function cropText(text, limit = 100) {
+    if (text.length > limit) {
+        text = text.slice(0, limit) + '...'
+    }
+    return text
+}

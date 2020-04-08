@@ -13,14 +13,12 @@ const Vacancies = (props) => {
                 </div>
             </div>
             <div className='page-container'>
-                <div className='card'>
                     <div className='card-body vacancies'>
                         {props.vacancies.map((vacancy, key) => (
                             <CardVacancy card={vacancy} key={key} change={props.changeVacancy} remove={props.removeVacancy}/>
                         ))}
 
                     </div>
-                </div>
             </div>
         </div>
     )
