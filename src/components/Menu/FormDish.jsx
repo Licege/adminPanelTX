@@ -1,9 +1,9 @@
 import React from 'react';
-import {createField, Input} from "../../common/FormsControls";
+import {createField, Input} from "../common/FormsControls";
 import {Field, reduxForm} from "redux-form";
-import ImageInput from "../../common/imageInput";
+import ImageInput from "../common/imageInput";
 
-const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) => {
+const FormDish = ({handleSubmit, categories, cancel, postFile, deleteFile} ) => {
     return (
         <div>
             <div className='page-header'>
@@ -26,7 +26,7 @@ const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) 
                                 <div>
                                     <Field name="category_id" component="select" >
                                         <option></option>
-                                        {categories.map(p => {
+                                        {categories && categories.map(p => {
                                             return <option value={p.id} key={p.id}>{p.title}</option>
                                         })}
                                     </Field>
@@ -53,5 +53,5 @@ const CreateDish = ( {handleSubmit, categories, cancel, postFile, deleteFile} ) 
     )
 };
 
-const CreateDishReduxForm = reduxForm({form: 'create-dish'})(CreateDish);
+const CreateDishReduxForm = reduxForm({form: 'create-dish', enableReinitialize: true})(FormDish);
 export default CreateDishReduxForm;

@@ -16,6 +16,7 @@ import CreateEmployee from "./containers/Employees/EmployeeNew";
 import CreateVacancy from "./containers/Vacancies/CreateVacancy";
 import ContactsContainer from "./containers/Contacts/Contacts";
 import CreateDishContainer from "./containers/Menu/CreateDish";
+import EditDishContainer from "./containers/Menu/EditDish";
 import HomeContainer from "./containers/Home/Home";
 import OrdersContainer from "./containers/Orders/Orders";
 import DetailNewsContainer from "./containers/News/NewsEdit";
@@ -34,28 +35,29 @@ function App() {
                     <Route exact path='/' component={HomeContainer} />
 
                     {/*Меню*/}
-                    <Route exact path='/menu' component={MenuContainer}/>
+                    <Route exact path='/menu' component={MenuContainer} />
                     <Route exact path='/menu/new' component={CreateDishContainer} />
+                    <Route exact path='/menu/edit/:id' component={EditDishContainer} />
 
                     {/*Пользователи*/}
-                    <Route exact path='/users' component={UsersContainer}/>
+                    <Route exact path='/users' component={UsersContainer} />
                     <Route exact path='/users/:id' component={UserContainer} />
 
                     {/*Сотрудники*/}
-                    <Route exact path='/employees' component={EmployeesContainer}/>
-                    <Route exact path='/employees/edit/:id' component={EmployeeContainer}/>
-                    <Route exact path='/employees/new' component={CreateEmployee}/>
+                    <Route exact path='/employees' component={EmployeesContainer} />
+                    <Route exact path='/employees/edit/:id' component={EmployeeContainer} />
+                    <Route exact path='/employees/new' component={CreateEmployee} />
 
                     {/*Резюме*/}
-                    <Route exact path='/resume' component={Resume}/>
+                    <Route exact path='/resume' component={Resume} />
 
                     {/*Вакансии*/}
-                    <Route exact path='/vacancies' component={VacanciesContainer}/>
-                    <Route exact path='/vacancies/edit/:id' component={VacanciesContainer}/>
-                    <Route exact path='/vacancies/new' component={CreateVacancy}/>
+                    <Route exact path='/vacancies' component={VacanciesContainer} />
+                    <Route exact path='/vacancies/edit/:id' component={VacanciesContainer} />
+                    <Route exact path='/vacancies/new' component={CreateVacancy} />
 
                     {/*Новости*/}
-                    <Route exact path='/news' component={NewsContainer}/>
+                    <Route exact path='/news' component={NewsContainer} />
                     <Route exact path='/news/edit/:id' component={DetailNewsContainer} />
                     <Route exact path='/news/new' component={CreateNewsContainer} />
 

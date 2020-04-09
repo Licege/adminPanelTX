@@ -1,7 +1,7 @@
 import React from 'react';
 import CardDish from "../common/element/CardDish";
 
-const Menu = ({dishes, categories, newDish, deleteDish, onPhotoSelected}) => {
+const Menu = ({dishes, categories, newDish, deleteDish, detail, onPhotoSelected}) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -9,7 +9,7 @@ const Menu = ({dishes, categories, newDish, deleteDish, onPhotoSelected}) => {
                     Меню
                 </div>
                 <div className='page-header-action'>
-                    <button className='btn btn-primary' onClick={(e) => newDish()}>Добавить блюдо</button>
+                    <button className='btn btn-primary' onClick={newDish}>Добавить блюдо</button>
                 </div>
             </div>
             <div className='page-container'>
@@ -24,7 +24,11 @@ const Menu = ({dishes, categories, newDish, deleteDish, onPhotoSelected}) => {
                     <h4 className='menu-header'>~ Блюда ~</h4>
                     <div className='card-body menu-content'>
                         {dishes.map((dish, key) =>
-                        <CardDish dish={dish} key={key} categories={categories} remove={deleteDish} /> )}
+                        <CardDish dish={dish}
+                                  key={key}
+                                  categories={categories}
+                                  remove={deleteDish}
+                                  detail={detail} /> )}
                     </div>
                 </div>
             </div>

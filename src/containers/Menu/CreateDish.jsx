@@ -1,7 +1,7 @@
 import React from 'react';
 import {createDish, requestCategories} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
-import CreateDish from "../../components/Menu/new/CreateDish";
+import FormDish from "../../components/Menu/FormDish";
 import {deleteFIle, postFile} from "../../redux/file-reducer";
 
 class CreateDishContainer extends React.Component {
@@ -31,11 +31,11 @@ class CreateDishContainer extends React.Component {
     }
 
     render() {
-        return <CreateDish onSubmit={this.createDish}
-                           categories={this.props.categories}
-                           cancel={this.cancel}
-                           postFile={this.uploadFile}
-                           deleteFile={this.props.deleteFile} />
+        return <FormDish onSubmit={this.createDish}
+                         categories={this.props.categories}
+                         cancel={this.cancel}
+                         postFile={this.uploadFile}
+                         deleteFile={this.props.deleteFile} />
     }
 }
 

@@ -23,12 +23,12 @@ const fileReducer = (state = initialState, action) => {
     }
 }
 
-const postFileAC = (file) => ({type: POST_FILE, file})
+export const initializeFileAC = (file) => ({type: POST_FILE, file})
 const deleteFileAC = (id) => ({type: DELETE_FILE, id})
 
 export const postFile = (file) => async(dispatch) => {
     let response = await fileAPI.postFile(file)
-    dispatch(postFileAC(response.data))
+    dispatch(initializeFileAC(response.data))
 }
 
 export const deleteFIle = (id) => async(dispatch) => {

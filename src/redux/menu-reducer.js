@@ -57,12 +57,22 @@ export const requestDishes = () => async (dispatch) => {
     dispatch(getDishesAC(response.data));
 };
 
+export const requestDish = (id) => async (dispatch) => {
+    let response = await menuAPI.getDish(id);
+    dispatch(getDishByIdAC(response.data))
+}
+
 export const requestCategories = () => {
     return async (dispatch) => {
         let response = await menuAPI.getCategories();
         dispatch(getCategoriesAC(response.data));
     }
 };
+
+export const updateDish = (dish) => async (dispatch) => {
+    let response = await menuAPI.updateDish(dish)
+    dispatch(updateDishAC(dish))
+}
 
 export const deleteDish = (id) => async (dispatch) => {
     let response = await menuAPI.deleteDish(id);

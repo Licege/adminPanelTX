@@ -9,6 +9,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     news: [],
+    totalCount: 0,
     currentNews: null,
     isFetching: true
 };
@@ -18,7 +19,7 @@ const newsReducer = (state = initialState, action) => {
         case CREATE_NEWS:
             return { ...state, news: [...state.news, action.news] };
         case GET_NEWS:
-            return { ...state, news: action.news };
+            return { ...state, news: action.news, totalCount: action.totalCount };
         case GET_CURRENT_NEWS:
             return { ...state, currentNews: action.currentNews };
         case UPDATE_NEWS:
@@ -33,7 +34,7 @@ const newsReducer = (state = initialState, action) => {
 };
 
 const createNewsAC = (news) => ({type: CREATE_NEWS, news});
-const getNewsAC = (news) => ({type: GET_NEWS, news});
+const getNewsAC = (news, totalCount) => ({type: GET_NEWS, news, totalCount});
 const getCurrentNewsAC = (currentNews) => ({type: GET_CURRENT_NEWS, currentNews});
 const updateNewsAC = (currentNews) => ({type: UPDATE_NEWS, currentNews});
 const deleteNewsAC = (id) => ({type: DELETE_NEWS, id});
@@ -46,7 +47,7 @@ export const createNewNews = (news) => async (dispatch) => {
 
 export const getNews = () => async (dispatch) => {
     let response = await newsAPI.getNews();
-    dispatch(getNewsAC(response.data))
+    dispatch(getNewsAC(response.data.news_list, response.data.total_count))
 };
 
 export const getCurrentNews = (id) => async (dispatch) => {

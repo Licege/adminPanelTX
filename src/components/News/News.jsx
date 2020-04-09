@@ -14,7 +14,7 @@ const News = ( {news, createNews, deleteNews, detail} ) => {
                 </div>
             </div>
             <div className='page-container'>
-                {news.map(n =>
+                {news && news.map(n =>
                     <CardNews news={n} deleteNews={deleteNews} detail={detail} key={n.id} />
                 )}
             </div>

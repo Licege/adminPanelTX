@@ -8,11 +8,13 @@ import Preloader from "../../components/common/Preloader/Preloader";
 
 class NewsContainer extends React.Component{
     componentDidMount() {
-        if (!this.props.news.length) this.props.getNews()
+        if (!this.props.news || !this.props.news.length) this.props.getNews()
     }
 
     detail = (id) => {
-        this.props.history.push(`news/edit/${id}`)
+        return () => {
+            this.props.history.push(`news/edit/${id}`)
+        }
     };
 
     createNews = () => {
@@ -20,7 +22,9 @@ class NewsContainer extends React.Component{
     };
 
     deleteNews = (id) => {
-        this.props.deleteNews(id);
+        return () => {
+            this.props.deleteNews(id);
+        }
     };
 
     render() {

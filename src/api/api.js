@@ -119,6 +119,12 @@ export const menuAPI = {
                 return response
             });
     },
+    getDish(id) {
+        return axios.get(baseUrl + `/menu/dish/${id}`)
+            .then(response => {
+                return response
+            });
+    },
     getCategories() {
         return axios.get(baseUrl + `/categories/`)
             .then(response => {

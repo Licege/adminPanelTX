@@ -18,15 +18,19 @@ class MenuContainer extends React.Component {
     };
 
     detail = (id) => {
-        this.props.history.push(`menu/edit/${id}`)
+        return () => {
+            this.props.history.push(`menu/edit/${id}`)
+        }
     };
 
     deleteDish = (id) => {
-        this.props.deleteDish(id)
+        return () => {
+            this.props.deleteDish(id)
+        }
     };
 
     savePhoto = (file) => {
-        console.log("Сделать санку", file)
+        console.log("Сделать санку для пдф", file)
     };
 
     onPhotoSelected = (e) => {
@@ -38,6 +42,7 @@ class MenuContainer extends React.Component {
                      categories={this.props.categories}
                      newDish={this.newDish}
                      deleteDish={this.deleteDish}
+                     detail={this.detail}
                      onPhotoSelected={this.onPhotoSelected} />
     }
 }
