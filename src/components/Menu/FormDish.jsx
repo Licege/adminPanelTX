@@ -25,9 +25,9 @@ const FormDish = ({handleSubmit, categories, cancel, postFile, deleteFile} ) => 
                                 <label>Категории</label>
                                 <div>
                                     <Field name="category_id" component="select" >
-                                        <option></option>
+                                        <option />
                                         {categories && categories.map(p => {
-                                            return <option value={p.id} key={p.id}>{p.title}</option>
+                                            return <option value={p._id} key={p._id}>{p.title}</option>
                                         })}
                                     </Field>
                                 </div>
@@ -37,13 +37,13 @@ const FormDish = ({handleSubmit, categories, cancel, postFile, deleteFile} ) => 
                             </div>
 
                             <div>
-                                {createField("Цена", "price", [], Input)}
+                                {createField("Цена", "cost", [], Input)}
                             </div>
                             <div>
                                 <input type='file' onChange={postFile} />
                             </div>
                             <button type='submit'>Сохранить</button>
-                            <button type='button' onClick={(e) => cancel()}>Отменить</button>
+                            <button type='button' onClick={cancel}>Отменить</button>
                             <ImageInput onChange={e => console.log(e)} allowClear={true} />
                         </form>
                     </div>

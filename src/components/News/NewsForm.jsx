@@ -2,7 +2,7 @@ import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import {Button} from "react-bootstrap";
 
-const NewsForm = ( {handleSubmit, uploadFile, deleteNews, cancel} ) => {
+const NewsForm = ( {handleSubmit, uploadFile, cancel} ) => {
     return (
         <div>
             <div className='page-header'>
@@ -33,7 +33,7 @@ const NewsForm = ( {handleSubmit, uploadFile, deleteNews, cancel} ) => {
                                        component='textarea' />
                             </div>
                             <div>
-                                <input name='file' type='file' onChange={uploadFile} />
+                                <input name='image' type='file' onChange={uploadFile} />
                             </div>
                             <Button type='submit' variant='primary'>Создать новость</Button>
                             <Button onClick={cancel} variant='outline-warning'>Отменить</Button>

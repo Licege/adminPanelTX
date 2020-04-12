@@ -5,22 +5,30 @@ import FormDish from "../../components/Menu/FormDish";
 import {initializeFileAC, postFile} from "../../redux/file-reducer";
 
 class EditDishContainer extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            file: ''
+        }
+    }
+
     componentDidMount() {
         let id = this.props.match.params.id
         if (!this.props.dish || this.props.dish.id !== id) {
             this.props.getDish(id)
         }
         if (!this.props.categories.length) this.props.getCategories()
-        //this.props.initializeFile(this.props.dish.file)
     }
 
     onSubmit = (dish) => {
-        dish.weight = parseInt(dish.weight, 10);
-        dish.price = parseInt(dish.price, 10);
-        dish.category_id = parseInt(dish.category_id, 10);
-        dish.file = this.props.file
-        console.log(dish)
-        this.props.updateDish(dish)
+        let formData = new FormData();
+        for (let key in dish) {
+            formData.append(key, dish[key])
+        }
+        formData.weight = parseInt(formData.weight, 10);
+        formData.price = parseInt(formData.price, 10);
+        this.state.file && formData.append('image', this.state.file)
+        this.props.updateDish(formData)
         this.props.history.goBack();
     }
 
@@ -29,9 +37,7 @@ class EditDishContainer extends React.Component{
     }
 
     uploadFile = (event) => {
-        let formDate = new FormData();
-        formDate.append("file", event.target.files[0])
-        this.props.postFile(formDate)
+        this.state.file = event.target.files[0]
     }
 
     render() {

@@ -23,9 +23,9 @@ const newsReducer = (state = initialState, action) => {
         case GET_CURRENT_NEWS:
             return { ...state, currentNews: action.currentNews };
         case UPDATE_NEWS:
-            return { ...state, news: state.news.map(n => (n.id === action.currentNews.id ? action.currentNews : n)) };
+            return { ...state, news: state.news.map(n => (n._id === action.currentNews.id ? action.currentNews : n)) };
         case DELETE_NEWS:
-            return { ...state, news: state.news.filter(n => n.id !== action.id) };
+            return { ...state, news: state.news.filter(n => n._id !== action.id) };
         case TOGGLE_IS_FETCHING:
             return { ...state, isFetching: action.isFetching };
         default:
@@ -47,19 +47,19 @@ export const createNewNews = (news) => async (dispatch) => {
 
 export const getNews = () => async (dispatch) => {
     let response = await newsAPI.getNews();
-    dispatch(getNewsAC(response.data.news_list, response.data.total_count))
+    dispatch(getNewsAC(response.data))
 };
 
 export const getCurrentNews = (id) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     let response = await newsAPI.getCurrentNews(id);
     dispatch(toggleIsFetching(false));
-    dispatch(getCurrentNewsAC(response.data))
+    dispatch(getCurrentNewsAC(response.data[0]))
 };
 
 export const updateNews = (news) => async (dispatch) => {
     let response = await newsAPI.updateNews(news);
-    dispatch(updateNewsAC(news))
+    dispatch(updateNewsAC(response.data))
 };
 
 export const deleteNews = (id) => async (dispatch) => {

@@ -6,7 +6,7 @@ const SettingsTable = ( {settings, cities, postSettings} ) => {
     return (
         <div className='card'>
             <div className='card-body'>
-                {settings.length && cities.length && <Table responsive>
+                {settings.length && cities.length ? <Table responsive>
                     <thead className='table-thread'>
                         <tr>
                             <th>Доставка</th>
@@ -25,7 +25,7 @@ const SettingsTable = ( {settings, cities, postSettings} ) => {
                         </tr>
                     ))}
                     </tbody>
-                </Table>}
+                </Table> : ''}
             </div>
         </div>
     )

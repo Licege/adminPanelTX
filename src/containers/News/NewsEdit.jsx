@@ -1,12 +1,18 @@
 import React from 'react';
-import {deleteNews, getCurrentNews, updateNews} from "../../redux/news-reducer";
-import {compose} from "redux";
+import {getCurrentNews, updateNews} from "../../redux/news-reducer";
 import {connect} from "react-redux";
 import Preloader from "../../components/common/Preloader/Preloader";
 import NewsForm from "../../components/News/NewsForm";
 import {postFile} from "../../redux/file-reducer";
 
 class EditNewsContainer extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            file: ''
+        }
+    }
+
     refreshDetailNews () {
         let id = this.props.match.params.id;
         this.props.getCurrentNews(id)
@@ -23,22 +29,20 @@ class EditNewsContainer extends React.Component{
     }
 
     updateNews = (data) => {
-        this.props.updateCurrentNews(data);
+        let formData = new FormData();
+        for (let key in data) {
+            formData.append(key, data[key])
+        }
+        this.state.file && formData.append('image', this.state.file)
+        this.props.updateCurrentNews(formData);
         this.props.history.goBack();
     };
 
     uploadFile = (event) => {
-        let formDate = new FormData();
-        formDate.append("file", event.target.files[0])
-        this.props.postFile(formDate)
+        this.state.file = event.target.files[0]
     }
 
     cancel = () => {
-        this.props.history.goBack()
-    };
-
-    deleteNews = () => {
-        this.props.deleteNews(this.props.match.params.id);
         this.props.history.goBack()
     };
 
@@ -48,7 +52,6 @@ class EditNewsContainer extends React.Component{
             <NewsForm initialValues={this.props.currentNews}
                       onSubmit={this.updateNews}
                       uploadFile={this.uploadFile}
-                      deleteNews={this.deleteNews}
                       cancel={this.cancel} />
             </>
     }
@@ -69,13 +72,10 @@ let mapDispatchToProps = (dispatch) => {
         updateCurrentNews: (currentNews) => {
             dispatch(updateNews(currentNews))
         },
-        deleteNews: (id) => {
-            dispatch(deleteNews(id))
-        },
         postFile: (file) => {
             dispatch(postFile(file))
         }
     }
 };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (EditNewsContainer);
+export default connect(mapStateToProps, mapDispatchToProps) (EditNewsContainer);

@@ -1,15 +1,31 @@
-import * as axios from "axios";
+import axios from "axios";
 
-const baseUrl = 'http://localhost:9090/api';
-/*
-export const usersAPI = {
-    getUsers() {
-        return axios.get(baseUrl + `/users/`)
-            .then(response => {
-                return response.data;
-            });
+export const serverUrl ='http://localhost:9090/'
+const baseUrl = serverUrl + 'api'
+export const secret = 'dev-jwt'
+
+const apiAdminRequest = axios.create({
+    baseURL: baseUrl,
+    headers: {
+        'Authorization': localStorage.getItem('token')
     }
-};*/
+})
+
+export const authAPI = {
+    login(user) {
+        return axios.post(baseUrl + `/auth/login/`, user)
+            .then(response => {
+                return response
+            })
+    },
+    registration(user) {
+        return axios.post(baseUrl + `/auth/registration/`, user)
+            .then(response => {
+                return response
+            })
+    }
+}
+
 export const usersAPI = {
     getUsers(currentPage = 1) {
         return axios.get(baseUrl + `/users/?page=${currentPage}`)
@@ -99,7 +115,7 @@ export const contactsAPI = {
             });
     },
     updateContacts(contacts) {
-        return axios.put(baseUrl + `/contacts/`, contacts)
+        return apiAdminRequest.patch(baseUrl + `/contacts/${contacts._id}`, contacts)
             .then(response => {
                 return response
             });
@@ -120,7 +136,7 @@ export const menuAPI = {
             });
     },
     getDish(id) {
-        return axios.get(baseUrl + `/menu/dish/${id}`)
+        return axios.get(baseUrl + `/menu/${id}`)
             .then(response => {
                 return response
             });

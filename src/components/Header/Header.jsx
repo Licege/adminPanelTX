@@ -1,12 +1,15 @@
 import React from 'react';
-import Classes from './Header.module.scss';
 import logo from '../../static/img/logo.ico';
 import {NavLink} from "react-router-dom";
+import LogoutBtn from "../common/element/LogoutBtn";
 
 const Header = () => {
     return(
-        <header className={Classes.header}>
-            <NavLink to='/'><img className={Classes.logo} src={logo} alt="logo"/></NavLink>
+        <header className='header'>
+            <NavLink to='/'><img className='header-logo' src={logo} alt="logo"/></NavLink>
+            <div className='header-logout'>
+                <LogoutBtn/>
+            </div>
         </header>
     )
 };

@@ -16,7 +16,7 @@ const Menu = ({dishes, categories, newDish, deleteDish, detail, onPhotoSelected}
                 <div className='card mb-4'>
                     <div className='card-body'>
                         <h4>PDF-меню:</h4>
-                        <input type='file' accept="image/png, image/jpeg, image/svg+xml, image/svg" onChange={onPhotoSelected}/>
+                        <input type='file' accept="application/pdf" onChange={onPhotoSelected}/>
                     </div>
                 </div>
 

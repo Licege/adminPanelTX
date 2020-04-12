@@ -1,6 +1,6 @@
 import React from 'react'
 import altImg from  "../../../static/img/news.jpg";
-import {tsToDate} from "../../../plagins/helpers";
+import {fullLink, tsToDate} from "../../../plagins/helpers";
 import Button from "react-bootstrap/Button";
 
 const CardNews = ({news, deleteNews, detail}) => {
@@ -10,7 +10,7 @@ const CardNews = ({news, deleteNews, detail}) => {
                 <div className='card-body card_news-content'>
                     {news.create_at &&
                     <div className='card_news-content-date'>{tsToDate(news.create_at, "dd MMMM")}</div>}
-                    <img className='card_news-content-img' src={news.file.id !== 0 ? news.file.url : altImg} alt=''/>
+                    <img className='card_news-content-img' src={news.imageSrc ? fullLink(news.imageSrc) : altImg} alt=''/>
                     <div className='card_news-content-info'>
                         <div className='card_news-content-info-header'>
                             {news.title && <a href={'news/edit/' + news.id}
@@ -20,8 +20,8 @@ const CardNews = ({news, deleteNews, detail}) => {
                         {news.description && !news.short_description &&
                         <div className='card_news-content-info-description'>{news.description}</div>}
                         <div className='card_news-content-info-link'>
-                            <Button onClick={detail(news.id)}>Подробнее...</Button>
-                            <Button onClick={deleteNews(news.id)}>Удалить</Button>
+                            <Button onClick={detail(news._id)}>Подробнее...</Button>
+                            <Button onClick={deleteNews(news._id)}>Удалить</Button>
                         </div>
                     </div>
                 </div>

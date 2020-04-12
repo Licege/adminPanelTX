@@ -35,7 +35,7 @@ const Employees = (props) => {
 
                 <div className='card'>
                     <div className='card-body'>
-                        {props.employees.length && props.professions.length && <Table responsive>
+                        {props.employees.length && props.professions.length ? <Table responsive>
                             <thead className='table-thread'>
                             <tr>
                                 <th>Должность</th>
@@ -57,7 +57,7 @@ const Employees = (props) => {
                                 </tr>
                             ))}
                             </tbody>
-                        </Table>}
+                        </Table> : ''}
                     </div>
                 </div>
             </div>

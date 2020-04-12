@@ -3,7 +3,7 @@ import './App.scss';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import MenuContainer from './containers/Menu/Menu';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import UsersContainer from "./containers/Users/Users";
 import EmployeesContainer from "./containers/Employees/Employees";
 import Resume from "./components/Resume/Resume";
@@ -24,51 +24,68 @@ import CreateNewsContainer from "./containers/News/CreateNews";
 import MessagesContainer from "./containers/Messages/Messages";
 import SettingsDelivery from "./containers/Delivery/Settings/Settings";
 import DeliveryContainer from "./containers/Delivery/Delivery"
+import AuthContainer from "./containers/Auth/AuthContainer";
+import {useSelector} from "react-redux";
 
 function App() {
+    let token = useSelector(state => state.auth.token)
+    let isAuthenticated = !!token
+
+    if (!isAuthenticated) {
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path='/login' component={AuthContainer}/>
+                    <Redirect to='/login'/>
+                </Switch>
+            </BrowserRouter>
+        )
+    }
+
     return (
         <BrowserRouter>
+
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route exact path='/' component={HomeContainer} />
+                    <Route exact path='/' component={HomeContainer}/>
 
                     {/*Меню*/}
-                    <Route exact path='/menu' component={MenuContainer} />
-                    <Route exact path='/menu/new' component={CreateDishContainer} />
-                    <Route exact path='/menu/edit/:id' component={EditDishContainer} />
+                    <Route exact path='/menu' component={MenuContainer}/>
+                    <Route exact path='/menu/new' component={CreateDishContainer}/>
+                    <Route exact path='/menu/edit/:id' component={EditDishContainer}/>
 
                     {/*Пользователи*/}
-                    <Route exact path='/users' component={UsersContainer} />
-                    <Route exact path='/users/:id' component={UserContainer} />
+                    <Route exact path='/users' component={UsersContainer}/>
+                    <Route exact path='/users/:id' component={UserContainer}/>
 
                     {/*Сотрудники*/}
-                    <Route exact path='/employees' component={EmployeesContainer} />
-                    <Route exact path='/employees/edit/:id' component={EmployeeContainer} />
-                    <Route exact path='/employees/new' component={CreateEmployee} />
+                    <Route exact path='/employees' component={EmployeesContainer}/>
+                    <Route exact path='/employees/edit/:id' component={EmployeeContainer}/>
+                    <Route exact path='/employees/new' component={CreateEmployee}/>
 
                     {/*Резюме*/}
-                    <Route exact path='/resume' component={Resume} />
+                    <Route exact path='/resume' component={Resume}/>
 
                     {/*Вакансии*/}
-                    <Route exact path='/vacancies' component={VacanciesContainer} />
-                    <Route exact path='/vacancies/edit/:id' component={VacanciesContainer} />
-                    <Route exact path='/vacancies/new' component={CreateVacancy} />
+                    <Route exact path='/vacancies' component={VacanciesContainer}/>
+                    <Route exact path='/vacancies/edit/:id' component={VacanciesContainer}/>
+                    <Route exact path='/vacancies/new' component={CreateVacancy}/>
 
                     {/*Новости*/}
-                    <Route exact path='/news' component={NewsContainer} />
-                    <Route exact path='/news/edit/:id' component={DetailNewsContainer} />
-                    <Route exact path='/news/new' component={CreateNewsContainer} />
+                    <Route exact path='/news' component={NewsContainer}/>
+                    <Route exact path='/news/edit/:id' component={DetailNewsContainer}/>
+                    <Route exact path='/news/new' component={CreateNewsContainer}/>
 
                     {/*Доставка*/}
-                    <Route exact path='/delivery' component={DeliveryContainer} />
-                    <Route exact path='/delivery-settings' component={SettingsDelivery} />
+                    <Route exact path='/delivery' component={DeliveryContainer}/>
+                    <Route exact path='/delivery-settings' component={SettingsDelivery}/>
 
                     <Route exact path='/messages' component={MessagesContainer}/>
                     <Route exact path='/promos' component={ContainerPromos}/>
-                    <Route exact path='/contacts' component={ContactsContainer} />
-                    <Route exact path='/orders' component={OrdersContainer} />
+                    <Route exact path='/contacts' component={ContactsContainer}/>
+                    <Route exact path='/orders' component={OrdersContainer}/>
                 </div>
             </div>
         </BrowserRouter>

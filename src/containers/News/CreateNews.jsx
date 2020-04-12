@@ -5,19 +5,25 @@ import NewsForm from "../../components/News/NewsForm";
 import {postFile} from "../../redux/file-reducer";
 
 class CreateNewsContainer extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            file: ''
+        }
+    }
+
     postNews = (news) => {
-        let data = { ...news };
-        data.create_at = Date.parse(new Date().toString());
-        data.file = this.props.file;
-        console.log(data);
-        this.props.createNews(data);
+        let formData = new FormData();
+        for (let key in news) {
+            formData.append(key, news[key])
+        }
+        formData.append('image', this.state.file)
+        this.props.createNews(formData);
         this.props.history.goBack();
     };
 
     uploadFile = (event) => {
-        let formDate = new FormData();
-        formDate.append("file", event.target.files[0])
-        this.props.postFile(formDate)
+        this.state.file = event.target.files[0]
     }
 
     cancel = () => {

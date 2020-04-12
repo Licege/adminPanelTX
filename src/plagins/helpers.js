@@ -1,9 +1,11 @@
+import {serverUrl} from "../api/api";
+
 export function getProfessionNameById (professions, id) {
     return professions.find(profession => profession.id === id).profession
 }
 
 export function getTitleById (arr, id) {
-    return arr.find(item => item.id === id).title
+    return arr.find(item => item._id === id).title
 }
 
 const arrMonth = [
@@ -47,4 +49,8 @@ export function cropText(text, limit = 100) {
         text = text.slice(0, limit) + '...'
     }
     return text
+}
+
+export function fullLink(link) {
+    return serverUrl + link.replace('\\', '/')
 }
