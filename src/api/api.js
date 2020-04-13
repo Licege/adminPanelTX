@@ -147,8 +147,9 @@ export const menuAPI = {
                 return response
             });
     },
-    updateDish(dish) {
-        return axios.put(baseUrl + `/menu/${dish.id}`, dish)
+    updateDish(dish, id) {
+        console.log(dish);
+        return axios.patch(baseUrl + `/menu/${id}`, dish)
             .then(response => {
                 return response
             })
@@ -181,8 +182,8 @@ export const newsAPI = {
                 return response
             })
     },
-    updateNews(news) {
-        return axios.put(baseUrl + `/news/${news.id}`, news)
+    updateNews(news, id) {
+        return axios.patch(baseUrl + `/news/${id}`, news)
             .then(response => {
                 return response
             })

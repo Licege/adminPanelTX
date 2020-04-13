@@ -28,13 +28,13 @@ class EditNewsContainer extends React.Component{
         }
     }
 
-    updateNews = (data) => {
+    updateNews = (news) => {
         let formData = new FormData();
-        for (let key in data) {
-            formData.append(key, data[key])
+        for (let key in news) {
+            formData.append(key, news[key])
         }
         this.state.file && formData.append('image', this.state.file)
-        this.props.updateCurrentNews(formData);
+        this.props.updateCurrentNews(formData, news._id);
         this.props.history.goBack();
     };
 
@@ -69,8 +69,8 @@ let mapDispatchToProps = (dispatch) => {
         getCurrentNews: (id) => {
             dispatch(getCurrentNews(id))
         },
-        updateCurrentNews: (currentNews) => {
-            dispatch(updateNews(currentNews))
+        updateCurrentNews: (currentNews, id) => {
+            dispatch(updateNews(currentNews, id))
         },
         postFile: (file) => {
             dispatch(postFile(file))

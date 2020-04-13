@@ -18,6 +18,7 @@ const Auth = ({handleSubmit}) => {
                         <Field name='password'
                                className='form-control mb-3'
                                component='input'
+                               type='password'
                                placeholder='Введите пароль' />
                     </div>
                     <div className='auth-wrapper-actions'>

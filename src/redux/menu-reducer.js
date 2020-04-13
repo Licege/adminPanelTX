@@ -26,7 +26,7 @@ const menuReducer = (state = initialState, action) => {
             return { ...state, dish: action.dish };
 
         case UPDATE_DISH:
-            return { ...state, dishes: state.dishes.filter(e => (e._id === action.dish.id ? action.dish : e)) };
+            return { ...state, dishes: state.dishes.map(e => (e._id === action.dish._id ? action.dish : e)) };
 
         case DELETE_DISH:
             return { ...state, dishes: state.dishes.filter(e => e._id !== action.id )};
@@ -69,8 +69,8 @@ export const requestCategories = () => {
     }
 };
 
-export const updateDish = (dish) => async (dispatch) => {
-    let response = await menuAPI.updateDish(dish)
+export const updateDish = (dish, id) => async (dispatch) => {
+    let response = await menuAPI.updateDish(dish, id)
     dispatch(updateDishAC(response.data))
 }
 

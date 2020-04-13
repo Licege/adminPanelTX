@@ -8,9 +8,7 @@ import {Redirect} from "react-router-dom";
 class LogoutBtn extends React.Component{
     exit = () => {
         this.props.logout()
-        return (
-            <Redirect to='/login' />
-        )
+        window.location.reload()
     }
 
     render() {

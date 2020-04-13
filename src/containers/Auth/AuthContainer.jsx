@@ -2,12 +2,16 @@ import React from 'react'
 import Auth from "../../components/Auth/Auth";
 import {login} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
 
 class AuthContainer extends React.Component {
-    postData = (data) => {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.isAuthenticated !== this.props.isAuthenticated) {
+            window.location.reload()
+        }
+    }
+
+    postData = async (data) => {
         this.props.login(data)
-        this.props.history.push('/')
     }
 
     render() {

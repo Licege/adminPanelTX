@@ -5,7 +5,8 @@ const LOGIN = 'AUTH/LOGIN'
 const LOGOUT = 'AUTH/LOGOUT'
 
 let initialState = {
-    token: localStorage.getItem('token'),
+    accessToken: localStorage.getItem('accessToken'),
+    refreshToken: localStorage.getItem('refreshToken'),
     isAuthenticated: false
 }
 
@@ -14,11 +15,15 @@ const authReducer = (state = initialState, action) => {
         case REGISTRATION:
             return state;
         case LOGIN:
-            localStorage.setItem('token', action.data.token)
-            return {...state, token: action.data.token, isAuthenticated: true}
+            localStorage.setItem('accessToken', action.data.accessToken)
+            localStorage.setItem('refreshToken', action.data.refreshToken)
+            return {
+                ...state,
+                isAuthenticated: true
+            }
         case LOGOUT:
             localStorage.clear()
-            return { ...state, token: null, isAuthenticated: false }
+            return { ...state, isAuthenticated: false }
         default:
             return state
     }

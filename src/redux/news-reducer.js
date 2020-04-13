@@ -23,7 +23,7 @@ const newsReducer = (state = initialState, action) => {
         case GET_CURRENT_NEWS:
             return { ...state, currentNews: action.currentNews };
         case UPDATE_NEWS:
-            return { ...state, news: state.news.map(n => (n._id === action.currentNews.id ? action.currentNews : n)) };
+            return { ...state, news: state.news.map(n => (n._id === action.currentNews._id ? action.currentNews : n)) };
         case DELETE_NEWS:
             return { ...state, news: state.news.filter(n => n._id !== action.id) };
         case TOGGLE_IS_FETCHING:
@@ -57,8 +57,8 @@ export const getCurrentNews = (id) => async (dispatch) => {
     dispatch(getCurrentNewsAC(response.data[0]))
 };
 
-export const updateNews = (news) => async (dispatch) => {
-    let response = await newsAPI.updateNews(news);
+export const updateNews = (news, id) => async (dispatch) => {
+    let response = await newsAPI.updateNews(news, id);
     dispatch(updateNewsAC(response.data))
 };
 

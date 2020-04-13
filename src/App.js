@@ -28,7 +28,7 @@ import AuthContainer from "./containers/Auth/AuthContainer";
 import {useSelector} from "react-redux";
 
 function App() {
-    let token = useSelector(state => state.auth.token)
+    let token = useSelector(state => state.auth.accessToken)
     let isAuthenticated = !!token
 
     if (!isAuthenticated) {
@@ -86,6 +86,8 @@ function App() {
                     <Route exact path='/promos' component={ContainerPromos}/>
                     <Route exact path='/contacts' component={ContactsContainer}/>
                     <Route exact path='/orders' component={OrdersContainer}/>
+
+                    <Redirect to='/'/>
                 </div>
             </div>
         </BrowserRouter>

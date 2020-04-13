@@ -25,10 +25,8 @@ class EditDishContainer extends React.Component{
         for (let key in dish) {
             formData.append(key, dish[key])
         }
-        formData.weight = parseInt(formData.weight, 10);
-        formData.price = parseInt(formData.price, 10);
         this.state.file && formData.append('image', this.state.file)
-        this.props.updateDish(formData)
+        this.props.updateDish(formData, dish._id)
         this.props.history.goBack();
     }
 
@@ -65,8 +63,8 @@ let mapDispatchToProps = (dispatch) => {
         getCategories: () => {
             dispatch(requestCategories())
         },
-        updateDish: (dish) => {
-            dispatch(updateDish(dish))
+        updateDish: (dish, id) => {
+            dispatch(updateDish(dish, id))
         },
         initializeFile: (file) => {
             dispatch(initializeFileAC(file))

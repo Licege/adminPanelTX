@@ -17,7 +17,7 @@ const SettingsTable = ( {settings, cities, postSettings} ) => {
                     </thead>
                     <tbody>
                     {settings.map(s => (
-                        <tr key={s.id}>
+                        <tr key={s._id}>
                             <td><input type='checkbox' value={s.is_delivery} disabled/></td>
                             <td>{getTitleById(cities, s.city_id)}</td>
                             <td>{s.price_for_delivery}</td>
