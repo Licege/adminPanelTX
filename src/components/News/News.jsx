@@ -9,7 +9,7 @@ const News = ( {news, createNews, deleteNews, detail} ) => {
                     Новости
                 </div>
                 <div className='page-header-action'>
-                    <button onClick={createNews} className='btn btn-primary'>Создать новость</button>
+                    <button onClick={createNews} className='btn btn-primary'>Добавить новость</button>
                 </div>
             </div>
             <div className='page-container'>

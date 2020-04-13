@@ -2,12 +2,12 @@ import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import {Button} from "react-bootstrap";
 
-const NewsForm = ( {handleSubmit, uploadFile, cancel} ) => {
+const NewsForm = ( {handleSubmit, uploadFile, news, cancel} ) => {
     return (
         <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Добавление новости
+                    {news ? news.title : 'Добавление новости'}
                 </div>
             </div>
             <div className='page-container'>
@@ -35,7 +35,7 @@ const NewsForm = ( {handleSubmit, uploadFile, cancel} ) => {
                             <div>
                                 <input name='image' type='file' onChange={uploadFile} />
                             </div>
-                            <Button type='submit' variant='primary'>Создать новость</Button>
+                            <Button type='submit' variant='primary'>Сохранить</Button>
                             <Button onClick={cancel} variant='outline-warning'>Отменить</Button>
                         </form>
                     </div>

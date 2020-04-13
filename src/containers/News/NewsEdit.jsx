@@ -51,6 +51,7 @@ class EditNewsContainer extends React.Component{
             {this.props.isFetching ? <Preloader /> : null}
             <NewsForm initialValues={this.props.currentNews}
                       onSubmit={this.updateNews}
+                      news={this.props.currentNews}
                       uploadFile={this.uploadFile}
                       cancel={this.cancel} />
             </>

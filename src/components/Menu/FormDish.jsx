@@ -3,12 +3,12 @@ import {createField, Input} from "../common/FormsControls";
 import {Field, reduxForm} from "redux-form";
 import ImageInput from "../common/imageInput";
 
-const FormDish = ({handleSubmit, categories, cancel, postFile, deleteFile} ) => {
+const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
     return (
         <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Добавление нового блюда
+                    {dish ? dish.title : 'Добавление нового блюда'}
                 </div>
             </div>
             <div className='page-container'>

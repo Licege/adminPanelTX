@@ -41,6 +41,7 @@ class EditDishContainer extends React.Component{
     render() {
         return <FormDish initialValues={this.props.dish}
                          onSubmit={this.onSubmit}
+                         dish={this.props.dish}
                          categories={this.props.categories}
                          cancel={this.cancel}
                          postFile={this.uploadFile} />
