@@ -1,15 +1,39 @@
 import axios from "axios";
 
-export const serverUrl ='http://localhost:9090/'
+export const serverUrl = 'http://localhost:9090/'
 const baseUrl = serverUrl + 'api'
 export const secret = 'dev-jwt'
 
 const apiAdminRequest = axios.create({
     baseURL: baseUrl,
     headers: {
-        'Authorization': localStorage.getItem('token')
+        'Authorization': localStorage.getItem('accessToken')
     }
 })
+
+apiAdminRequest.interceptors.response.use(function (response) {
+    return response;
+}, function (error) {
+
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+
+        originalRequest._retry = true;
+
+        const refreshToken = window.localStorage.getItem('refreshToken');
+        return axios.post(baseUrl + `/auth/refresh-token/`, { refreshToken })
+            .then(({data}) => {
+                window.localStorage.setItem('accessToken', data.accessToken);
+                window.localStorage.setItem('refreshToken', data.refreshToken);
+                apiAdminRequest.defaults.headers.common['Authorization'] = data.accessToken;
+                originalRequest.headers['Authorization'] = data.accessToken;
+                return apiAdminRequest(originalRequest);
+            });
+    }
+
+    return Promise.reject(error);
+});
 
 export const authAPI = {
     login(user) {
@@ -115,7 +139,7 @@ export const contactsAPI = {
             });
     },
     updateContacts(contacts) {
-        return apiAdminRequest.patch(baseUrl + `/contacts/${contacts._id}`, contacts)
+        return apiAdminRequest.patch(`/contacts/${contacts._id}`, contacts)
             .then(response => {
                 return response
             });
