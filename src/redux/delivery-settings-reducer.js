@@ -53,7 +53,7 @@ const updateCityAC = (city) => ({type: UPDATE_CITIES, city});
 
 export const requestGlobalDeliverySettings = () => async(dispatch) => {
     let response = await deliveryGlobalSettingsAPI.getSettings();
-    dispatch(getGlobalDeliverySettingsAC(response.data))
+    dispatch(getGlobalDeliverySettingsAC(response.data[0]))
 };
 
 export const updateGlobalDeliverySettings = (settings) => async(dispatch) => {

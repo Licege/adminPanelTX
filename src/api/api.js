@@ -282,25 +282,25 @@ export const deliveryAPI = {
 
 export const deliverySettingsAPI = {
     getSettings() {
-        return axios.get(baseUrl + `/delivery/settings/`)
+        return axios.get(baseUrl + `/delivery-settings/common/`)
             .then(response => {
                 return response
             })
     },
     updateSettings(settings) {
-        return axios.put(baseUrl + `/delivery/settings/`, settings)
+        return apiAdminRequest.patch(`/delivery-settings/common/`, settings)
             .then(response => {
                 return response
             })
     },
     createSettings(settings) {
-        return axios.post(baseUrl + `/delivery/settings/`, settings)
+        return apiAdminRequest.post(`/delivery-settings/common/`, settings)
             .then(response => {
                 return response
             })
     },
     deleteSettings(id) {
-        return axios.delete(baseUrl + `/delivery/settings/${id}`)
+        return apiAdminRequest.delete(`/delivery-settings/common/${id}`)
             .then(response => {
                 return response
             })
@@ -309,13 +309,13 @@ export const deliverySettingsAPI = {
 
 export const deliveryGlobalSettingsAPI = {
     getSettings() {
-        return axios.get(baseUrl + `/delivery/global-settings/`)
+        return axios.get(baseUrl + `/delivery-settings/global/`)
             .then(response => {
                 return response
             })
     },
     updateSettings(settings) {
-        return axios.put(baseUrl + `/delivery/global-settings/`, settings)
+        return apiAdminRequest.patch(`/delivery-settings/global/`, settings)
             .then(response => {
                 return response
             })

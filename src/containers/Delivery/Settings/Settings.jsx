@@ -12,7 +12,6 @@ class SettingsContainer extends React.Component {
     componentDidMount() {
         if (!this.props.settings.length) this.props.getSettings();
         if (!Object.keys(this.props.global_settings).length) this.props.getGlobalSettings();
-        if (!this.props.cities.length) this.props.getCities();
     }
 
     postGlobalSettings = (settings) => {
@@ -27,7 +26,6 @@ class SettingsContainer extends React.Component {
     render() {
         return <Settings settings={this.props.settings}
                          global_settings={this.props.global_settings}
-                         cities={this.props.cities}
                          postSettings={this.postSettings}
                          postGlobalSettings={this.postGlobalSettings} />
     }
@@ -37,7 +35,6 @@ let mapStateToProps = (state) => {
     return {
         settings: state.deliverySettingsPage.settings,
         global_settings: state.deliverySettingsPage.global_settings,
-        cities: state.deliverySettingsPage.cities
     }
 };
 
@@ -60,9 +57,6 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteSettings: (id) => {
             dispatch(deleteDeliverySettings(id))
-        },
-        getCities: () => {
-            dispatch(requestCities())
         },
         updateCity: (city) => {
             dispatch(updateCity(city))
