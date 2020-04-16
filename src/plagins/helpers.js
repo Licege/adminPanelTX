@@ -44,6 +44,20 @@ export function tsToDate (timestamp, type) {
     }
 }
 
+export function toDate(date, type) {
+    let data = new Date(date)
+    let hh = date.getHours(); hh = hh < 10 ? '0' + hh : hh;
+    let mm = date.getMinutes(); mm = mm < 10 ? '0' + mm : mm;
+    let dd = date.getDate(); dd = dd < 10 ? '0'+ dd : dd;
+    let MM = date.getMonth() + 1; MM = MM < 10 ? '0' + MM : MM;
+    let YYYY = date.getFullYear();
+    let MMMM = arrMonth[date.getMonth()];
+
+
+    console.log(data.getHours())
+    return date
+}
+
 export function cropText(text, limit = 100) {
     if (text.length > limit) {
         text = text.slice(0, limit) + '...'

@@ -5,7 +5,7 @@ import DeliveryInfo from "../../components/Delivery/DeliveryInfo";
 
 class DeliveryInfoContainer extends React.Component {
     componentDidMount() {
-        if (!this.props.order) this.props.getOrder(this.props.match.params.id)
+        if (!this.props.order || this.props.order._id !== this.props.match.params.id) this.props.getOrder(this.props.match.params.id)
     }
 
     render() {
@@ -27,4 +27,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (DeliveryInfoContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DeliveryInfoContainer)

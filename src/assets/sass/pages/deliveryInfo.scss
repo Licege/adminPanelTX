@@ -28,6 +28,34 @@
   }
 
   &-detail {
+    margin-top: 16px;
+
+    &-title {
+      display: flex;
+      align-items: center;
+      font-size: 1.25rem;
+      border-top: 2px solid grey;
+      padding: .5rem;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.125);
+    }
+
+    &-info {
+      &-item {
+        font-size: 1rem;
+      }
+    }
+
+    &-table {
+      max-height: 250px;
+      overflow: scroll;
+
+    }
+
+    td, th {
+      text-align: center;
+    }
+  }
+  &-item {
 
   }
 }
