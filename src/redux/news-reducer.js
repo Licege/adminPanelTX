@@ -47,7 +47,7 @@ export const createNewNews = (news) => async (dispatch) => {
 
 export const getNews = () => async (dispatch) => {
     let response = await newsAPI.getNews();
-    dispatch(getNewsAC(response.data))
+    dispatch(getNewsAC(response.data.news, response.data.totalCount))
 };
 
 export const getCurrentNews = (id) => async (dispatch) => {

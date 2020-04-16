@@ -25,7 +25,7 @@ export const updateContactsAC = (contacts) => ({type: UPDATE_CONTACTS, contacts}
 
 export const getContacts = () => async (dispatch) => {
     let response = await contactsAPI.getContacts();
-    dispatch(getContactsAC(response.data[0]))
+    dispatch(getContactsAC(response.data))
 };
 
 export const updateContacts = (contacts) => async (dispatch) => {

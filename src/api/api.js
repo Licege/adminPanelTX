@@ -29,6 +29,10 @@ apiAdminRequest.interceptors.response.use(function (response) {
                 apiAdminRequest.defaults.headers.common['Authorization'] = data.accessToken;
                 originalRequest.headers['Authorization'] = data.accessToken;
                 return apiAdminRequest(originalRequest);
+            })
+            .catch(error => {
+                window.localStorage.clear()
+                window.location.reload()
             });
     }
 
@@ -273,7 +277,13 @@ export const messagesAPI = {
 
 export const deliveryAPI = {
     getOrders() {
-        return axios.get(baseUrl + `/delivery/`)
+        return apiAdminRequest.get(baseUrl + `/delivery/`)
+            .then(response => {
+                return response
+            })
+    },
+    getOrderById(id) {
+        return apiAdminRequest.get(baseUrl + `/delivery/${id}`)
             .then(response => {
                 return response
             })

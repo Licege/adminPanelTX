@@ -11,7 +11,9 @@ class EmployeesContainer extends React.Component {
     }
 
     detail = (id) => {
-        this.props.history.push(`employees/edit/${id}`)
+        return () => {
+            this.props.history.push(`employees/edit/${id}`)
+        }
     };
 
     createNewEmployee = () => {

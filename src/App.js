@@ -24,6 +24,7 @@ import CreateNewsContainer from "./containers/News/CreateNews";
 import MessagesContainer from "./containers/Messages/Messages";
 import SettingsDelivery from "./containers/Delivery/Settings/Settings";
 import DeliveryContainer from "./containers/Delivery/Delivery"
+import DeliveryInfoContainer from "./containers/Delivery/DeliveryInfo"
 import AuthContainer from "./containers/Auth/AuthContainer";
 import {useSelector} from "react-redux";
 
@@ -80,6 +81,7 @@ function App() {
 
                     {/*Доставка*/}
                     <Route exact path='/delivery' component={DeliveryContainer}/>
+                    <Route exact path='/delivery/:id' component={DeliveryInfoContainer} />
                     <Route exact path='/delivery-settings' component={SettingsDelivery}/>
 
                     <Route exact path='/messages' component={MessagesContainer}/>

@@ -48,12 +48,12 @@ const Employees = (props) => {
                             <tbody>
                             { props.employees.map(employee => (
                                 <tr key={employee.id}>
-                                    <td onClick={(e) => props.detail(employee.id)}>{getProfessionNameById(props.professions, employee.profession)}</td>
-                                    <td onClick={(e) => props.detail(employee.id)}>{employee.surname}</td>
-                                    <td onClick={(e) => props.detail(employee.id)}>{employee.name}</td>
-                                    <td onClick={(e) => props.detail(employee.id)}>{employee.phone}</td>
-                                    <td onClick={(e) => props.detail(employee.id)}>{employee.address}</td>
-                                    <td><button onClick={(e) => props.delete(employee.id)}><img src={deleteButton} alt="Удалить" /></button></td>
+                                    <td onClick={props.detail(employee.id)}>{getProfessionNameById(props.professions, employee.profession)}</td>
+                                    <td onClick={props.detail(employee.id)}>{employee.surname}</td>
+                                    <td onClick={props.detail(employee.id)}>{employee.name}</td>
+                                    <td onClick={props.detail(employee.id)}>{employee.phone}</td>
+                                    <td onClick={props.detail(employee.id)}>{employee.address}</td>
+                                    <td><button onClick={props.delete(employee.id)}><img src={deleteButton} alt="Удалить" /></button></td>
                                 </tr>
                             ))}
                             </tbody>

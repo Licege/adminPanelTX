@@ -8,8 +8,14 @@ class DeliveryContainer extends React.Component{
         if (!this.props.orders.length) this.props.getOrders()
     }
 
+    detail = (id) => {
+        return () => {
+            this.props.history.push(`/delivery/${id}`)
+        }
+    }
+
     render() {
-        return <Delivery orders={this.props.orders} />
+        return <Delivery orders={this.props.orders} detail={this.detail} />
     }
 }
 
