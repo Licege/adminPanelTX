@@ -8,7 +8,6 @@ let initialState = {
 }
 
 const adminReducer = (state = initialState, action) => {
-    console.log(state.admins);
     switch (action.type) {
         case GET_ADMINS:
             return { ...state, admins: action.admins }

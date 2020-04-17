@@ -2,9 +2,11 @@ import React from 'react'
 import Table from "react-bootstrap/Table";
 import {deliveryHD} from '../../plagins/hardData'
 import {tsToDate} from "../../plagins/helpers";
+import Paginator from "../common/Paginator";
 
-const DeliveryTable = ({orders, detail}) => {
+const DeliveryTable = ({orders, detail, totalCount, page, onChangePage}) => {
     return (
+        <>
         <Table responsive>
             <thead className='table-thread'>
             <tr>
@@ -35,6 +37,8 @@ const DeliveryTable = ({orders, detail}) => {
             }
             </tbody>
         </Table>
+        <Paginator totalItemsCount={totalCount} currentPage={page} pageSize={5} onPageChanged={onChangePage} />
+        </>
     )
 }
 

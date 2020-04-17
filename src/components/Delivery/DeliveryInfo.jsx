@@ -17,10 +17,9 @@ import MoneyOffIcon from '@material-ui/icons/MoneyOff';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import {Table} from "react-bootstrap";
-import {toDate, tsToDate} from "../../plagins/helpers";
+import {tsToDate} from "../../plagins/helpers";
 
 const DeliveryInfo = ({order}) => {
-
     return (
         order ? <div className='delivery_info'>
             <div className='delivery_info-block'>

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
-import {getTitleById} from "../../../../../plagins/helpers";
 
 const SettingsTable = ( {settings, postSettings} ) => {
+    console.log(settings[0]);
     return (
         <div className='card'>
             <div className='card-body'>
@@ -18,7 +18,7 @@ const SettingsTable = ( {settings, postSettings} ) => {
                     <tbody>
                     {settings.map(s => (
                         <tr key={s._id}>
-                            <td><input type='checkbox' value={s.is_delivery} disabled/></td>
+                            <td><input type='checkbox' checked={s.is_delivery} value={s.is_delivery} disabled/></td>
                             <td>{s.city}</td>
                             <td>{s.price_for_delivery}</td>
                             <td>{s.free_delivery}</td>

@@ -1,7 +1,8 @@
 import React from 'react'
 import DeliveryTable from "./DeliveryTable";
 
-const Delivery = ({orders, detail, changeFilter}) => {
+const Delivery = ({orders, detail, changeFilter, clearFilter, totalCount, page, onChangePage}) => {
+    console.log(totalCount);
     return (
             <div>
                 <div className='page-header'>
@@ -15,6 +16,8 @@ const Delivery = ({orders, detail, changeFilter}) => {
                             <span className='filter-header'>Фильтры</span>
                             <div className='filter-main'>
                                 <input id='phone' type='text' placeholder='Телефон' className='filter-main-input -name form-control' />
+                                <input id='total_price_start' type='text' placeholder='Цена от' className='filter-main-input -name form-control' />
+                                <input id='total_price_end' type='text' placeholder='Цена до' className='filter-main-input -name form-control' />
                                 <select id='payment_type' className='filter-main-input -name form-control'>
                                     <option value=''>По типу оплаты</option>
                                     <option value='cash'>Наличными</option>
@@ -43,13 +46,17 @@ const Delivery = ({orders, detail, changeFilter}) => {
                                 </select>
                             </div>
                             <div className='filter-actions'>
-                                <span className='filter-actions-reset'>Сбросить</span>
+                                <span className='filter-actions-reset' onClick={clearFilter}>Сбросить</span>
                                 <span className='filter-actions-apply' onClick={changeFilter}>Фильтровать</span>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <DeliveryTable orders={orders} detail={detail} />
+                        <DeliveryTable orders={orders}
+                                       detail={detail}
+                                       totalCount={totalCount}
+                                       page={page}
+                                       onChangePage={onChangePage} />
                     </div>
                 </div>
             </div>

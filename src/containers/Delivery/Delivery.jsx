@@ -3,11 +3,14 @@ import {requestOrdersDelivery} from "../../redux/delivery-reduce";
 import Delivery from "../../components/Delivery/Delivery";
 import {connect} from "react-redux";
 
+const fieldFilter = ['phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status']
+
 class DeliveryContainer extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-            filter: {}
+            filter: {},
+            page: 1
         }
     }
 
@@ -21,8 +24,13 @@ class DeliveryContainer extends React.Component{
         }
     }
 
+    onChangePage = (page) => {
+        this.state.page = page
+        this.props.getOrders(this.state.filter, page)
+    }
+
     changeFilter = () => {
-        const fieldFilter = ['phone', 'payment_type', 'delivery_type', 'payment_status', 'status']
+        const fieldFilter = ['phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status']
 
         fieldFilter.forEach(field => {
             if (document.getElementById(field).value) {
@@ -32,24 +40,39 @@ class DeliveryContainer extends React.Component{
             }
         })
         console.log(this.state.filter);
-        this.props.getOrders(this.state.filter)
+        this.state.page = 1
+        this.props.getOrders(this.state.filter, this.state.page)
+    }
+
+    clearFilter = () => {
+        fieldFilter.forEach(field => document.getElementById(field).value = '')
+        this.state.filter = {}
+        this.state.page = 1
+        this.props.getOrders({}, 1)
     }
 
     render() {
-        return <Delivery orders={this.props.orders} detail={this.detail} changeFilter={this.changeFilter} />
+        return <Delivery orders={this.props.orders}
+                         detail={this.detail}
+                         changeFilter={this.changeFilter}
+                         clearFilter={this.clearFilter}
+                         totalCount={this.props.totalCount}
+                         page={this.state.page}
+                         onChangePage={this.onChangePage} />
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        orders: state.deliveryPage.orders
+        orders: state.deliveryPage.orders,
+        totalCount: state.deliveryPage.totalCount
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        getOrders: (filter) => {
-            dispatch(requestOrdersDelivery(filter))
+        getOrders: (filter, page) => {
+            dispatch(requestOrdersDelivery(filter, page))
         }
     }
 }

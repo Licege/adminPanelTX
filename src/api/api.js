@@ -27,6 +27,7 @@ apiAdminRequest.interceptors.response.use(function (response) {
                 window.localStorage.setItem('accessToken', data.accessToken);
                 window.localStorage.setItem('refreshToken', data.refreshToken);
                 apiAdminRequest.defaults.headers.common['Authorization'] = data.accessToken;
+                apiAdminRequest.headers['Authorization'] = data.accessToken;
                 originalRequest.headers['Authorization'] = data.accessToken;
                 return apiAdminRequest(originalRequest);
             })
@@ -291,8 +292,8 @@ export const messagesAPI = {
 };
 
 export const deliveryAPI = {
-    getOrders(filter) {
-        return apiAdminRequest.get(baseUrl + `/delivery/`, {params: filter})
+    getOrders(filter, page) {
+        return apiAdminRequest.get(baseUrl + `/delivery/?offset=${page}`, {params: filter})
             .then(response => {
                 return response
             })

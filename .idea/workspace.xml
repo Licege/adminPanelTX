@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64efa6b0-e2f7-43ee-95a4-2e93b84ea3c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Admin/Admin.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/Admin/AdminContainer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/admin-reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Delivery/Delivery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Delivery/Delivery.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Delivery/DeliveryInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Delivery/DeliveryInfo.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Delivery/DeliveryTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Delivery/DeliveryTable.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Users/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Users/Users.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Delivery/Settings/Tabs/Common_Settings/SettingsTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Delivery/Settings/Tabs/Common_Settings/SettingsTable.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Delivery/Delivery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Delivery/Delivery.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/admin-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/admin-reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/delivery-reduce.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/delivery-reduce.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/redux-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/redux-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/users-reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/users-reducer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,29 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/containers/Delivery/Delivery.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/delivery-reduce.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Delivery/Delivery.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="41" column="70" lean-forward="true" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
+            <state relative-caret-position="204">
+              <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -61,10 +35,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/api/api.js">
+        <entry file="file://$PROJECT_DIR$/src/components/Delivery/Delivery.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="292" column="28" lean-forward="true" selection-start-line="292" selection-start-column="28" selection-end-line="292" selection-end-column="28" />
+            <state relative-caret-position="68">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,6 +83,8 @@
       <find>apiad</find>
       <find>deli</find>
       <find>user</find>
+      <find>page</find>
+      <find>del</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -145,7 +124,6 @@
         <option value="$PROJECT_DIR$/src/containers/Menu/EditDish.jsx" />
         <option value="$PROJECT_DIR$/src/components/Menu/FormDish.jsx" />
         <option value="$PROJECT_DIR$/src/api/storageToken.js" />
-        <option value="$PROJECT_DIR$/src/components/Delivery/Settings/Tabs/Common_Settings/SettingsTable.jsx" />
         <option value="$PROJECT_DIR$/src/components/Delivery/Settings/Settings.jsx" />
         <option value="$PROJECT_DIR$/src/containers/Delivery/Settings/Settings.jsx" />
         <option value="$PROJECT_DIR$/src/redux/delivery-settings-reducer.js" />
@@ -159,29 +137,30 @@
         <option value="$PROJECT_DIR$/src/containers/Delivery/DeliveryInfo.jsx" />
         <option value="$PROJECT_DIR$/src/plagins/hardData.js" />
         <option value="$PROJECT_DIR$/src/plagins/helpers.js" />
-        <option value="$PROJECT_DIR$/src/components/Delivery/DeliveryInfo.jsx" />
         <option value="$PROJECT_DIR$/src/assets/sass/pages/deliveryInfo.scss" />
         <option value="$PROJECT_DIR$/src/assets/sass/pages/deliveryTable.scss" />
         <option value="$PROJECT_DIR$/src/assets/sass/main.scss" />
-        <option value="$PROJECT_DIR$/src/components/Delivery/DeliveryTable.jsx" />
         <option value="$PROJECT_DIR$/src/redux/redux-store.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/redux/admin-reducer.js" />
         <option value="$PROJECT_DIR$/src/components/Admin/Admin.jsx" />
         <option value="$PROJECT_DIR$/src/containers/Admin/AdminContainer.jsx" />
         <option value="$PROJECT_DIR$/src/redux/users-reducer.js" />
         <option value="$PROJECT_DIR$/src/components/Users/Users.jsx" />
-        <option value="$PROJECT_DIR$/src/components/Delivery/Delivery.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Delivery/DeliveryInfo.jsx" />
         <option value="$PROJECT_DIR$/src/redux/delivery-reduce.js" />
+        <option value="$PROJECT_DIR$/src/redux/admin-reducer.js" />
+        <option value="$PROJECT_DIR$/src/components/Delivery/Settings/Tabs/Common_Settings/SettingsTable.jsx" />
         <option value="$PROJECT_DIR$/src/api/api.js" />
         <option value="$PROJECT_DIR$/src/containers/Delivery/Delivery.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Delivery/DeliveryTable.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Delivery/Delivery.jsx" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="60" />
     <option name="y" value="62" />
-    <option name="width" value="1117" />
+    <option name="width" value="1442" />
     <option name="height" value="995" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -208,7 +187,14 @@
               <item name="admin" type="b2602c69:ProjectViewProjectNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Delivery" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="admin" type="b2602c69:ProjectViewProjectNode" />
@@ -249,19 +235,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\Menu" />
-      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\News" />
-      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src" />
-      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\containers\Vacancies" />
-      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\containers\Users" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\static\img" />
       <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\common\element\menu" />
       <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\Menu\new" />
       <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\Vacancy" />
       <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\Messages" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\Menu" />
+      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\components\News" />
+      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src" />
+      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\containers\Vacancies" />
+      <recent name="C:\Users\PC\Desktop\Сайт\Админка\admin\src\containers\Users" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -411,12 +397,12 @@
       <workItem from="1586975064747" duration="6846000" />
       <workItem from="1587023978133" duration="20466000" />
       <workItem from="1587055528998" duration="10450000" />
-      <workItem from="1587115307845" duration="4614000" />
+      <workItem from="1587115307845" duration="15973000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="658698000" />
+    <option name="totallyTimeSpent" value="670057000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -428,10 +414,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="50" width="893" height="796" extended-state="0" />
+    <frame x="48" y="50" width="1153" height="796" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.63286006" weight="0.20567375" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.63286006" visible="true" weight="0.16756272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.36713997" side_tool="true" weight="0.23809524" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -659,16 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Delivery/Settings/Tabs/Common_Settings/SettingsTable.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/delivery-settings-reducer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -769,40 +745,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Delivery/DeliveryTable.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/sass/pages/deliveryInfo.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
           <caret line="50" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Delivery/DeliveryInfo.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="92" column="56" selection-start-line="92" selection-start-column="56" selection-end-line="92" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Delivery/DeliveryInfo.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -850,53 +796,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/users-reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="56" column="15" lean-forward="true" selection-start-line="56" selection-start-column="15" selection-end-line="56" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Users/Users.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Users/Users.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Contacts/Contacts.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
           <caret line="59" column="6" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/admin-reducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -910,37 +813,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Delivery/Delivery.jsx">
+    <entry file="file://$PROJECT_DIR$/src/containers/Users/Users.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="41" column="70" lean-forward="true" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
+        <state relative-caret-position="102">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Delivery/DeliveryInfo.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/users-reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/admin-reducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Delivery/DeliveryInfo.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Users/Users.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="51" column="159" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="159" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/delivery-reduce.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+        <state relative-caret-position="170">
+          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Delivery/Delivery.jsx">
+    <entry file="file://$PROJECT_DIR$/src/components/Delivery/Settings/Tabs/Common_Settings/SettingsTable.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        <state relative-caret-position="306">
+          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="292" column="28" lean-forward="true" selection-start-line="292" selection-start-column="28" selection-end-line="292" selection-end-column="28" />
+        <state relative-caret-position="238">
+          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Delivery/DeliveryTable.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Delivery/Delivery.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="54" column="20" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Delivery/Delivery.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
