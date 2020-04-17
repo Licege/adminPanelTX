@@ -32,9 +32,9 @@ const deliverySettingsReducer = (state = initialState, action) => {
         case CREATE_DELIVERY_SETTINGS:
             return { ...state, settings: [ ...state.settings, action.settings ] };
         case UPDATE_DELIVERY_SETTINGS:
-            return { ...state, settings: state.settings.map(s => (s.id === action.settings.id ? action.settings : s)) };
+            return { ...state, settings: state.settings.map(s => (s._id === action.settings._id ? action.settings : s)) };
         case DELETE_DELIVERY_SETTINGS:
-            return { ...state, settings: state.settings.filter(s => s.id !== action.id) };
+            return { ...state, settings: state.settings.filter(s => s._id !== action.id) };
         case GET_CITIES:
             return { ...state, cities: action.cities };
         case UPDATE_CITIES:

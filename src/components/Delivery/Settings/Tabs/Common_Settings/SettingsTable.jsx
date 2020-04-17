@@ -2,7 +2,6 @@ import React from 'react';
 import {Table} from "react-bootstrap";
 
 const SettingsTable = ( {settings, editSettings} ) => {
-    console.log(settings);
     return (
         <div className='card'>
             <div className='card-body'>

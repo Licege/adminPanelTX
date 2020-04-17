@@ -15,6 +15,7 @@ import NewsContainer from "./containers/News/News";
 import EmployeeContainer from "./containers/Employees/EmployeeEdit";
 import CreateEmployee from "./containers/Employees/EmployeeNew";
 import CreateVacancy from "./containers/Vacancies/CreateVacancy";
+import EditVacancy from "./containers/Vacancies/EditVacancy";
 import ContactsContainer from "./containers/Contacts/Contacts";
 import CreateDishContainer from "./containers/Menu/CreateDish";
 import EditDishContainer from "./containers/Menu/EditDish";
@@ -77,7 +78,7 @@ function App() {
 
                     {/*Вакансии*/}
                     <Route exact path='/vacancies' component={VacanciesContainer}/>
-                    <Route exact path='/vacancies/edit/:id' component={VacanciesContainer}/>
+                    <Route exact path='/vacancies/edit/:id' component={EditVacancy}/>
                     <Route exact path='/vacancies/new' component={CreateVacancy}/>
 
                     {/*Новости*/}

@@ -4,21 +4,34 @@ import {createNewVacancy} from "../../redux/vacancies-reducer";
 import Vacancy from "../../components/Vacancies/new/Vacancy";
 
 class CreateVacancy extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            file: ''
+        }
+    }
+
     cancel = () => {
         this.props.history.goBack();
     };
 
     postVacancy = (vacancy) => {
-        let data = { ...vacancy };
-        if (data.salary_from) data.salary_from = parseInt(data.salary_from, 10);
-        data.salary_to = parseInt(data.salary_to, 10);
-        this.props.createVacancy(data);
+        let formData = new FormData()
+        for (let key in vacancy) {
+            formData.append(key, vacancy[key])
+        }
+        formData.append('image', this.state.file)
+        this.props.createVacancy(formData);
         this.props.history.goBack();
     };
 
+    uploadFile = (event) => {
+        this.state.file = event.target.files[0]
+    }
+
     render() {
         return (
-            <Vacancy onSubmit={this.postVacancy} cancel={this.cancel} />
+            <Vacancy onSubmit={this.postVacancy} uploadFile={this.uploadFile} cancel={this.cancel} />
         )
     }
 }

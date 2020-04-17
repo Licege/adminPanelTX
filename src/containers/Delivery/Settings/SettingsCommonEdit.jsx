@@ -5,7 +5,7 @@ import SettingsForm from "../../../components/Delivery/Settings/Tabs/Common_Sett
 
 class SettingsCommonEdit extends React.Component {
     componentDidMount() {
-        if (!this.props.currentSettings) this.props.getSettingsById(this.props.match.params.id)
+        if (!this.props.currentSettings || this.props.currentSettings._id !== this.props.match.params.id) this.props.getSettingsById(this.props.match.params.id)
     }
 
     onSubmit = (settings) => {
@@ -18,7 +18,7 @@ class SettingsCommonEdit extends React.Component {
     }
 
     render() {
-        return <SettingsForm onSubmit={this.onSubmit} cancel={this.goBack} initialValues={this.props.currentSettings} />
+        return <SettingsForm onSubmit={this.onSubmit} cancel={this.goBack} initialValues={this.props.currentSettings}/>
     }
 }
 
@@ -39,4 +39,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (SettingsCommonEdit)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsCommonEdit)

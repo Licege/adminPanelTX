@@ -26,8 +26,8 @@ apiAdminRequest.interceptors.response.use(function (response) {
             .then(({data}) => {
                 window.localStorage.setItem('accessToken', data.accessToken);
                 window.localStorage.setItem('refreshToken', data.refreshToken);
-                apiAdminRequest.defaults.headers.common['Authorization'] = data.accessToken;
-                apiAdminRequest.headers['Authorization'] = data.accessToken;
+                //apiAdminRequest.defaults.headers.common['Authorization'] = data.accessToken;
+                apiAdminRequest.defaults.headers['Authorization'] = data.accessToken;
                 originalRequest.headers['Authorization'] = data.accessToken;
                 return apiAdminRequest(originalRequest);
             })
@@ -132,19 +132,31 @@ export const employeesAPI = {
 
 export const vacancyAPI = {
     getVacancies() {
-        return axios.get(baseUrl + `/vacancy/`)
+        return axios.get(baseUrl + `/vacancies/`)
+            .then(response => {
+                return response;
+            })
+    },
+    getVacancy(id) {
+        return axios.get(baseUrl + `/vacancies/${id}`)
             .then(response => {
                 return response;
             })
     },
     createVacancy(vacancy) {
-        return axios.post(baseUrl + `/vacancy/`, vacancy)
+        return apiAdminRequest.post(`/vacancies/`, vacancy)
             .then(response => {
                 return response;
             });
     },
+    updateVacancy(vacancy, id) {
+        return apiAdminRequest.patch(`/vacancies/${id}`, vacancy)
+            .then(response => {
+                return response;
+            })
+    },
     deleteVacancy(id) {
-        return axios.delete(baseUrl + `/vacancy/${id}`)
+        return apiAdminRequest.delete(`/vacancies/${id}`)
             .then(response => {
                 return response;
             });
@@ -180,7 +192,7 @@ export const menuAPI = {
             });
     },
     getDish(id) {
-        return axios.get(baseUrl + `/menu/${id}`)
+        return axios.get(baseUrl + `/menu/dish/${id}`)
             .then(response => {
                 return response
             });

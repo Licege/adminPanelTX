@@ -13,12 +13,15 @@ class VacanciesContainer extends React.Component {
     };
 
     removeVacancy = (id) => {
-        this.props.deleteVacancy(id);
-        console.log(id)
+        return () => {
+            this.props.deleteVacancy(id);
+        }
     };
 
     changeVacancy = (id) => {
-        console.log(id)
+        return () => {
+            this.props.history.push(`vacancies/edit/${id}`)
+        }
     };
 
     render() {

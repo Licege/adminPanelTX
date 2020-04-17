@@ -19,7 +19,7 @@ class SettingsContainer extends React.Component {
         console.log(settings)
     };
 
-    postSettings = () => {
+    createSettings = () => {
         this.props.history.push(`delivery-settings/new`)
     };
 
@@ -32,7 +32,7 @@ class SettingsContainer extends React.Component {
     render() {
         return <Settings settings={this.props.settings}
                          global_settings={this.props.global_settings}
-                         postSettings={this.postSettings}
+                         createSettings={this.createSettings}
                          editSettings={this.editSettings}
                          postGlobalSettings={this.postGlobalSettings} />
     }

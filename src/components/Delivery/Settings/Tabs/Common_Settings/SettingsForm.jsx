@@ -9,7 +9,7 @@ const SettingsForm = ( {handleSubmit, cancel} ) => {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor='is_delivery'>Доставка</label>
-                        <Field name='is_delivery' component='input' type='checkbox' />
+                        <Field name='is_delivery' component='input' type='checkbox' chacked='is_delivery' />
                     </div>
                     <div>
                         <Field name='city' component='input' type='text' placeholder='Город' className='form-control filter-main-input -name' />

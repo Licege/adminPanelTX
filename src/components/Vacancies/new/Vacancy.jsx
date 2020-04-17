@@ -1,13 +1,14 @@
 import React from 'react';
 import {createField, Input} from "../../common/FormsControls";
-import {reduxForm} from "redux-form";
+import {Field, reduxForm} from "redux-form";
+import Button from "react-bootstrap/Button";
 
-const Vacancy = ( {handleSubmit, cancel} ) => {
+const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
     return (
         <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Создание вакансии
+                    {vacancy && vacancy.title ? 'Редактирование вакансии: ' + vacancy.title : 'Создание вакансии'}
                 </div>
             </div>
             <div className='page-container'>
@@ -15,31 +16,53 @@ const Vacancy = ( {handleSubmit, cancel} ) => {
                     <div className='card-body'>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                {createField("Название", "title",[], Input)}
+                                <Field name='title'
+                                       type='text'
+                                       component='input'
+                                       placeholder='Название'
+                                       className='filter-main-input -name form-control' />
                             </div>
 
                             <div>
-                                {createField("Требования", "requirements", [], Input)}
+                                <Field name='requirements'
+                                       type='text'
+                                       component='input'
+                                       placeholder='Требования'
+                                       className='filter-main-input -name form-control' />
                             </div>
 
                             <div>
-                                {createField("Описание", "description", [], Input)}
+                                <Field name='description'
+                                       type='text'
+                                       component='input'
+                                       placeholder='Описание'
+                                       className='filter-main-input -name form-control' />
                             </div>
 
                             <div>
-                                {createField("Зп от", "salary_from", [], Input)}
+                                <Field name='salary_from'
+                                       type='number'
+                                       component='input'
+                                       placeholder='Зп от'
+                                       parse={value => parseInt(value, 10)}
+                                       className='filter-main-input -name form-control' />
                             </div>
 
                             <div>
-                                {createField("Зп до", "salary_to", [], Input)}
+                                <Field name='salary_to'
+                                       type='number'
+                                       component='input'
+                                       placeholder='Зп до'
+                                       parse={value => parseInt(value, 10)}
+                                       className='filter-main-input -name form-control' />
                             </div>
 
                             <div>
-                                {createField("url", "url", [], Input)}
+                                <input name='image' type='file' onChange={uploadFile} />
                             </div>
 
-                            <button type='submit'>Сохранить</button>
-                            <button type='button' onClick={(e) => cancel()}>Отменить</button>
+                            <Button variant='primary' type='submit'>Сохранить</Button>
+                            <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
                         </form>
                     </div>
                 </div>
@@ -48,5 +71,5 @@ const Vacancy = ( {handleSubmit, cancel} ) => {
     )
 };
 
-const CreateVacancyReduxForm = reduxForm({form: 'create-vacancy'})(Vacancy);
+const CreateVacancyReduxForm = reduxForm({form: 'create-vacancy', enableReinitialize: true})(Vacancy);
 export default CreateVacancyReduxForm;

@@ -2,16 +2,20 @@ import React from 'react';
 import {Nav, Tab} from "react-bootstrap";
 import GlobalSettingsForm from "./Tabs/Global_Settings/GlobalSettingsForm";
 import SettingsTable from "./Tabs/Common_Settings/SettingsTable";
+import Button from "react-bootstrap/Button";
 
 
 const Settings = ( props ) => {
-    const {settings, global_settings, postSettings, editSettings, postGlobalSettings} = props;
+    const {settings, global_settings, createSettings, editSettings, postGlobalSettings} = props;
 
     return (
         <div>
-            <div className='page-header'>
+            <div className='page-header -action'>
                 <div className='page-header-title'>
                     Настройки доставки
+                </div>
+                <div className='page-header-action'>
+                    <Button variant='primary' onClick={createSettings}>Добавить новый пункт доставки</Button>
                 </div>
             </div>
             <div className='page-container'>
@@ -26,7 +30,7 @@ const Settings = ( props ) => {
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey='settings'>
-                            <SettingsTable settings={settings} editSettings={editSettings} onSubmit={postSettings} />
+                            <SettingsTable settings={settings} editSettings={editSettings} />
                         </Tab.Pane>
                         <Tab.Pane eventKey='global-settings'>
                             <GlobalSettingsForm initialValues={global_settings} onSubmit={postGlobalSettings} />

@@ -6,11 +6,16 @@ import {connect} from "react-redux";
 class SettingsCommonNew extends React.Component {
     onSubmit = (settings) => {
         console.log(settings);
-        //this.props.createSettings(settings)
+        this.props.createSettings(settings)
+        this.goBack()
+    }
+
+    goBack = () => {
+        this.props.history.goBack()
     }
 
     render() {
-        return <SettingsForm onSubmit={this.onSubmit} />
+        return <SettingsForm onSubmit={this.onSubmit} cancel={this.goBack} />
     }
 }
 
