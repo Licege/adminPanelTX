@@ -16,9 +16,11 @@ import toggleReducer from "./toogle-reducer";
 import deliverySettingsReducer from "./delivery-settings-reducer";
 import deliveryReducer from "./delivery-reduce";
 import fileReducer from "./file-reducer";
+import adminReducer from "./admin-reducer";
 
 let rootReducer = combineReducers({
     auth: authReducer,
+    adminPage: adminReducer,
     usersPage: usersReducer,
     employeesPage: employeesReducer,
     vacanciesPage: vacanciesReducer,

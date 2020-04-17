@@ -15,8 +15,8 @@ const DeliveryTable = ({orders, detail}) => {
                 <th>Тип доставки</th>
                 <th>Дата и время доставки</th>
                 <th>Тип оплаты</th>
-                <th>Статус оплаты</th>
                 <th>Статус заказа</th>
+                <th>Статус оплаты</th>
             </tr>
             </thead>
             <tbody>

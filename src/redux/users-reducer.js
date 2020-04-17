@@ -64,10 +64,10 @@ export const requestUsers = (page) => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true));
         dispatch(setCurrentPage(page));
-        let data = await usersAPI.getUsers(page);
+        let response = await usersAPI.getUsers(page);
         dispatch(toggleIsFetching(false));
-        dispatch(getUsers(data.users));
-        dispatch(setTotalUsersCount(data.total_count));
+        dispatch(getUsers(response.data));
+        //dispatch(setTotalUsersCount(response.total_count));
     }
 };
 

@@ -27,6 +27,7 @@ import DeliveryContainer from "./containers/Delivery/Delivery"
 import DeliveryInfoContainer from "./containers/Delivery/DeliveryInfo"
 import AuthContainer from "./containers/Auth/AuthContainer";
 import {useSelector} from "react-redux";
+import AdminContainer from "./containers/Admin/AdminContainer";
 
 function App() {
     let token = useSelector(state => state.auth.accessToken)
@@ -51,6 +52,9 @@ function App() {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route exact path='/' component={HomeContainer}/>
+
+                    {/*Админ*/}
+                    <Route exact path='/admin' component={AdminContainer} />
 
                     {/*Меню*/}
                     <Route exact path='/menu' component={MenuContainer}/>

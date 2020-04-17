@@ -23,8 +23,8 @@ const getOrdersAC = (orders) => ({type: GET_ORDERS, orders})
 const getOrderByIdAC = (order) => ({type: GET_ORDER_BY_ID, order})
 
 
-export const requestOrdersDelivery = () => async(dispatch) => {
-    let response = await deliveryAPI.getOrders()
+export const requestOrdersDelivery = (filter) => async(dispatch) => {
+    let response = await deliveryAPI.getOrders(filter)
     dispatch(getOrdersAC(response.data))
 }
 

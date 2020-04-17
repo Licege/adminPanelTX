@@ -54,21 +54,36 @@ export const authAPI = {
     }
 }
 
+export const adminAPI = {
+    getAdmins() {
+        return apiAdminRequest.get(`/admin/`)
+            .then(response => {
+                return response
+            })
+    },
+    postAdmin(profile) {
+        return apiAdminRequest.post(`/admin/`, profile)
+            .then(response => {
+                return response
+            })
+    }
+}
+
 export const usersAPI = {
     getUsers(currentPage = 1) {
-        return axios.get(baseUrl + `/users/?page=${currentPage}`)
+        return apiAdminRequest.get(`/users/?page=${currentPage}`)
             .then(response => {
-                return response.data;
+                return response;
             });
     },
     getUserById(id) {
-        return axios.get(baseUrl + `/users/${id}`)
+        return apiAdminRequest.get(`/users/${id}`)
             .then(response => {
                 return response;
             });
     },
     updateUser(profile) {
-        return axios.put(baseUrl + `/users/${profile.id}`, profile)
+        return apiAdminRequest.patch(`/users/${profile.id}`, profile)
             .then(response => {
                 return response;
             });
@@ -276,8 +291,8 @@ export const messagesAPI = {
 };
 
 export const deliveryAPI = {
-    getOrders() {
-        return apiAdminRequest.get(baseUrl + `/delivery/`)
+    getOrders(filter) {
+        return apiAdminRequest.get(baseUrl + `/delivery/`, {params: filter})
             .then(response => {
                 return response
             })

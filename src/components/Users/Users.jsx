@@ -27,7 +27,7 @@ const Users = (props) => {
 
                 <div className='card'>
                     <div className='card-body'>
-                        <Table responsive>
+                        {props.users ? <><Table responsive>
                             <thead className='table-thread'>
                             <tr>
                                 <th>Фамилия</th>
@@ -49,7 +49,7 @@ const Users = (props) => {
                             ))}
                             </tbody>
                         </Table>
-                        <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} pageSize={10} onPageChanged={props.onPageChanged} />
+                        <Paginator totalItemsCount={props.totalUsersCount} currentPage={props.currentPage} pageSize={10} onPageChanged={props.onPageChanged} /></> : null }
                     </div>
                 </div>
             </div>
