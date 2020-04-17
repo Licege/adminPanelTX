@@ -5,7 +5,7 @@ import SettingsTable from "./Tabs/Common_Settings/SettingsTable";
 
 
 const Settings = ( props ) => {
-    const {settings, global_settings, postSettings, postGlobalSettings} = props;
+    const {settings, global_settings, postSettings, editSettings, postGlobalSettings} = props;
 
     return (
         <div>
@@ -26,7 +26,7 @@ const Settings = ( props ) => {
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey='settings'>
-                            <SettingsTable settings={settings} onSubmit={postSettings} />
+                            <SettingsTable settings={settings} editSettings={editSettings} onSubmit={postSettings} />
                         </Tab.Pane>
                         <Tab.Pane eventKey='global-settings'>
                             <GlobalSettingsForm initialValues={global_settings} onSubmit={postGlobalSettings} />

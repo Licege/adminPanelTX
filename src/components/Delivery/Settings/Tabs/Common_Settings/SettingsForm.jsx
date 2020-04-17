@@ -2,7 +2,7 @@ import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {Button} from "react-bootstrap";
 
-const SettingsForm = ( {cities, handleSubmit} ) => {
+const SettingsForm = ( {handleSubmit, cancel} ) => {
     return (
         <div className='card'>
             <div className='card-body'>
@@ -12,12 +12,7 @@ const SettingsForm = ( {cities, handleSubmit} ) => {
                         <Field name='is_delivery' component='input' type='checkbox' />
                     </div>
                     <div>
-                        <Field name='city_id' component='select'>
-                            <option>Выберите город</option>
-                            {cities.map(city => (
-                                <option value={city.id} key={city.id}>{city.title}</option>
-                            ))}
-                        </Field>
+                        <Field name='city' component='input' type='text' placeholder='Город' className='form-control filter-main-input -name' />
                     </div>
                     <div>
                         <label>Стоимость доставки</label>
@@ -28,12 +23,12 @@ const SettingsForm = ( {cities, handleSubmit} ) => {
                         <Field name='free_delivery' component='input' type='text' placeholder='Бесплатно с' className='form-control filter-main-input -name' />
                     </div>
                     <Button type='submit' variant='primary'>Сохранить</Button>
-                    <Button type='button' variant='secondary'>Отменить</Button>
+                    <Button type='button' variant='secondary' onClick={cancel}>Отменить</Button>
                 </form>
             </div>
         </div>
     )
 };
 
-const SettingsReduxForm = reduxForm({form: 'settings-delivery'})(SettingsForm);
+const SettingsReduxForm = reduxForm({form: 'settings-delivery', enableReinitialize: true})(SettingsForm);
 export default SettingsReduxForm;

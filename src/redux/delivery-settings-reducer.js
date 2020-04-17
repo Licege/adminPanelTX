@@ -4,6 +4,7 @@ const GET_GLOBAL_DELIVERY_SETTINGS = 'GET_GLOBAL_DELIVERY_SETTINGS';
 const UPDATE_GLOBAL_DELIVERY_SETTINGS = 'UPDATE_GLOBAL_DELIVERY_SETTINGS';
 
 const GET_DELIVERY_SETTINGS = 'GET_DELIVERY_SETTINGS';
+const GET_DELIVERY_SETTINGS_BY_ID = 'GET_DELIVERY_SETTINGS_BY_ID';
 const CREATE_DELIVERY_SETTINGS = 'CREATE_DELIVERY_SETTINGS';
 const UPDATE_DELIVERY_SETTINGS = 'UPDATE_DELIVERY_SETTINGS';
 const DELETE_DELIVERY_SETTINGS = 'DELETE_DELIVERY_SETTINGS';
@@ -14,6 +15,7 @@ const UPDATE_CITIES = 'UPDATE_CITIES';
 let initialState = {
     global_settings: {},
     settings: [],
+    currentSettings: null,
     cities: []
 };
 
@@ -25,10 +27,12 @@ const deliverySettingsReducer = (state = initialState, action) => {
             return { ...state, global_settings: action.settings };
         case GET_DELIVERY_SETTINGS:
             return { ...state, settings: action.settings };
+        case GET_DELIVERY_SETTINGS_BY_ID:
+            return { ...state, currentSettings: action.settings };
         case CREATE_DELIVERY_SETTINGS:
             return { ...state, settings: [ ...state.settings, action.settings ] };
         case UPDATE_DELIVERY_SETTINGS:
-            return { ...state, settings: state.settings.filter(s => (s.id === action.settings.id ? action.settings : s)) };
+            return { ...state, settings: state.settings.map(s => (s.id === action.settings.id ? action.settings : s)) };
         case DELETE_DELIVERY_SETTINGS:
             return { ...state, settings: state.settings.filter(s => s.id !== action.id) };
         case GET_CITIES:
@@ -44,6 +48,7 @@ const getGlobalDeliverySettingsAC = (settings) => ({type: GET_GLOBAL_DELIVERY_SE
 const updateGlobalDeliverySettingsAC = (settings) => ({type: UPDATE_GLOBAL_DELIVERY_SETTINGS, settings});
 
 const getDeliverySettingsAC = (settings) => ({type: GET_DELIVERY_SETTINGS, settings});
+const getDeliverySettingsByIdAC = (settings) => ({type: GET_DELIVERY_SETTINGS_BY_ID, settings});
 const createDeliverySettingsAC = (settings) => ({type: CREATE_DELIVERY_SETTINGS, settings});
 const updateDeliverySettingsAC = (settings) => ({type: UPDATE_DELIVERY_SETTINGS, settings});
 const deleteDeliverySettingsAC = (id) => ({type: DELETE_DELIVERY_SETTINGS, id});
@@ -53,18 +58,23 @@ const updateCityAC = (city) => ({type: UPDATE_CITIES, city});
 
 export const requestGlobalDeliverySettings = () => async(dispatch) => {
     let response = await deliveryGlobalSettingsAPI.getSettings();
-    dispatch(getGlobalDeliverySettingsAC(response.data[0]))
+    dispatch(getGlobalDeliverySettingsAC(response.data))
 };
 
 export const updateGlobalDeliverySettings = (settings) => async(dispatch) => {
     let response = await deliveryGlobalSettingsAPI.updateSettings(settings);
-    dispatch(updateGlobalDeliverySettingsAC(settings))
+    dispatch(updateGlobalDeliverySettingsAC(response.data))
 };
 
 export const requestDeliverySettings = () => async(dispatch) => {
     let response = await deliverySettingsAPI.getSettings();
     dispatch(getDeliverySettingsAC(response.data));
 };
+
+export const requestDeliverySettingsById = (id) => async(dispatch) => {
+    let response = await deliverySettingsAPI.getSettingsById(id)
+    dispatch(getDeliverySettingsByIdAC(response.data))
+}
 
 export const createDeliverySettings = (settings) => async(dispatch) => {
     let response = await deliverySettingsAPI.createSettings(settings);
@@ -73,7 +83,7 @@ export const createDeliverySettings = (settings) => async(dispatch) => {
 
 export const updateDeliverySettings = (settings) => async(dispatch) => {
     let response = await deliverySettingsAPI.updateSettings(settings);
-    dispatch(updateDeliverySettingsAC(settings))
+    dispatch(updateDeliverySettingsAC(response.data))
 };
 
 export const deleteDeliverySettings = (id) => async(dispatch) => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
 
-const SettingsTable = ( {settings, postSettings} ) => {
-    console.log(settings[0]);
+const SettingsTable = ( {settings, editSettings} ) => {
+    console.log(settings);
     return (
         <div className='card'>
             <div className='card-body'>
@@ -17,7 +17,7 @@ const SettingsTable = ( {settings, postSettings} ) => {
                     </thead>
                     <tbody>
                     {settings.map(s => (
-                        <tr key={s._id}>
+                        <tr key={s._id} onClick={editSettings(s._id)}>
                             <td><input type='checkbox' checked={s.is_delivery} value={s.is_delivery} disabled/></td>
                             <td>{s.city}</td>
                             <td>{s.price_for_delivery}</td>

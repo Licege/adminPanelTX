@@ -19,14 +19,21 @@ class SettingsContainer extends React.Component {
         console.log(settings)
     };
 
-    postSettings = (settings) => {
-        console.log(settings)
+    postSettings = () => {
+        this.props.history.push(`delivery-settings/new`)
     };
+
+    editSettings = (id) => {
+        return () => {
+            this.props.history.push(`delivery-settings/edit/${id}`)
+        }
+    }
 
     render() {
         return <Settings settings={this.props.settings}
                          global_settings={this.props.global_settings}
                          postSettings={this.postSettings}
+                         editSettings={this.editSettings}
                          postGlobalSettings={this.postGlobalSettings} />
     }
 }

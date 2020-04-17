@@ -313,8 +313,14 @@ export const deliverySettingsAPI = {
                 return response
             })
     },
+    getSettingsById(id) {
+        return apiAdminRequest.get(`/delivery-settings/common/${id}`)
+            .then(response => {
+                return response
+            })
+    },
     updateSettings(settings) {
-        return apiAdminRequest.patch(`/delivery-settings/common/`, settings)
+        return apiAdminRequest.patch(`/delivery-settings/common/${settings._id}`, settings)
             .then(response => {
                 return response
             })

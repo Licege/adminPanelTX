@@ -1,9 +1,10 @@
 import React from 'react';
+import {useSelector} from "react-redux";
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import './App.scss';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import MenuContainer from './containers/Menu/Menu';
-import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import UsersContainer from "./containers/Users/Users";
 import EmployeesContainer from "./containers/Employees/Employees";
 import Resume from "./components/Resume/Resume";
@@ -23,10 +24,11 @@ import DetailNewsContainer from "./containers/News/NewsEdit";
 import CreateNewsContainer from "./containers/News/CreateNews";
 import MessagesContainer from "./containers/Messages/Messages";
 import SettingsDelivery from "./containers/Delivery/Settings/Settings";
+import SettingsDeliveryCommonNew from "./containers/Delivery/Settings/SettingsCommonNew";
+import SettingsDeliveryCommonEdit from "./containers/Delivery/Settings/SettingsCommonEdit";
 import DeliveryContainer from "./containers/Delivery/Delivery"
 import DeliveryInfoContainer from "./containers/Delivery/DeliveryInfo"
 import AuthContainer from "./containers/Auth/AuthContainer";
-import {useSelector} from "react-redux";
 import AdminContainer from "./containers/Admin/AdminContainer";
 
 function App() {
@@ -87,6 +89,8 @@ function App() {
                     <Route exact path='/delivery' component={DeliveryContainer}/>
                     <Route exact path='/delivery/:id' component={DeliveryInfoContainer} />
                     <Route exact path='/delivery-settings' component={SettingsDelivery}/>
+                    <Route exact path='/delivery-settings/new' component={SettingsDeliveryCommonNew}/>
+                    <Route exact path='/delivery-settings/edit/:id' component={SettingsDeliveryCommonEdit}/>
 
                     <Route exact path='/messages' component={MessagesContainer}/>
                     <Route exact path='/promos' component={ContainerPromos}/>
