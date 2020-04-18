@@ -178,6 +178,33 @@ export const contactsAPI = {
     }
 };
 
+export const promoAPI = {
+    getPromos() {
+        return axios.get(baseUrl + `/promos/`)
+            .then(response => {
+                return response
+            })
+    },
+    getPromo(id) {
+        return axios.get(baseUrl + `/promo/${id}`)
+            .then(response => {
+                return response
+            })
+    },
+    postPromo(promo) {
+        return axios.post(baseUrl + `/promo/`, promo)
+            .then(response => {
+                return response
+            })
+    },
+    updatePromo(promo, id) {
+        return axios.patch(baseUrl + `/promo/${id}`, promo)
+            .then(response => {
+                return response
+            })
+    }
+}
+
 export const menuAPI = {
     createDish(dish) {
         return axios.post(baseUrl + `/menu/`, dish)

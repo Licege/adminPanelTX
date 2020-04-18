@@ -1,29 +1,34 @@
-import React from 'react';
+import React from 'react'
 import {connect} from "react-redux";
 import Promos from "../../components/Promos/Promos";
+import {requestPromos} from "../../redux/promos-reducer";
 
-
-class ContainerPromos extends React.Component {
+class PromosContainer extends React.Component {
     componentDidMount() {
-        console.log('Не забудь добавить апи в акции')
+        if (!this.props.promos) this.props.getPromos()
     }
-    promos = [...this.props.promos];
 
-    addAnswer = () => {
-        console.log('12')
-        this.test.push('')
-    };
+    newPromo = () => {
+        this.props.history.push(`promos/new`)
+    }
 
     render() {
-        return <Promos promos={this.promos} addAnswer={this.addAnswer}/>
+        return <Promos promos={this.props.promos} newPromo={this.newPromo} />
     }
-
 }
 
 let mapStateToProps = (state) => {
     return {
         promos: state.promosPage.promos
     }
-};
+}
 
-export default connect(mapStateToProps, {}) (ContainerPromos);
+let mapDispatchToProps = (dispatch) => {
+    return {
+        getPromos: () => {
+            dispatch(requestPromos())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (PromosContainer);

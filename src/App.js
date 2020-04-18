@@ -31,6 +31,7 @@ import DeliveryContainer from "./containers/Delivery/Delivery"
 import DeliveryInfoContainer from "./containers/Delivery/DeliveryInfo"
 import AuthContainer from "./containers/Auth/AuthContainer";
 import AdminContainer from "./containers/Admin/AdminContainer";
+import PromosNewContainer from "./containers/Promos/PromosNew";
 
 function App() {
     let token = useSelector(state => state.auth.accessToken)
@@ -93,12 +94,15 @@ function App() {
                     <Route exact path='/delivery-settings/new' component={SettingsDeliveryCommonNew}/>
                     <Route exact path='/delivery-settings/edit/:id' component={SettingsDeliveryCommonEdit}/>
 
-                    <Route exact path='/messages' component={MessagesContainer}/>
+                    {/*Акции*/}
                     <Route exact path='/promos' component={ContainerPromos}/>
+                    <Route exact path='/promos/new' component={PromosNewContainer}/>
+
+                    <Route exact path='/messages' component={MessagesContainer}/>
                     <Route exact path='/contacts' component={ContactsContainer}/>
                     <Route exact path='/orders' component={OrdersContainer}/>
 
-                    <Redirect to='/'/>
+                    {/*<Redirect to='/'/>*/}
                 </div>
             </div>
         </BrowserRouter>

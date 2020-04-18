@@ -1,30 +1,20 @@
-import React from 'react';
-import Question from "./elements/question";
-import Promo from "./Promo";
+import React from 'react'
+import {Button} from "react-bootstrap";
 
-const Promos = (props) => {
+const Promos = ({promos, newPromo}) => {
     return (
-        <>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Все акции
+        <div>
+            <div className='page-header -action'>
+                <div className='page-header-title'>Акции</div>
+                <div className='page-header-action'>
+                    <Button variant='primary' onClick={newPromo}>Добавить акцию</Button>
                 </div>
             </div>
             <div className='page-container'>
-                <div className='card'>
-                    <div className='card-body'>
-                        <h5>Информация об акции</h5>
-                        <h5>Условия акции</h5>
-                    </div>
-                </div>
-                {
-                    props.promos.map((promo, key) => {
-                        return <Promo promo={promo} addAnswer={props.addAnswer} key={key} />
-                    })
-                }
+                Тут акции
             </div>
-        </>
+        </div>
     )
-};
+}
 
 export default Promos;
