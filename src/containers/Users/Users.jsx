@@ -2,7 +2,7 @@ import React from 'react'
 import {usersAPI} from "../../api/api";
 import Users from '../../components/Users/Users';
 import {connect} from "react-redux";
-import {getUsers, setCurrentPage, setTotalUsersCount} from "../../redux/users-reducer";
+import {getUsers, requestUsers, setCurrentPage, setTotalUsersCount} from "../../redux/users-reducer";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -24,7 +24,9 @@ class UsersContainer extends React.Component {
     };
 
     detail = (id) => {
-        this.props.history.push(`users/${id}`)
+        return event => {
+            this.props.history.push(`users/${id}`)
+        }
     };
 
     render() {
@@ -50,7 +52,7 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    getUsers,
+    getUsers: requestUsers,
     setCurrentPage,
     setTotalUsersCount,
 }) (UsersContainer);

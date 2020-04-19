@@ -20,6 +20,7 @@ import {Table} from "react-bootstrap";
 import {tsToDate} from "../../plagins/helpers";
 
 const DeliveryInfo = ({order}) => {
+    console.log(order);
     return (
         order ? <div className='delivery_info'>
             <div className='delivery_info-block'>
@@ -74,15 +75,15 @@ const DeliveryInfo = ({order}) => {
                 </div>
                 <div className='delivery_info-detail-info'>
                     <div className='delivery_info-detail-info-item'>
-                        Адрес: г. {order.address.city + ', ' + order.address.street + ', д.' + order.address.house +
+                        Адрес: г. {order.address.city + ', ' + order.address.street + (order.address.house ? ', д.' + order.address.house : ', номер дома не указан') +
                     (order.address.flat ? ', кв. ' + order.address.flat : '') + (order.address.floor ? ', ' + order.address.floor + ' этаж' : '') +
                     (order.address.intercom ? ', код домофона: ' + order.address.intercom : '')}
                     </div>
                     {order.create_at && <div className='delivery_info-detail-info-item'>
                         Дата и время создания заказа: {tsToDate(order.create_at, 'hh:mm dd MMMM YYYY')}
                     </div>}
-                    {order.deliveryTime && <div className='delivery_info-detail-info-item'>
-                        Дата и время доставки заказа: {order.deliveryTime}
+                    {order.time_delivery && <div className='delivery_info-detail-info-item'>
+                        Дата и время доставки заказа: {tsToDate(order.time_delivery, 'hh:mm dd MMMM YYYY')}
                     </div>}
                     {order.paymentType === 'cash' && order.odd_money !== 0 && <div className='delivery_info-detail-info-item'>
                         Подготовить сдачу с: {order.odd_money}

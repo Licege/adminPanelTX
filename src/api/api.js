@@ -281,7 +281,7 @@ export const newsAPI = {
 
 export const ordersAPI = {
     getOrders() {
-        return axios.get(baseUrl + `/orders/`)
+        return apiAdminRequest.get(`/orders/`)
             .then(response => {
                 return response;
             })

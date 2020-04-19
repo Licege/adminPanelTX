@@ -2,10 +2,12 @@ import React from 'react'
 import {connect} from "react-redux";
 import {postAdmin, requestAdmins} from "../../redux/admin-reducer";
 import Admin from "../../components/Admin/Admin";
+import {requestUsers} from "../../redux/users-reducer";
 
 class AdminContainer extends React.Component {
     componentDidMount() {
         if (!this.props.admins.length) this.props.getAdmins()
+        if (!this.props.users.length) this.props.getUsers()
     }
 
     newAdmin = (profile) => {
@@ -13,13 +15,14 @@ class AdminContainer extends React.Component {
     }
 
     render() {
-        return <Admin admins={this.props.admins} newAdmin={this.newAdmin} />
+        return <Admin admins={this.props.admins} users={this.props.users} newAdmin={this.newAdmin} />
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        admins: state.adminPage.admins
+        admins: state.adminPage.admins,
+        users: state.usersPage.users
     }
 }
 
@@ -30,6 +33,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         postAdmin: (profile) => {
             dispatch(postAdmin(profile))
+        },
+        getUsers: () => {
+            dispatch(requestUsers())
         }
     }
 }

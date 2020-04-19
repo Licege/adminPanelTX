@@ -30,7 +30,17 @@ class DeliveryContainer extends React.Component{
     }
 
     changeFilter = () => {
-        const fieldFilter = ['phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status']
+        const fieldFilter = [
+            'phone',
+            'total_price_start',
+            'total_price_end',
+            'payment_type',
+            'delivery_type',
+            'payment_status',
+            'status',
+            //'time_delivery_start',
+            //'time_delivery_end'
+        ]
 
         fieldFilter.forEach(field => {
             if (document.getElementById(field).value) {

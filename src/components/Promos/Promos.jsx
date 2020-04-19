@@ -12,6 +12,9 @@ const Promos = ({promos, newPromo}) => {
             </div>
             <div className='page-container'>
                 Тут акции
+                <div>
+                    <div>{'<p>пап</p>'}</div>
+                </div>
             </div>
         </div>
     )

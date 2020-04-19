@@ -3,6 +3,7 @@ import {Table} from "react-bootstrap";
 import Paginator from "../common/Paginator";
 
 const Users = (props) => {
+    console.log(props.users);
     return (
         <div>
             <div className='page-header'>
@@ -39,7 +40,7 @@ const Users = (props) => {
                             </thead>
                             <tbody>
                             {props.users.map(user => (
-                                <tr key={user.id} onClick={(e) => props.detail(user.id)}>
+                                <tr key={user._id} onClick={props.detail(user._id)}>
                                     <td>{user.surname}</td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>

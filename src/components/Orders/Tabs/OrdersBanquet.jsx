@@ -20,11 +20,11 @@ const OrdersBanquet = ( {ordersBanquet} ) => {
                     <tbody>
                     {ordersBanquet.map(orderBanquet => (
                         <tr key={orderBanquet.id}>
-                            <th>{tsToDate(orderBanquet.date, "hh:mm dd:MM:YYYY")}</th>
+                            <th>{tsToDate(orderBanquet.order_date, "hh:mm dd:MM:YYYY")}</th>
                             <th>{tsToDate(orderBanquet.create_at, "hh:mm dd:MM:YYYY")}</th>
                             <th>{orderBanquet.name}</th>
                             <th>{orderBanquet.phone}</th>
-                            <th>{orderBanquet.count}</th>
+                            <th>{orderBanquet.count_person}</th>
                             <th>{orderBanquet.comment}</th>
                         </tr>
                     ))}

@@ -1,5 +1,6 @@
 import React from 'react'
 import DeliveryTable from "./DeliveryTable";
+import CustomDatePicker from "../common/CustomDatePicker";
 
 const Delivery = ({orders, detail, changeFilter, clearFilter, totalCount, page, onChangePage}) => {
     console.log(totalCount);
@@ -44,6 +45,8 @@ const Delivery = ({orders, detail, changeFilter, clearFilter, totalCount, page, 
                                     <option value='2'>Возвращен</option>
                                     <option value='3'>Отменен</option>
                                 </select>
+{/*                                <CustomDatePicker id='time_delivery_start' className='filter-main-input -name form-control' />
+                                <CustomDatePicker id='time_delivery_end' className='filter-main-input -name form-control' />*/}
                             </div>
                             <div className='filter-actions'>
                                 <span className='filter-actions-reset' onClick={clearFilter}>Сбросить</span>

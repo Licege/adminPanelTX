@@ -29,7 +29,7 @@ const DeliveryTable = ({orders, detail, totalCount, page, onChangePage}) => {
                     <td>{order.total_price + order.delivery_cost} ₽</td>
                     <td>{tsToDate(order.create_at, 'hh:mm dd:MM:YYYY')}</td>
                     <td>{deliveryHD.deliveryType[order.delivery_type]}</td>
-                    <td>В доработке</td>
+                    <td>{order.time_delivery ?  tsToDate(order.time_delivery, 'hh:mm dd:MM:YYYY') : 'Не указано'}</td>
                     <td>{deliveryHD.paymentType[order.payment_type]}</td>
                     <td>{deliveryHD.status[order.payment_status]}</td>
                     <td>{deliveryHD.paymentStatuses[order.status]}</td>

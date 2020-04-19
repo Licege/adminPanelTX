@@ -21,15 +21,15 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_USERS:
-            return { ...state, users: action.users};
+            return {...state, users: action.users, totalUsersCount: action.total_count};
         case SET_CURRENT_PAGE:
-            return { ...state, currentPage: action.currentPage};
+            return {...state, currentPage: action.currentPage};
         case SET_TOTAL_USERS_COUNT:
-            return  { ...state, totalUsersCount: action.count};
+            return {...state, totalUsersCount: action.count};
         case GET_USER_BY_ID:
-             return { ...state, currentUser: action.currentUser};
+            return {...state, currentUser: action.currentUser};
         case UPDATE_USER:
-            return { ...state, currentUser: action.currentUser};
+            return {...state, currentUser: action.currentUser};
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
@@ -46,7 +46,7 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const getUsers = (users) => ({type: GET_USERS, users});
+export const getUsers = (users, total_count) => ({type: GET_USERS, users, total_count});
 export const getUserById = (currentUser) => ({type: GET_USER_BY_ID, currentUser});
 export const updateUser = (currentUser) => ({type: UPDATE_USER, currentUser});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
@@ -59,16 +59,12 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 });
 
 
-
-export const requestUsers = (page) => {
-    return async (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        dispatch(setCurrentPage(page));
-        let response = await usersAPI.getUsers(page);
-        dispatch(toggleIsFetching(false));
-        dispatch(getUsers(response.data));
-        //dispatch(setTotalUsersCount(response.total_count));
-    }
+export const requestUsers = (page = 1) => async (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    dispatch(setCurrentPage(page));
+    let response = await usersAPI.getUsers(page);
+    dispatch(toggleIsFetching(false));
+    dispatch(getUsers(response.data.users, response.data.total_count));
 };
 
 export const requestCurrentUser = (id) => async (dispatch) => {
@@ -79,19 +75,7 @@ export const requestCurrentUser = (id) => async (dispatch) => {
 export const updateCurrentUser = (profile) => async (dispatch) => {
     let response = await usersAPI.updateUser(profile);
     dispatch(updateUser(response.data));
-
-    //Добавить проверку
-
 };
-
-
-/*
-export const requestCurrentUser = (id) => async (dispatch) => {
-    const response = await usersAPI.getUserById(id);
-    dispatch(getUserById(response.data));
-    console.log(response)
-}
-*/
 
 
 export default usersReducer;

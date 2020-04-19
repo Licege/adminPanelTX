@@ -21,11 +21,11 @@ const OrdersTable = ( {ordersTable} ) => {
                     <tbody>
                     {ordersTable.map(orderTable => (
                             <tr key={orderTable.id}>
-                                <th>{tsToDate(orderTable.date, "hh:mm dd:MM:YYYY")}</th>
+                                <th>{tsToDate(orderTable.order_date, "hh:mm dd:MM:YYYY")}</th>
                                 <th>{tsToDate(orderTable.create_at, "hh:mm dd:MM:YYYY")}</th>
                                 <th>{orderTable.name}</th>
                                 <th>{orderTable.phone}</th>
-                                <th>{orderTable.count}</th>
+                                <th>{orderTable.count_person}</th>
                                 <th>{orderTable.comment}</th>
                             </tr>
                         ))}

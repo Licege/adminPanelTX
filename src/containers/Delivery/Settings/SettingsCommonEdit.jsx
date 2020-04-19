@@ -18,7 +18,10 @@ class SettingsCommonEdit extends React.Component {
     }
 
     render() {
-        return <SettingsForm onSubmit={this.onSubmit} cancel={this.goBack} initialValues={this.props.currentSettings}/>
+        return <SettingsForm currentSettings={this.props.currentSettings}
+                             initialValues={this.props.currentSettings}
+                             onSubmit={this.onSubmit}
+                             cancel={this.goBack} />
     }
 }
 
