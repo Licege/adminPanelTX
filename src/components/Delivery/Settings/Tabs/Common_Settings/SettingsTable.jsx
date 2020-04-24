@@ -14,7 +14,7 @@ const SettingsTable = ( {settings, editSettings} ) => {
                             <th>Бесплатно с</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='table-body'>
                     {settings.map(s => (
                         <tr key={s._id} onClick={editSettings(s._id)}>
                             <td><input type='checkbox' checked={s.is_delivery} value={s.is_delivery} disabled/></td>

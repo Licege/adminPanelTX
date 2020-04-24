@@ -2,6 +2,10 @@
   &-thread > tr > th {
     border-top: none;
   }
+
+  &-body > tr > td {
+    cursor: pointer;
+  }
 }
 
 .paginator {

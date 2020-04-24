@@ -25,7 +25,7 @@ const CreateProfile = ({handleSubmit, professions, cancel}) => {
                             <div>
                                 <label>Должность</label>
                                 <div>
-                                    <Field name="profession" component="select" >
+                                    <Field name="profession" component="select" className="filter-main-input -name form-control" >
                                         <option></option>
                                         {professions.map(p => {
                                             return <option value={p.id} key={p.id}>{p.profession}</option>

@@ -332,13 +332,19 @@ export const messagesAPI = {
 
 export const deliveryAPI = {
     getOrders(filter, page) {
-        return apiAdminRequest.get(baseUrl + `/delivery/?offset=${page}`, {params: filter})
+        return apiAdminRequest.get(`/delivery/?offset=${page}`, {params: filter})
             .then(response => {
                 return response
             })
     },
     getOrderById(id) {
-        return apiAdminRequest.get(baseUrl + `/delivery/${id}`)
+        return apiAdminRequest.get(`/delivery/${id}`)
+            .then(response => {
+                return response
+            })
+    },
+    updateOrder(order) {
+        return apiAdminRequest.patch(`/delivery/${order._id}`, order)
             .then(response => {
                 return response
             })

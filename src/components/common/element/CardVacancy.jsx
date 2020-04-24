@@ -5,8 +5,9 @@ import {cropText, fullLink} from "../../../plagins/helpers";
 let CardVacancy = ({card, change, remove}) => {
     return (
         <div className='card card_vacancy'>
-            <div className='card-body'>
-                <img className='card_vacancy-img' src={card.imageSrc ? fullLink((card.imageSrc)) : altImg} alt={card.title}/>
+            <img className='card_vacancy-img' src={card.imageSrc ? fullLink((card.imageSrc)) : altImg}
+                 alt={card.title}/>
+            <div className='card-body pt-0'>
                 <h3 className='card_vacancy-title'>{card.title ? card.title : 'Вакансия'}</h3>
                 {card.requirements && <p><b>Требования:</b> {cropText(card.requirements, 70)}</p>}
                 {card.description && <p><b>Описание:</b> {cropText(card.description, 70)}</p>}

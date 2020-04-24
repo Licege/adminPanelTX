@@ -1,6 +1,7 @@
 import React from 'react';
 import {reduxForm} from "redux-form";
 import {createField, Input} from "../../common/FormsControls";
+import Button from "react-bootstrap/Button";
 
 const UserEditForm = ({handleSubmit, profile, cancel}) => {
     return (
@@ -36,8 +37,8 @@ const UserEditForm = ({handleSubmit, profile, cancel}) => {
                             <div>
                                 {createField("Бонус", "bonus_points", [], Input, 'number')}
                             </div>
-                            <button type='submit'>Сохранить</button>
-                            <button type='button' onClick={cancel}>Отменить</button>
+                            <Button variant='primary' type='submit'>Сохранить</Button>
+                            <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
                         </form>
                     </div>
                 </div>

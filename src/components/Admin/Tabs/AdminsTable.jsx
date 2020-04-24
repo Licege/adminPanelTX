@@ -11,10 +11,10 @@ const AdminsTable = ({admins}) => (
                 <th>Телефон</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody className='table-body'>
             {admins ? admins.map(admin =>
                 <tr key={admin._id}>
-                    <td>{admin.email}</td>
+                    <td>{admin.user_id.email}</td>
                     <td>В разработке</td>
                     <td>В разработке</td>
                 </tr>) : null}

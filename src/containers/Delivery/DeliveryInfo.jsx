@@ -1,15 +1,20 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {requestOrderDeliveryById} from "../../redux/delivery-reduce";
+import {requestOrderDeliveryById, updateOrderDelivery} from "../../redux/delivery-reduce";
 import DeliveryInfo from "../../components/Delivery/DeliveryInfo";
 
 class DeliveryInfoContainer extends React.Component {
     componentDidMount() {
-        if (!this.props.order || this.props.order._id !== this.props.match.params.id) this.props.getOrder(this.props.match.params.id)
+        this.props.getOrder(this.props.match.params.id)
+    }
+
+    update = (order) => {
+        this.props.updateOrder(order)
+        this.props.history.push('/delivery')
     }
 
     render() {
-        return <DeliveryInfo order={this.props.order}/>
+        return <DeliveryInfo order={this.props.order} onSubmit={this.update} initialValues={this.props.order} />
     }
 }
 
@@ -23,6 +28,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         getOrder: (id) => {
             dispatch(requestOrderDeliveryById(id))
+        },
+        updateOrder: (order) => {
+            dispatch(updateOrderDelivery(order))
         }
     }
 }

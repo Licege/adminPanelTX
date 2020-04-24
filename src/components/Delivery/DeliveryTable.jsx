@@ -21,18 +21,18 @@ const DeliveryTable = ({orders, detail, totalCount, page, onChangePage}) => {
                 <th>Статус оплаты</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody className='table-body'>
             {orders.length ? orders.map(order => (
-                <tr key={order._id} onClick={detail(order._id)}>
+                <tr key={order._id}>
                     <td><a href={'tel:' + order.phone}>{order.phone}</a></td>
                     <td>{`Товаров: ${order.list.reduce((acc, order) => acc + order.count, 0)}`}</td>
-                    <td>{order.total_price + order.delivery_cost} ₽</td>
-                    <td>{tsToDate(order.create_at, 'hh:mm dd:MM:YYYY')}</td>
-                    <td>{deliveryHD.deliveryType[order.delivery_type]}</td>
-                    <td>{order.time_delivery ?  tsToDate(order.time_delivery, 'hh:mm dd:MM:YYYY') : 'Не указано'}</td>
-                    <td>{deliveryHD.paymentType[order.payment_type]}</td>
-                    <td>{deliveryHD.status[order.payment_status]}</td>
-                    <td>{deliveryHD.paymentStatuses[order.status]}</td>
+                    <td onClick={detail(order._id)}>{order.total_price + order.delivery_cost} ₽</td>
+                    <td onClick={detail(order._id)}>{tsToDate(order.create_at, 'hh:mm dd:MM:YYYY')}</td>
+                    <td onClick={detail(order._id)}>{deliveryHD.deliveryType[order.delivery_type]}</td>
+                    <td onClick={detail(order._id)}>{order.time_delivery ?  tsToDate(order.time_delivery, 'hh:mm dd:MM:YYYY') : 'Не указано'}</td>
+                    <td onClick={detail(order._id)}>{deliveryHD.paymentType[order.payment_type]}</td>
+                    <td onClick={detail(order._id)}>{deliveryHD.status[order.payment_status]}</td>
+                    <td onClick={detail(order._id)}>{deliveryHD.paymentStatuses[order.status]}</td>
                 </tr>)) : null
             }
             </tbody>

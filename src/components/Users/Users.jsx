@@ -38,7 +38,7 @@ const Users = (props) => {
                                 <th>Баллы</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody className='table-body'>
                             {props.users.map(user => (
                                 <tr key={user._id} onClick={props.detail(user._id)}>
                                     <td>{user.surname}</td>

@@ -2,6 +2,7 @@ import React from 'react';
 import {createField, Input} from "../common/FormsControls";
 import {Field, reduxForm} from "redux-form";
 import ImageInput from "../common/imageInput";
+import Button from "react-bootstrap/Button";
 
 const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
     return (
@@ -24,7 +25,7 @@ const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
                             <div>
                                 <label>Категории</label>
                                 <div>
-                                    <Field name="category_id" component="select" >
+                                    <Field name="category_id" component="select" className="filter-main-input -name form-control" >
                                         <option />
                                         {categories && categories.map(p => {
                                             return <option value={p._id} key={p._id}>{p.title}</option>
@@ -42,8 +43,8 @@ const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
                             <div>
                                 <input type='file' onChange={postFile} />
                             </div>
-                            <button type='submit'>Сохранить</button>
-                            <button type='button' onClick={cancel}>Отменить</button>
+                            <Button variant='primary' type='submit'>Сохранить</Button>
+                            <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
                             <ImageInput onChange={e => console.log(e)} allowClear={true} />
                         </form>
                     </div>

@@ -2,6 +2,7 @@ import {deliveryAPI} from "../api/api";
 
 const GET_ORDERS = 'DELIVERY/GET_ORDERS'
 const GET_ORDER_BY_ID = 'DELIVERY/GET_ORDER_BY_ID'
+const UPDATE_ORDER = 'DELIVERY/UPRATE_ORDER'
 const SET_CURRENT_PAGE = 'DELIVERY/SET_CURRENT_PAGE'
 
 let initialState = {
@@ -17,6 +18,8 @@ const deliveryReducer = (state = initialState, action) => {
             return {...state, orders: action.orders, totalCount: action.totalCount}
         case GET_ORDER_BY_ID:
             return {...state, currentOrder: action.order}
+        case UPDATE_ORDER:
+            return  {...state, orders: state.orders.map(order => order._id === action.order._id ? action.order : order)}
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.page}
         default:
@@ -26,6 +29,7 @@ const deliveryReducer = (state = initialState, action) => {
 
 const getOrdersAC = (orders, totalCount) => ({type: GET_ORDERS, orders, totalCount})
 const getOrderByIdAC = (order) => ({type: GET_ORDER_BY_ID, order})
+const updateOrderAC = (order) => ({type: UPDATE_ORDER, order})
 const setPageAC = (page) => ({type: SET_CURRENT_PAGE, page})
 
 
@@ -37,6 +41,11 @@ export const requestOrdersDelivery = (filter, page = 1) => async(dispatch) => {
 export const requestOrderDeliveryById = (id) => async(dispatch) => {
     let response = await deliveryAPI.getOrderById(id)
     dispatch(getOrderByIdAC(response.data))
+}
+
+export const updateOrderDelivery = (order) => async(dispatch) => {
+    let response = await deliveryAPI.updateOrder(order)
+    dispatch(updateOrderAC(response.data))
 }
 
 export default deliveryReducer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm } from "redux-form";
 import {createField, Input} from "../common/FormsControls";
+import Button from "react-bootstrap/Button";
 
 const Contact = ( {contacts, handleSubmit, cancel} ) => {
     return (
@@ -47,8 +48,8 @@ const Contact = ( {contacts, handleSubmit, cancel} ) => {
                                 {createField("Twitter", "tw", [], Input)}
                             </div>
 
-                            <button type='submit'>Изменить</button>
-                            <button type='button' onClick={(e) => cancel() }>Отменить</button>
+                            <Button variant='primary' type='submit'>Изменить</Button>
+                            <Button variant='outline-secondary' type='button' onClick={(e) => cancel() }>Отменить</Button>
                         </form>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 
 
 const User = ({user, goEditMode, cancel}) => {
@@ -17,8 +18,8 @@ const User = ({user, goEditMode, cancel}) => {
                             <div>E-mail: {user.email}</div>
                             <div>Телефон: {user.phone}</div>
                             <div>Бонусы: {user.bonus_points}</div>
-                            <button onClick={goEditMode}>Изменить</button>
-                            <button onClick={cancel}>Назад</button>
+                            <Button variant='primary' onClick={goEditMode}>Изменить</Button>
+                            <Button variant='outline-secondary' onClick={cancel}>Назад</Button>
                         </div>
                     </div>
                 </div>
