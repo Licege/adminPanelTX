@@ -405,21 +405,6 @@ export const deliveryGlobalSettingsAPI = {
     }
 };
 
-export const citiesAPI = {
-    getCities() {
-        return axios.get(baseUrl + `/cities/`)
-            .then(response => {
-                return response
-            })
-    },
-    updateCity(city) {
-        return axios.put(baseUrl + `/cities/${city.id}`, city)
-            .then(response => {
-                return response
-            })
-    }
-};
-
 export const fileAPI = {
     postFile(file) {
         return axios.post(baseUrl + `/file/`, file)

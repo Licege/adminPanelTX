@@ -1,6 +1,11 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {addDishIntoListAC, requestOrderDeliveryById, updateOrderDelivery} from "../../redux/delivery-reducer";
+import {
+    addDishIntoListAC, decreaseDishCountAC, increaseDishCountAC, removeDishFromListAC,
+    requestDeliverySettings,
+    requestOrderDeliveryById,
+    updateOrderDelivery
+} from "../../redux/delivery-reducer";
 import DeliveryInfo from "../../components/Delivery/DeliveryInfo";
 import {requestCategories, requestDishes, requestDishesByCategory} from "../../redux/menu-reducer";
 
@@ -17,6 +22,7 @@ class DeliveryInfoContainer extends React.Component {
         this.props.getOrder(this.props.match.params.id)
         this.props.getMenu()
         if (!this.props.categories.length) this.props.getCategories()
+        if (!this.props.settings.length) this.props.getSettings()
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -24,6 +30,10 @@ class DeliveryInfoContainer extends React.Component {
             if (this.state.filter === '') this.props.getMenu()
             else this.props.getMenuByCategory(this.state.filter)
         }
+    }
+
+    changeDeliveryType = (dType) => {
+
     }
 
     toggleModal = () => {
@@ -42,6 +52,24 @@ class DeliveryInfoContainer extends React.Component {
         }
     }
 
+    increaseDish = (id) => {
+        return () => {
+            this.props.increaseDishCount(id)
+        }
+    }
+
+    decreaseDish = (id) => {
+        return () => {
+            this.props.decreaseDishCount(id)
+        }
+    }
+
+    removeDish = (id) => {
+        return () => {
+            this.props.deleteDishFromList(id)
+        }
+    }
+
     update = (order) => {
         this.props.updateOrder(order)
         this.props.history.push('/delivery')
@@ -56,6 +84,9 @@ class DeliveryInfoContainer extends React.Component {
                              toggleModal={this.toggleModal}
                              applyFilterModal={this.applyFilterModal}
                              addDish={this.addDish}
+                             increaseDish={this.increaseDish}
+                             decreaseDish={this.decreaseDish}
+                             removeDish={this.removeDish}
                              currentCategory={this.state.filter}
                              initialValues={this.props.order} />
     }
@@ -65,7 +96,8 @@ let mapStateToProps = (state) => {
     return {
         order: state.deliveryPage.currentOrder,
         dishes: state.menuPage.dishes,
-        categories: state.menuPage.categories
+        categories: state.menuPage.categories,
+        settings: state.deliveryPage.settings
     }
 }
 
@@ -88,6 +120,18 @@ let mapDispatchToProps = (dispatch) => {
         },
         addDishIntoList: (dish) => {
             dispatch(addDishIntoListAC(dish))
+        },
+        increaseDishCount: (id) => {
+            dispatch(increaseDishCountAC(id))
+        },
+        decreaseDishCount: (id) => {
+            dispatch(decreaseDishCountAC(id))
+        },
+        deleteDishFromList: (id) => {
+            dispatch(removeDishFromListAC(id))
+        },
+        getSettings: () => {
+            dispatch(requestDeliverySettings())
         }
     }
 }

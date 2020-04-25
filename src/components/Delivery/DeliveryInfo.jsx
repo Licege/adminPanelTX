@@ -16,13 +16,14 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import MoneyOffIcon from '@material-ui/icons/MoneyOff';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import StorefrontIcon from '@material-ui/icons/Storefront';
+import FoodIcon from '@material-ui/icons/Fastfood';
 import {Table} from "react-bootstrap";
 import {tsToDate} from "../../plagins/helpers";
 import Button from "react-bootstrap/Button";
 import {Field, reduxForm} from "redux-form";
 import MenuModal from "./MenuModal";
 
-const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal, addDish, currentCategory}) => {
+const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal, addDish, increaseDish, decreaseDish, removeDish, currentCategory}) => {
     console.log(order);
     return (
         order ?
@@ -95,6 +96,9 @@ const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal,
                             <div className='delivery_info-block-card-item'>
                                 <ShippingIcon/>{`Стоимость доставки: ${order.delivery_cost} ₽`}</div>
                             <div className='delivery_info-block-card-item'>
+                                <FoodIcon/>{`Стоимость заказа: ${order.total_price} ₽`}
+                            </div>
+                            <div className='delivery_info-block-card-item'>
                                 <ShoppingCartIcon/>{`Общая стоимость заказа: ${order.total_price + order.delivery_cost} ₽`}
                             </div>
                         </div>
@@ -124,26 +128,32 @@ const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal,
                         <div className='delivery_info-detail-table'>
                             <Table responsive>
                                 <thead className='table-thread'>
-                                <tr>
+                                <tr className='text-center'>
                                     <th>Название</th>
                                     <th>Количество</th>
                                     <th>Цена за единицу</th>
                                     <th>Итого</th>
+                                    <th/>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {order.list.map(dish => (
                                     <tr key={dish._id}>
                                         <td>{dish.title}</td>
-                                        <td>{dish.count}</td>
+                                        <td>
+                                            <Button variant='outline-info' onClick={decreaseDish(dish._id)}>-</Button>
+                                                {dish.count}
+                                            <Button variant='outline-info' onClick={increaseDish(dish._id)}>+</Button>
+                                        </td>
                                         <td>{dish.cost} ₽</td>
                                         <td>{dish.cost * dish.count} ₽</td>
+                                        <td><Button variant='danger' onClick={removeDish(dish._id)}>del</Button></td>
                                     </tr>
                                 ))}
                                 </tbody>
                             </Table>
                         </div>
-                        <div>
+                        <div className='text-center'>
                             <Button variant='secondary' onClick={toggleModal}>Добавить позицию</Button>
                         </div>
                     </div>

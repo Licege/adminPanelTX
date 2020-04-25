@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {requestDeliverySettingsById, updateDeliverySettings} from "../../../redux/delivery-settings-reducer";
+import {requestDeliverySettingsById, updateDeliverySettings} from "../../../redux/delivery-reducer";
 import SettingsForm from "../../../components/Delivery/Settings/Tabs/Common_Settings/SettingsForm";
 
 class SettingsCommonEdit extends React.Component {
@@ -27,7 +27,7 @@ class SettingsCommonEdit extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        currentSettings: state.deliverySettingsPage.currentSettings
+        currentSettings: state.deliveryPage.currentSettings
     }
 }
 

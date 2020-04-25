@@ -16,15 +16,15 @@ const MenuModal = ({show, handleClose, menu, categories, applyFilterModal, addDi
             <Modal.Body>
                 <Table>
                     <thead className='table-thread'>
-                        <tr>
+                        <tr className='text-center'>
                             <th>Название</th>
                             <th>Цена</th>
-                            <th>Добавить</th>
+                            <th/>
                         </tr>
                     </thead>
                     <tbody>
                         {menu.map(dish => (
-                            <tr key={dish._id}>
+                            <tr className='text-center' key={dish._id}>
                                 <td>{dish.title}</td>
                                 <td>{dish.cost} ₽</td>
                                 <td><Button variant='outline-primary' onClick={addDish(dish)}>+</Button></td>
@@ -33,8 +33,8 @@ const MenuModal = ({show, handleClose, menu, categories, applyFilterModal, addDi
                     </tbody>
                 </Table>
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant='primary' onClick={handleClose}>Сохранить</Button>
+            <Modal.Footer className='justify-content-center'>
+                <Button variant='primary' onClick={handleClose}>Назад</Button>
             </Modal.Footer>
         </Modal>
     )

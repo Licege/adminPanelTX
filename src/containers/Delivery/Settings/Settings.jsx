@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {
-    createDeliverySettings, deleteDeliverySettings, requestCities,
+    createDeliverySettings, deleteDeliverySettings,
     requestDeliverySettings,
-    requestGlobalDeliverySettings, updateCity, updateDeliverySettings,
+    requestGlobalDeliverySettings, updateDeliverySettings,
     updateGlobalDeliverySettings
-} from "../../../redux/delivery-settings-reducer";
+} from "../../../redux/delivery-reducer";
 import Settings from "../../../components/Delivery/Settings/Settings";
 
 class SettingsContainer extends React.Component {
@@ -40,8 +40,8 @@ class SettingsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        settings: state.deliverySettingsPage.settings,
-        global_settings: state.deliverySettingsPage.global_settings,
+        settings: state.deliveryPage.settings,
+        global_settings: state.deliveryPage.global_settings,
     }
 };
 
@@ -64,9 +64,6 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteSettings: (id) => {
             dispatch(deleteDeliverySettings(id))
-        },
-        updateCity: (city) => {
-            dispatch(updateCity(city))
         }
     }
 };

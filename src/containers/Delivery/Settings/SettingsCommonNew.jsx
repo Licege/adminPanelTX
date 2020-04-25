@@ -1,6 +1,6 @@
 import React from 'react'
 import SettingsForm from "../../../components/Delivery/Settings/Tabs/Common_Settings/SettingsForm";
-import {createDeliverySettings} from "../../../redux/delivery-settings-reducer";
+import {createDeliverySettings} from "../../../redux/delivery-reducer";
 import {connect} from "react-redux";
 
 class SettingsCommonNew extends React.Component {
