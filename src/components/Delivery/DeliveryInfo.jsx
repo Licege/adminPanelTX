@@ -22,7 +22,8 @@ import Button from "react-bootstrap/Button";
 import {Field, reduxForm} from "redux-form";
 import MenuModal from "./MenuModal";
 
-const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal}) => {
+const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal, addDish, currentCategory}) => {
+    console.log(order);
     return (
         order ?
             <form onSubmit={handleSubmit} className='page'>
@@ -147,7 +148,7 @@ const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal,
                         </div>
                     </div>
                 </div>
-                <MenuModal show={show} menu={menu} categories={categories} applyFilterModal={applyFilterModal} handleClose={toggleModal} />
+                <MenuModal show={show} menu={menu} categories={categories} applyFilterModal={applyFilterModal} addDish={addDish} currentCategory={currentCategory} handleClose={toggleModal} />
             </form> : null
     )
 }

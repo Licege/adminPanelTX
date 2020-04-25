@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {requestOrderDeliveryById, updateOrderDelivery} from "../../redux/delivery-reduce";
+import {addDishIntoListAC, requestOrderDeliveryById, updateOrderDelivery} from "../../redux/delivery-reducer";
 import DeliveryInfo from "../../components/Delivery/DeliveryInfo";
 import {requestCategories, requestDishes, requestDishesByCategory} from "../../redux/menu-reducer";
 
@@ -15,7 +15,7 @@ class DeliveryInfoContainer extends React.Component {
 
     componentDidMount() {
         this.props.getOrder(this.props.match.params.id)
-        if (!this.props.dishes.length) this.props.getMenu()
+        this.props.getMenu()
         if (!this.props.categories.length) this.props.getCategories()
     }
 
@@ -35,6 +35,13 @@ class DeliveryInfoContainer extends React.Component {
         this.setState({filter: category})
     }
 
+    addDish = (dish) => {
+        return () => {
+            console.log(dish);
+            this.props.addDishIntoList(dish)
+        }
+    }
+
     update = (order) => {
         this.props.updateOrder(order)
         this.props.history.push('/delivery')
@@ -48,6 +55,8 @@ class DeliveryInfoContainer extends React.Component {
                              show={this.state.isOpen}
                              toggleModal={this.toggleModal}
                              applyFilterModal={this.applyFilterModal}
+                             addDish={this.addDish}
+                             currentCategory={this.state.filter}
                              initialValues={this.props.order} />
     }
 }
@@ -76,6 +85,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         getMenuByCategory: (category) => {
             dispatch(requestDishesByCategory(category))
+        },
+        addDishIntoList: (dish) => {
+            dispatch(addDishIntoListAC(dish))
         }
     }
 }

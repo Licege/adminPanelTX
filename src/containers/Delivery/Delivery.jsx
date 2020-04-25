@@ -1,5 +1,5 @@
 import React from 'react'
-import {requestOrdersDelivery} from "../../redux/delivery-reduce";
+import {requestOrdersDelivery} from "../../redux/delivery-reducer";
 import Delivery from "../../components/Delivery/Delivery";
 import {connect} from "react-redux";
 

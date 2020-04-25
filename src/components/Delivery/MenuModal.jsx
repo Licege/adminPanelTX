@@ -1,12 +1,12 @@
 import React from 'react'
 import {Button, Modal, Table} from "react-bootstrap";
 
-const MenuModal = ({show, handleClose, menu, categories, applyFilterModal}) => {
+const MenuModal = ({show, handleClose, menu, categories, applyFilterModal, addDish, currentCategory}) => {
     console.log(menu);
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header>
-                <select id='select-category-modal' className='form-control' onChange={applyFilterModal}>
+                <select id='select-category-modal' className='form-control' defaultValue={currentCategory} onChange={applyFilterModal}>
                     <option value=''>Выберите категорию</option>
                     {categories.map(category => (
                         <option value={category.title_en} key={category._id}>{category.title}</option>
@@ -18,7 +18,6 @@ const MenuModal = ({show, handleClose, menu, categories, applyFilterModal}) => {
                     <thead className='table-thread'>
                         <tr>
                             <th>Название</th>
-                            <th>Кол-во</th>
                             <th>Цена</th>
                             <th>Добавить</th>
                         </tr>
@@ -27,9 +26,8 @@ const MenuModal = ({show, handleClose, menu, categories, applyFilterModal}) => {
                         {menu.map(dish => (
                             <tr key={dish._id}>
                                 <td>{dish.title}</td>
-                                <td><input className='form-control filter-main-input' defaultValue={1} /></td>
                                 <td>{dish.cost} ₽</td>
-                                <td>+</td>
+                                <td><Button variant='outline-primary' onClick={addDish(dish)}>+</Button></td>
                             </tr>
                         ))}
                     </tbody>

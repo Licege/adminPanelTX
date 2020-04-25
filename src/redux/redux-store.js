@@ -14,7 +14,7 @@ import reviewsReducer from "./reviews-reducer";
 import messageReducer from "./message-reducer";
 import toggleReducer from "./toogle-reducer";
 import deliverySettingsReducer from "./delivery-settings-reducer";
-import deliveryReducer from "./delivery-reduce";
+import deliveryReducer from "./delivery-reducer";
 import fileReducer from "./file-reducer";
 import adminReducer from "./admin-reducer";
 

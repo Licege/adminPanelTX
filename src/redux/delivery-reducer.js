@@ -31,9 +31,23 @@ const deliveryReducer = (state = initialState, action) => {
                 _id: action.dish._id,
                 title: action.dish.title,
                 cost: action.dish.cost,
-                count: action.dish.count
+                count: 1
             }
-            return {...state, currentPage: {...state.currentPage, list: state.currentPage.list.push(dish), total_price: state.currentPage.total_price + (dish.cost * dish.count)}}
+
+            const addDish = (item, itemList) => {
+                let index = itemList.findIndex(d => d._id === item._id)
+                if (index === -1) {
+                    return [...state.currentOrder.list, item]
+                } else {
+                    let data = [...itemList]
+                    console.log(data);
+                    console.log(index);
+                    data[index].count += 1
+                    return data
+                }
+            }
+
+            return {...state, currentOrder: {...state.currentOrder, list: addDish(dish, state.currentOrder.list), total_price: state.currentOrder.total_price + dish.cost}}
         default:
             return {...state}
     }
@@ -44,7 +58,7 @@ const getOrderByIdAC = (order) => ({type: GET_ORDER_BY_ID, order})
 const updateOrderAC = (order) => ({type: UPDATE_ORDER, order})
 const setPageAC = (page) => ({type: SET_CURRENT_PAGE, page})
 
-const addDishIntoListAC = (dish) => ({type: ADD_DISH_INTO_LIST, dish})
+export const addDishIntoListAC = (dish) => ({type: ADD_DISH_INTO_LIST, dish})
 
 
 export const requestOrdersDelivery = (filter, page = 1) => async(dispatch) => {
