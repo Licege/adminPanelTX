@@ -20,8 +20,9 @@ import {Table} from "react-bootstrap";
 import {tsToDate} from "../../plagins/helpers";
 import Button from "react-bootstrap/Button";
 import {Field, reduxForm} from "redux-form";
+import MenuModal from "./MenuModal";
 
-const DeliveryInfo = ({order, handleSubmit}) => {
+const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal}) => {
     return (
         order ?
             <form onSubmit={handleSubmit} className='page'>
@@ -126,6 +127,7 @@ const DeliveryInfo = ({order, handleSubmit}) => {
                                     <th>Название</th>
                                     <th>Количество</th>
                                     <th>Цена за единицу</th>
+                                    <th>Итого</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -133,14 +135,19 @@ const DeliveryInfo = ({order, handleSubmit}) => {
                                     <tr key={dish._id}>
                                         <td>{dish.title}</td>
                                         <td>{dish.count}</td>
-                                        <td>{dish.cost}</td>
+                                        <td>{dish.cost} ₽</td>
+                                        <td>{dish.cost * dish.count} ₽</td>
                                     </tr>
                                 ))}
                                 </tbody>
                             </Table>
                         </div>
+                        <div>
+                            <Button variant='secondary' onClick={toggleModal}>Добавить позицию</Button>
+                        </div>
                     </div>
                 </div>
+                <MenuModal show={show} menu={menu} categories={categories} applyFilterModal={applyFilterModal} handleClose={toggleModal} />
             </form> : null
     )
 }
