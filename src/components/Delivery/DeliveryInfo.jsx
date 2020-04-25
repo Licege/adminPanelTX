@@ -24,7 +24,6 @@ import {Field, reduxForm} from "redux-form";
 import MenuModal from "./MenuModal";
 
 const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal, addDish, increaseDish, decreaseDish, removeDish, currentCategory}) => {
-    console.log(order);
     return (
         order ?
             <form onSubmit={handleSubmit} className='page'>

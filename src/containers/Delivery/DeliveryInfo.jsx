@@ -1,13 +1,14 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {
-    addDishIntoListAC, decreaseDishCountAC, increaseDishCountAC, removeDishFromListAC,
+    addDishIntoListAC, changeDeliveryTypeAC, decreaseDishCountAC, increaseDishCountAC, removeDishFromListAC,
     requestDeliverySettings,
     requestOrderDeliveryById,
     updateOrderDelivery
 } from "../../redux/delivery-reducer";
 import DeliveryInfo from "../../components/Delivery/DeliveryInfo";
 import {requestCategories, requestDishes, requestDishesByCategory} from "../../redux/menu-reducer";
+import {formValueSelector} from "redux-form";
 
 class DeliveryInfoContainer extends React.Component {
     constructor(props) {
@@ -30,10 +31,14 @@ class DeliveryInfoContainer extends React.Component {
             if (this.state.filter === '') this.props.getMenu()
             else this.props.getMenuByCategory(this.state.filter)
         }
+        if (prevProps.deliveryType && prevProps.deliveryType !== this.props.deliveryType) {
+            this.changeDeliveryType(this.props.deliveryType);
+        }
     }
 
     changeDeliveryType = (dType) => {
-
+        console.log(dType);
+        this.props.changeDeliveryType(dType)
     }
 
     toggleModal = () => {
@@ -93,11 +98,13 @@ class DeliveryInfoContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    const selector = formValueSelector('delivery-info')
     return {
         order: state.deliveryPage.currentOrder,
         dishes: state.menuPage.dishes,
         categories: state.menuPage.categories,
-        settings: state.deliveryPage.settings
+        settings: state.deliveryPage.settings,
+        deliveryType: selector(state, 'delivery_type')
     }
 }
 
@@ -129,6 +136,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteDishFromList: (id) => {
             dispatch(removeDishFromListAC(id))
+        },
+        changeDeliveryType: (dType) => {
+            dispatch(changeDeliveryTypeAC(dType))
         },
         getSettings: () => {
             dispatch(requestDeliverySettings())

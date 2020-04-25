@@ -9,15 +9,16 @@ const ADD_DISH_INTO_LIST = 'DELIVERY/ADD_DISH_INTO_LIST'
 const INCREASE_ORDERS_LIST = 'DELIVERY/INCREASE_ORDERS_LIST'
 const DECREASE_ORDERS_LIST = 'DELIVERY/DECREASE_ORDERS_LIST'
 const REMOVE_DISH_FROM_LIST = 'DELIVERY/REMOVE_DISH_FROM_LIST'
+const CHANGE_DELIVERY_TYPE = 'DELIVERY/CHANGE_DELIVERY_TYPE'
 
-const GET_GLOBAL_DELIVERY_SETTINGS = 'GET_GLOBAL_DELIVERY_SETTINGS'
-const UPDATE_GLOBAL_DELIVERY_SETTINGS = 'UPDATE_GLOBAL_DELIVERY_SETTINGS'
+const GET_GLOBAL_DELIVERY_SETTINGS = 'DELIVERY/GET_GLOBAL_DELIVERY_SETTINGS'
+const UPDATE_GLOBAL_DELIVERY_SETTINGS = 'DELIVERY/UPDATE_GLOBAL_DELIVERY_SETTINGS'
 
-const GET_DELIVERY_SETTINGS = 'GET_DELIVERY_SETTINGS'
-const GET_DELIVERY_SETTINGS_BY_ID = 'GET_DELIVERY_SETTINGS_BY_ID'
-const CREATE_DELIVERY_SETTINGS = 'CREATE_DELIVERY_SETTINGS'
-const UPDATE_DELIVERY_SETTINGS = 'UPDATE_DELIVERY_SETTINGS'
-const DELETE_DELIVERY_SETTINGS = 'DELETE_DELIVERY_SETTINGS'
+const GET_DELIVERY_SETTINGS = 'DELIVERY/GET_DELIVERY_SETTINGS'
+const GET_DELIVERY_SETTINGS_BY_ID = 'DELIVERY/GET_DELIVERY_SETTINGS_BY_ID'
+const CREATE_DELIVERY_SETTINGS = 'DELIVERY/CREATE_DELIVERY_SETTINGS'
+const UPDATE_DELIVERY_SETTINGS = 'DELIVERY/UPDATE_DELIVERY_SETTINGS'
+const DELETE_DELIVERY_SETTINGS = 'DELIVERY/DELETE_DELIVERY_SETTINGS'
 
 let initialState = {
     orders: [],
@@ -133,6 +134,23 @@ const deliveryReducer = (state = initialState, action) => {
                     delivery_cost: calcDeliveryCost(totalPrice)
                 }
             }
+        case CHANGE_DELIVERY_TYPE:
+            let deliveryCost = 0
+
+            if (action.dType === 'home') {
+                let setting = state.settings.find(s => s.city === state.currentOrder.address.city)
+                if (state.currentOrder.total_price >= setting.free_delivery) {
+                    deliveryCost = 0
+                } else deliveryCost = setting.price_for_delivery
+            }
+            return {
+                ...state,
+                currentOrder: {
+                    ...state.currentOrder,
+                    delivery_type: action.dType,
+                    delivery_cost: deliveryCost
+                }
+            }
         case GET_GLOBAL_DELIVERY_SETTINGS:
             return {...state, global_settings: action.settings}
         case UPDATE_GLOBAL_DELIVERY_SETTINGS:
@@ -161,6 +179,7 @@ export const addDishIntoListAC = (dish) => ({type: ADD_DISH_INTO_LIST, dish})
 export const removeDishFromListAC = (id) => ({type: REMOVE_DISH_FROM_LIST, id})
 export const increaseDishCountAC = (id) => ({type: INCREASE_ORDERS_LIST, id})
 export const decreaseDishCountAC = (id) => ({type: DECREASE_ORDERS_LIST, id})
+export const changeDeliveryTypeAC = (dType) => ({type: CHANGE_DELIVERY_TYPE, dType})
 
 const getGlobalDeliverySettingsAC = (settings) => ({type: GET_GLOBAL_DELIVERY_SETTINGS, settings})
 const updateGlobalDeliverySettingsAC = (settings) => ({type: UPDATE_GLOBAL_DELIVERY_SETTINGS, settings})

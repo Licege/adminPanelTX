@@ -2,7 +2,6 @@ import React from 'react'
 import {Button, Modal, Table} from "react-bootstrap";
 
 const MenuModal = ({show, handleClose, menu, categories, applyFilterModal, addDish, currentCategory}) => {
-    console.log(menu);
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header>
