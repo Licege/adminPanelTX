@@ -1,5 +1,5 @@
 import React from 'react'
-import {requestOrdersDelivery} from "../../redux/delivery-reducer";
+import {requestOrdersDelivery, setPageAC} from "../../redux/delivery-reducer";
 import Delivery from "../../components/Delivery/Delivery";
 import {connect} from "react-redux";
 
@@ -9,8 +9,7 @@ class DeliveryContainer extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-            filter: {},
-            page: 1
+            filter: {}
         }
     }
 
@@ -25,7 +24,7 @@ class DeliveryContainer extends React.Component{
     }
 
     onChangePage = (page) => {
-        this.state.page = page
+        this.props.setPage(page)
         this.props.getOrders(this.state.filter, page)
     }
 
@@ -49,15 +48,15 @@ class DeliveryContainer extends React.Component{
                 delete (this.state.filter[field])
             }
         })
-        console.log(this.state.filter);
-        this.state.page = 1
+
+        this.props.setPage(1)
         this.props.getOrders(this.state.filter, this.state.page)
     }
 
     clearFilter = () => {
         fieldFilter.forEach(field => document.getElementById(field).value = '')
         this.state.filter = {}
-        this.state.page = 1
+        this.props.setPage(1)
         this.props.getOrders({}, 1)
     }
 
@@ -67,7 +66,7 @@ class DeliveryContainer extends React.Component{
                          changeFilter={this.changeFilter}
                          clearFilter={this.clearFilter}
                          totalCount={this.props.totalCount}
-                         page={this.state.page}
+                         page={this.props.page}
                          onChangePage={this.onChangePage} />
     }
 }
@@ -75,6 +74,7 @@ class DeliveryContainer extends React.Component{
 let mapStateToProps = (state) => {
     return {
         orders: state.deliveryPage.orders,
+        page: state.deliveryPage.currentPage,
         totalCount: state.deliveryPage.totalCount
     }
 }
@@ -83,6 +83,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         getOrders: (filter, page) => {
             dispatch(requestOrdersDelivery(filter, page))
+        },
+        setPage: (page) => {
+            dispatch(setPageAC(page))
         }
     }
 }

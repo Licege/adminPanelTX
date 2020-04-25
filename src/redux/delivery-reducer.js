@@ -173,7 +173,7 @@ const deliveryReducer = (state = initialState, action) => {
 const getOrdersAC = (orders, totalCount) => ({type: GET_ORDERS, orders, totalCount})
 const getOrderByIdAC = (order) => ({type: GET_ORDER_BY_ID, order})
 const updateOrderAC = (order) => ({type: UPDATE_ORDER, order})
-const setPageAC = (page) => ({type: SET_CURRENT_PAGE, page})
+export const setPageAC = (page) => ({type: SET_CURRENT_PAGE, page})
 
 export const addDishIntoListAC = (dish) => ({type: ADD_DISH_INTO_LIST, dish})
 export const removeDishFromListAC = (id) => ({type: REMOVE_DISH_FROM_LIST, id})
