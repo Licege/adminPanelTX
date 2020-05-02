@@ -17,6 +17,7 @@ import MoneyOffIcon from '@material-ui/icons/MoneyOff';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import FoodIcon from '@material-ui/icons/Fastfood';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {Table} from "react-bootstrap";
 import {tsToDate} from "../../plagins/helpers";
 import Button from "react-bootstrap/Button";
@@ -146,7 +147,7 @@ const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal,
                                         </td>
                                         <td>{dish.cost} ₽</td>
                                         <td>{dish.cost * dish.count} ₽</td>
-                                        <td><Button variant='danger' onClick={removeDish(dish._id)}>del</Button></td>
+                                        <td><DeleteIcon onClick={removeDish(dish._id)} /></td>
                                     </tr>
                                 ))}
                                 </tbody>

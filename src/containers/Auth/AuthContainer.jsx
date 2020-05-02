@@ -10,7 +10,7 @@ class AuthContainer extends React.Component {
         }
     }
 
-    postData = async (data) => {
+    postData = (data) => {
         this.props.login(data)
     }
 

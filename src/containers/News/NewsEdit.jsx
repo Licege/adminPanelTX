@@ -3,7 +3,6 @@ import {getCurrentNews, updateNews} from "../../redux/news-reducer";
 import {connect} from "react-redux";
 import Preloader from "../../components/common/Preloader/Preloader";
 import NewsForm from "../../components/News/NewsForm";
-import {postFile} from "../../redux/file-reducer";
 
 class EditNewsContainer extends React.Component{
     constructor(props) {
@@ -72,9 +71,6 @@ let mapDispatchToProps = (dispatch) => {
         },
         updateCurrentNews: (currentNews, id) => {
             dispatch(updateNews(currentNews, id))
-        },
-        postFile: (file) => {
-            dispatch(postFile(file))
         }
     }
 };

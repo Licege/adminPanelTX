@@ -32,6 +32,9 @@ import DeliveryInfoContainer from "./containers/Delivery/DeliveryInfo"
 import AuthContainer from "./containers/Auth/AuthContainer";
 import AdminContainer from "./containers/Admin/AdminContainer";
 import PromosNewContainer from "./containers/Promos/PromosNew";
+import CategoriesContainer from "./containers/Categories/CategoriesContainer";
+import CreateCategory from "./containers/Categories/CreateCategory";
+import EditCategory from "./containers/Categories/EditCategory";
 
 function App() {
     let token = useSelector(state => state.auth.accessToken)
@@ -64,6 +67,9 @@ function App() {
                     <Route exact path='/menu' component={MenuContainer}/>
                     <Route exact path='/menu/new' component={CreateDishContainer}/>
                     <Route exact path='/menu/edit/:id' component={EditDishContainer}/>
+                    <Route exact path='/categories' component={CategoriesContainer}/>
+                    <Route exact path='/categories/new' component={CreateCategory}/>
+                    <Route exact path='/categories/edit/:id' component={EditCategory}/>
 
                     {/*Пользователи*/}
                     <Route exact path='/users' component={UsersContainer}/>

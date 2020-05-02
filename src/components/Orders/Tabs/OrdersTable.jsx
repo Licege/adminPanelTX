@@ -20,7 +20,7 @@ const OrdersTable = ( {ordersTable} ) => {
                     </thead>
                     <tbody>
                     {ordersTable.map(orderTable => (
-                            <tr key={orderTable.id}>
+                            <tr key={orderTable._id}>
                                 <th>{tsToDate(orderTable.order_date, "hh:mm dd:MM:YYYY")}</th>
                                 <th>{tsToDate(orderTable.create_at, "hh:mm dd:MM:YYYY")}</th>
                                 <th>{orderTable.name}</th>

@@ -9,16 +9,31 @@ const GlobalSettingsForm = ( {handleSubmit} ) => {
         <div className='card'>
             <div className='card-body'>
                 <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor='is_delivery_working'>Доставка</label>
-                        <div>
+                    <div className='d_settings-block'>
+                        <div className='d_settings-block-item'>
+                            <div className='d_settings-block-item-label'>Доставка</div>
                             <Field name='is_delivery_working' component='input' type='checkbox'/>
                         </div>
                     </div>
                     <div>
-                        <label>Телефон для SMS-уведомлений</label>
+                        <label>Телефон для SMS-уведомлений (В разработке)</label>
                         <div>
                             {createField('+79999999999', 'phone_for_sms', [], Input, 'text')}
+                        </div>
+                    </div>
+                    <div className='d_settings-block'>
+                        <div>Доступные варианты оплаты</div>
+                        <div className='d_settings-block-item'>
+                            <div className='d_settings-block-item-label'>Наличными курьеру</div>
+                            <Field name='payment_type_cash' component='input' type='checkbox' />
+                        </div>
+                        <div className='d_settings-block-item'>
+                            <div className='d_settings-block-item-label'>Безналичный расчет курьеру</div>
+                            <Field name='payment_type_cashless' component='input' type='checkbox' />
+                        </div>
+                        <div className='d_settings-block-item'>
+                            <div className='d_settings-block-item-label'>Безналичный расчет online</div>
+                            <Field name='payment_type_online' component='input' type='checkbox' />
                         </div>
                     </div>
                     <Button type='submit' variant='primary'>Сохранить</Button>

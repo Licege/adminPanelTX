@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from "react-redux";
 import {requestCategories, requestDish, updateDish} from "../../redux/menu-reducer";
 import FormDish from "../../components/Menu/FormDish";
-import {initializeFileAC, postFile} from "../../redux/file-reducer";
 
 class EditDishContainer extends React.Component{
     constructor(props) {
@@ -14,7 +13,7 @@ class EditDishContainer extends React.Component{
 
     componentDidMount() {
         let id = this.props.match.params.id
-        if (!this.props.dish || this.props.dish.id !== id) {
+        if (!this.props.dish || this.props.dish._id !== id) {
             this.props.getDish(id)
         }
         if (!this.props.categories.length) this.props.getCategories()
@@ -51,8 +50,7 @@ class EditDishContainer extends React.Component{
 let mapStateToProps = (state) => {
     return {
         dish: state.menuPage.dish,
-        categories: state.menuPage.categories,
-        file: state.fileLoad.file
+        categories: state.menuPage.categories
     }
 }
 
@@ -66,12 +64,6 @@ let mapDispatchToProps = (dispatch) => {
         },
         updateDish: (dish, id) => {
             dispatch(updateDish(dish, id))
-        },
-        initializeFile: (file) => {
-            dispatch(initializeFileAC(file))
-        },
-        postFile: (file) => {
-            dispatch(postFile(file))
         }
     }
 }

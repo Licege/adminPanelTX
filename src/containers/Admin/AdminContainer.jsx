@@ -10,8 +10,10 @@ class AdminContainer extends React.Component {
         if (!this.props.users.length) this.props.getUsers()
     }
 
-    newAdmin = (profile) => {
-
+    newAdmin = (id) => {
+        return () => {
+            this.props.postAdmin(id)
+        }
     }
 
     render() {

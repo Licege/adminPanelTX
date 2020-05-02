@@ -62,8 +62,8 @@ export const adminAPI = {
                 return response
             })
     },
-    postAdmin(profile) {
-        return apiAdminRequest.post(`/admin/`, profile)
+    postAdmin(id) {
+        return apiAdminRequest.post(`/admin/${id}`)
             .then(response => {
                 return response
             })
@@ -207,10 +207,10 @@ export const promoAPI = {
 
 export const menuAPI = {
     createDish(dish) {
-        return axios.post(baseUrl + `/menu/`, dish)
+        return apiAdminRequest.post(`/menu/`, dish)
             .then(response => {
                 return response
-            });
+            })
     },
     getDishes() {
         return axios.get(baseUrl + `/menu/`)
@@ -228,28 +228,50 @@ export const menuAPI = {
         return axios.get(baseUrl + `/menu/dish/${id}`)
             .then(response => {
                 return response
-            });
-    },
-    getCategories() {
-        return axios.get(baseUrl + `/categories/`)
-            .then(response => {
-                return response
-            });
+            })
     },
     updateDish(dish, id) {
-        console.log(dish);
-        return axios.patch(baseUrl + `/menu/${id}`, dish)
+        return apiAdminRequest.patch(`/menu/${id}`, dish)
             .then(response => {
                 return response
             })
     },
     deleteDish(id) {
-        return axios.delete(baseUrl + `/menu/${id}`)
+        return apiAdminRequest.delete(`/menu/${id}`)
             .then(response => {
                 return response
-            });
+            })
+    },
+    getCategories() {
+        return axios.get(baseUrl + `/categories/`)
+            .then(response => {
+                return response
+            })
+    },
+    getCategory(id) {
+        return axios.get(baseUrl + `/categories/${id}`)
+            .then(response => {
+                return response
+            })
+    },
+    createCategory(category) {
+        return apiAdminRequest.post(`/categories/`, category)
+            .then(response => {
+                return response
+            })
+    },
+    updateCategory(category) {
+        return apiAdminRequest.patch(`/categories/${category._id}`, category)
+            .then(response => {
+                return response
+            })
+    },
+    deleteCategory(id) {
+        return apiAdminRequest.delete(`/categories/${id}`)
+            .then(response => {
+                return response
+            })
     }
-
 };
 
 export const newsAPI = {
@@ -398,7 +420,7 @@ export const deliveryGlobalSettingsAPI = {
             })
     },
     updateSettings(settings) {
-        return apiAdminRequest.patch(`/delivery-settings/global/`, settings)
+        return apiAdminRequest.patch(`/delivery-settings/global/${settings._id}`, settings)
             .then(response => {
                 return response
             })

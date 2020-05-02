@@ -2,6 +2,7 @@ import React from 'react'
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import AdminsTable from "./Tabs/AdminsTable";
+import UserTable from "./Tabs/UsersTable";
 
 const Admin = ({admins, users, newAdmin}) => {
     console.log(admins);
@@ -12,7 +13,7 @@ const Admin = ({admins, users, newAdmin}) => {
                     Администраторы
                 </div>
                 <div className='page-header-action'>
-                    <button className='btn btn-primary' onClick={newAdmin}>Добавить администратора</button>
+                    {/*<button className='btn btn-primary' onClick={newAdmin}>Добавить администратора</button>*/}
                 </div>
             </div>
             <div className='page-container'>
@@ -30,7 +31,7 @@ const Admin = ({admins, users, newAdmin}) => {
                             <AdminsTable admins={admins}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey='users-tab'>
-
+                            <UserTable users={users} admins={admins} upgrade={newAdmin} />
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>

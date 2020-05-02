@@ -14,7 +14,6 @@ import reviewsReducer from "./reviews-reducer";
 import messageReducer from "./message-reducer";
 import toggleReducer from "./toogle-reducer";
 import deliveryReducer from "./delivery-reducer";
-import fileReducer from "./file-reducer";
 import adminReducer from "./admin-reducer";
 
 let rootReducer = combineReducers({
@@ -32,7 +31,6 @@ let rootReducer = combineReducers({
     messagesPage: messageReducer,
     toggleComponent: toggleReducer,
     deliveryPage: deliveryReducer,
-    fileLoad: fileReducer,
     form: formReducer,
 });
 

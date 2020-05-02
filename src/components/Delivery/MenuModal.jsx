@@ -13,7 +13,7 @@ const MenuModal = ({show, handleClose, menu, categories, applyFilterModal, addDi
                 </select>
             </Modal.Header>
             <Modal.Body>
-                <Table>
+                <Table className='delivery_info-modal'>
                     <thead className='table-thread'>
                         <tr className='text-center'>
                             <th>Название</th>

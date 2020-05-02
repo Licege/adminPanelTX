@@ -19,7 +19,7 @@ const OrdersBanquet = ( {ordersBanquet} ) => {
                     </thead>
                     <tbody>
                     {ordersBanquet.map(orderBanquet => (
-                        <tr key={orderBanquet.id}>
+                        <tr key={orderBanquet._id}>
                             <th>{tsToDate(orderBanquet.order_date, "hh:mm dd:MM:YYYY")}</th>
                             <th>{tsToDate(orderBanquet.create_at, "hh:mm dd:MM:YYYY")}</th>
                             <th>{orderBanquet.name}</th>

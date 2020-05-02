@@ -1,6 +1,5 @@
 import React from 'react'
 import DeliveryTable from "./DeliveryTable";
-import CustomDatePicker from "../common/CustomDatePicker";
 
 const Delivery = ({orders, detail, changeFilter, clearFilter, totalCount, page, onChangePage}) => {
     return (

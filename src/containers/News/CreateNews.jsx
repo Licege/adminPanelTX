@@ -2,7 +2,6 @@ import React from 'react'
 import {createNewNews} from "../../redux/news-reducer";
 import {connect} from "react-redux";
 import NewsForm from "../../components/News/NewsForm";
-import {postFile} from "../../redux/file-reducer";
 
 class CreateNewsContainer extends React.Component{
     constructor(props) {
@@ -36,18 +35,13 @@ class CreateNewsContainer extends React.Component{
 }
 
 let mapStateToProps = (state) => {
-    return {
-        file: state.fileLoad.file
-    }
+    return {}
 };
 
 let mapDispatchToProps = (dispatch) => {
     return {
         createNews: (news) => {
             dispatch(createNewNews(news))
-        },
-        postFile: (file) => {
-            dispatch(postFile(file))
         }
     }
 };

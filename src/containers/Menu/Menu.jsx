@@ -9,10 +9,6 @@ class MenuContainer extends React.Component {
         if (!this.props.categories.length) this.props.getCategories();
     }
 
-    create = (dish) => {
-        this.props.createDish(dish);
-    };
-
     newDish = () => {
         this.props.history.push(`menu/new`)
     };

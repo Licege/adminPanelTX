@@ -41,6 +41,9 @@ const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
                                 {createField("Цена", "cost", [], Input)}
                             </div>
                             <div>
+                                <Field name="is_delivery" component="input" type="checkbox" className="filter-main-input -name form-control" />
+                            </div>
+                            <div>
                                 <input type='file' onChange={postFile} />
                             </div>
                             <Button variant='primary' type='submit'>Сохранить</Button>
