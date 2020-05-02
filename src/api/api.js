@@ -71,8 +71,8 @@ export const adminAPI = {
 }
 
 export const usersAPI = {
-    getUsers(currentPage = 1) {
-        return apiAdminRequest.get(`/users/?page=${currentPage}`)
+    getUsers(currentPage = 1, filters) {
+        return apiAdminRequest.get(`/users/?page=${currentPage}`, {params: filters})
             .then(response => {
                 return response;
             });
@@ -318,19 +318,25 @@ export const ordersAPI = {
 
 export const reviewsAPI = {
     getReviews() {
-        return axios.get(baseUrl + `/reviews/`)
+        return apiAdminRequest.get(`/reviews/private/`)
+            .then(response => {
+                return response
+            })
+    },
+    getReview(id) {
+        return apiAdminRequest.get(`/reviews/private/${id}`)
             .then(response => {
                 return response
             })
     },
     postAnswer(answer) {
-        return axios.post(baseUrl + `/reviews/`, answer)
+        return apiAdminRequest.post(`/reviews/`, answer)
             .then(response => {
                 return response
             })
     },
-    approveReview(id) {
-        return axios.post(baseUrl + `/reviews/${id}`)
+    updateReview(id) {
+        return apiAdminRequest.post(`/reviews/${id}`)
             .then(response => {
                 return response
             })

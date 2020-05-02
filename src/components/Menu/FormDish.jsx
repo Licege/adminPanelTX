@@ -41,7 +41,12 @@ const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
                                 {createField("Цена", "cost", [], Input)}
                             </div>
                             <div>
-                                <Field name="is_delivery" component="input" type="checkbox" className="filter-main-input -name form-control" />
+                                <label htmlFor="is_delivery_dish">Доставка</label>
+                                <Field name="is_delivery"
+                                       id="is_delivery_dish"
+                                       component="input"
+                                       type="checkbox"
+                                       className="filter-main-input -name form-control" />
                             </div>
                             <div>
                                 <input type='file' onChange={postFile} />

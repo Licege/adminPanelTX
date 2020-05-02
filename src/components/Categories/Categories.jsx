@@ -13,16 +13,17 @@ const Categories = ({categories, createCategory, updateCategory, deleteCategory}
             </div>
             <div className='page-container'>
                 {categories.length ?
-                    <Table responsive>
-                        <thead className='table-thread'>
+                    <div className='card'>
+                        <Table responsive>
+                            <thead className='table-thread'>
                             <tr>
                                 <th>Название</th>
                                 <th>Ссылка в адресной строке</th>
                                 <th>Доставка</th>
                                 <th/>
                             </tr>
-                        </thead>
-                        <tbody className='table-body'>
+                            </thead>
+                            <tbody className='table-body'>
                             {categories.map(category => (
                                 <tr key={category._id} onClick={updateCategory(category._id)}>
                                     <td>{category.title}</td>
@@ -33,8 +34,10 @@ const Categories = ({categories, createCategory, updateCategory, deleteCategory}
                                     <td><DeleteIcon onClick={deleteCategory(category._id)}/></td>
                                 </tr>
                             ))}
-                        </tbody>
-                    </Table> : null}
+                            </tbody>
+                        </Table>
+                    </div>
+                     : null}
             </div>
         </div>
     )

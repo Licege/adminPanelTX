@@ -54,7 +54,7 @@ export const getCurrentNews = (id) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     let response = await newsAPI.getCurrentNews(id);
     dispatch(toggleIsFetching(false));
-    dispatch(getCurrentNewsAC(response.data[0]))
+    dispatch(getCurrentNewsAC(response.data))
 };
 
 export const updateNews = (news, id) => async (dispatch) => {

@@ -3,7 +3,6 @@ import {Table} from "react-bootstrap";
 import Paginator from "../common/Paginator";
 
 const Users = (props) => {
-    console.log(props.users);
     return (
         <div>
             <div className='page-header'>
@@ -16,12 +15,14 @@ const Users = (props) => {
                     <div className='card-body filter-container'>
                         <span className='filter-header'>Фильтры</span>
                         <div className='filter-main'>
-                            <input type='text' placeholder='Фамилия' className='filter-main-input -name form-control' />
-                            <input type='text' placeholder='Имя' className='filter-main-input -name form-control' />
+                            <input id='surname' type='text' placeholder='Фамилия' className='filter-main-input -name form-control' />
+                            <input id='forename' type='text' placeholder='Имя' className='filter-main-input -name form-control' />
+                            <input id='phone' type='text' placeholder='Телефон' className='filter-main-input -name form-control' />
+                            <input id='email' type='text' placeholder='Email' className='filter-main-input -name form-control' />
                         </div>
                         <div className='filter-actions'>
-                            <span className='filter-actions-reset'>Сбросить</span>
-                            <span className='filter-actions-apply' onClick={(e) => props.filterApply(props.filters)}>Фильтровать</span>
+                            <span className='filter-actions-reset' onClick={props.clearFilter}>Сбросить</span>
+                            <span className='filter-actions-apply' onClick={props.filterApply}>Фильтровать</span>
                         </div>
                     </div>
                 </div>

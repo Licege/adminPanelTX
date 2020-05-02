@@ -29,18 +29,6 @@ class DeliveryContainer extends React.Component{
     }
 
     changeFilter = () => {
-        const fieldFilter = [
-            'phone',
-            'total_price_start',
-            'total_price_end',
-            'payment_type',
-            'delivery_type',
-            'payment_status',
-            'status',
-            //'time_delivery_start',
-            //'time_delivery_end'
-        ]
-
         fieldFilter.forEach(field => {
             if (document.getElementById(field).value) {
                 this.state.filter[field] = document.getElementById(field).value
@@ -50,7 +38,7 @@ class DeliveryContainer extends React.Component{
         })
 
         this.props.setPage(1)
-        this.props.getOrders(this.state.filter, this.state.page)
+        this.props.getOrders(this.state.filter, this.props.page)
     }
 
     clearFilter = () => {

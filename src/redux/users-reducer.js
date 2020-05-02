@@ -59,10 +59,10 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 });
 
 
-export const requestUsers = (page = 1) => async (dispatch) => {
+export const requestUsers = (page = 1, filters) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     dispatch(setCurrentPage(page));
-    let response = await usersAPI.getUsers(page);
+    let response = await usersAPI.getUsers(page, filters);
     dispatch(toggleIsFetching(false));
     dispatch(getUsers(response.data.users, response.data.total_count));
 };
