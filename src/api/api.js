@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const serverUrl = 'http://localhost:9090/'
-const baseUrl = serverUrl + 'api'
+const baseUrl = serverUrl + 'api/private'
 export const secret = 'dev-jwt'
 
 const apiAdminRequest = axios.create({
@@ -93,37 +93,37 @@ export const usersAPI = {
 
 export const employeesAPI = {
     createEmployee(profile) {
-        return axios.post(baseUrl + `/employees/`, profile)
+        return apiAdminRequest.post(baseUrl + `/employees/`, profile)
             .then(response => {
                 return response;
             })
     },
     getEmployees() {
-        return axios.get(baseUrl + `/employees/`)
+        return apiAdminRequest.get(baseUrl + `/employees/`)
             .then(response => {
                 return response.data;
             });
     },
     getEmployeeById(id) {
-        return axios.get(baseUrl + `/employees/${id}`)
+        return apiAdminRequest.get(baseUrl + `/employees/${id}`)
             .then(response => {
                 return response;
             });
     },
     updateEmployee(profile) {
-        return axios.put(baseUrl + `/employees/${profile.id}`, profile)
+        return apiAdminRequest.put(baseUrl + `/employees/${profile.id}`, profile)
             .then(response => {
                 return response;
             });
     },
     deleteEmployee(id) {
-        return axios.delete(baseUrl + `/employees/${id}`)
+        return apiAdminRequest.delete(baseUrl + `/employees/${id}`)
             .then(response => {
                 return response;
             });
     },
     getProfessions() {
-        return axios.get(baseUrl + `/professions/`)
+        return apiAdminRequest.get(baseUrl + `/professions/`)
             .then(response => {
                 return response.data;
             });
@@ -132,13 +132,13 @@ export const employeesAPI = {
 
 export const vacancyAPI = {
     getVacancies() {
-        return axios.get(baseUrl + `/vacancies/`)
+        return apiAdminRequest.get(baseUrl + `/vacancies/`)
             .then(response => {
                 return response;
             })
     },
     getVacancy(id) {
-        return axios.get(baseUrl + `/vacancies/${id}`)
+        return apiAdminRequest.get(baseUrl + `/vacancies/${id}`)
             .then(response => {
                 return response;
             })
@@ -165,7 +165,7 @@ export const vacancyAPI = {
 
 export const contactsAPI = {
     getContacts() {
-        return axios.get(baseUrl + `/contacts/`)
+        return apiAdminRequest.get(baseUrl + `/contacts/`)
             .then(response => {
                 return response
             });
@@ -180,25 +180,25 @@ export const contactsAPI = {
 
 export const promoAPI = {
     getPromos() {
-        return axios.get(baseUrl + `/promos/`)
+        return apiAdminRequest.get(baseUrl + `/promos/`)
             .then(response => {
                 return response
             })
     },
     getPromo(id) {
-        return axios.get(baseUrl + `/promo/${id}`)
+        return apiAdminRequest.get(baseUrl + `/promo/${id}`)
             .then(response => {
                 return response
             })
     },
     postPromo(promo) {
-        return axios.post(baseUrl + `/promo/`, promo)
+        return apiAdminRequest.post(baseUrl + `/promo/`, promo)
             .then(response => {
                 return response
             })
     },
     updatePromo(promo, id) {
-        return axios.patch(baseUrl + `/promo/${id}`, promo)
+        return apiAdminRequest.patch(baseUrl + `/promo/${id}`, promo)
             .then(response => {
                 return response
             })
@@ -213,19 +213,19 @@ export const menuAPI = {
             })
     },
     getDishes() {
-        return axios.get(baseUrl + `/menu/`)
+        return apiAdminRequest.get(baseUrl + `/menu/`)
             .then(response => {
                 return response
             });
     },
     getDishesByCategory(category) {
-        return axios.get(baseUrl + `/menu/${category}`)
+        return apiAdminRequest.get(baseUrl + `/menu/${category}`)
             .then(response => {
                 return response
             })
     },
     getDish(id) {
-        return axios.get(baseUrl + `/menu/dish/${id}`)
+        return apiAdminRequest.get(baseUrl + `/menu/dish/${id}`)
             .then(response => {
                 return response
             })
@@ -243,13 +243,13 @@ export const menuAPI = {
             })
     },
     getCategories() {
-        return axios.get(baseUrl + `/categories/`)
+        return apiAdminRequest.get(baseUrl + `/categories/`)
             .then(response => {
                 return response
             })
     },
     getCategory(id) {
-        return axios.get(baseUrl + `/categories/${id}`)
+        return apiAdminRequest.get(baseUrl + `/categories/${id}`)
             .then(response => {
                 return response
             })
@@ -276,31 +276,31 @@ export const menuAPI = {
 
 export const newsAPI = {
     getNews() {
-        return axios.get(baseUrl + `/news/`)
+        return apiAdminRequest.get(baseUrl + `/news/`)
             .then(response => {
                 return response
             })
     },
     getCurrentNews(id) {
-        return axios.get(baseUrl + `/news/${id}`)
+        return apiAdminRequest.get(baseUrl + `/news/${id}`)
             .then(response => {
                 return response
             })
     },
     postNews(news) {
-        return axios.post(baseUrl + `/news/`, news)
+        return apiAdminRequest.post(baseUrl + `/news/`, news)
             .then(response => {
                 return response
             })
     },
     updateNews(news, id) {
-        return axios.patch(baseUrl + `/news/${id}`, news)
+        return apiAdminRequest.patch(baseUrl + `/news/${id}`, news)
             .then(response => {
                 return response
             })
     },
     deleteNews(id) {
-        return axios.delete(baseUrl + `/news/${id}`)
+        return apiAdminRequest.delete(baseUrl + `/news/${id}`)
             .then(response => {
                 return response
             })
@@ -318,13 +318,13 @@ export const ordersAPI = {
 
 export const reviewsAPI = {
     getReviews() {
-        return apiAdminRequest.get(`/reviews/private/`)
+        return apiAdminRequest.get(`/reviews/`)
             .then(response => {
                 return response
             })
     },
     getReview(id) {
-        return apiAdminRequest.get(`/reviews/private/${id}`)
+        return apiAdminRequest.get(`/reviews/${id}`)
             .then(response => {
                 return response
             })
@@ -345,19 +345,19 @@ export const reviewsAPI = {
 
 export const messagesAPI = {
     getMessages() {
-        return axios.get(baseUrl + `/messages/`)
+        return apiAdminRequest.get(baseUrl + `/messages/`)
             .then(response => {
                 return response
             })
     },
     getMessage(id) {
-        return axios.get(baseUrl + `/messages/${id}`)
+        return apiAdminRequest.get(baseUrl + `/messages/${id}`)
             .then(response => {
                 return response
             })
     },
     deleteMessage(id) {
-        return axios.delete(baseUrl + `/messages/${id}`)
+        return apiAdminRequest.delete(baseUrl + `/messages/${id}`)
             .then(response => {
                 return response
             })
@@ -387,7 +387,7 @@ export const deliveryAPI = {
 
 export const deliverySettingsAPI = {
     getSettings() {
-        return axios.get(baseUrl + `/delivery-settings/common/`)
+        return apiAdminRequest.get(baseUrl + `/delivery-settings/common/`)
             .then(response => {
                 return response
             })
@@ -420,7 +420,7 @@ export const deliverySettingsAPI = {
 
 export const deliveryGlobalSettingsAPI = {
     getSettings() {
-        return axios.get(baseUrl + `/delivery-settings/global/`)
+        return apiAdminRequest.get(baseUrl + `/delivery-settings/global/`)
             .then(response => {
                 return response
             })
@@ -429,21 +429,6 @@ export const deliveryGlobalSettingsAPI = {
         return apiAdminRequest.patch(`/delivery-settings/global/${settings._id}`, settings)
             .then(response => {
                 return response
-            })
-    }
-};
-
-export const fileAPI = {
-    postFile(file) {
-        return axios.post(baseUrl + `/file/`, file)
-            .then(response => {
-                return response
-            })
-    },
-    deleteFile(id) {
-        return axios.delete(baseUrl + `/file/${id}`)
-            .then(respone => {
-                return respone
             })
     }
 };
