@@ -1,0 +1,1 @@
+const UPLOAD_FILE = 'FILE/UPLOAD_FILE'
