@@ -1,5 +1,4 @@
 import React from 'react';
-import {createField, Input} from "../../common/FormsControls";
 import {Field, reduxForm} from "redux-form";
 import Button from "react-bootstrap/Button";
 

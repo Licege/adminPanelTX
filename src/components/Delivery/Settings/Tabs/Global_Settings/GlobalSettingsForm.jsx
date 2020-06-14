@@ -36,6 +36,10 @@ const GlobalSettingsForm = ( {handleSubmit} ) => {
                             <Field name='payment_type_online' component='input' type='checkbox' />
                         </div>
                     </div>
+                    <div className="d_settings-block">
+                        <div className='d_settings-block-item'>Скида за самовывоз (в % от заказа)</div>
+                        <Field name='sale_for_pickup' component='input' className="filter-main-input -name form-control" />
+                    </div>
                     <Button type='submit' variant='primary'>Сохранить</Button>
                     <Button type='button' variant='secondary'>Отменить</Button>
                 </form>

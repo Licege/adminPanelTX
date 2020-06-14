@@ -37,7 +37,7 @@ export const requestMessage = (message) => async(dispatch) => {
 };
 
 export const deleteMessage = (id) => async(dispatch) => {
-    let response = await messagesAPI.deleteMessage(id);
+    await messagesAPI.deleteMessage(id);
     dispatch(deleteMessageAC(id))
 };
 

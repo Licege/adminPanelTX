@@ -34,7 +34,7 @@ const loginAC = (data) => ({type: LOGIN, data})
 export const logoutAC = () => ({type: LOGOUT})
 
 export const registration = (user) => async(dispatch) => {
-    let response = await authAPI.registration(user)
+    await authAPI.registration(user)
     dispatch(registrationAC(user.data))
 }
 

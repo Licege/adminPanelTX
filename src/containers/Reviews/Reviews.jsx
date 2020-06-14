@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {requestReviews} from "../../redux/reviews-reducer";
+import {changeReviewStatus, requestReviews} from "../../redux/reviews-reducer";
 import Reviews from "../../components/Reviews/Reviews";
 
 class ReviewsContainer extends React.PureComponent {
@@ -9,13 +9,18 @@ class ReviewsContainer extends React.PureComponent {
     }
 
     render() {
-        return <Reviews reviews={this.props.reviews} />
+        return <Reviews waitingReviews={this.props.waitingReviews}
+                        approvedReviews={this.props.approvedReviews}
+                        disapprovedReviews={this.props.disapprovedReviews} />
     }
 }
 
 let mapStateToProps = (state) => {
     return {
-        reviews: state.reviewsPage.reviews
+        reviews: state.reviewsPage.reviews,
+        waitingReviews: state.reviewsPage.reviews.filter(review => review.status === 0),
+        approvedReviews: state.reviewsPage.reviews.filter(review => review.status === 1),
+        disapprovedReviews: state.reviewsPage.reviews.filter(review => review.status === 2)
     }
 }
 
@@ -23,6 +28,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         getReviews: () => {
             dispatch(requestReviews())
+        },
+        changeStatus: (review) => {
+            dispatch(changeReviewStatus(review))
         }
     }
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import {logoutAC} from "../../../redux/auth-reducer";
 import {connect} from "react-redux";
 import Button from "react-bootstrap/Button";
-import {Redirect} from "react-router-dom";
 
 
 class LogoutBtn extends React.Component{

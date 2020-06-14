@@ -54,7 +54,6 @@ function App() {
 
     return (
         <BrowserRouter>
-
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
@@ -112,7 +111,6 @@ function App() {
                     <Route exact path='/contacts' component={ContactsContainer}/>
                     <Route exact path='/orders' component={OrdersContainer}/>
 
-                    {/*<Redirect to='/'/>*/}
                 </div>
             </div>
         </BrowserRouter>

@@ -237,7 +237,7 @@ export const updateDeliverySettings = (settings) => async (dispatch) => {
 };
 
 export const deleteDeliverySettings = (id) => async (dispatch) => {
-    let response = await deliverySettingsAPI.deleteSettings(id);
+    await deliverySettingsAPI.deleteSettings(id);
     dispatch(deleteDeliverySettingsAC(id))
 };
 

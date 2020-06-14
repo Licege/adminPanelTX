@@ -44,7 +44,7 @@ const createVacancyAC = (vacancy) => ({type: CREATE_VACANCY, vacancy});
 const getVacanciesAC = (vacancies) => ({type: GET_VACANCIES, vacancies});
 const getVacancyById = (vacancy) => ({type: GET_VACANCY_BY_ID, vacancy});
 const updateVacancyAC = (vacancy) => ({type: UPDATE_VACANCY, vacancy});
-const closeVacancyAC = (id) => ({type: CLOSE_VACANCY, id});
+// const closeVacancyAC = (id) => ({type: CLOSE_VACANCY, id});
 const deleteVacancyAC = (id) => ({type: DELETE_VACANCY, id});
 const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 

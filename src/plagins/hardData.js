@@ -22,3 +22,11 @@ export const deliveryHD = {
         'cashless_payment_online': 'Безналичный расчет online'
     }
 }
+
+export const reviewHD = {
+    status: {
+        '0': 'Необработан',
+        '1': 'Одобрен',
+        '2': 'Отклонен'
+    }
+}

@@ -3,7 +3,7 @@ import { reduxForm } from "redux-form";
 import {createField, Input} from "../common/FormsControls";
 import Button from "react-bootstrap/Button";
 
-const Contact = ( {contacts, handleSubmit, cancel} ) => {
+const Contact = ( {contacts, handleSubmit, cancel, openHours, handlerInputField} ) => {
     return (
         contacts && <div>
             <div className='page-header'>
@@ -46,6 +46,11 @@ const Contact = ( {contacts, handleSubmit, cancel} ) => {
 
                             <div>
                                 {createField("Twitter", "tw", [], Input)}
+                            </div>
+
+                            <div>
+                                <div>Часы работы (укажите часы работы в формате ПН-ПТ: 12:00 - 01:00)</div>
+                                {openHours.map((item, key) => <input value={item} onChange={handlerInputField(key)} key={key} />)}
                             </div>
 
                             <Button variant='primary' type='submit'>Изменить</Button>

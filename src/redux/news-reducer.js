@@ -63,7 +63,7 @@ export const updateNews = (news, id) => async (dispatch) => {
 };
 
 export const deleteNews = (id) => async (dispatch) => {
-    let response = await newsAPI.deleteNews(id);
+    await newsAPI.deleteNews(id);
     dispatch(deleteNewsAC(id))
 };
 

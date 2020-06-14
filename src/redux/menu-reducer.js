@@ -99,7 +99,7 @@ export const updateDish = (dish, id) => async (dispatch) => {
 }
 
 export const deleteDish = (id) => async (dispatch) => {
-    let response = await menuAPI.deleteDish(id)
+    await menuAPI.deleteDish(id)
     dispatch(deleteDishAC(id))
 }
 
@@ -124,7 +124,7 @@ export const updateCategory = (category) => async (dispatch) => {
 }
 
 export const deleteCategory = (id) => async (dispatch) => {
-    let response = await menuAPI.deleteCategory(id)
+    await menuAPI.deleteCategory(id)
     dispatch(deleteCategoryAC(id))
 }
 

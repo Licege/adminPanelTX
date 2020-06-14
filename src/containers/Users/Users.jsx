@@ -23,11 +23,16 @@ class UsersContainer extends React.Component {
     };
 
     filterApply = () => {
+        let data = this.state.filter
         fieldFilter.forEach(field => {
             if (document.getElementById(field).value) {
-                this.state.filter[field] = document.getElementById(field).value
+                data[field] = document.getElementById(field).value
+                this.setState({filter: data})
+                // this.state.filter[field] = document.getElementById(field).value
             } else if (!document.getElementById(field).value && this.state.filter[field]) {
-                delete (this.state.filter[field])
+                delete (data[field])
+                this.setState(data)
+                // delete (this.state.filter[field])
             }
         })
 
@@ -37,7 +42,7 @@ class UsersContainer extends React.Component {
 
     clearFilter = () => {
         fieldFilter.forEach(field => document.getElementById(field).value = '')
-        this.state.filter = {}
+        this.setState({filter: {}})
         this.props.setPage(1)
         this.props.getUsers(1, {})
     }

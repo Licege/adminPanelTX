@@ -329,14 +329,8 @@ export const reviewsAPI = {
                 return response
             })
     },
-    postAnswer(answer) {
-        return apiAdminRequest.post(`/reviews/`, answer)
-            .then(response => {
-                return response
-            })
-    },
-    updateReview(id) {
-        return apiAdminRequest.post(`/reviews/${id}`)
+    updateReview(review) {
+        return apiAdminRequest.post(`/reviews/${review._id}`, review)
             .then(response => {
                 return response
             })
