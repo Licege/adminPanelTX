@@ -426,3 +426,26 @@ export const deliveryGlobalSettingsAPI = {
             })
     }
 };
+
+export const banquetHallsAPI = {
+    getHalls() {
+        return apiAdminRequest.get(baseUrl + `/banquet-hall/`)
+            .then(response => response)
+    },
+    getHall(id) {
+        return apiAdminRequest.get(baseUrl + `/banquet-hall/${id}`)
+            .then(response => response)
+    },
+    createHall(hall) {
+        return apiAdminRequest.get(baseUrl + `/banquet-hall/`, hall)
+            .then(response => response)
+    },
+    updateHall(hall) {
+        return apiAdminRequest.patch(`/banquet-hall/${hall._id}`, hall)
+            .then(response => response)
+    },
+    deleteHall(id) {
+        return apiAdminRequest.delete(`/banquet-hall/${id}`)
+            .then(response => response)
+    }
+}

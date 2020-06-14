@@ -25,6 +25,9 @@ const Navbar = () => {
                 </Accordion.Collapse>
                 */}
                 <Accordion.Collapse eventKey="0">
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/halls'>Банкетные залы</NavLink>
+                </Accordion.Collapse>
+                <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
                              to='/employees'>Сотрудники</NavLink>
                 </Accordion.Collapse>

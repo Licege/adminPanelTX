@@ -36,6 +36,7 @@ import CategoriesContainer from "./containers/Categories/CategoriesContainer";
 import CreateCategory from "./containers/Categories/CreateCategory";
 import EditCategory from "./containers/Categories/EditCategory";
 import ReviewsContainer from "./containers/Reviews/Reviews"
+import HallsContainer from "./containers/Halls/HallsContainer";
 
 function App() {
     let token = useSelector(state => state.auth.accessToken)
@@ -106,6 +107,9 @@ function App() {
 
                     {/*Отзывы*/}
                     <Route exact path='/reviews' component={ReviewsContainer} />
+
+                    {/*Банкетный зал*/}
+                    <Route exact path='/halls' component={HallsContainer} />
 
                     <Route exact path='/messages' component={MessagesContainer}/>
                     <Route exact path='/contacts' component={ContactsContainer}/>

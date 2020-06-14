@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Banquet = () => (
+const Halls = ({halls}) => (
     <div>
         12
     </div>
 )
 
-export default Banquet;
+export default Halls;

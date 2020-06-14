@@ -15,6 +15,7 @@ import messageReducer from "./message-reducer";
 import toggleReducer from "./toogle-reducer";
 import deliveryReducer from "./delivery-reducer";
 import adminReducer from "./admin-reducer";
+import hallReducer from "./hall-reducer";
 
 let rootReducer = combineReducers({
     auth: authReducer,
@@ -31,6 +32,7 @@ let rootReducer = combineReducers({
     messagesPage: messageReducer,
     toggleComponent: toggleReducer,
     deliveryPage: deliveryReducer,
+    hallPage: hallReducer,
     form: formReducer,
 });
 
