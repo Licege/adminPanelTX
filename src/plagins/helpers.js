@@ -58,12 +58,28 @@ export function tsToDate (timestamp, type) {
 // }
 
 export function cropText(text, limit = 100) {
-    if (text.length > limit) {
-        text = text.slice(0, limit) + '...'
-    }
-    return text
+    return text.length > limit ? text.slice(0, limit) + '...' : text
 }
 
 export function fullLink(link) {
     return serverUrl + link.replace('\\', '/')
 }
+
+// export function checkStatus(type, data, status, params = null) {
+//     switch (status) {
+//         case 200:
+//         case 201:
+//             return { type: type + '_SUCCESS', data, ...params }
+//         case 400:
+//             return { type: '_BAD_REQUEST', data, ...params }
+//         case 401:
+//             return { type: 'LOGOUT' }
+//         case 404:
+//             return { type: type + '_NOT_FOUND', data, ...params }
+//         case 422:
+//             return { type: type + '_VALIDATION_ERROR', data, ...params }
+//         default:
+//             return { type: type + '_ERROR', data, ...params }
+//     }
+// }
+

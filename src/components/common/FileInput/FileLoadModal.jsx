@@ -43,7 +43,6 @@ export const FileLoadModal = (props) => {
         onLoad,
         onRemove,
         showImage,
-        hideImage,
         showPDF,
         files,
         loadEnable,

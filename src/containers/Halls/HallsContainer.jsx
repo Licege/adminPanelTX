@@ -2,10 +2,19 @@ import React from 'react'
 import {connect} from "react-redux";
 import Halls from "../../components/Halls/Halls";
 import {createHall, deleteHall, getHall, getHalls, updateHall} from "../../redux/hall-reducer";
+import {uploadFile} from "../../redux/file-reducer";
 
 class HallsContainer extends React.Component {
     componentDidMount() {
         if (!Object.keys(this.props.halls).length) this.props.getHalls()
+    }
+
+    onLoad = (files) => {
+
+    }
+
+    handlerFile = (files) => {
+        this.props.uploadFiles(files)
     }
 
     render() {
@@ -18,7 +27,8 @@ class HallsContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         halls: state.hallPage.halls,
-        currentHall: state.hallPage.hall
+        currentHall: state.hallPage.hall,
+        buffer: state.file.buffer
     }
 }
 
@@ -38,6 +48,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteHall: (id) => {
             dispatch(deleteHall(id))
+        },
+        uploadFiles: (files) => {
+            dispatch(uploadFile())
         }
     }
 }

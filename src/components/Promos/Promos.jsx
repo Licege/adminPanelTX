@@ -11,9 +11,8 @@ const Promos = ({promos, newPromo}) => {
                 </div>
             </div>
             <div className='page-container'>
-                Тут акции
                 <div>
-                    <div>{'<p>пап</p>'}</div>
+                    {promos.length && <div dangerouslySetInnerHTML={{__html: promos[0].description}} />}
                 </div>
             </div>
         </div>

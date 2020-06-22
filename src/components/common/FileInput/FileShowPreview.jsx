@@ -1,11 +1,12 @@
 import React from 'react'
 import Slider from "../Slider";
+import Panel from "./Panel";
 
 const formSlidesAndPreviews = (files) => {
     let slides = [],
         previews = []
 
-    files.map((item, key) => {
+    files.forEach((item, key) => {
         slides.push(<img key={key} className='ImageSlider-Body-Img' src={item.file || item.preview} alt='' />)
         previews.push(<img key={key} className='ImageSlider-Body-Img' src={item.file || item.preview} alt='' />)
     })

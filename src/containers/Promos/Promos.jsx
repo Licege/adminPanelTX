@@ -5,7 +5,7 @@ import {requestPromos} from "../../redux/promos-reducer";
 
 class PromosContainer extends React.Component {
     componentDidMount() {
-        if (!this.props.promos) this.props.getPromos()
+        if (!this.props.promos.length) this.props.getPromos()
     }
 
     newPromo = () => {

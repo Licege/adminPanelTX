@@ -11,12 +11,14 @@ class ContactsContainer extends React.Component {
     }
 
     componentDidMount() {
-        if (!Object.keys(this.props.contacts).length) this.props.getContacts();
+        if (!Object.keys(this.props.contacts).length) this.props.getContacts()
+        else this.setState({openHours: [...this.props.contacts.openHours, '']})
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (!Object.keys(prevProps.contacts).length && Object.keys(this.props.contacts).length) {
             this.setState({openHours: [...this.props.contacts.openHours, '']})
+            console.log('re');
         }
     }
 
@@ -33,13 +35,8 @@ class ContactsContainer extends React.Component {
             data[idx] = e.target.value
             this.setState({openHours: data})
             let lastIdx = this.state.openHours.length - 1
-            if (idx !== lastIdx && data[idx] === '') {
-                data.splice(idx, 1)
-                console.log(data);
-                this.setState({openHours: ['ПРОБЛЕМА ТУТ']}, () => {
-                    console.log(this.state.openHours)
-                    console.log(data)
-                })
+            if ( data[idx] === '') {
+                this.setState({openHours: [...data.slice(0, data.length - 1)]})
             }
             if (data[lastIdx] !== '') this.setState({openHours: [...data, '']})
         }

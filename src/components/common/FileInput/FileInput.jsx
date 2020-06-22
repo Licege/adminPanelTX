@@ -87,7 +87,7 @@ export default class FileLoadPreview extends React.Component {
 
         for (let i = 0; i < acceptedFiles.length; i++) {
             if (this.props.maxCount && files.length >= this.props.maxCount) {
-                error.push('Максимально разрешенное количество файлов: ' + this.props.maxCount)
+                errors.push('Максимально разрешенное количество файлов: ' + this.props.maxCount)
                 break
             } else {
                 forLoad.push(acceptedFiles[i])
@@ -97,7 +97,7 @@ export default class FileLoadPreview extends React.Component {
         let max = this.props.maxSize || 1024 * 1024,
             min = this.props.minSize || 1024
 
-        rejectedFiles.map(file => {
+        rejectedFiles.forEach(file => {
             if (file.size > max) {
                 errors.push(`Размер файла ${file.name} превышает ${max / (1024 * 1024)} МБ, выберите другой файл`)
             } else if (file.size < min) {
@@ -143,15 +143,11 @@ export default class FileLoadPreview extends React.Component {
             className,
             titleClassName,
             title,
-            fullTitle,
             maxCount,
             maxSize,
             minSize,
-            files,
             accept,
-            disableLoading,
             hideTitle = false,
-            error,
             disabled = false,
             tip
         } = this.props

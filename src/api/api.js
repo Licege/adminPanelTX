@@ -186,19 +186,19 @@ export const promoAPI = {
             })
     },
     getPromo(id) {
-        return apiAdminRequest.get(baseUrl + `/promo/${id}`)
+        return apiAdminRequest.get(baseUrl + `/promos/${id}`)
             .then(response => {
                 return response
             })
     },
     postPromo(promo) {
-        return apiAdminRequest.post(baseUrl + `/promo/`, promo)
+        return apiAdminRequest.post(baseUrl + `/promos/`, promo)
             .then(response => {
                 return response
             })
     },
     updatePromo(promo, id) {
-        return apiAdminRequest.patch(baseUrl + `/promo/${id}`, promo)
+        return apiAdminRequest.patch(baseUrl + `/promos/${id}`, promo)
             .then(response => {
                 return response
             })
@@ -446,6 +446,13 @@ export const banquetHallsAPI = {
     },
     deleteHall(id) {
         return apiAdminRequest.delete(`/banquet-hall/${id}`)
+            .then(response => response)
+    }
+}
+
+export const fileAPI = {
+    uploadFile(file) {
+        return apiAdminRequest.post(`/file/`, file)
             .then(response => response)
     }
 }

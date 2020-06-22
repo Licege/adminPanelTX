@@ -22,7 +22,7 @@ class EditDishContainer extends React.Component{
     onSubmit = (dish) => {
         let formData = new FormData();
         for (let key in dish) {
-            formData.append(key, dish[key])
+            if (dish.hasOwnProperty(key)) formData.append(key, dish[key])
         }
         this.state.file && formData.append('image', this.state.file)
         this.props.updateDish(formData, dish._id)
@@ -43,7 +43,7 @@ class EditDishContainer extends React.Component{
                          dish={this.props.dish}
                          categories={this.props.categories}
                          cancel={this.cancel}
-                         postFile={this.uploadFile} />
+                         uploadFile={this.uploadFile} />
     }
 }
 

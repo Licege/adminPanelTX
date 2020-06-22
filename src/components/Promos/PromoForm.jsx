@@ -3,7 +3,7 @@ import {Field, reduxForm} from "redux-form";
 import EditorFieldComponent from "../common/element/editor/EditorFieldComponent";
 import Button from "react-bootstrap/Button";
 
-const PromoForm = ({handleSubmit, goBack}) => {
+const PromoForm = ({handleSubmit, uploadFile, goBack}) => {
     return (
         <div>
             <div className='page-header'>
@@ -27,6 +27,17 @@ const PromoForm = ({handleSubmit, goBack}) => {
                 </div>
                 <div className='promos-form-wysivyg'>
                     <Field name='description' component={EditorFieldComponent} />
+                </div>
+                <div>
+                    <label htmlFor='isShow'>Показывать акцию</label>
+                    <Field name='show'
+                           id='isShow'
+                           component='input'
+                           type='checkbox'
+                           className="filter-main-input -name form-control" />
+                </div>
+                <div>
+                    <input type='file' onChange={uploadFile} />
                 </div>
                 <div>
                     <Button variant='primary' type='submit'>Сохранить</Button>

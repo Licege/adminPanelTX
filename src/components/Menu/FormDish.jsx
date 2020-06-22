@@ -4,7 +4,7 @@ import {Field, reduxForm} from "redux-form";
 import ImageInput from "../common/imageInput";
 import Button from "react-bootstrap/Button";
 
-const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
+const FormDish = ({handleSubmit, categories, dish, cancel, uploadFile} ) => {
     return (
         <div>
             <div className='page-header'>
@@ -49,7 +49,7 @@ const FormDish = ({handleSubmit, categories, dish, cancel, postFile} ) => {
                                        className="filter-main-input -name form-control" />
                             </div>
                             <div>
-                                <input type='file' onChange={postFile} />
+                                <input type='file' onChange={uploadFile} />
                             </div>
                             <Button variant='primary' type='submit'>Сохранить</Button>
                             <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>

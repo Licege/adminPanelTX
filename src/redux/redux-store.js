@@ -16,6 +16,7 @@ import toggleReducer from "./toogle-reducer";
 import deliveryReducer from "./delivery-reducer";
 import adminReducer from "./admin-reducer";
 import hallReducer from "./hall-reducer";
+import fileReducer from "./file-reducer";
 
 let rootReducer = combineReducers({
     auth: authReducer,
@@ -33,6 +34,7 @@ let rootReducer = combineReducers({
     toggleComponent: toggleReducer,
     deliveryPage: deliveryReducer,
     hallPage: hallReducer,
+    file: fileReducer,
     form: formReducer,
 });
 

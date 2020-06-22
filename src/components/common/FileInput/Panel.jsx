@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class Panel extends React.Component {
+class Panel extends React.Component {
     render() {
         let {
             id,
@@ -22,3 +22,5 @@ export class Panel extends React.Component {
         );
     }
 }
+
+export default Panel

@@ -39,7 +39,7 @@ class CreateDishContainer extends React.Component {
         return <FormDish onSubmit={this.createDish}
                          categories={this.props.categories}
                          cancel={this.cancel}
-                         postFile={this.uploadFile}
+                         uploadFile={this.uploadFile}
                          initialValues={{is_delivery: true}} />
     }
 }

@@ -90,7 +90,7 @@ export const requestDishesByCategory = (category) => async (dispatch) => {
 
 export const requestDish = (id) => async (dispatch) => {
     let response = await menuAPI.getDish(id)
-    dispatch(getDishByIdAC(response.data[0]))
+    dispatch(getDishByIdAC(response.data))
 }
 
 export const updateDish = (dish, id) => async (dispatch) => {
