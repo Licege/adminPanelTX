@@ -16,7 +16,7 @@ const promosReducer = (state = initialState, action) => {
         case GET_PROMOS:
             return {...state, promos: action.promos};
         case GET_PROMO:
-            return {...state, currentPromo: action.currentPromo};
+            return {...state, currentPromo: action.promo};
         case POST_PROMO:
             return {...state, promos: [...state.promos, action.promo]};
         case UPDATE_PROMO:

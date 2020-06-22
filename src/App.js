@@ -37,6 +37,7 @@ import CreateCategory from "./containers/Categories/CreateCategory";
 import EditCategory from "./containers/Categories/EditCategory";
 import ReviewsContainer from "./containers/Reviews/Reviews"
 import HallsContainer from "./containers/Halls/HallsContainer";
+import PromosEdit from "./containers/Promos/PromosEdit";
 
 function App() {
     let token = useSelector(state => state.auth.accessToken)
@@ -104,6 +105,7 @@ function App() {
                     {/*Акции*/}
                     <Route exact path='/promos' component={ContainerPromos}/>
                     <Route exact path='/promos/new' component={PromosNewContainer}/>
+                    <Route exact path='/promos/edit/:id' component={PromosEdit} />
 
                     {/*Отзывы*/}
                     <Route exact path='/reviews' component={ReviewsContainer} />

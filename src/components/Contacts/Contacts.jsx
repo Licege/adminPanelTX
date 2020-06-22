@@ -4,7 +4,6 @@ import {createField, Input} from "../common/FormsControls";
 import Button from "react-bootstrap/Button";
 
 const Contact = ( {contacts, handleSubmit, cancel, openHours, handlerInputField} ) => {
-    console.log(openHours);
     return (
         contacts && <div>
             <div className='page-header'>
