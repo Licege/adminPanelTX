@@ -2,7 +2,9 @@ import React from 'react'
 
 const DisapprovedReviews = ({reviews}) => (
     <div>
-        2131
+        {reviews.map(review => (
+            <div>{review.description}</div>
+        ))}
     </div>
 )
 

@@ -49,8 +49,12 @@ const Contact = ( {contacts, handleSubmit, cancel, openHours, handlerInputField}
                             </div>
 
                             <div>
-                                <div>Часы работы (укажите часы работы в формате ПН-ПТ: 12:00 - 01:00)</div>
-                                {openHours.map((item, key) => <input value={item} onChange={handlerInputField(key)} key={key} />)}
+                                <div className='mb-3'>Часы работы (укажите часы работы в формате ПН-ПТ: 12:00 - 01:00)</div>
+                                {openHours.map((item, key) => <input value={item}
+                                                                     onChange={handlerInputField(key)}
+                                                                     key={key}
+                                                                     placeholder={!item ? 'Добавьте часы работы' : ''}
+                                                                     className='filter-main-input -name form-control' />)}
                             </div>
 
                             <Button variant='primary' type='submit'>Изменить</Button>

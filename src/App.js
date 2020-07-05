@@ -38,6 +38,8 @@ import EditCategory from "./containers/Categories/EditCategory";
 import ReviewsContainer from "./containers/Reviews/Reviews"
 import HallsContainer from "./containers/Halls/HallsContainer";
 import PromosEdit from "./containers/Promos/PromosEdit";
+import AverageChecksContainer from "./containers/Statistics/AverageChecksContainer";
+import LeftoversContainer from "./containers/Storage/LeftoversContainer";
 
 function App() {
     let token = useSelector(state => state.auth.accessToken)
@@ -112,6 +114,12 @@ function App() {
 
                     {/*Банкетный зал*/}
                     <Route exact path='/halls' component={HallsContainer} />
+
+                    {/*Склад*/}
+                    <Route exact path='/leftovers' component={LeftoversContainer} />
+
+                    {/*Статистика и отчеты*/}
+                    <Route exact path='/average_check' component={AverageChecksContainer}/>
 
                     <Route exact path='/messages' component={MessagesContainer}/>
                     <Route exact path='/contacts' component={ContactsContainer}/>

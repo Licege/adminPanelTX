@@ -34,11 +34,9 @@ class DeliveryContainer extends React.Component{
             if (document.getElementById(field).value) {
                 data[field] = document.getElementById(field).value
                 this.setState({filter: data})
-                // this.state.filter[field] = document.getElementById(field).value
             } else if (!document.getElementById(field).value && this.state.filter[field]) {
                 delete (data[field])
                 this.setState(data)
-                // delete (this.state.filter[field])
             }
         })
 

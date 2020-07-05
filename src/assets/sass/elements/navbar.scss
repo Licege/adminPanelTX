@@ -39,6 +39,11 @@
         &.-active {
           border-left-color: $brown;
         }
+
+        &:hover {
+          transition: .4s;
+          color: $primary;
+        }
       }
       &-arrow {
         width: 25px;

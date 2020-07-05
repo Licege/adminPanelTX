@@ -17,6 +17,7 @@ import deliveryReducer from "./delivery-reducer";
 import adminReducer from "./admin-reducer";
 import hallReducer from "./hall-reducer";
 import fileReducer from "./file-reducer";
+import averageChecksReducer from "./Statistics/average-checks-reducer";
 
 let rootReducer = combineReducers({
     auth: authReducer,
@@ -35,6 +36,7 @@ let rootReducer = combineReducers({
     deliveryPage: deliveryReducer,
     hallPage: hallReducer,
     file: fileReducer,
+    avgChecksPage: averageChecksReducer,
     form: formReducer,
 });
 

@@ -31,8 +31,8 @@ const DeliveryTable = ({orders, detail, totalCount, page, onChangePage}) => {
                     <td onClick={detail(order._id)}>{deliveryHD.deliveryType[order.delivery_type]}</td>
                     <td onClick={detail(order._id)}>{order.time_delivery ?  tsToDate(order.time_delivery, 'hh:mm dd:MM:YYYY') : 'Не указано'}</td>
                     <td onClick={detail(order._id)}>{deliveryHD.paymentType[order.payment_type]}</td>
-                    <td onClick={detail(order._id)}>{deliveryHD.status[order.payment_status]}</td>
-                    <td onClick={detail(order._id)}>{deliveryHD.paymentStatuses[order.status]}</td>
+                    <td onClick={detail(order._id)}>{deliveryHD.status[order.status]}</td>
+                    <td onClick={detail(order._id)}>{deliveryHD.paymentStatuses[order.payment_status]}</td>
                 </tr>)) : null
             }
             </tbody>

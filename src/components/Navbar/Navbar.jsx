@@ -78,20 +78,32 @@ const Navbar = () => {
                 </Accordion.Collapse>
 
                 <CustomToggle className='navbar-accordion-header' eventKey='4'>
+                    Склад
+                </CustomToggle>
+                <Accordion.Collapse eventKey='4'>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/leftovers'>Остатки</NavLink>
+                </Accordion.Collapse>
+
+                <CustomToggle className='navbar-accordion-header' eventKey='5'>
                     Администраторы
                 </CustomToggle>
-                <Accordion.Collapse eventKey="4">
+                <Accordion.Collapse eventKey="5">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
                              to='/admin'>Администраторы</NavLink>
                 </Accordion.Collapse>
-                <Accordion.Collapse eventKey="4">
+                <Accordion.Collapse eventKey="5">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/access-templates'>Шаблоны
                         доступа</NavLink>
                 </Accordion.Collapse>
 
-                <CustomToggle className='navbar-accordion-header' eventKey='5'>
+                <CustomToggle className='navbar-accordion-header' eventKey='6'>
                     Статистика и отчеты
                 </CustomToggle>
+                <Accordion.Collapse eventKey='6'>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/average_check'>Средний чек</NavLink>
+                </Accordion.Collapse>
             </Accordion>
         </nav>
     )

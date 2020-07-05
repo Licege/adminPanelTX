@@ -456,3 +456,10 @@ export const fileAPI = {
             .then(response => response)
     }
 }
+
+export const averageChecksAPI = {
+    getAverageChecks(filter) {
+        return apiAdminRequest.get(`/statistics/average-checks/`, {params: filter})
+            .then(response => response)
+    }
+}
