@@ -1,14 +1,9 @@
 import React from 'react'
-import {Rating} from "../../common/element/Rating";
+import {CardReview} from "../../common/element/CardReview";
 
-const ApprovedReviews = ({reviews}) => (
+const ApprovedReviews = ({reviews, onDisapprove}) => (
     <div>
-        {reviews.map(review => (
-            <div>
-                <div>{review.description}</div>
-                <Rating value={review.rating} size={20} disabled={true} />
-            </div>
-        ))}
+        {reviews.map((review, key) => <CardReview review={review} onDisapprove={onDisapprove} key={key} />)}
     </div>
 )
 

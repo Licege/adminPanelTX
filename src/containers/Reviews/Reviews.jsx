@@ -8,10 +8,25 @@ class ReviewsContainer extends React.PureComponent {
         if (!this.props.reviews.length) this.props.getReviews()
     }
 
+    onApprove = (review) => {
+        return () => {
+            this.props.changeStatus({...review, status: 1})
+        }
+    }
+
+    onDisapprove = (review) => {
+        return () => {
+            this.props.changeStatus({...review, status: 2})
+        }
+    }
+
     render() {
         return <Reviews waitingReviews={this.props.waitingReviews}
                         approvedReviews={this.props.approvedReviews}
-                        disapprovedReviews={this.props.disapprovedReviews} />
+                        disapprovedReviews={this.props.disapprovedReviews}
+                        onApprove={this.onApprove}
+                        onDisapprove={this.onDisapprove}
+        />
     }
 }
 

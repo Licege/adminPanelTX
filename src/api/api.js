@@ -330,7 +330,7 @@ export const reviewsAPI = {
             })
     },
     updateReview(review) {
-        return apiAdminRequest.post(`/reviews/${review._id}`, review)
+        return apiAdminRequest.patch(`/reviews/${review._id}`, review)
             .then(response => {
                 return response
             })

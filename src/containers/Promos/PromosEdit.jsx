@@ -7,13 +7,16 @@ class PromosEdit extends React.Component {
     componentDidMount() {
         let id = this.props.match.params.id
         this.props.getPromo(id)
-        document.title = 'Редактирование акции'
+    }
+
+    goBack = () => {
+        this.props.history.push('/promos')
     }
 
     render() {
         let {promo, updatePromo} = this.props
 
-        return <Promo promo={promo} updatePromo={updatePromo} />
+        return <Promo promo={promo} updatePromo={updatePromo} goBack={this.goBack} />
     }
 }
 

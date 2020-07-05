@@ -5,7 +5,7 @@ import WaitingReviews from "./Tabs/WaitingReviews";
 import DisapprovedReviews from "./Tabs/DisaprrovedReviews";
 import {Page} from "../common/Page";
 
-const Reviews = ({waitingReviews, approvedReviews, disapprovedReviews}) => {
+const Reviews = ({waitingReviews, approvedReviews, disapprovedReviews, onApprove, onDisapprove}) => {
     return (
         <Page title='Отзывы'>
             <TabContainer id='page-reviews-tab' defaultActiveKey='approved'>
@@ -22,13 +22,13 @@ const Reviews = ({waitingReviews, approvedReviews, disapprovedReviews}) => {
                 </Nav>
                 <Tab.Content>
                     <Tab.Pane eventKey='waiting'>
-                        <WaitingReviews reviews={waitingReviews}/>
+                        <WaitingReviews reviews={waitingReviews} onApprove={onApprove} onDisapprove={onDisapprove} />
                     </Tab.Pane>
                     <Tab.Pane eventKey='approved'>
-                        <ApprovedReviews reviews={approvedReviews}/>
+                        <ApprovedReviews reviews={approvedReviews} onDisapprove={onDisapprove} />
                     </Tab.Pane>
                     <Tab.Pane eventKey='disapproved'>
-                        <DisapprovedReviews reviews={disapprovedReviews}/>
+                        <DisapprovedReviews reviews={disapprovedReviews} onApprove={onApprove} />
                     </Tab.Pane>
                 </Tab.Content>
             </TabContainer>

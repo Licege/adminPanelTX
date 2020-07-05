@@ -21,7 +21,7 @@ export const Promo = ({promo, goBack}) => {
                         <div className='promo-title'>{promo.title}</div>
                         <div className='promo-description' dangerouslySetInnerHTML={{__html: promo.description}}/>
                         <div>
-                            <Button variant='outlined' onClick={goBack}>Все акции</Button>
+                            <Button variant='secondary' onClick={goBack}>Все акции</Button>
                         </div>
                     </div>
                 </div>

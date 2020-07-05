@@ -2,8 +2,7 @@ import {reviewsAPI} from "../api/api"
 
 const GET_REVIEWS = "REVIEWS/GET_REVIEWS"
 const GET_REVIEW_BY_ID = "REVIEWS/GET_REVIEW_BY_ID"
-const APPROVE_REVIEW = "REVIEWS/APPROVE_REVIEW"
-const DISAPPROVE_REVIEW = "REVIEWS/DISAPPROVE_REVIEW"
+const CHANGE_REVIEW_STATUS = "REVIEW/CHANGE_REVIEW_STATUS"
 const POST_ANSWER = "REVIEWS/POST_ANSWER"
 const DELETE_ANSWER = "REVIEWS/DELETE_ANSWER"
 
@@ -19,10 +18,8 @@ const reviewsReducer = (state = initialState, action) => {
             return { ...state, reviews: action.reviews }
         case GET_REVIEW_BY_ID:
             return { ...state, currentReview: action.review }
-        case APPROVE_REVIEW:
-            return { ...state, reviews: state.reviews.map(review => review._id === action.id ? {...review, status: 1 } : review) }
-        case DISAPPROVE_REVIEW:
-            return
+        case CHANGE_REVIEW_STATUS:
+            return { ...state, reviews: state.reviews.map(review => review._id === action.review._id ? action.review : review) }
         case POST_ANSWER:
             return
         case DELETE_ANSWER:
@@ -34,7 +31,7 @@ const reviewsReducer = (state = initialState, action) => {
 
 const getReviewsAC = (reviews) => ({type: GET_REVIEWS, reviews})
 const getReviewByIdAC = (review) => ({type: GET_REVIEW_BY_ID, review})
-const approveReviewAC = (review) => ({type: APPROVE_REVIEW, review})
+const changeReviewStatusAC = (review) => ({type: CHANGE_REVIEW_STATUS, review})
 
 export const requestReviews = () => async (dispatch) => {
     let response = await reviewsAPI.getReviews()
@@ -48,7 +45,7 @@ export const requestReview = (id) => async (dispatch) => {
 
 export const changeReviewStatus = (review) => async (dispatch) => {
     let response = await reviewsAPI.updateReview(review)
-    dispatch(approveReviewAC(response.data))
+    dispatch(changeReviewStatusAC(response.data))
 }
 
 export default reviewsReducer
