@@ -1,9 +1,19 @@
 import React from 'react'
-import {connect} from "react-redux"
-import Menu from "../../components/Menu/Menu"
-import {deleteDish, requestCategories, requestDishes} from "../../redux/menu-reducer"
+import {connect} from 'react-redux'
+import Menu from '../../components/Menu/Menu'
+import {deleteDish, requestCategories, requestDishes} from '../../redux/menu-reducer'
+import DeleteModal from '../../components/common/modal/DeleteModal';
 
 class MenuContainer extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            currentDish: null,
+            isOpenDelModal: false,
+        }
+    }
+
     componentDidMount() {
         if (!this.props.dishes.length) this.props.getDishes();
         if (!this.props.categories.length) this.props.getCategories();
@@ -19,14 +29,23 @@ class MenuContainer extends React.Component {
         }
     }
 
-    deleteDish = (id) => {
+    openDelModal = (currentDish) => {
         return () => {
-            this.props.deleteDish(id)
+            this.setState({isOpenDelModal: true, currentDish})
         }
     }
 
+    closeDelModal = () => {
+        this.setState({isOpenDelModal: false, currentDish: null})
+    }
+
+    deleteDish = () => {
+        this.props.deleteDish(this.state.currentDish._id)
+        this.closeDelModal()
+    }
+
     savePhoto = (file) => {
-        console.log("Сделать санку для пдф", file)
+        console.log('Сделать санку для пдф', file)
     }
 
     onPhotoSelected = (e) => {
@@ -34,19 +53,32 @@ class MenuContainer extends React.Component {
     }
 
     render() {
-        return <Menu dishes={this.props.dishes}
-                     categories={this.props.categories}
-                     newDish={this.newDish}
-                     deleteDish={this.deleteDish}
-                     detail={this.detail}
-                     onPhotoSelected={this.onPhotoSelected} />
+        let {dishes, categories} = this.props
+        let {isOpenDelModal} = this.state
+
+        return (
+            dishes.length && categories.length
+                ? <>
+                    <Menu dishes={dishes}
+                          categories={categories}
+                          newDish={this.newDish}
+                          openDelModal={this.openDelModal}
+                          detail={this.detail}
+                          onPhotoSelected={this.onPhotoSelected}/>
+                    {this.state.currentDish
+                        ? <DeleteModal show={isOpenDelModal}
+                                       onClose={this.closeDelModal}
+                                       title={this.state.currentDish.title}
+                                       onRemove={this.deleteDish}/> : null}
+                </>
+                : null)
     }
 }
 
 let mapStateToProps = (state) => {
     return {
         dishes: state.menuPage.dishes,
-        categories: state.menuPage.categories
+        categories: state.menuPage.categories,
     }
 };
 
@@ -60,8 +92,8 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteDish: (id) => {
             dispatch(deleteDish(id))
-        }
+        },
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (MenuContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer);

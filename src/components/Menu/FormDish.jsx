@@ -4,7 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import ImageInput from '../common/imageInput';
 import Button from 'react-bootstrap/Button';
 
-const FormDish = ({handleSubmit, categories, dish, deleteDish, cancel, uploadFile}) => {
+const FormDish = ({handleSubmit, categories, dish, openDelModal, cancel, uploadFile}) => {
     return (
         <div>
             <div className={'page-header' + (dish ? ' -action' : '')}>
@@ -13,7 +13,7 @@ const FormDish = ({handleSubmit, categories, dish, deleteDish, cancel, uploadFil
                 </div>
                 {dish
                     ? <div className='page-header-action'>
-                        <Button variant='danger' onClick={deleteDish(dish._id)}>Удалить</Button>
+                        <Button variant='danger' onClick={openDelModal}>Удалить</Button>
                     </div>
                     : null}
             </div>

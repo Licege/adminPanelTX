@@ -1,13 +1,15 @@
 import React from 'react'
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {deleteDish, requestCategories, requestDish, updateDish} from '../../redux/menu-reducer';
-import FormDish from "../../components/Menu/FormDish";
+import FormDish from '../../components/Menu/FormDish';
+import DeleteModal from '../../components/common/modal/DeleteModal';
 
-class EditDishContainer extends React.Component{
+class EditDishContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            file: ''
+            file: '',
+            openDelModal: false,
         }
     }
 
@@ -29,11 +31,19 @@ class EditDishContainer extends React.Component{
         this.props.history.goBack();
     }
 
+    goToMenu = () => {
+        this.props.history.push('/menu')
+    }
+
     deleteDish = (id) => {
         return () => {
             this.props.deleteDish(id)
-            this.props.history.push('/menu')
+            this.goToMenu()
         }
+    }
+
+    toggleDelModal = () => {
+        this.setState( state => ({openDelModal: !state.openDelModal}) )
     }
 
     cancel = () => {
@@ -45,13 +55,25 @@ class EditDishContainer extends React.Component{
     }
 
     render() {
-        return <FormDish initialValues={this.props.dish}
-                         onSubmit={this.onSubmit}
-                         dish={this.props.dish}
-                         categories={this.props.categories}
-                         cancel={this.cancel}
-                         uploadFile={this.uploadFile}
-                         deleteDish={this.deleteDish} />
+        let {dish, categories} = this.props
+        let {openDelModal} = this.state
+
+        return (
+            dish ?
+            <>
+                <FormDish initialValues={dish}
+                          onSubmit={this.onSubmit}
+                          dish={dish}
+                          categories={categories}
+                          cancel={this.goToMenu}
+                          uploadFile={this.uploadFile}
+                          openDelModal={this.toggleDelModal} />
+                <DeleteModal show={openDelModal}
+                             title={dish.title}
+                             onRemove={this.deleteDish(dish._id)}
+                             onClose={this.toggleDelModal} />
+            </> : null
+        )
     }
 }
 

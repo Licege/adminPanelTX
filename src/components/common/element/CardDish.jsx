@@ -19,7 +19,7 @@ let CardDish = ({dish, categories, remove, detail}) => {
                 {dish.category_id && categories.length && <p>Категория: {getTitleById(categories, dish.category_id)}</p>}
                 <div className='card_vacancy-button'>
                     <button className='btn btn-primary mr-2' onClick={detail(dish._id)}>Изменить</button>
-                    <button className='btn btn-danger' onClick={remove(dish._id)}>Удалить</button>
+                    <button className='btn btn-danger' onClick={remove}>Удалить</button>
                 </div>
             </div>
         </div>

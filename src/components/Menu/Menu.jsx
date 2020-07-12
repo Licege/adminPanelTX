@@ -1,7 +1,7 @@
 import React from 'react';
 import CardDish from "../common/element/CardDish";
 
-const Menu = ({dishes, categories, newDish, deleteDish, detail, onPhotoSelected}) => {
+const Menu = ({dishes, categories, newDish, openDelModal, detail, onPhotoSelected}) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -27,7 +27,7 @@ const Menu = ({dishes, categories, newDish, deleteDish, detail, onPhotoSelected}
                         <CardDish dish={dish}
                                   key={key}
                                   categories={categories}
-                                  remove={deleteDish}
+                                  remove={openDelModal(dish)}
                                   detail={detail} /> )}
                     </div>
                 </div>

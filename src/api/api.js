@@ -241,6 +241,7 @@ export const menuAPI = {
             .then(response => {
                 return response
             })
+            .catch(e => console.log(e))
     },
     getCategories() {
         return apiAdminRequest.get(baseUrl + `/categories/`)
