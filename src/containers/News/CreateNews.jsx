@@ -21,8 +21,8 @@ class CreateNewsContainer extends React.Component{
         this.props.history.goBack();
     };
 
-    uploadFile = (event) => {
-        this.setState({file: event.target.files[0]})
+    uploadFile = (file) => {
+        this.setState({file})
     }
 
     cancel = () => {

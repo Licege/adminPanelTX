@@ -1,6 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import Button from "react-bootstrap/Button";
+import ImageInput from '../../common/imageInput';
 
 const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
     return (
@@ -57,7 +58,7 @@ const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
                             </div>
 
                             <div>
-                                <input name='image' type='file' onChange={uploadFile} />
+                                <ImageInput value={vacancy ? vacancy.imageSrc : ''} onChange={uploadFile} allowClear={true} />
                             </div>
 
                             <Button variant='primary' type='submit'>Сохранить</Button>

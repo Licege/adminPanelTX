@@ -1,6 +1,7 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import {Button} from "react-bootstrap";
+import ImageInput from '../common/imageInput';
 
 const NewsForm = ({handleSubmit, uploadFile, news, cancel}) => (
     <div>
@@ -32,7 +33,7 @@ const NewsForm = ({handleSubmit, uploadFile, news, cancel}) => (
                                    component='textarea'/>
                         </div>
                         <div>
-                            <input name='image' type='file' onChange={uploadFile}/>
+                            <ImageInput value={news ? news.imageSrc : ''} onChange={uploadFile} allowClear={true} />
                         </div>
                         <Button onClick={cancel} variant='outline-secondary'>Отменить</Button>
                         <Button type='submit' variant='primary'>Сохранить</Button>
