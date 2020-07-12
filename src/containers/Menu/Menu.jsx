@@ -1,7 +1,7 @@
 import React from 'react'
-import Menu from "../../components/Menu/Menu";
-import {deleteDish, requestCategories, requestDishes} from "../../redux/menu-reducer";
-import {connect} from "react-redux";
+import {connect} from "react-redux"
+import Menu from "../../components/Menu/Menu"
+import {deleteDish, requestCategories, requestDishes} from "../../redux/menu-reducer"
 
 class MenuContainer extends React.Component {
     componentDidMount() {
@@ -11,27 +11,27 @@ class MenuContainer extends React.Component {
 
     newDish = () => {
         this.props.history.push(`menu/new`)
-    };
+    }
 
     detail = (id) => {
         return () => {
             this.props.history.push(`menu/edit/${id}`)
         }
-    };
+    }
 
     deleteDish = (id) => {
         return () => {
             this.props.deleteDish(id)
         }
-    };
+    }
 
     savePhoto = (file) => {
         console.log("Сделать санку для пдф", file)
-    };
+    }
 
     onPhotoSelected = (e) => {
         if (e.target.files.length) this.savePhoto(e.target.files[0])
-    };
+    }
 
     render() {
         return <Menu dishes={this.props.dishes}

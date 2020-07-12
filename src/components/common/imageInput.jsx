@@ -1,15 +1,21 @@
 import React from 'react'
+import {fullLink} from '../../plagins/helpers';
 
 
 class ImageInput extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
         this.state = {
             error: !!props.error,
-            value: props.value,
+            value: props.value && fullLink(props.value),
             type: null,
             id: props.id | 'FileInput'+Math.round(1000000*Math.random())
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.value !== this.props.value) {
+            this.setState({value: this.props.value ? fullLink(this.props.value) : ''})
         }
     }
 
@@ -43,7 +49,7 @@ class ImageInput extends React.Component {
                     value: url,
                     type: file.type
                 }, () => {
-                    this.props.onChange && this.props.onChange(event)
+                    this.props.onChange && this.props.onChange(file)
                 })
             }
         } else {
@@ -75,7 +81,7 @@ class ImageInput extends React.Component {
             title
         } = this.props;
 
-        if(accept) {
+        if (accept) {
             options.accept += ( ',' + accept );
         }
 

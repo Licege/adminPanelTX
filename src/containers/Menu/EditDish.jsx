@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {requestCategories, requestDish, updateDish} from "../../redux/menu-reducer";
+import {deleteDish, requestCategories, requestDish, updateDish} from '../../redux/menu-reducer';
 import FormDish from "../../components/Menu/FormDish";
 
 class EditDishContainer extends React.Component{
@@ -29,12 +29,19 @@ class EditDishContainer extends React.Component{
         this.props.history.goBack();
     }
 
+    deleteDish = (id) => {
+        return () => {
+            this.props.deleteDish(id)
+            this.props.history.push('/menu')
+        }
+    }
+
     cancel = () => {
         this.props.history.goBack();
     }
 
-    uploadFile = (event) => {
-        this.setState({file: event.target.files[0]})
+    uploadFile = (file) => {
+        this.setState({file})
     }
 
     render() {
@@ -43,7 +50,8 @@ class EditDishContainer extends React.Component{
                          dish={this.props.dish}
                          categories={this.props.categories}
                          cancel={this.cancel}
-                         uploadFile={this.uploadFile} />
+                         uploadFile={this.uploadFile}
+                         deleteDish={this.deleteDish} />
     }
 }
 
@@ -64,6 +72,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         updateDish: (dish, id) => {
             dispatch(updateDish(dish, id))
+        },
+        deleteDish: (id) => {
+            dispatch(deleteDish(id))
         }
     }
 }
