@@ -1,4 +1,6 @@
 import React from 'react'
+import {Field, reduxForm} from 'redux-form';
+import {Table, Button} from 'react-bootstrap';
 import {deliveryHD} from '../../plagins/hardData';
 import PhoneIcon from '@material-ui/icons/PhoneAndroidRounded';
 import MailIcon from '@material-ui/icons/MailOutline';
@@ -18,11 +20,9 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import FoodIcon from '@material-ui/icons/Fastfood';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {Table} from "react-bootstrap";
-import {tsToDate} from "../../plagins/helpers";
-import Button from "react-bootstrap/Button";
-import {Field, reduxForm} from "redux-form";
-import MenuModal from "./MenuModal";
+import {fullLink, tsToDate} from '../../plagins/helpers';
+import MenuModal from './MenuModal';
+import altImg from '../../static/img/dish.svg'
 
 const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal, addDish, increaseDish, decreaseDish, removeDish, currentCategory}) => {
     return (
@@ -123,12 +123,13 @@ const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal,
                             {order.paymentType === 'cash' && order.odd_money !== 0 && <div className='delivery_info-detail-info-item'>
                                 Подготовить сдачу с: {order.odd_money}
                             </div>}
-
+                            {order.comment ? <div>Комментарий к заказу: {order.comment}</div> : null}
                         </div>
                         <div className='delivery_info-detail-table'>
                             <Table responsive>
                                 <thead className='table-thread'>
                                 <tr className='text-center'>
+                                    <th/>
                                     <th>Название</th>
                                     <th>Количество</th>
                                     <th>Цена за единицу</th>
@@ -139,6 +140,11 @@ const DeliveryInfo = ({order, handleSubmit, menu, categories, show, toggleModal,
                                 <tbody>
                                 {order.list.map(dish => (
                                     <tr key={dish._id}>
+                                        <td>
+                                            <img src={fullLink(menu.find(item => item._id === dish._id)?.imageSrc) || altImg}
+                                                 className='delivery_info-detail-table-img'
+                                                 alt='фото' />
+                                        </td>
                                         <td>{dish.title}</td>
                                         <td>
                                             <Button variant='outline-info' onClick={decreaseDish(dish._id)}>-</Button>

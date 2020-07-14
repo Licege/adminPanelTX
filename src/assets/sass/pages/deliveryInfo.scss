@@ -49,10 +49,18 @@
       max-height: 250px;
       overflow: scroll;
 
+      &-img {
+        width: 50px;
+        border-radius: 2px;
+      }
     }
 
     td, th {
       text-align: center;
+    }
+
+    td {
+      vertical-align: middle;
     }
   }
   &-item {
@@ -63,5 +71,14 @@
     max-height: 60vh;
     overflow-x: hidden;
     overflow-y: scroll;
+
+    &-img {
+      width: 60px;
+      border-radius: 2px;
+    }
+
+    td {
+      vertical-align: middle;
+    }
   }
 }

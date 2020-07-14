@@ -4,8 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import AdminsTable from "./Tabs/AdminsTable";
 import UserTable from "./Tabs/UsersTable";
 
-const Admin = ({admins, users, newAdmin}) => {
-    console.log(admins);
+const Admin = ({admins, users, openConfirmModal}) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -31,7 +30,7 @@ const Admin = ({admins, users, newAdmin}) => {
                             <AdminsTable admins={admins}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey='users-tab'>
-                            <UserTable users={users} admins={admins} upgrade={newAdmin} />
+                            <UserTable users={users} admins={admins} upgrade={openConfirmModal} />
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>

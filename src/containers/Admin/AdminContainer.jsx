@@ -1,23 +1,49 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {postAdmin, requestAdmins} from "../../redux/admin-reducer";
-import Admin from "../../components/Admin/Admin";
-import {requestUsers} from "../../redux/users-reducer";
+import {connect} from 'react-redux';
+import {postAdmin, requestAdmins} from '../../redux/admin-reducer';
+import Admin from '../../components/Admin/Admin';
+import {requestUsers} from '../../redux/users-reducer';
+import {ConfirmModal} from '../../components/Admin/ConfirmModal';
 
 class AdminContainer extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            showUpgradeModal: false,
+            currentUser: null
+        }
+    }
+
     componentDidMount() {
         if (!this.props.admins.length) this.props.getAdmins()
         if (!this.props.users.length) this.props.getUsers()
     }
 
-    newAdmin = (id) => {
+    openConfirmModal = (currentUser) => {
         return () => {
-            this.props.postAdmin(id)
+            console.log(currentUser);
+            this.setState({showUpgradeModal: true, currentUser})
         }
     }
 
+    closeConfirmModal = () => {
+        this.setState({showUpgradeModal: false, currentUser: null})
+    }
+
+    confirmNewAdmin = () => {
+        this.props.postAdmin(this.state.currentUser)
+        this.setState({showUpgradeModal: false, currentUser: null})
+    }
+
     render() {
-        return <Admin admins={this.props.admins} users={this.props.users} newAdmin={this.newAdmin} />
+        let {admins, users} = this.props
+        let {showUpgradeModal, currentUser} = this.state
+
+        return <>
+            <Admin admins={admins} users={users} openConfirmModal={this.openConfirmModal}/>
+            <ConfirmModal show={showUpgradeModal} user={currentUser} onConfirm={this.confirmNewAdmin} cancel={this.closeConfirmModal} />
+        </>
     }
 }
 

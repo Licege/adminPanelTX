@@ -4,7 +4,7 @@ import {deliveryHD} from '../../plagins/hardData'
 import {tsToDate} from "../../plagins/helpers";
 import Paginator from "../common/Paginator";
 
-const DeliveryTable = ({orders, detail, totalCount, page, onChangePage}) => {
+const DeliveryTable = ({orders, menu, detail, totalCount, page, onChangePage}) => {
     return (
         <>
         <Table responsive>

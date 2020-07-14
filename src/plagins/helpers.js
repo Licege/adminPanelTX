@@ -62,7 +62,7 @@ export function cropText(text, limit = 100) {
 }
 
 export function fullLink(link) {
-    return serverUrl + link.replace('\\', '/')
+    return link ? serverUrl + link.replace('\\', '/') : ''
 }
 
 export function checkStatus(type, data, status, params = null) {
