@@ -1,9 +1,20 @@
 import React from 'react'
-import {requestPromoById, updatePromo} from "../../redux/promos-reducer";
-import {Promo} from "../../components/Promos/Promo";
 import {connect} from "react-redux";
+import {requestPromoById, updatePromo} from "../../redux/promos-reducer";
+import PromoForm from '../../components/Promos/PromoForm';
+import {Promo} from '../../components/Promos/Promo';
 
 class PromosEdit extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            changeMode: false,
+            file: '',
+            description: '',
+        }
+    }
+
     componentDidMount() {
         let id = this.props.match.params.id
         this.props.getPromo(id)
@@ -13,10 +24,42 @@ class PromosEdit extends React.Component {
         this.props.history.push('/promos')
     }
 
-    render() {
-        let {promo, updatePromo} = this.props
+    toggleChangeMode = () => {
+        this.setState(state => ({changeMode: !state.changeMode}))
+    }
 
-        return <Promo promo={promo} updatePromo={updatePromo} goBack={this.goBack} />
+    uploadFile = (file) => {
+        this.setState({file})
+    }
+
+    changeDescription = (description) => {
+        this.setState({description})
+    }
+
+    onSubmit = (data) => {
+        let formData = new FormData()
+        for (let key in data) {
+            if (data.hasOwnProperty(key)) formData.append(key, data[key])
+        }
+        this.state.file && formData.set('image', this.state.file)
+        formData.set('description', this.state.description)
+
+        this.props.updatePromo(formData, data._id)
+        this.goBack();
+    }
+
+    render() {
+        let {promo} = this.props
+        let {changeMode} = this.state
+
+        return changeMode
+            ? <PromoForm onSubmit={this.onSubmit}
+                         initialValues={promo}
+                         promo={promo}
+                         uploadFile={this.uploadFile}
+                         changeDescription={this.changeDescription}
+                         goBack={this.goBack} />
+            : <Promo promo={promo} onChange={this.toggleChangeMode} goBack={this.goBack} />
     }
 }
 

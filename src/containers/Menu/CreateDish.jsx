@@ -1,6 +1,6 @@
 import React from 'react';
-import {createDish, requestCategories} from "../../redux/menu-reducer";
 import {connect} from "react-redux";
+import {createDish, requestCategories} from "../../redux/menu-reducer";
 import FormDish from "../../components/Menu/FormDish";
 
 class CreateDishContainer extends React.Component {

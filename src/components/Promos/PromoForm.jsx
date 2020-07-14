@@ -1,14 +1,16 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
-import EditorFieldComponent from "../common/element/editor/EditorFieldComponent";
+//import EditorFieldComponent from "../common/element/editor/EditorFieldComponent";
 import Button from "react-bootstrap/Button";
+import ImageInput from '../common/imageInput';
+import ControlledEditor from '../common/element/editor/ControlledEditor';
 
-const PromoForm = ({handleSubmit, uploadFile, goBack}) => {
+const PromoForm = ({handleSubmit, promo, changeDescription, uploadFile, goBack}) => {
     return (
         <div>
             <div className='page-header'>
                 <div className='page-header-title'>
-                    Создание акции
+                    {promo ? `Редактирование акции ${promo.title}` : 'Создание акции'}
                 </div>
             </div>
             <form onSubmit={handleSubmit} className='page-container'>
@@ -26,18 +28,18 @@ const PromoForm = ({handleSubmit, uploadFile, goBack}) => {
                            placeholder='Краткое описание (необязательно)' />
                 </div>
                 <div className='promos-form-wysivyg'>
-                    <Field name='description' component={EditorFieldComponent} />
+                    <ControlledEditor value={promo ? promo.description : ''} onChange={changeDescription} />
                 </div>
                 <div>
                     <label htmlFor='isShow'>Показывать акцию</label>
                     <Field name='show'
-                           id='isShow'
+                           id='show'
                            component='input'
                            type='checkbox'
                            className="filter-main-input -name form-control" />
                 </div>
                 <div>
-                    <input type='file' onChange={uploadFile} />
+                    <ImageInput value={promo ? promo.imageSrc : ''} onChange={uploadFile} allowClear={true} />
                 </div>
                 <div>
                     <Button variant='primary' type='submit'>Сохранить</Button>

@@ -6,18 +6,20 @@ import {connect} from "react-redux";
 class PromosNewContainer extends React.Component {
     constructor(props) {
         super(props)
+
         this.state = {
-            file: ''
+            file: '',
+            description: ''
         }
     }
 
     onSubmit = (data) => {
-        console.log(data);
         let formData = new FormData()
         for (let key in data) {
             if (data.hasOwnProperty(key)) formData.append(key, data[key])
         }
         this.state.file && formData.append('image', this.state.file)
+        this.state.description && formData.append('description', this.state.description)
         this.props.createPromo(formData)
         this.goBack();
     }
@@ -26,12 +28,20 @@ class PromosNewContainer extends React.Component {
         this.props.history.push('/promos')
     }
 
-    uploadFile = (event) => {
-        this.setState({file: event.target.files[0]})
+    uploadFile = (file) => {
+        this.setState({file})
     }
 
+    changeDescription = (description) => {
+        this.setState({description})
+    }
+
+
     render() {
-        return <PromoForm onSubmit={this.onSubmit} uploadFile={this.uploadFile} goBack={this.goBack} />
+        return <PromoForm onSubmit={this.onSubmit}
+                          changeDescription={this.changeDescription}
+                          uploadFile={this.uploadFile}
+                          goBack={this.goBack} />
     }
 }
 

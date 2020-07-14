@@ -29,7 +29,7 @@ const promosReducer = (state = initialState, action) => {
 const getPromosAC = (promos) => ({type: GET_PROMOS, promos})
 const getPromoAC = (promo) => ({type: GET_PROMO, promo})
 const postPromoAC = (promo) => ({type: POST_PROMO, promo})
-const updatePromoAC = (promo) => ({typs: UPDATE_PROMO, promo})
+const updatePromoAC = (promo) => ({type: UPDATE_PROMO, promo})
 
 export const requestPromos = () => async(dispatch) => {
     let response = await promoAPI.getPromos()

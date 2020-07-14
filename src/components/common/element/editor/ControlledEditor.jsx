@@ -1,8 +1,9 @@
-import React from "react";
-import { EditorState, convertToRaw } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import React from 'react'
+import { EditorState, ContentState, convertToRaw } from 'draft-js'
+import { Editor } from 'react-draft-wysiwyg'
+import draftToHtml from 'draftjs-to-html'
+import htmlToDraft from 'html-to-draftjs'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 import { unemojify } from "node-emoji";
 
@@ -10,12 +11,23 @@ export default class ControlledEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editorState: EditorState.createEmpty()
+            editorState: this.init(props.value)
         };
         this.props.onChange(
             draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
         );
     }
+
+    init = content => {
+        if (content) {
+            const blocksFromHtml = htmlToDraft(content)
+            const { contentBlocks, entityMap } = blocksFromHtml
+            const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap)
+            return EditorState.createWithContent(contentState)
+        }
+        return EditorState.createEmpty()
+    }
+
 
     onEditorStateChange = editorState => {
         const { onChange, value } = this.props;

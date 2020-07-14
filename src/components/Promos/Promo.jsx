@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 import {fullLink} from "../../plagins/helpers";
 import altImg from "../../static/img/dish.svg";
 
-export const Promo = ({promo, goBack}) => {
+export const Promo = ({promo, onChange, goBack}) => {
     const style = {
         backgroundImage: `url(${promo && promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
         backgroundSize: "cover"
@@ -22,6 +22,7 @@ export const Promo = ({promo, goBack}) => {
                         <div className='promo-description' dangerouslySetInnerHTML={{__html: promo.description}}/>
                         <div>
                             <Button variant='secondary' onClick={goBack}>Все акции</Button>
+                            <Button variant='link' onClick={onChange}>Изменить</Button>
                         </div>
                     </div>
                 </div>
