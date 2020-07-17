@@ -1,6 +1,10 @@
 import axios from "axios";
 
-export const serverUrl = 'http://localhost:9090/'
+const host = 'http://localhost'
+
+export const WS_BASE = `${host}:9091/`
+
+export const serverUrl = `${host}:9090/`
 const baseUrl = serverUrl + 'api/private'
 export const secret = 'dev-jwt'
 
