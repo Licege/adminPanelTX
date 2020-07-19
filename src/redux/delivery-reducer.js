@@ -4,6 +4,7 @@ const GET_ORDERS = 'DELIVERY/GET_ORDERS'
 const GET_ORDER_BY_ID = 'DELIVERY/GET_ORDER_BY_ID'
 const UPDATE_ORDER = 'DELIVERY/UPRATE_ORDER'
 const SET_CURRENT_PAGE = 'DELIVERY/SET_CURRENT_PAGE'
+const WS_UPDATE_ORDERS = 'DELIVERY/WS_UPDATE_ORDERS'
 
 const ADD_DISH_INTO_LIST = 'DELIVERY/ADD_DISH_INTO_LIST'
 const INCREASE_ORDERS_LIST = 'DELIVERY/INCREASE_ORDERS_LIST'
@@ -46,6 +47,8 @@ const deliveryReducer = (state = initialState, action) => {
     }
 
     switch (action.type) {
+        case WS_UPDATE_ORDERS:
+            return {...state, orders: [action.order, ...state.orders], totalCount: state.totalCount + 1}
         case GET_ORDERS:
             return {...state, orders: action.orders, totalCount: action.totalCount}
         case GET_ORDER_BY_ID:
@@ -170,6 +173,7 @@ const deliveryReducer = (state = initialState, action) => {
     }
 }
 
+export const wsUpdateOrderAC = (order) => ({type: WS_UPDATE_ORDERS, order})
 const getOrdersAC = (orders, totalCount) => ({type: GET_ORDERS, orders, totalCount})
 const getOrderByIdAC = (order) => ({type: GET_ORDER_BY_ID, order})
 const updateOrderAC = (order) => ({type: UPDATE_ORDER, order})

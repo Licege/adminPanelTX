@@ -22,8 +22,8 @@ const DeliveryTable = ({orders, menu, detail, totalCount, page, onChangePage}) =
             </tr>
             </thead>
             <tbody className='table-body'>
-            {orders.length ? orders.map(order => (
-                <tr key={order._id}>
+            {orders.length ? orders.map((order, key) => (
+                <tr key={key}>
                     <td><a href={'tel:' + order.phone}>{order.phone}</a></td>
                     <td>{`Товаров: ${order.list.reduce((acc, order) => acc + order.count, 0)}`}</td>
                     <td onClick={detail(order._id)}>{order.total_price + order.delivery_cost} ₽</td>

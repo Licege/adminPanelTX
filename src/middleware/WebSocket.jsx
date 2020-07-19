@@ -2,6 +2,7 @@ import React, {createContext} from 'react'
 import io from 'socket.io-client'
 import {useDispatch} from 'react-redux'
 import {WS_BASE} from '../api/api'
+import {wsUpdateOrderAC} from '../redux/delivery-reducer';
 
 export const WebSocket = createContext(null)
 
@@ -21,12 +22,12 @@ export default ({children}) => {
         //dispatch()
     }
 
-    if (!socket) {
+    if (!window.socket) {
         socket = io.connect(WS_BASE)
+        window.socket = socket
 
         socket.on('event://get-delivery', (data) => {
-            //const payload = JSON.parse(data)
-            //dispatch()
+            dispatch(wsUpdateOrderAC(JSON.parse(data)))
             //console.log(payload);
         })
 
