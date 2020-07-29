@@ -1,10 +1,10 @@
-import React from 'react';
-import {createField, Input} from '../common/FormsControls';
-import {Field, reduxForm} from 'redux-form';
-import ImageInput from '../common/imageInput';
-import Button from 'react-bootstrap/Button';
+import React from 'react'
+import { createField, Input } from '../common/FormsControls'
+import { Field, reduxForm } from 'redux-form'
+import ImageInput from '../common/imageInput'
+import Button from 'react-bootstrap/Button'
 
-const FormDish = ({handleSubmit, categories, dish, openDelModal, cancel, uploadFile}) => {
+const FormDish = ( { handleSubmit, categories, dish, openDelModal, cancel, uploadFile } ) => {
     return (
         <div>
             <div className={'page-header' + (dish ? ' -action' : '')}>
@@ -65,7 +65,7 @@ const FormDish = ({handleSubmit, categories, dish, openDelModal, cancel, uploadF
             </div>
         </div>
     )
-};
+}
 
-const CreateDishReduxForm = reduxForm({form: 'create-dish', enableReinitialize: true})(FormDish);
-export default CreateDishReduxForm;
+const CreateDishReduxForm = reduxForm({ form: 'create-dish', enableReinitialize: true })(FormDish)
+export default CreateDishReduxForm

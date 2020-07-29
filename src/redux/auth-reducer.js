@@ -1,4 +1,4 @@
-import {authAPI} from "../api/api";
+import { authAPI } from '../api/api'
 
 const REGISTRATION = 'AUTH/REGISTRATION'
 const LOGIN = 'AUTH/LOGIN'
@@ -7,19 +7,19 @@ const LOGOUT = 'AUTH/LOGOUT'
 let initialState = {
     accessToken: localStorage.getItem('accessToken'),
     refreshToken: localStorage.getItem('refreshToken'),
-    isAuthenticated: false
+    isAuthenticated: false,
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = ( state = initialState, action ) => {
     switch (action.type) {
         case REGISTRATION:
-            return state;
+            return state
         case LOGIN:
             localStorage.setItem('accessToken', action.data.accessToken)
             localStorage.setItem('refreshToken', action.data.refreshToken)
             return {
                 ...state,
-                isAuthenticated: true
+                isAuthenticated: true,
             }
         case LOGOUT:
             localStorage.clear()
@@ -29,18 +29,18 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-const registrationAC = (user) => ({type: REGISTRATION, user})
-const loginAC = (data) => ({type: LOGIN, data})
-export const logoutAC = () => ({type: LOGOUT})
+const registrationAC = ( user ) => ({ type: REGISTRATION, user })
+const loginAC = ( data ) => ({ type: LOGIN, data })
+export const logoutAC = () => ({ type: LOGOUT })
 
-export const registration = (user) => async(dispatch) => {
+export const registration = ( user ) => async ( dispatch ) => {
     await authAPI.registration(user)
     dispatch(registrationAC(user.data))
 }
 
-export const login = (user) => async(dispatch) => {
+export const login = ( user ) => async ( dispatch ) => {
     let response = await authAPI.login(user)
     dispatch(loginAC(response.data))
 }
 
-export default authReducer;
+export default authReducer

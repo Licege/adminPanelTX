@@ -1,9 +1,9 @@
-import React from 'react';
-import {reduxForm} from "redux-form";
-import {createField, Input} from "../../common/FormsControls";
-import Button from "react-bootstrap/Button";
+import React from 'react'
+import { reduxForm } from 'redux-form'
+import { createField, Input } from '../../common/FormsControls'
+import Button from 'react-bootstrap/Button'
 
-const UserEditForm = ({handleSubmit, profile, cancel}) => {
+const UserEditForm = ( { handleSubmit, profile, cancel } ) => {
     return (
         <div>
             <div className='page-header'>
@@ -16,26 +16,26 @@ const UserEditForm = ({handleSubmit, profile, cancel}) => {
                     <div className='card-body'>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                {createField("ID", "id", [], Input)}
+                                {createField('ID', 'id', [], Input)}
                             </div>
                             <div>
-                                {createField("Фамилия", "surname", [], Input)}
-                            </div>
-
-                            <div>
-                                {createField("Имя", "name", [], Input)}
+                                {createField('Фамилия', 'surname', [], Input)}
                             </div>
 
                             <div>
-                                {createField("E-mail", "email", [], Input)}
+                                {createField('Имя', 'name', [], Input)}
                             </div>
 
                             <div>
-                                {createField("Телефон", "phone", [], Input)}
+                                {createField('E-mail', 'email', [], Input)}
                             </div>
 
                             <div>
-                                {createField("Бонус", "bonus_points", [], Input, 'number')}
+                                {createField('Телефон', 'phone', [], Input)}
+                            </div>
+
+                            <div>
+                                {createField('Бонус', 'bonus_points', [], Input, 'number')}
                             </div>
                             <Button variant='primary' type='submit'>Сохранить</Button>
                             <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
@@ -44,9 +44,9 @@ const UserEditForm = ({handleSubmit, profile, cancel}) => {
                 </div>
             </div>
         </div>
-        )
-};
+    )
+}
 
-const UserEditReduxForm = reduxForm({form: 'edit-user', enableReinitialize: true})(UserEditForm);
+const UserEditReduxForm = reduxForm({ form: 'edit-user', enableReinitialize: true })(UserEditForm)
 
-export default UserEditReduxForm;
+export default UserEditReduxForm

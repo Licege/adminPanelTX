@@ -1,22 +1,22 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {changeReviewStatus, requestReviews} from "../../redux/reviews-reducer";
-import Reviews from "../../components/Reviews/Reviews";
+import { connect } from 'react-redux'
+import { changeReviewStatus, requestReviews } from '../../redux/reviews-reducer'
+import Reviews from '../../components/Reviews/Reviews'
 
 class ReviewsContainer extends React.PureComponent {
     componentDidMount() {
         if (!this.props.reviews.length) this.props.getReviews()
     }
 
-    onApprove = (review) => {
+    onApprove = ( review ) => {
         return () => {
-            this.props.changeStatus({...review, status: 1})
+            this.props.changeStatus({ ...review, status: 1 })
         }
     }
 
-    onDisapprove = (review) => {
+    onDisapprove = ( review ) => {
         return () => {
-            this.props.changeStatus({...review, status: 2})
+            this.props.changeStatus({ ...review, status: 2 })
         }
     }
 
@@ -30,24 +30,24 @@ class ReviewsContainer extends React.PureComponent {
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         reviews: state.reviewsPage.reviews,
         waitingReviews: state.reviewsPage.reviews.filter(review => review.status === 0),
         approvedReviews: state.reviewsPage.reviews.filter(review => review.status === 1),
-        disapprovedReviews: state.reviewsPage.reviews.filter(review => review.status === 2)
+        disapprovedReviews: state.reviewsPage.reviews.filter(review => review.status === 2),
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
         getReviews: () => {
             dispatch(requestReviews())
         },
-        changeStatus: (review) => {
+        changeStatus: ( review ) => {
             dispatch(changeReviewStatus(review))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (ReviewsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewsContainer)

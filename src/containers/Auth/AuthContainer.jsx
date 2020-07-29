@@ -1,38 +1,38 @@
 import React from 'react'
-import Auth from "../../components/Auth/Auth";
-import {login} from "../../redux/auth-reducer";
-import {connect} from "react-redux";
+import Auth from '../../components/Auth/Auth'
+import { login } from '../../redux/auth-reducer'
+import { connect } from 'react-redux'
 
 class AuthContainer extends React.Component {
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate( prevProps, prevState, snapshot ) {
         if (prevProps.isAuthenticated !== this.props.isAuthenticated) {
             window.location.reload()
         }
     }
 
-    postData = (data) => {
+    postData = ( data ) => {
         this.props.login(data)
     }
 
     render() {
         return (
-            <Auth onSubmit={this.postData} />
+            <Auth onSubmit={this.postData}/>
         )
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        login: (data) => {
+        login: ( data ) => {
             dispatch(login(data))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (AuthContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer)

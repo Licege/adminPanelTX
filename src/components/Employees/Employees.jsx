@@ -1,9 +1,9 @@
-import React from "react";
-import {Table} from "react-bootstrap";
-import deleteButton from "../../static/img/close.png"
-import {getProfessionNameById} from "../../plagins/helpers";
+import React from 'react'
+import { Table } from 'react-bootstrap'
+import deleteButton from '../../static/img/close.png'
+import { getProfessionNameById } from '../../plugins/helpers'
 
-const Employees = (props) => {
+const Employees = ( props ) => {
     console.log(props.professions)
     console.log(props.employees)
     return (
@@ -13,7 +13,8 @@ const Employees = (props) => {
                     Сотрудники
                 </div>
                 <div className='page-header-action'>
-                    <button className='btn btn-primary' onClick={props.createNewEmployee}>Добавить нового сотрудника</button>
+                    <button className='btn btn-primary' onClick={props.createNewEmployee}>Добавить нового сотрудника
+                    </button>
                 </div>
             </div>
 
@@ -22,9 +23,10 @@ const Employees = (props) => {
                     <div className='card-body filter-container'>
                         <span className='filter-header'>Фильтры</span>
                         <div className='filter-main'>
-                            <input type='text' placeholder='Фамилия' className='filter-main-input -name form-control' />
-                            <input type='text' placeholder='Имя' className='filter-main-input -name form-control' />
-                            <input type='text' placeholder='Должность' className='filter-main-input -name form-control' />
+                            <input type='text' placeholder='Фамилия' className='filter-main-input -name form-control'/>
+                            <input type='text' placeholder='Имя' className='filter-main-input -name form-control'/>
+                            <input type='text' placeholder='Должность'
+                                   className='filter-main-input -name form-control'/>
                         </div>
                         <div className='filter-actions'>
                             <span className='filter-actions-reset'>Сбросить</span>
@@ -46,14 +48,17 @@ const Employees = (props) => {
                             </tr>
                             </thead>
                             <tbody>
-                            { props.employees.map(employee => (
+                            {props.employees.map(employee => (
                                 <tr key={employee.id}>
                                     <td onClick={props.detail(employee.id)}>{getProfessionNameById(props.professions, employee.profession)}</td>
                                     <td onClick={props.detail(employee.id)}>{employee.surname}</td>
                                     <td onClick={props.detail(employee.id)}>{employee.name}</td>
                                     <td onClick={props.detail(employee.id)}>{employee.phone}</td>
                                     <td onClick={props.detail(employee.id)}>{employee.address}</td>
-                                    <td><button onClick={props.delete(employee.id)}><img src={deleteButton} alt="Удалить" /></button></td>
+                                    <td>
+                                        <button onClick={props.delete(employee.id)}><img src={deleteButton}
+                                                                                         alt="Удалить"/></button>
+                                    </td>
                                 </tr>
                             ))}
                             </tbody>
@@ -63,6 +68,6 @@ const Employees = (props) => {
             </div>
         </div>
     )
-};
+}
 
-export default Employees;
+export default Employees

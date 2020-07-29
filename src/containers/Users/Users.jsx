@@ -1,15 +1,15 @@
 import React from 'react'
-import Users from '../../components/Users/Users';
-import {connect} from "react-redux";
-import {requestUsers, setCurrentPage} from "../../redux/users-reducer";
+import Users from '../../components/Users/Users'
+import { connect } from 'react-redux'
+import { requestUsers, setCurrentPage } from '../../redux/users-reducer'
 
-const fieldFilter = ['surname', 'forename', 'phone', 'email']
+const fieldFilter = [ 'surname', 'forename', 'phone', 'email' ]
 
 class UsersContainer extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
         this.state = {
-            filter: {}
+            filter: {},
         }
     }
 
@@ -17,17 +17,17 @@ class UsersContainer extends React.Component {
         if (!this.props.users.length) this.props.getUsers()
     }
 
-    onPageChanged = (page) => {
-        this.props.setPage(page);
+    onPageChanged = ( page ) => {
+        this.props.setPage(page)
         this.props.getUsers(page, this.state.filter)
-    };
+    }
 
     filterApply = () => {
         let data = this.state.filter
         fieldFilter.forEach(field => {
             if (document.getElementById(field).value) {
                 data[field] = document.getElementById(field).value
-                this.setState({filter: data})
+                this.setState({ filter: data })
                 // this.state.filter[field] = document.getElementById(field).value
             } else if (!document.getElementById(field).value && this.state.filter[field]) {
                 delete (data[field])
@@ -38,16 +38,16 @@ class UsersContainer extends React.Component {
 
         this.props.setPage(1)
         this.props.getUsers(this.props.currentPage, this.state.filter)
-    };
+    }
 
     clearFilter = () => {
         fieldFilter.forEach(field => document.getElementById(field).value = '')
-        this.setState({filter: {}})
+        this.setState({ filter: {} })
         this.props.setPage(1)
         this.props.getUsers(1, {})
     }
 
-    detail = (id) => () => this.props.history.push(`users/${id}`)
+    detail = ( id ) => () => this.props.history.push(`users/${id}`)
 
 
     render() {
@@ -63,7 +63,7 @@ class UsersContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         users: state.usersPage.users,
         filters: state.usersPage.filters,
@@ -71,17 +71,17 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
     }
-};
+}
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getUsers: (page, filter) => {
+        getUsers: ( page, filter ) => {
             dispatch(requestUsers(page, filter))
         },
-        setPage: (page) => {
+        setPage: ( page ) => {
             dispatch(setCurrentPage(page))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (UsersContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

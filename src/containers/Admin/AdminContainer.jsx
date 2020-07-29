@@ -1,17 +1,17 @@
 import React from 'react'
-import {connect} from 'react-redux';
-import {postAdmin, requestAdmins} from '../../redux/admin-reducer';
-import Admin from '../../components/Admin/Admin';
-import {requestUsers} from '../../redux/users-reducer';
-import {ConfirmModal} from '../../components/Admin/ConfirmModal';
+import { connect } from 'react-redux'
+import { postAdmin, requestAdmins } from '../../redux/admin-reducer'
+import Admin from '../../components/Admin/Admin'
+import { requestUsers } from '../../redux/users-reducer'
+import { ConfirmModal } from '../../components/Admin/ConfirmModal'
 
 class AdminContainer extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
 
         this.state = {
             showUpgradeModal: false,
-            currentUser: null
+            currentUser: null,
         }
     }
 
@@ -20,51 +20,52 @@ class AdminContainer extends React.Component {
         if (!this.props.users.length) this.props.getUsers()
     }
 
-    openConfirmModal = (currentUser) => {
+    openConfirmModal = ( currentUser ) => {
         return () => {
-            console.log(currentUser);
-            this.setState({showUpgradeModal: true, currentUser})
+            console.log(currentUser)
+            this.setState({ showUpgradeModal: true, currentUser })
         }
     }
 
     closeConfirmModal = () => {
-        this.setState({showUpgradeModal: false, currentUser: null})
+        this.setState({ showUpgradeModal: false, currentUser: null })
     }
 
     confirmNewAdmin = () => {
         this.props.postAdmin(this.state.currentUser)
-        this.setState({showUpgradeModal: false, currentUser: null})
+        this.setState({ showUpgradeModal: false, currentUser: null })
     }
 
     render() {
-        let {admins, users} = this.props
-        let {showUpgradeModal, currentUser} = this.state
+        let { admins, users } = this.props
+        let { showUpgradeModal, currentUser } = this.state
 
         return <>
             <Admin admins={admins} users={users} openConfirmModal={this.openConfirmModal}/>
-            <ConfirmModal show={showUpgradeModal} user={currentUser} onConfirm={this.confirmNewAdmin} cancel={this.closeConfirmModal} />
+            <ConfirmModal show={showUpgradeModal} user={currentUser} onConfirm={this.confirmNewAdmin}
+                          cancel={this.closeConfirmModal}/>
         </>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         admins: state.adminPage.admins,
-        users: state.usersPage.users
+        users: state.usersPage.users,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
         getAdmins: () => {
             dispatch(requestAdmins())
         },
-        postAdmin: (profile) => {
+        postAdmin: ( profile ) => {
             dispatch(postAdmin(profile))
         },
         getUsers: () => {
             dispatch(requestUsers())
-        }
+        },
     }
 }
 

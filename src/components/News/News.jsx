@@ -1,7 +1,7 @@
-import React from 'react';
-import CardNews from "../common/element/CardNews";
+import React from 'react'
+import CardNews from '../common/element/CardNews'
 
-const News = ( {news, createNews, deleteNews, detail} ) => {
+const News = ( { news, createNews, deleteNews, detail } ) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -14,11 +14,11 @@ const News = ( {news, createNews, deleteNews, detail} ) => {
             </div>
             <div className='page-container'>
                 {news && news.map(n =>
-                    <CardNews news={n} deleteNews={deleteNews} detail={detail} key={n._id} />
+                    <CardNews news={n} deleteNews={deleteNews} detail={detail} key={n._id}/>,
                 )}
             </div>
         </div>
     )
-};
+}
 
-export default News;
+export default News

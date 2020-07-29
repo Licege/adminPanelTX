@@ -1,11 +1,11 @@
 import React from 'react'
-import SettingsForm from "../../../components/Delivery/Settings/Tabs/Common_Settings/SettingsForm";
-import {createDeliverySettings} from "../../../redux/delivery-reducer";
-import {connect} from "react-redux";
+import SettingsForm from '../../../components/Delivery/Settings/Tabs/Common_Settings/SettingsForm'
+import { createDeliverySettings } from '../../../redux/delivery-reducer'
+import { connect } from 'react-redux'
 
 class SettingsCommonNew extends React.Component {
-    onSubmit = (settings) => {
-        console.log(settings);
+    onSubmit = ( settings ) => {
+        console.log(settings)
         this.props.createSettings(settings)
         this.goBack()
     }
@@ -15,20 +15,20 @@ class SettingsCommonNew extends React.Component {
     }
 
     render() {
-        return <SettingsForm onSubmit={this.onSubmit} cancel={this.goBack} />
+        return <SettingsForm onSubmit={this.onSubmit} cancel={this.goBack}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {}
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        createSettings: (settings) => {
+        createSettings: ( settings ) => {
             dispatch(createDeliverySettings(settings))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (SettingsCommonNew)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsCommonNew)

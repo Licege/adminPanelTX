@@ -10,7 +10,7 @@
     overflow: hidden;
     background-color: #252e33;
 
-    &-Item{
+    &-Item {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -18,7 +18,7 @@
       justify-content: center;
     }
 
-    &-Img{
+    &-Img {
       object-fit: contain;
       max-width: 100%;
       max-height: 100%;
@@ -29,7 +29,7 @@
       height: 100%;
       width: 45px;
       position: absolute;
-      top:0;
+      top: 0;
       background: url("../../../static/img/white-chevron-left.png") center no-repeat;
       cursor: pointer;
       z-index: 9998;
@@ -59,6 +59,7 @@
         .ImageSlider-Body-Item_active {
           -webkit-animation: slidePrevHide 1s;
         }
+
         .ImageSlider-Body-Item_next {
           -webkit-animation: slidePrevShow 1s;
         }
@@ -68,6 +69,7 @@
         .ImageSlider-Body-Item_active {
           -webkit-animation: slideHide 1s;
         }
+
         .ImageSlider-Body-Item_next {
           -webkit-animation: slideShow 1s;
         }
@@ -85,7 +87,7 @@
     text-align: center;
     z-index: 500;
 
-    &-Item{
+    &-Item {
       height: 40px;
       width: 40px;
       display: inline-block;

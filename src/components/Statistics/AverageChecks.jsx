@@ -1,9 +1,9 @@
 import React from 'react'
-import {Page} from "../common/Page";
-import {deliveryHD} from "../../plagins/hardData";
-import {CustomDatePicker} from "../common/CustomDatePicker";
+import { Page } from '../common/Page'
+import { deliveryHD } from '../../plugins/hardData'
+import { CustomDatePicker } from '../common/CustomDatePicker'
 
-const Check = (item, key) => (
+const Check = ( item, key ) => (
     <div key={key} className='card'>
         <div>{deliveryHD.paymentType[item._id]}</div>
         <div>Выручка: {item.avg_delivery_check}</div>
@@ -11,19 +11,19 @@ const Check = (item, key) => (
     </div>
 )
 
-const getRevenue = (allChecks) => {
-    return allChecks.reduce((acc, check) => acc + check.avg_delivery_check, 0)
-}
+// const getRevenue = (allChecks) => {
+//     return allChecks.reduce((acc, check) => acc + check.avg_delivery_check, 0)
+// }
 
-export const AverageChecks = ({avgChecks, startDate, endDate, handleChange, changeFilter, clearFilter}) => {
+export const AverageChecks = ( { avgChecks, startDate, endDate, handleChange, changeFilter, clearFilter } ) => {
     return (
         <Page title='Средний чек'>
             <div className='card filter'>
                 <div className='card-body filter-container'>
                     <span className='filter-header'>Фильтры</span>
                     <div className='filter-main'>
-                        <CustomDatePicker value={startDate} handleChange={handleChange('start')} isClearable={true} />
-                        <CustomDatePicker value={endDate} handleChange={handleChange('end')} isClearable={true} />
+                        <CustomDatePicker value={startDate} handleChange={handleChange('start')} isClearable={true}/>
+                        <CustomDatePicker value={endDate} handleChange={handleChange('end')} isClearable={true}/>
                     </div>
                     <div className='filter-actions'>
                         <span className='filter-actions-reset' onClick={clearFilter}>Сбросить</span>
@@ -34,7 +34,7 @@ export const AverageChecks = ({avgChecks, startDate, endDate, handleChange, chan
 
             {avgChecks.map(Check)}
 
-            <div>Общая выручка за период: {getRevenue(avgChecks)}</div>
+            {/*<div>Общая выручка за период: {getRevenue(avgChecks)}</div>*/}
         </Page>
     )
 }

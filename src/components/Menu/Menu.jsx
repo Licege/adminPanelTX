@@ -1,7 +1,7 @@
-import React from 'react';
-import CardDish from "../common/element/CardDish";
+import React from 'react'
+import CardDish from '../common/element/CardDish'
 
-const Menu = ({dishes, categories, newDish, openDelModal, detail, onPhotoSelected}) => {
+const Menu = ( { dishes, categories, newDish, openDelModal, detail, onPhotoSelected } ) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -23,17 +23,17 @@ const Menu = ({dishes, categories, newDish, openDelModal, detail, onPhotoSelecte
                 <div className='card'>
                     <h4 className='menu-header'>~ Блюда ~</h4>
                     <div className='card-body menu-content'>
-                        {dishes.map((dish, key) =>
-                        <CardDish dish={dish}
-                                  key={key}
-                                  categories={categories}
-                                  remove={openDelModal(dish)}
-                                  detail={detail} /> )}
+                        {dishes.map(( dish, key ) =>
+                            <CardDish dish={dish}
+                                      key={key}
+                                      categories={categories}
+                                      remove={openDelModal(dish)}
+                                      detail={detail}/>)}
                     </div>
                 </div>
             </div>
         </div>
     )
-};
+}
 
-export default Menu;
+export default Menu

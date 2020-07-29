@@ -1,10 +1,10 @@
 import React from 'react'
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
 import AdminIcon from '@material-ui/icons/HowToReg'
 
-const UserTable = ({users, admins, upgrade}) => {
-    const isAdmin = (id) => {
+const UserTable = ( { users, admins, upgrade } ) => {
+    const isAdmin = ( id ) => {
         return admins.findIndex(admin => admin.user_id._id === id)
     }
 
@@ -33,4 +33,4 @@ const UserTable = ({users, admins, upgrade}) => {
     )
 }
 
-export default UserTable;
+export default UserTable

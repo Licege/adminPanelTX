@@ -1,18 +1,18 @@
-import React from 'react';
-import {Table} from "react-bootstrap";
+import React from 'react'
+import { Table } from 'react-bootstrap'
 
-const SettingsTable = ( {settings, editSettings} ) => {
+const SettingsTable = ( { settings, editSettings } ) => {
     return (
         <div className='card'>
             <div className='card-body'>
                 {settings.length ? <Table responsive>
                     <thead className='table-thread'>
-                        <tr>
-                            <th>Доставка</th>
-                            <th>Город</th>
-                            <th>Стоимость</th>
-                            <th>Бесплатно с</th>
-                        </tr>
+                    <tr>
+                        <th>Доставка</th>
+                        <th>Город</th>
+                        <th>Стоимость</th>
+                        <th>Бесплатно с</th>
+                    </tr>
                     </thead>
                     <tbody className='table-body'>
                     {settings.map(s => (
@@ -28,6 +28,6 @@ const SettingsTable = ( {settings, editSettings} ) => {
             </div>
         </div>
     )
-};
+}
 
-export default SettingsTable;
+export default SettingsTable

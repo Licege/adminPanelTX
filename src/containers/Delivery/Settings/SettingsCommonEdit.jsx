@@ -1,14 +1,14 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {requestDeliverySettingsById, updateDeliverySettings} from "../../../redux/delivery-reducer";
-import SettingsForm from "../../../components/Delivery/Settings/Tabs/Common_Settings/SettingsForm";
+import { connect } from 'react-redux'
+import { requestDeliverySettingsById, updateDeliverySettings } from '../../../redux/delivery-reducer'
+import SettingsForm from '../../../components/Delivery/Settings/Tabs/Common_Settings/SettingsForm'
 
 class SettingsCommonEdit extends React.Component {
     componentDidMount() {
         if (!this.props.currentSettings || this.props.currentSettings._id !== this.props.match.params.id) this.props.getSettingsById(this.props.match.params.id)
     }
 
-    onSubmit = (settings) => {
+    onSubmit = ( settings ) => {
         this.props.updateSettings(settings)
         this.goBack()
     }
@@ -21,24 +21,24 @@ class SettingsCommonEdit extends React.Component {
         return <SettingsForm currentSettings={this.props.currentSettings}
                              initialValues={this.props.currentSettings}
                              onSubmit={this.onSubmit}
-                             cancel={this.goBack} />
+                             cancel={this.goBack}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        currentSettings: state.deliveryPage.currentSettings
+        currentSettings: state.deliveryPage.currentSettings,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getSettingsById: (id) => {
+        getSettingsById: ( id ) => {
             dispatch(requestDeliverySettingsById(id))
         },
-        updateSettings: (settings) => {
+        updateSettings: ( settings ) => {
             dispatch(updateDeliverySettings(settings))
-        }
+        },
     }
 }
 

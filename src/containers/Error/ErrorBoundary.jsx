@@ -2,14 +2,14 @@ import React from 'react'
 
 export default class ErrorBoundary extends React.Component {
     state = {
-        hasError: false
+        hasError: false,
     }
 
     goMain = () => {
         this.props.history.push('/')
     }
 
-    componentDidCatch(error, errorInfo) {
+    componentDidCatch( error, errorInfo ) {
         console.log('error', error)
         console.log('info', errorInfo)
         this.setState({ hasError: true })

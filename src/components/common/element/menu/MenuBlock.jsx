@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import { Card, CardGroup } from "react-bootstrap";
+import React, { Component } from 'react'
+import { Card, CardGroup } from 'react-bootstrap'
 
 class MenuBlock extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor( props, context ) {
+        super(props, context)
 
         this.state = {
-            activeKey: "1"
-        };
+            activeKey: '1',
+        }
 
-        this.handleSelect = this.handleSelect.bind(this);
+        this.handleSelect = this.handleSelect.bind(this)
     }
 
-    handleSelect(activeKey) {
-        this.setState({ activeKey });
+    handleSelect( activeKey ) {
+        this.setState({ activeKey })
     }
 
     render() {
@@ -37,8 +37,8 @@ class MenuBlock extends Component {
                     <Card.Body collapsible>Panel content 2</Card.Body>
                 </Card>
             </CardGroup>
-        );
+        )
     }
 }
 
-export default MenuBlock;
+export default MenuBlock

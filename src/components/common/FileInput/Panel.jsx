@@ -19,7 +19,7 @@ class Panel extends React.Component {
                 </div> : null}
                 <div className={`Panel-body ${bodyClassName || ''}`}>{children}</div>
             </div>
-        );
+        )
     }
 }
 

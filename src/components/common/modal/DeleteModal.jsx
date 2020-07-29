@@ -1,8 +1,8 @@
-import React from 'react';
-import {Button, Modal} from 'react-bootstrap';
+import React from 'react'
+import { Button, Modal } from 'react-bootstrap'
 
 
-const DeleteModal = ({show, title, onRemove, onClose}) => (
+const DeleteModal = ( { show, title, onRemove, onClose } ) => (
     <Modal show={show} onHide={onClose}>
         <Modal.Header closeButton>
             <Modal.Title>Вы действительно хотите удалить {title}?</Modal.Title>

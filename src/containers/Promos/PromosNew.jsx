@@ -1,19 +1,19 @@
 import React from 'react'
-import PromoForm from "../../components/Promos/PromoForm";
-import {postPromo} from "../../redux/promos-reducer";
-import {connect} from "react-redux";
+import PromoForm from '../../components/Promos/PromoForm'
+import { postPromo } from '../../redux/promos-reducer'
+import { connect } from 'react-redux'
 
 class PromosNewContainer extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
 
         this.state = {
             file: '',
-            description: ''
+            description: '',
         }
     }
 
-    onSubmit = (data) => {
+    onSubmit = ( data ) => {
         let formData = new FormData()
         for (let key in data) {
             if (data.hasOwnProperty(key)) formData.append(key, data[key])
@@ -21,19 +21,19 @@ class PromosNewContainer extends React.Component {
         this.state.file && formData.append('image', this.state.file)
         this.state.description && formData.append('description', this.state.description)
         this.props.createPromo(formData)
-        this.goBack();
+        this.goBack()
     }
 
     goBack = () => {
         this.props.history.push('/promos')
     }
 
-    uploadFile = (file) => {
-        this.setState({file})
+    uploadFile = ( file ) => {
+        this.setState({ file })
     }
 
-    changeDescription = (description) => {
-        this.setState({description})
+    changeDescription = ( description ) => {
+        this.setState({ description })
     }
 
 
@@ -41,19 +41,19 @@ class PromosNewContainer extends React.Component {
         return <PromoForm onSubmit={this.onSubmit}
                           changeDescription={this.changeDescription}
                           uploadFile={this.uploadFile}
-                          goBack={this.goBack} />
+                          goBack={this.goBack}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {}
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        createPromo: (promo) => {
+        createPromo: ( promo ) => {
             dispatch(postPromo(promo))
-        }
+        },
     }
 }
 

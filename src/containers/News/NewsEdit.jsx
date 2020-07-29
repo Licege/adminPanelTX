@@ -1,19 +1,19 @@
-import React from 'react';
-import {getCurrentNews, updateNews} from "../../redux/news-reducer";
-import {connect} from "react-redux";
-import Preloader from "../../components/common/Preloader/Preloader";
-import NewsForm from "../../components/News/NewsForm";
+import React from 'react'
+import { getCurrentNews, updateNews } from '../../redux/news-reducer'
+import { connect } from 'react-redux'
+import Preloader from '../../components/common/Preloader/Preloader'
+import NewsForm from '../../components/News/NewsForm'
 
-class EditNewsContainer extends React.Component{
-    constructor(props) {
+class EditNewsContainer extends React.Component {
+    constructor( props ) {
         super(props)
         this.state = {
-            file: ''
+            file: '',
         }
     }
 
-    refreshDetailNews () {
-        let id = this.props.match.params.id;
+    refreshDetailNews() {
+        let id = this.props.match.params.id
         this.props.getCurrentNews(id)
     }
 
@@ -21,57 +21,57 @@ class EditNewsContainer extends React.Component{
         this.refreshDetailNews()
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.match.params.id !== prevProps.match.params.id ) {
-            this.refreshDetailNews();
+    componentDidUpdate( prevProps, prevState, snapshot ) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.refreshDetailNews()
         }
     }
 
-    updateNews = (news) => {
-        let formData = new FormData();
+    updateNews = ( news ) => {
+        let formData = new FormData()
         for (let key in news) {
             formData.append(key, news[key])
         }
         this.state.file && formData.append('image', this.state.file)
-        this.props.updateCurrentNews(formData, news._id);
-        this.props.history.goBack();
-    };
+        this.props.updateCurrentNews(formData, news._id)
+        this.props.history.goBack()
+    }
 
-    uploadFile = (file) => {
-        this.setState({file})
+    uploadFile = ( file ) => {
+        this.setState({ file })
     }
 
     cancel = () => {
         this.props.history.goBack()
-    };
+    }
 
     render() {
-        return this.props.isFetching ? <Preloader /> :
+        return this.props.isFetching ? <Preloader/> :
             <NewsForm initialValues={this.props.currentNews}
                       onSubmit={this.updateNews}
                       news={this.props.currentNews}
                       uploadFile={this.uploadFile}
-                      cancel={this.cancel} />
+                      cancel={this.cancel}/>
 
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         currentNews: state.newsPage.currentNews,
-        isFetching: state.newsPage.isFetching
+        isFetching: state.newsPage.isFetching,
     }
-};
+}
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getCurrentNews: (id) => {
+        getCurrentNews: ( id ) => {
             dispatch(getCurrentNews(id))
         },
-        updateCurrentNews: (currentNews, id) => {
+        updateCurrentNews: ( currentNews, id ) => {
             dispatch(updateNews(currentNews, id))
-        }
+        },
     }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps) (EditNewsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EditNewsContainer)

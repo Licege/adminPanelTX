@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {requestCategory, updateCategory} from "../../redux/menu-reducer";
-import CategoryForm from "../../components/Categories/CategoryForm";
+import { connect } from 'react-redux'
+import { requestCategory, updateCategory } from '../../redux/menu-reducer'
+import CategoryForm from '../../components/Categories/CategoryForm'
 
 class EditCategory extends React.PureComponent {
     componentDidMount() {
@@ -9,7 +9,7 @@ class EditCategory extends React.PureComponent {
         if (!this.props.category || this.props.category._id !== id) this.props.getCategory(id)
     }
 
-    onSubmit = (category) => {
+    onSubmit = ( category ) => {
         this.props.updateCategory(category)
         this.goBack()
     }
@@ -20,25 +20,25 @@ class EditCategory extends React.PureComponent {
         return <CategoryForm category={this.props.category}
                              initialValues={this.props.category}
                              onSubmit={this.onSubmit}
-                             goBack={this.goBack} />
+                             goBack={this.goBack}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        category: state.menuPage.category
+        category: state.menuPage.category,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getCategory: (id) => {
+        getCategory: ( id ) => {
             dispatch(requestCategory(id))
         },
-        updateCategory: (category) => {
+        updateCategory: ( category ) => {
             dispatch(updateCategory(category))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (EditCategory)
+export default connect(mapStateToProps, mapDispatchToProps)(EditCategory)

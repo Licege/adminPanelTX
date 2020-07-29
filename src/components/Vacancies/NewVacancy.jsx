@@ -1,11 +1,11 @@
-import React from 'react';
-import {Form} from "react-bootstrap";
+import React from 'react'
+import { Form } from 'react-bootstrap'
 
-const newVacancy = (props) => {
+const newVacancy = ( props ) => {
     return (
         <div>
             <Form>
-                <input type="file" accept="image/png, image/jpeg, image/svg+xml, image/svg" />
+                <input type="file" accept="image/png, image/jpeg, image/svg+xml, image/svg"/>
                 <Form.Control type="text" placeholder="Введите название" required/>
                 <Form.Control type="text" placeholder="Введите требования через запятую" required/>
                 <Form.Control as="textarea" placeholder="Описание вакансии" rows="5" required/>
@@ -15,6 +15,6 @@ const newVacancy = (props) => {
 
         </div>
     )
-};
+}
 
-export default newVacancy;
+export default newVacancy

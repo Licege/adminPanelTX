@@ -1,10 +1,10 @@
 import React from 'react'
-import Panel from "./Panel";
-import {FileShowPreview} from "./FileShowPreview";
-import {FileLoadModal} from "./FileLoadModal";
+import Panel from './Panel'
+import { FileShowPreview } from './FileShowPreview'
+import { FileLoadModal } from './FileLoadModal'
 
 export default class FileLoadPreview extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
         this.state = {
             errors: [],
@@ -14,65 +14,65 @@ export default class FileLoadPreview extends React.Component {
             filesUploaded: [],
             countLoading: 0,
             disableButtonLoad: true,
-            activeImage: ''
+            activeImage: '',
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate( prevProps, prevState, snapshot ) {
         if (prevProps.buffer && this.props.buffer && prevProps.buffer !== this.props.buffer) {
             if (this.props.fieldName === this.props.buffer.fieldName) {
-                this.setState({filesBeforeLoad: [...this.state.filesBeforeLoad, this.props.buffer]})
+                this.setState({ filesBeforeLoad: [ ...this.state.filesBeforeLoad, this.props.buffer ] })
             }
         }
 
         if (!prevProps.filesBeforeLoad.length && this.state.filesBeforeLoad.length) {
-            this.setState({disableButtonLoad: false})
+            this.setState({ disableButtonLoad: false })
         } else if (prevProps.filesBeforeLoad.length && !this.state.filesBeforeLoad.length) {
-            this.setState({disableButtonLoad: true})
+            this.setState({ disableButtonLoad: true })
         }
 
         if (prevProps.loading !== this.props.loading) {
             if (this.props.loading) {
-                this.setState({countLoading: this.state.countLoading + 1})
+                this.setState({ countLoading: this.state.countLoading + 1 })
             } else {
-                this.setState({countLoading: this.state.countLoading - 1})
+                this.setState({ countLoading: this.state.countLoading - 1 })
             }
         }
     }
 
     addItems = () => {
-        if (!this.props.disabled) this.setState({openLoadModal: true, filesBeforeLoad: this.state.filesUploaded})
+        if (!this.props.disabled) this.setState({ openLoadModal: true, filesBeforeLoad: this.state.filesUploaded })
     }
 
     onLoad = () => {
-        this.setState(function (state, _) {
+        this.setState(function ( state, _ ) {
             return {
                 openLoadModal: false,
-                filesUploaded: state.filesBeforeLoad
+                filesUploaded: state.filesBeforeLoad,
             }
         }, () => {
             let fileIds = this.state.filesUploaded.map(file => file.id)
             if (this.props.handlerFiles && this.props.handlerFiles instanceof Function) {
-                this.props.handlerFiles({id: this.props.fieldName, files: fileIds})
+                this.props.handlerFiles({ id: this.props.fieldName, files: fileIds })
             }
         })
     }
 
     onCancel = () => {
-        this.setState({openLoadModal: false, filesBeforeLoad: []}, () => {
+        this.setState({ openLoadModal: false, filesBeforeLoad: [] }, () => {
             this.props.onCancel && this.props.onCancel()
         })
     }
 
-    deleteItem = (id, type) => {
-        return (e) => {
+    deleteItem = ( id, type ) => {
+        return ( e ) => {
             e.stopPropagation()
             switch (type) {
                 case 'modal':
-                    this.setState({filesBeforeLoad: this.state.filesBeforeLoad.filter(file => file.id !== id)})
+                    this.setState({ filesBeforeLoad: this.state.filesBeforeLoad.filter(file => file.id !== id) })
                     break
                 case 'preview':
-                    this.setState({filesUploaded: this.state.filesUploaded.filter(file => file.id !== id)})
+                    this.setState({ filesUploaded: this.state.filesUploaded.filter(file => file.id !== id) })
                     break
                 default:
                     console.log('Тип удаления не задан!')
@@ -80,8 +80,8 @@ export default class FileLoadPreview extends React.Component {
         }
     }
 
-    onDrop = (acceptedFiles, rejectedFiles) => {
-        let files = [...this.state.filesBeforeLoad],
+    onDrop = ( acceptedFiles, rejectedFiles ) => {
+        let files = [ ...this.state.filesBeforeLoad ],
             errors = [],
             forLoad = []
 
@@ -105,33 +105,33 @@ export default class FileLoadPreview extends React.Component {
             }
         })
 
-        this.setState({errors})
+        this.setState({ errors })
 
         this.props.onDrop && this.props.onDrop(forLoad, rejectedFiles)
     }
 
-    showImage = (item) => {
+    showImage = ( item ) => {
         return () => {
-            this.setState({activeImage: item.file || item.preview})
+            this.setState({ activeImage: item.file || item.preview })
         }
     }
 
-    showPDF = (preview) => {
-        return (e) => {
+    showPDF = ( preview ) => {
+        return ( e ) => {
             window.open(preview)
         }
     }
 
     hideImage = () => {
-        this.setState({activeImage: ''})
+        this.setState({ activeImage: '' })
     }
 
     showSlider = () => {
-        this.setState({showSlider: true})
+        this.setState({ showSlider: true })
     }
 
     closeSlider = () => {
-        this.setState({showSlider: false})
+        this.setState({ showSlider: false })
     }
 
     getPreviews = () => {
@@ -149,7 +149,7 @@ export default class FileLoadPreview extends React.Component {
             accept,
             hideTitle = false,
             disabled = false,
-            tip
+            tip,
         } = this.props
 
         let {
@@ -161,7 +161,7 @@ export default class FileLoadPreview extends React.Component {
             activeImage,
             showSlider,
             openLoadModal,
-            loadEnable
+            loadEnable,
         } = this.state
 
         let filesUploadedCount = filesUploaded.length
@@ -175,7 +175,7 @@ export default class FileLoadPreview extends React.Component {
                                        className={className}
                                        showSlider={showSlider}
                                        showLoadModal={openLoadModal}
-                                       onRemove={this.deleteItem} />
+                                       onRemove={this.deleteItem}/>
                     : null}
                 <div className='FileLoad-Buttons' title={title}>
                     <span className={`FileLoad-Title ${titleClassName || ''}`}>
@@ -185,8 +185,8 @@ export default class FileLoadPreview extends React.Component {
                     </span>
                     {!disabled && !filesUploadedCount
                         ? <>
-                            <span className='FileLoad-LoadMore' onClick={this.addItems} />
-                            <span className='FileLoad-Delete' onClick={this.deleteItem} />
+                            <span className='FileLoad-LoadMore' onClick={this.addItems}/>
+                            <span className='FileLoad-Delete' onClick={this.deleteItem}/>
                         </> : null}
                 </div>
                 {openLoadModal ? <FileLoadModal title={title}

@@ -1,13 +1,13 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {createDish, requestCategories} from "../../redux/menu-reducer";
-import FormDish from "../../components/Menu/FormDish";
+import React from 'react'
+import { connect } from 'react-redux'
+import { createDish, requestCategories } from '../../redux/menu-reducer'
+import FormDish from '../../components/Menu/FormDish'
 
 class CreateDishContainer extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
         this.state = {
-            file: ''
+            file: '',
         }
     }
 
@@ -15,24 +15,24 @@ class CreateDishContainer extends React.Component {
         if (!this.props.categories.length) this.props.getCategories()
     }
 
-    createDish = (dish) => {
-        let formData = new FormData();
+    createDish = ( dish ) => {
+        let formData = new FormData()
         for (let key in dish) {
             formData.append(key, dish[key])
         }
-        formData.weight = parseInt(formData.weight, 10);
-        formData.price = parseInt(formData.price, 10);
+        formData.weight = parseInt(formData.weight, 10)
+        formData.price = parseInt(formData.price, 10)
         formData.append('image', this.state.file)
-        this.props.createDish(formData);
-        this.props.history.goBack();
-    };
+        this.props.createDish(formData)
+        this.props.history.goBack()
+    }
 
     cancel = () => {
-        this.props.history.goBack();
-    };
+        this.props.history.goBack()
+    }
 
-    uploadFile = (file) => {
-        this.setState({file})
+    uploadFile = ( file ) => {
+        this.setState({ file })
     }
 
     render() {
@@ -40,25 +40,25 @@ class CreateDishContainer extends React.Component {
                          categories={this.props.categories}
                          cancel={this.cancel}
                          uploadFile={this.uploadFile}
-                         initialValues={{is_delivery: true}} />
+                         initialValues={{ is_delivery: true }}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        categories: state.menuPage.categories
+        categories: state.menuPage.categories,
     }
-};
+}
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        createDish: (dish) => {
+        createDish: ( dish ) => {
             dispatch(createDish(dish))
         },
         getCategories() {
             dispatch(requestCategories())
-        }
+        },
     }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps) (CreateDishContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateDishContainer)

@@ -1,9 +1,9 @@
-import React from 'react';
-import {Field, reduxForm} from "redux-form";
-import Button from "react-bootstrap/Button";
-import ImageInput from '../../common/imageInput';
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+import Button from 'react-bootstrap/Button'
+import ImageInput from '../../common/imageInput'
 
-const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
+const Vacancy = ( { handleSubmit, uploadFile, cancel, vacancy } ) => {
     return (
         <div>
             <div className='page-header'>
@@ -20,7 +20,7 @@ const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
                                        type='text'
                                        component='input'
                                        placeholder='Название'
-                                       className='filter-main-input -name form-control' />
+                                       className='filter-main-input -name form-control'/>
                             </div>
 
                             <div>
@@ -28,7 +28,7 @@ const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
                                        type='text'
                                        component='input'
                                        placeholder='Требования'
-                                       className='filter-main-input -name form-control' />
+                                       className='filter-main-input -name form-control'/>
                             </div>
 
                             <div>
@@ -36,7 +36,7 @@ const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
                                        type='text'
                                        component='input'
                                        placeholder='Описание'
-                                       className='filter-main-input -name form-control' />
+                                       className='filter-main-input -name form-control'/>
                             </div>
 
                             <div>
@@ -45,7 +45,7 @@ const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
                                        component='input'
                                        placeholder='Зп от'
                                        parse={value => parseInt(value, 10)}
-                                       className='filter-main-input -name form-control' />
+                                       className='filter-main-input -name form-control'/>
                             </div>
 
                             <div>
@@ -54,11 +54,12 @@ const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
                                        component='input'
                                        placeholder='Зп до'
                                        parse={value => parseInt(value, 10)}
-                                       className='filter-main-input -name form-control' />
+                                       className='filter-main-input -name form-control'/>
                             </div>
 
                             <div>
-                                <ImageInput value={vacancy ? vacancy.imageSrc : ''} onChange={uploadFile} allowClear={true} />
+                                <ImageInput value={vacancy ? vacancy.imageSrc : ''} onChange={uploadFile}
+                                            allowClear={true}/>
                             </div>
 
                             <Button variant='primary' type='submit'>Сохранить</Button>
@@ -69,7 +70,7 @@ const Vacancy = ( {handleSubmit, uploadFile, cancel, vacancy} ) => {
             </div>
         </div>
     )
-};
+}
 
-const CreateVacancyReduxForm = reduxForm({form: 'create-vacancy', enableReinitialize: true})(Vacancy);
-export default CreateVacancyReduxForm;
+const CreateVacancyReduxForm = reduxForm({ form: 'create-vacancy', enableReinitialize: true })(Vacancy)
+export default CreateVacancyReduxForm

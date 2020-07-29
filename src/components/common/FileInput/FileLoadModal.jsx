@@ -1,36 +1,38 @@
 import React from 'react'
 import Panel from './Panel'
-import Modal from "react-bootstrap/Modal";
-import Dropzone from "../Dropzone";
-import Button from "react-bootstrap/Button";
+import Modal from 'react-bootstrap/Modal'
+import Dropzone from '../Dropzone'
+import Button from 'react-bootstrap/Button'
 
-const getPreviews = (files, countLoading, onRemove, showImage, showPDF) => (
+const getPreviews = ( files, countLoading, onRemove, showImage, showPDF ) => (
     <div className='Dropzone-Previews'>
-        {files.map((item, key) => {
+        {files.map(( item, key ) => {
                 let preview = item.type && item.type.includes('image')
                 return preview ?
-                    <div key={key} className={`FileLoad-PreviewImg ${item.rejected ? '-error' : ''}`} onClick={showImage(item)}>
+                    <div key={key} className={`FileLoad-PreviewImg ${item.rejected ? '-error' : ''}`}
+                         onClick={showImage(item)}>
                         <img className='FileLoad-Preview-Image' src={item.preview} alt=''/>
                         <span className='FileLoad-Preview-Close' onClick={onRemove(item.id, 'modal')}/>
                     </div>
                     :
-                    <div key={key} className={`FileLoad-PreviewDoc ${item.rejected ? '-error' : ''}`} onClick={showPDF(item.preview)}>
+                    <div key={key} className={`FileLoad-PreviewDoc ${item.rejected ? '-error' : ''}`}
+                         onClick={showPDF(item.preview)}>
                         <span className='FileLoad-Preview-Close' onClick={onRemove(item.id, 'modal')}/>
                     </div>
-            }
+            },
         )}
 
         {countLoading > 0 ? Array(countLoading).fill(1).map(() => (
                 <div className='FileLoad-PreviewImg'>
                     <div className='FileLoad-Preview-Throuber'>Сделай трабер</div>
                 </div>
-            )
+            ),
         ) : null}
 
     </div>
 )
 
-export const FileLoadModal = (props) => {
+export const FileLoadModal = ( props ) => {
     let {
         title,
         maxCount = 1,
@@ -49,7 +51,7 @@ export const FileLoadModal = (props) => {
         disableButtonLoad,
         errors,
         countLoading,
-        activeImage
+        activeImage,
     } = props
 
     let filesCount = files.length
@@ -63,7 +65,7 @@ export const FileLoadModal = (props) => {
             </div>
             <Panel
                 className={`mt-20 mr-20 ml-20 mb-10 ${filesCount > maxCount ? 'Dropzone -error' : ''} ${filesCount < maxCount ? 'Dropzone -active' : ''}`}>
-                <Dropzone dropzoneRef={(el) => {
+                <Dropzone dropzoneRef={( el ) => {
                     dropzoneRef = el
                 }}
                           className={`Dropzone_size_md ${filesCount ? '' : 'FlexBox_center'}`}
@@ -83,14 +85,14 @@ export const FileLoadModal = (props) => {
                             <Button variant='outline-primary' onClick={() => dropzoneRef.open()}>
                                 Выберите файл{maxCount > 1 ? 'ы' : ''}
                             </Button>
-                            {errors.length ? errors.map((error, key) => <div key={key}
-                                                                             className='Text_danger font-italic mt-10'>
+                            {errors.length ? errors.map(( error, key ) => <div key={key}
+                                                                               className='Text_danger font-italic mt-10'>
                                 {error}
                             </div>) : null}
                         </div>
                         : <div className='text-center'>
-                            {errors.length ? errors.map((error, key) => <div key={key}
-                                                                             className='Text_danger font-italic mt-10'>
+                            {errors.length ? errors.map(( error, key ) => <div key={key}
+                                                                               className='Text_danger font-italic mt-10'>
                                 {error}
                             </div>) : null}
                         </div>}
@@ -103,7 +105,8 @@ export const FileLoadModal = (props) => {
                     </div>
                     <div className='col-sm-6 pb-20 d-flex'>
                         <Button variant='outline-warning' onClick={onCancel}>Отменить</Button>
-                        <Button variant='primary' disabled={!loadEnable && disableButtonLoad} onClick={loadEnable && !disableButtonLoad ? onLoad : null}>
+                        <Button variant='primary' disabled={!loadEnable && disableButtonLoad}
+                                onClick={loadEnable && !disableButtonLoad ? onLoad : null}>
                             Сохранить
                         </Button>
                     </div>
@@ -113,7 +116,7 @@ export const FileLoadModal = (props) => {
                 <div className='ImageSlider'>
                     <div className='ImageSlider-Body'>
                         <div className='ImageSlider-Body-Item ImageSlider-PreviewsList-Item-Item_active'>
-                            <img className='ImageSlider-Body-Img' src={activeImage} alt='' />
+                            <img className='ImageSlider-Body-Img' src={activeImage} alt=''/>
                         </div>
                     </div>
                 </div>

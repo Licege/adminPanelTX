@@ -1,9 +1,9 @@
-import React from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import React from 'react'
+import { Editor } from 'react-draft-wysiwyg'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 
-const TextEditor = ({state, onEditorStateChange}) => {
+const TextEditor = ( { state, onEditorStateChange } ) => {
     return (
         <div>
             <Editor
@@ -17,7 +17,7 @@ const TextEditor = ({state, onEditorStateChange}) => {
                 }}
             />
         </div>
-    );
+    )
 }
 
-export default TextEditor;
+export default TextEditor

@@ -1,23 +1,23 @@
-import React from 'react';
-import {compose} from "redux";
-import {connect} from "react-redux";
-import Home from "../../components/Home/Home";
+import React from 'react'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import Home from '../../components/Home/Home'
 
-class HomeContainer extends React.Component{
+class HomeContainer extends React.Component {
     componentDidMount() {
     }
 
     render() {
-        return <Home />;
+        return <Home/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {}
-};
+}
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {}
-};
+}
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (HomeContainer);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(HomeContainer)

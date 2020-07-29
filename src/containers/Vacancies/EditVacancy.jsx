@@ -1,13 +1,13 @@
 import React from 'react'
-import {requestVacancy, updateVacancy} from "../../redux/vacancies-reducer";
-import {connect} from "react-redux";
-import Vacancy from "../../components/Vacancies/new/Vacancy";
+import { requestVacancy, updateVacancy } from '../../redux/vacancies-reducer'
+import { connect } from 'react-redux'
+import Vacancy from '../../components/Vacancies/new/Vacancy'
 
 class EditVacancy extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
         this.state = {
-            file: ''
+            file: '',
         }
     }
 
@@ -19,11 +19,11 @@ class EditVacancy extends React.Component {
         this.props.history.goBack()
     }
 
-    uploadFile = (file) => {
-        this.setState({file})
+    uploadFile = ( file ) => {
+        this.setState({ file })
     }
 
-    onSubmit = (vacancy) => {
+    onSubmit = ( vacancy ) => {
         let formData = new FormData()
         for (let key in vacancy) {
             formData.append(key, vacancy[key])
@@ -40,25 +40,25 @@ class EditVacancy extends React.Component {
                         onSubmit={this.onSubmit}
                         uploadFile={this.uploadFile}
                         cancel={this.goBack}
-                        vacancy={this.props.currentVacancy} />
+                        vacancy={this.props.currentVacancy}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        currentVacancy: state.vacanciesPage.currentVacancy
+        currentVacancy: state.vacanciesPage.currentVacancy,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getVacancy: (id) => {
+        getVacancy: ( id ) => {
             dispatch(requestVacancy(id))
         },
-        updateVacancy: (vacancy, id) => {
+        updateVacancy: ( vacancy, id ) => {
             dispatch(updateVacancy(vacancy, id))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (EditVacancy)
+export default connect(mapStateToProps, mapDispatchToProps)(EditVacancy)

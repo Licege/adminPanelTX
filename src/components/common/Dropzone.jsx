@@ -21,7 +21,7 @@ export default class Dropzone extends React.Component {
         this.props.onDragEnd && this.props.onDragEnd()
     }
 
-    onDrop = (acceptedFiles, rejectedFiles) => {
+    onDrop = ( acceptedFiles, rejectedFiles ) => {
         // происходит drop элемента
         this.props.onDrop && this.props.onDrop(acceptedFiles, rejectedFiles)
     }
@@ -32,10 +32,10 @@ export default class Dropzone extends React.Component {
             className,
             disableClick,
             minSize = 1,
-            maxSize = 10*1024*1024,
+            maxSize = 10 * 1024 * 1024,
             accept,
             disabled,
-            multiple
+            multiple,
         } = this.props
 
         return <DropZoneElement ref={dropzoneRef}

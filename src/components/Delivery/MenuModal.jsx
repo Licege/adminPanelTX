@@ -1,9 +1,9 @@
 import React from 'react'
-import {Button, Modal, Table} from 'react-bootstrap';
-import {fullLink} from '../../plagins/helpers';
-import altImg from '../../static/img/dish.svg';
+import { Button, Modal, Table } from 'react-bootstrap'
+import { fullLink } from '../../plugins/helpers'
+import altImg from '../../static/img/dish.svg'
 
-const MenuModal = ({show, handleClose, menu, categories, applyFilterModal, addDish, currentCategory}) => {
+const MenuModal = ( { show, handleClose, menu, categories, applyFilterModal, addDish, currentCategory } ) => {
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header>

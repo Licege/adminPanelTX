@@ -1,10 +1,10 @@
 import React from 'react'
-import Tab from "react-bootstrap/Tab";
-import Nav from "react-bootstrap/Nav";
-import AdminsTable from "./Tabs/AdminsTable";
-import UserTable from "./Tabs/UsersTable";
+import Tab from 'react-bootstrap/Tab'
+import Nav from 'react-bootstrap/Nav'
+import AdminsTable from './Tabs/AdminsTable'
+import UserTable from './Tabs/UsersTable'
 
-const Admin = ({admins, users, openConfirmModal}) => {
+const Admin = ( { admins, users, openConfirmModal } ) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -30,7 +30,7 @@ const Admin = ({admins, users, openConfirmModal}) => {
                             <AdminsTable admins={admins}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey='users-tab'>
-                            <UserTable users={users} admins={admins} upgrade={openConfirmModal} />
+                            <UserTable users={users} admins={admins} upgrade={openConfirmModal}/>
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>
@@ -39,4 +39,4 @@ const Admin = ({admins, users, openConfirmModal}) => {
     )
 }
 
-export default Admin;
+export default Admin

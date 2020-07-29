@@ -8,19 +8,20 @@
     align-items: center;
     margin-bottom: 20px;
 
-      &.-action {
-        justify-content: space-between;
-      }
+    &.-action {
+      justify-content: space-between;
+    }
 
-      &-title {
-        margin: 0 30px;
-        font-weight: bold;
+    &-title {
+      margin: 0 30px;
+      font-weight: bold;
 
-        a, a:hover, a:focus, a:active, a:visited {
-          color: inherit;
-          text-decoration: inherit;
-        }
+      a, a:hover, a:focus, a:active, a:visited {
+        color: inherit;
+        text-decoration: inherit;
       }
+    }
+
     &-action {
       margin: 0 30px;
       display: flex;

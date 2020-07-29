@@ -1,31 +1,31 @@
-import React from "react";
-import {Field} from "redux-form";
+import React from 'react'
+import { Field } from 'redux-form'
 
-const FormControl  = ({input, meta: {touched, error}, children}) => {
+const FormControl = ( { input, meta: { touched, error }, children } ) => {
     //const hasError = touched && error;
     return (
         <div>
             {children}
         </div>
     )
-};
+}
 
-export const onlyNumber = (value) => {
+export const onlyNumber = ( value ) => {
     //const regEx = /[^0-9]/gi;
     return parseInt(value, 10)
-};
+}
 
-export const Input = (props) => {
-    const {input, meta, child, ...restProps} = props;
+export const Input = ( props ) => {
+    const { input, meta, child, ...restProps } = props
     return <FormControl {...props}><input {...input} {...restProps} /></FormControl>
-};
+}
 
-export const Textarea = (props) => {
-    const {input, meta, child, ...restProps} = props;
+export const Textarea = ( props ) => {
+    const { input, meta, child, ...restProps } = props
     return <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>
-};
+}
 
-export const createField = (placeholder, name, validators, component, type = 'text', props = {}, text = "") => (
+export const createField = ( placeholder, name, validators, component, type = 'text', props = {}, text = '' ) => (
     <div>
         <Field placeholder={placeholder} name={name}
                validate={validators}
@@ -35,4 +35,4 @@ export const createField = (placeholder, name, validators, component, type = 'te
                {...props}
         /> {text}
     </div>
-);
+)

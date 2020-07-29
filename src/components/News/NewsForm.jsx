@@ -1,9 +1,9 @@
 import React from 'react'
-import {Field, reduxForm} from "redux-form";
-import {Button} from "react-bootstrap";
-import ImageInput from '../common/imageInput';
+import { Field, reduxForm } from 'redux-form'
+import { Button } from 'react-bootstrap'
+import ImageInput from '../common/imageInput'
 
-const NewsForm = ({handleSubmit, uploadFile, news, cancel}) => (
+const NewsForm = ( { handleSubmit, uploadFile, news, cancel } ) => (
     <div>
         <div className='page-header'>
             <div className='page-header-title'>
@@ -33,7 +33,7 @@ const NewsForm = ({handleSubmit, uploadFile, news, cancel}) => (
                                    component='textarea'/>
                         </div>
                         <div>
-                            <ImageInput value={news ? news.imageSrc : ''} onChange={uploadFile} allowClear={true} />
+                            <ImageInput value={news ? news.imageSrc : ''} onChange={uploadFile} allowClear={true}/>
                         </div>
                         <Button onClick={cancel} variant='outline-secondary'>Отменить</Button>
                         <Button type='submit' variant='primary'>Сохранить</Button>
@@ -44,5 +44,5 @@ const NewsForm = ({handleSubmit, uploadFile, news, cancel}) => (
     </div>
 )
 
-const NewsReduxForm = reduxForm({form: 'news-form', enableReinitialize: true})(NewsForm);
-export default NewsReduxForm;
+const NewsReduxForm = reduxForm({ form: 'news-form', enableReinitialize: true })(NewsForm)
+export default NewsReduxForm

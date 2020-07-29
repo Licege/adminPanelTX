@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-const Resume = (props) => {
+const Resume = ( props ) => {
     return (
         <div>
             <div className='page-header'>
@@ -15,7 +15,7 @@ const Resume = (props) => {
             </div>
         </div>
     )
-};
+}
 
 
-export default Resume;
+export default Resume

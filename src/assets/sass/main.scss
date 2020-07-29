@@ -1,9 +1,6 @@
 @import "variables/bootstrap-variables";
-
 @import '~bootstrap/scss/bootstrap';
-
 @import "pages/layout";
-
 @import "elements/header";
 @import "elements/defaultElements/table";
 @import "elements/defaultElements/cardVacancy";
@@ -14,7 +11,6 @@
 @import "elements/fileLoad";
 @import "elements/defaultElements/cardPromo";
 @import "elements/rating";
-
 @import "pages/auth";
 @import "pages/vacancies";
 @import "pages/promos";
@@ -22,3 +18,4 @@
 @import "pages/menu";
 @import "pages/deliveryInfo";
 @import "pages/deliverySettings";
+@import "pages/animation";

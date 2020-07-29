@@ -1,8 +1,8 @@
 import React from 'react'
-import {deleteMessage, requestMessages} from "../../redux/message-reducer";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import Messages from "../../components/Messages/Messages";
+import { deleteMessage, requestMessages } from '../../redux/message-reducer'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import Messages from '../../components/Messages/Messages'
 
 class MessagesContainer extends React.Component {
     componentDidMount() {
@@ -10,25 +10,25 @@ class MessagesContainer extends React.Component {
     }
 
     render() {
-        return <Messages messages={this.props.messages} deleteMessage={this.props.deleteMessage} />
+        return <Messages messages={this.props.messages} deleteMessage={this.props.deleteMessage}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        messages: state.messagesPage.messages
+        messages: state.messagesPage.messages,
     }
-};
+}
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
         getMessages: () => {
             dispatch(requestMessages())
         },
-        deleteMessage: (id) => {
+        deleteMessage: ( id ) => {
             dispatch(deleteMessage(id))
-        }
+        },
     }
-};
+}
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (MessagesContainer);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(MessagesContainer)

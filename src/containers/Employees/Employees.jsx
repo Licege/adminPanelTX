@@ -1,29 +1,29 @@
 import React from 'react'
-import {employeesAPI} from "../../api/api";
-import Employees from '../../components/Employees/Employees';
-import {connect} from "react-redux";
-import {deleteEmployeeAC, requestEmployees, requestProfessins} from "../../redux/employees-reducer";
+import { employeesAPI } from '../../api/api'
+import Employees from '../../components/Employees/Employees'
+import { connect } from 'react-redux'
+import { deleteEmployeeAC, requestEmployees, requestProfessins } from '../../redux/employees-reducer'
 
 class EmployeesContainer extends React.Component {
     componentDidMount() {
-        if (!this.props.employees.length) this.props.getEmployees();
-        if (!this.props.professions.length) this.props.getProfessions();
+        if (!this.props.employees.length) this.props.getEmployees()
+        if (!this.props.professions.length) this.props.getProfessions()
     }
 
-    detail = (id) => {
+    detail = ( id ) => {
         return () => {
             this.props.history.push(`employees/edit/${id}`)
         }
-    };
+    }
 
     createNewEmployee = () => {
         this.props.history.push(`employees/new`)
-    };
+    }
 
-    delete = (id) => {
-        employeesAPI.deleteEmployee(id);
-        this.props.deleteEmployee(id);
-    };
+    delete = ( id ) => {
+        employeesAPI.deleteEmployee(id)
+        this.props.deleteEmployee(id)
+    }
 
     render() {
         return <Employees
@@ -31,28 +31,28 @@ class EmployeesContainer extends React.Component {
             professions={this.props.professions}
             detail={this.detail}
             createNewEmployee={this.createNewEmployee}
-            delete={this.delete} />
+            delete={this.delete}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         employees: state.employeesPage.employees,
-        professions: state.employeesPage.professions
+        professions: state.employeesPage.professions,
     }
-};
-let mapDispatchToProps = (dispatch) => {
+}
+let mapDispatchToProps = ( dispatch ) => {
     return {
         getEmployees: () => {
             dispatch(requestEmployees())
         },
-        deleteEmployee: (id) => {
+        deleteEmployee: ( id ) => {
             dispatch(deleteEmployeeAC(id))
         },
         getProfessions: () => {
             dispatch(requestProfessins())
-        }
+        },
     }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps) (EmployeesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeesContainer)

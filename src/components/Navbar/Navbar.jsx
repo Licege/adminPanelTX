@@ -1,7 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Accordion } from "react-bootstrap";
-import CustomToggle from "../common/element/Toggle";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { Accordion } from 'react-bootstrap'
+import CustomToggle from '../common/element/Toggle'
 
 const Navbar = () => {
     return (
@@ -11,13 +11,16 @@ const Navbar = () => {
                     Ресторан
                 </CustomToggle>
                 <Accordion.Collapse eventKey="0">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/news'>Новости</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/news'>Новости</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="0">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/menu'>Меню</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/menu'>Меню</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="0">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/categories'>Категории</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/categories'>Категории</NavLink>
                 </Accordion.Collapse>
                 {/*
                 <Accordion.Collapse eventKey="0">
@@ -25,7 +28,8 @@ const Navbar = () => {
                 </Accordion.Collapse>
                 */}
                 <Accordion.Collapse eventKey="0">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/halls'>Банкетные залы</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/halls'>Банкетные
+                        залы</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="0">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
@@ -44,37 +48,44 @@ const Navbar = () => {
                     Доставка
                 </CustomToggle>
                 <Accordion.Collapse eventKey="1">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery'>Заказы</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/delivery'>Заказы</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="1">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery-settings'>Настройки доставки</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/delivery-settings'>Настройки
+                        доставки</NavLink>
                 </Accordion.Collapse>
 
                 <CustomToggle className='navbar-accordion-header' eventKey='2'>
                     Посетители
                 </CustomToggle>
                 <Accordion.Collapse eventKey="2">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/users'>Все посетители</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/users'>Все
+                        посетители</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="2">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/reviews'>Отзывы</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/reviews'>Отзывы</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="2">
                     <NavLink activeClassName='-active' className='navbar-accordion-header-item'
                              to='/messages'>Сообщения</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="2">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/resume'>Резюме</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/resume'>Резюме</NavLink>
                 </Accordion.Collapse>
                 <Accordion.Collapse eventKey="2">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/orders'>Заявки на бронирование</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/orders'>Заявки на
+                        бронирование</NavLink>
                 </Accordion.Collapse>
 
                 <CustomToggle className='navbar-accordion-header' eventKey='3'>
                     Программа лояльности
                 </CustomToggle>
                 <Accordion.Collapse eventKey="3">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item' to='/promos'>Акции</NavLink>
+                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
+                             to='/promos'>Акции</NavLink>
                 </Accordion.Collapse>
 
                 <CustomToggle className='navbar-accordion-header' eventKey='4'>
@@ -107,6 +118,6 @@ const Navbar = () => {
             </Accordion>
         </nav>
     )
-};
+}
 
-export default Navbar;
+export default Navbar

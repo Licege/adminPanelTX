@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from "react-redux";
-import Promos from "../../components/Promos/Promos";
-import {requestPromos} from "../../redux/promos-reducer";
+import { connect } from 'react-redux'
+import Promos from '../../components/Promos/Promos'
+import { requestPromos } from '../../redux/promos-reducer'
 
 class PromosContainer extends React.Component {
     componentDidMount() {
@@ -13,22 +13,22 @@ class PromosContainer extends React.Component {
     }
 
     render() {
-        return <Promos promos={this.props.promos} newPromo={this.newPromo} />
+        return <Promos promos={this.props.promos} newPromo={this.newPromo}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        promos: state.promosPage.promos
+        promos: state.promosPage.promos,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
         getPromos: () => {
             dispatch(requestPromos())
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (PromosContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PromosContainer)

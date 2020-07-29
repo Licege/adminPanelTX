@@ -1,8 +1,8 @@
 import React from 'react'
-import {Button, Table} from "react-bootstrap";
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Button, Table } from 'react-bootstrap'
+import DeleteIcon from '@material-ui/icons/Delete'
 
-const Categories = ({categories, createCategory, updateCategory, deleteCategory}) => {
+const Categories = ( { categories, createCategory, updateCategory, deleteCategory } ) => {
     return (
         <div className='page'>
             <div className='page-header -action'>
@@ -29,7 +29,8 @@ const Categories = ({categories, createCategory, updateCategory, deleteCategory}
                                     <td>{category.title}</td>
                                     <td>{category.title_en}</td>
                                     <td>
-                                        <input type='checkbox' checked={category.is_delivery} value={category.is_delivery} disabled />
+                                        <input type='checkbox' checked={category.is_delivery}
+                                               value={category.is_delivery} disabled/>
                                     </td>
                                     <td><DeleteIcon onClick={deleteCategory(category._id)}/></td>
                                 </tr>
@@ -37,7 +38,7 @@ const Categories = ({categories, createCategory, updateCategory, deleteCategory}
                             </tbody>
                         </Table>
                     </div>
-                     : null}
+                    : null}
             </div>
         </div>
     )

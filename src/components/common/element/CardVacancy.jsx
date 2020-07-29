@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import altImg from '../../../static/img/vacancy.png'
-import {cropText, fullLink} from "../../../plagins/helpers";
+import { cropText, fullLink } from '../../../plugins/helpers'
 
-let CardVacancy = ({card, change, remove}) => {
+let CardVacancy = ( { card, change, remove } ) => {
     return (
         <div className='card card_vacancy'>
             <img className='card_vacancy-img' src={card.imageSrc ? fullLink((card.imageSrc)) : altImg}
@@ -22,6 +22,6 @@ let CardVacancy = ({card, change, remove}) => {
             </div>
         </div>
     )
-};
+}
 
-export default CardVacancy;
+export default CardVacancy

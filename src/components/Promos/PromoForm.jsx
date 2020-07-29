@@ -1,11 +1,11 @@
 import React from 'react'
-import {Field, reduxForm} from "redux-form";
+import { Field, reduxForm } from 'redux-form'
 //import EditorFieldComponent from "../common/element/editor/EditorFieldComponent";
-import Button from "react-bootstrap/Button";
-import ImageInput from '../common/imageInput';
-import ControlledEditor from '../common/element/editor/ControlledEditor';
+import Button from 'react-bootstrap/Button'
+import ImageInput from '../common/imageInput'
+import ControlledEditor from '../common/element/editor/ControlledEditor'
 
-const PromoForm = ({handleSubmit, promo, changeDescription, uploadFile, goBack}) => {
+const PromoForm = ( { handleSubmit, promo, changeDescription, uploadFile, goBack } ) => {
     return (
         <div>
             <div className='page-header'>
@@ -19,16 +19,16 @@ const PromoForm = ({handleSubmit, promo, changeDescription, uploadFile, goBack})
                            component='input'
                            type='text'
                            className='form-control filter-main-input -name'
-                           placeholder='Название' />
+                           placeholder='Название'/>
                 </div>
                 <div>
                     <Field name='short_description'
                            component='textarea'
                            className='form-control filter-main-input -name'
-                           placeholder='Краткое описание (необязательно)' />
+                           placeholder='Краткое описание (необязательно)'/>
                 </div>
                 <div className='promos-form-wysivyg'>
-                    <ControlledEditor value={promo ? promo.description : ''} onChange={changeDescription} />
+                    <ControlledEditor value={promo ? promo.description : ''} onChange={changeDescription}/>
                 </div>
                 <div>
                     <label htmlFor='isShow'>Показывать акцию</label>
@@ -36,10 +36,10 @@ const PromoForm = ({handleSubmit, promo, changeDescription, uploadFile, goBack})
                            id='show'
                            component='input'
                            type='checkbox'
-                           className="filter-main-input -name form-control" />
+                           className="filter-main-input -name form-control"/>
                 </div>
                 <div>
-                    <ImageInput value={promo ? promo.imageSrc : ''} onChange={uploadFile} allowClear={true} />
+                    <ImageInput value={promo ? promo.imageSrc : ''} onChange={uploadFile} allowClear={true}/>
                 </div>
                 <div>
                     <Button variant='primary' type='submit'>Сохранить</Button>
@@ -51,6 +51,6 @@ const PromoForm = ({handleSubmit, promo, changeDescription, uploadFile, goBack})
     )
 }
 
-let reduxPromoForm = reduxForm({form: 'promo-form', enableReinitialize: true})(PromoForm)
+let reduxPromoForm = reduxForm({ form: 'promo-form', enableReinitialize: true })(PromoForm)
 
-export default reduxPromoForm;
+export default reduxPromoForm

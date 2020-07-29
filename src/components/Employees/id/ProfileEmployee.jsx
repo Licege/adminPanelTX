@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import EditEmployee from "./EditEmployee";
-import Employee from "./Employee";
+import React, { useState } from 'react'
+import EditEmployee from './EditEmployee'
+import Employee from './Employee'
 
 
-const ProfileEmployee = (props) => {
-    let [editMode, setEditMode] = useState(false);
+const ProfileEmployee = ( props ) => {
+    let [ editMode, setEditMode ] = useState(false)
 
     return (
         <>
@@ -14,14 +14,14 @@ const ProfileEmployee = (props) => {
                               professions={props.professions}
                               onSubmit={props.onSubmit}
                               cancel={props.cancel}/>
-            :
+                :
                 <Employee employee={props.employee}
                           professions={props.professions}
-                          goEditMode={() => { setEditMode(true)} }
-                          cancel={props.cancel} />
+                          goEditMode={() => { setEditMode(true)}}
+                          cancel={props.cancel}/>
             }
         </>
     )
-};
+}
 
-export default ProfileEmployee;
+export default ProfileEmployee

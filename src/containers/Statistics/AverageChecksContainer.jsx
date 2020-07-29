@@ -1,17 +1,17 @@
 import React from 'react'
-import {AverageChecks} from "../../components/Statistics/AverageChecks";
-import {requestAvgChecks} from "../../redux/Statistics/average-checks-reducer";
-import {connect} from "react-redux";
+import { AverageChecks } from '../../components/Statistics/AverageChecks'
+import { requestAvgChecks } from '../../redux/Statistics/average-checks-reducer'
+import { connect } from 'react-redux'
 
 const fieldFilter = []
 
 class AverageChecksContainer extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super(props)
         this.state = {
             filter: {},
             startDate: null,
-            endDate: null
+            endDate: null,
         }
     }
 
@@ -19,14 +19,14 @@ class AverageChecksContainer extends React.Component {
         if (!this.props.avgChecks.length) this.props.getAvgChecks()
     }
 
-    handleChange = (type) => {
-        return (date) => {
+    handleChange = ( type ) => {
+        return ( date ) => {
             switch (type) {
                 case 'start':
-                    this.setState({startDate: date})
+                    this.setState({ startDate: date })
                     break
                 case 'end':
-                    this.setState({endDate: date})
+                    this.setState({ endDate: date })
                     break
                 default:
                     return ''
@@ -39,18 +39,18 @@ class AverageChecksContainer extends React.Component {
 
         if (this.state.startDate) {
             data.create_at_start = this.state.startDate
-            this.setState({filter: data})
+            this.setState({ filter: data })
         } else if (data.create_at_start) {
             delete (data.create_at_start)
-            this.setState({filter: data})
+            this.setState({ filter: data })
         }
 
         if (this.state.endDate) {
             data.create_at_end = this.state.endDate
-            this.setState({filter: data})
+            this.setState({ filter: data })
         } else if (data.create_at_end) {
             delete (data.create_at_end)
-            this.setState({filter: data})
+            this.setState({ filter: data })
         }
 
         this.props.getAvgChecks(data)
@@ -58,18 +58,18 @@ class AverageChecksContainer extends React.Component {
 
     clearFilter = () => {
         fieldFilter.forEach(field => document.getElementById(field).value = '')
-        this.setState({filter: {}, startDate: '', endDate: ''})
+        this.setState({ filter: {}, startDate: '', endDate: '' })
         this.props.getAvgChecks()
     }
 
     render() {
         let {
             startDate,
-            endDate
+            endDate,
         } = this.state
 
         let {
-            avgChecks
+            avgChecks,
         } = this.props
 
         return <AverageChecks avgChecks={avgChecks}
@@ -77,22 +77,22 @@ class AverageChecksContainer extends React.Component {
                               endDate={endDate}
                               handleChange={this.handleChange}
                               changeFilter={this.changeFilter}
-                              clearFilter={this.clearFilter} />
+                              clearFilter={this.clearFilter}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        avgChecks: state.avgChecksPage.avgChecks
+        avgChecks: state.avgChecksPage.avgChecks,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getAvgChecks: (filter) => {
+        getAvgChecks: ( filter ) => {
             dispatch(requestAvgChecks(filter))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (AverageChecksContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AverageChecksContainer)

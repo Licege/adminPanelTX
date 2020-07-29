@@ -1,13 +1,13 @@
 import React from 'react'
 
 export default class Slider extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
         this.state = {
             currentSlide: 0,
             animating: false,
             animatingType: 'to',
-            nextSlide: ''
+            nextSlide: '',
         }
     }
 
@@ -19,7 +19,7 @@ export default class Slider extends React.Component {
         document.removeEventListener('keypress', this.keypress)
     }
 
-    keypress = (e) => {
+    keypress = ( e ) => {
         switch (e.keyCode) {
             case 39:
 
@@ -42,17 +42,17 @@ export default class Slider extends React.Component {
         else return this.state.currentSlide + 1
     }
 
-    toSlide = (next) => {
+    toSlide = ( next ) => {
         return () => {
             this.setState({
                 animating: true,
                 animatingType: 'to',
-                nextSlide: next
+                nextSlide: next,
             }, () => {
                 setTimeout(() => {
                     this.setState({
                         currentSlide: next,
-                        animating: false
+                        animating: false,
                     })
                 }, 500)
             })
@@ -64,11 +64,11 @@ export default class Slider extends React.Component {
         this.setState({
             animating: true,
             animatingType: 'prev',
-            prevSlide: prev
+            prevSlide: prev,
         }, () => {
             setTimeout({
                 currentSlide: prev,
-                animating: false
+                animating: false,
             }, 500)
         })
     }
@@ -78,18 +78,18 @@ export default class Slider extends React.Component {
         this.setState({
             animating: true,
             animatingType: 'next',
-            nextSlide: next
+            nextSlide: next,
         }, () => {
             setTimeout(() => {
                 this.setState({
                     activeSlide: next,
-                    animating: false
+                    animating: false,
                 })
             }, 500)
         })
     }
 
-    renderSlide = (slide, key) => {
+    renderSlide = ( slide, key ) => {
         return <li key={key}
                    onClick={this.toSlide(key)}
                    className={`ImageSlider-PreviewsList-Item ${key === this.state.currentSlide ? 'ImageSlider-PreviewsList-Item_active' : ''}`}>
@@ -101,30 +101,32 @@ export default class Slider extends React.Component {
         let {
             className,
             slides = [],
-            previews = []
+            previews = [],
         } = this.props
 
         let {
             currentSlide,
             animating,
             animatingType,
-            nextSlide
+            nextSlide,
         } = this.state
 
         return (
             <div className={`ImageSlider ${className || ''}`}>
                 <div className={`ImageSlider-Body ${animating ? 'animating_' + animatingType : ''}`}>
-                    {slides.length > 1 ? <div className='ImageSlider-Body-ArrowPrev' onClick={this.toPrevSlide} /> : null}
+                    {slides.length > 1 ?
+                        <div className='ImageSlider-Body-ArrowPrev' onClick={this.toPrevSlide}/> : null}
                     <div className='ImageSlider-Body-Item ImageSlider-Body-Item_active'>
                         {slides[currentSlide]}
                     </div>
                     <div className='ImageSlider-Body-Item ImageSlider-Body-Item_next'>
                         {slides[nextSlide]}
                     </div>
-                    {slides.length > 1 ? <div className="ImageSlider-Body-ArrowNext" onClick={this.toNextSlide}/> : null}
+                    {slides.length > 1 ?
+                        <div className="ImageSlider-Body-ArrowNext" onClick={this.toNextSlide}/> : null}
                 </div>
                 {slides.length > 1 ? <ul className='ImageSlider-PreviewsList'>
-                    {previews.map((item, key) => this.renderSlide(item, key))}
+                    {previews.map(( item, key ) => this.renderSlide(item, key))}
                 </ul> : null}
             </div>
         )

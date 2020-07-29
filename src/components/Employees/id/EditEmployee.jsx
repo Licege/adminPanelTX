@@ -1,9 +1,9 @@
-import React from "react";
-import {createField, Input} from "../../common/FormsControls";
-import {Field, reduxForm} from "redux-form";
+import React from 'react'
+import { createField, Input } from '../../common/FormsControls'
+import { Field, reduxForm } from 'redux-form'
 
 
-const EditEmployee = ({employee, handleSubmit, professions, cancel}) => {
+const EditEmployee = ( { employee, handleSubmit, professions, cancel } ) => {
     console.log(handleSubmit)
     return (
         employee && <div>
@@ -17,17 +17,17 @@ const EditEmployee = ({employee, handleSubmit, professions, cancel}) => {
                     <div className='card-body'>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                {createField("Фамилия", "surname",[], Input)}
+                                {createField('Фамилия', 'surname', [], Input)}
                             </div>
 
                             <div>
-                                {createField("Имя", "name", [], Input)}
+                                {createField('Имя', 'name', [], Input)}
                             </div>
 
                             <div>
                                 <label>Должность</label>
                                 <div>
-                                    <Field name="profession" component="select" >
+                                    <Field name="profession" component="select">
                                         {professions.map(p => {
                                             return <option value={p.id} key={p.id}>{p.profession}</option>
                                         })}
@@ -36,26 +36,26 @@ const EditEmployee = ({employee, handleSubmit, professions, cancel}) => {
                             </div>
 
                             <div>
-                                {createField("Телефон", "phone", [], Input)}
+                                {createField('Телефон', 'phone', [], Input)}
                             </div>
 
                             <div>
-                                {createField("Адрес", "address", [], Input)}
+                                {createField('Адрес', 'address', [], Input)}
                             </div>
 
                             <div>
-                                {createField("file_id", "file_id", [], Input)}
+                                {createField('file_id', 'file_id', [], Input)}
                             </div>
 
                             <button type='submit'>Сохранить</button>
-                            <button type='button' onClick={(e) => cancel()}>Отменить</button>
+                            <button type='button' onClick={( e ) => cancel()}>Отменить</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     )
-};
+}
 
-const EmployeeEditReduxForm = reduxForm({form: 'edit-employee', enableReinitialize: true})(EditEmployee);
-export default EmployeeEditReduxForm;
+const EmployeeEditReduxForm = reduxForm({ form: 'edit-employee', enableReinitialize: true })(EditEmployee)
+export default EmployeeEditReduxForm

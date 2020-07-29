@@ -1,29 +1,29 @@
-import React from 'react';
-import CreateProfile from "../../components/Employees/new/Employee";
-import {createNewEmployee, getProfessionsAC} from "../../redux/employees-reducer";
-import {connect} from "react-redux";
-import {employeesAPI} from "../../api/api";
+import React from 'react'
+import CreateProfile from '../../components/Employees/new/Employee'
+import { createNewEmployee, getProfessionsAC } from '../../redux/employees-reducer'
+import { connect } from 'react-redux'
+import { employeesAPI } from '../../api/api'
 
 class CreateEmployee extends React.Component {
     componentDidMount() {
         if (this.props.professions.length === 0) {
             employeesAPI.getProfessions().then(data => {
-                this.props.getProfessions(data);
+                this.props.getProfessions(data)
             })
         }
     }
 
-    postEmployee = (profile) => {
-        let data = {...profile};
-        data.profession = parseInt(data.profession, 10);
-        data.file_id = parseInt(data.file_id, 10);
-        this.props.createEmployee(data);
-        this.props.history.goBack();
-    };
+    postEmployee = ( profile ) => {
+        let data = { ...profile }
+        data.profession = parseInt(data.profession, 10)
+        data.file_id = parseInt(data.file_id, 10)
+        this.props.createEmployee(data)
+        this.props.history.goBack()
+    }
 
     cancel = () => {
-        this.props.history.goBack();
-    };
+        this.props.history.goBack()
+    }
 
     render() {
         return (
@@ -31,26 +31,26 @@ class CreateEmployee extends React.Component {
                            employee={this.props.employee}
                            professions={this.props.professions}
                            cancel={this.cancel}
-                           onSubmit={this.postEmployee} />
+                           onSubmit={this.postEmployee}/>
         )
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         employee: state.employeesPage.newEmployee,
-        professions: state.employeesPage.professions
+        professions: state.employeesPage.professions,
     }
-};
-let mapDispatchToProps = (dispatch) => {
+}
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        createEmployee: (profile) => {
+        createEmployee: ( profile ) => {
             dispatch(createNewEmployee(profile))
         },
-        getProfessions: (professions) => {
+        getProfessions: ( professions ) => {
             dispatch(getProfessionsAC(professions))
-        }
+        },
     }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps) (CreateEmployee);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateEmployee)

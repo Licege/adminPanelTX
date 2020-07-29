@@ -1,7 +1,7 @@
-import React from 'react';
-import {getProfessionNameById} from "../../../plagins/helpers";
+import React from 'react'
+import { getProfessionNameById } from '../../../plugins/helpers'
 
-const Employee = ({ employee, professions, goEditMode, cancel }) => {
+const Employee = ( { employee, professions, goEditMode, cancel } ) => {
     return (
         employee && <div>
             <div className='page-header'>
@@ -25,6 +25,6 @@ const Employee = ({ employee, professions, goEditMode, cancel }) => {
             </div>
         </div>
     )
-};
+}
 
-export default Employee;
+export default Employee

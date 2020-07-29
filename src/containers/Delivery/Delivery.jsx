@@ -1,15 +1,15 @@
 import React from 'react'
-import {requestOrdersDelivery, setPageAC} from "../../redux/delivery-reducer";
-import Delivery from "../../components/Delivery/Delivery";
-import {connect} from "react-redux";
+import { requestOrdersDelivery, setPageAC } from '../../redux/delivery-reducer'
+import Delivery from '../../components/Delivery/Delivery'
+import { connect } from 'react-redux'
 
-const fieldFilter = ['phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status']
+const fieldFilter = [ 'phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status' ]
 
-class DeliveryContainer extends React.Component{
-    constructor(props) {
+class DeliveryContainer extends React.Component {
+    constructor( props ) {
         super(props)
         this.state = {
-            filter: {}
+            filter: {},
         }
     }
 
@@ -17,13 +17,13 @@ class DeliveryContainer extends React.Component{
         if (!this.props.orders.length) this.props.getOrders()
     }
 
-    detail = (id) => {
+    detail = ( id ) => {
         return () => {
             this.props.history.push(`/delivery/${id}`)
         }
     }
 
-    onChangePage = (page) => {
+    onChangePage = ( page ) => {
         this.props.setPage(page)
         this.props.getOrders(this.state.filter, page)
     }
@@ -33,7 +33,7 @@ class DeliveryContainer extends React.Component{
         fieldFilter.forEach(field => {
             if (document.getElementById(field).value) {
                 data[field] = document.getElementById(field).value
-                this.setState({filter: data})
+                this.setState({ filter: data })
             } else if (!document.getElementById(field).value && this.state.filter[field]) {
                 delete (data[field])
                 this.setState(data)
@@ -46,7 +46,7 @@ class DeliveryContainer extends React.Component{
 
     clearFilter = () => {
         fieldFilter.forEach(field => document.getElementById(field).value = '')
-        this.setState({filter: {}})
+        this.setState({ filter: {} })
         this.props.setPage(1)
         this.props.getOrders({}, 1)
     }
@@ -58,27 +58,27 @@ class DeliveryContainer extends React.Component{
                          clearFilter={this.clearFilter}
                          totalCount={this.props.totalCount}
                          page={this.props.page}
-                         onChangePage={this.onChangePage} />
+                         onChangePage={this.onChangePage}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         orders: state.deliveryPage.orders,
         page: state.deliveryPage.currentPage,
-        totalCount: state.deliveryPage.totalCount
+        totalCount: state.deliveryPage.totalCount,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getOrders: (filter, page) => {
+        getOrders: ( filter, page ) => {
             dispatch(requestOrdersDelivery(filter, page))
         },
-        setPage: (page) => {
+        setPage: ( page ) => {
             dispatch(setPageAC(page))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeliveryContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DeliveryContainer)

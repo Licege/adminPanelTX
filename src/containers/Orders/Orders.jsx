@@ -1,8 +1,8 @@
 import React from 'react'
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {requestOrders} from "../../redux/orders-reducer";
-import Orders from "../../components/Orders/Orders";
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { requestOrders } from '../../redux/orders-reducer'
+import Orders from '../../components/Orders/Orders'
 
 class OrdersContainer extends React.Component {
     componentDidMount() {
@@ -10,22 +10,22 @@ class OrdersContainer extends React.Component {
     }
 
     render() {
-        return <Orders orders={this.props.orders} />
+        return <Orders orders={this.props.orders}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        orders: state.ordersPage.orders
+        orders: state.ordersPage.orders,
     }
-};
+}
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
         getOrders: () => {
             dispatch(requestOrders())
-        }
+        },
     }
-};
+}
 
-export default compose(connect(mapStateToProps, mapDispatchToProps)) (OrdersContainer);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(OrdersContainer)

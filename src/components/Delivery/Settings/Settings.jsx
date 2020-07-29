@@ -1,12 +1,12 @@
-import React from 'react';
-import {Nav, Tab} from "react-bootstrap";
-import GlobalSettingsForm from "./Tabs/Global_Settings/GlobalSettingsForm";
-import SettingsTable from "./Tabs/Common_Settings/SettingsTable";
-import Button from "react-bootstrap/Button";
+import React from 'react'
+import { Nav, Tab } from 'react-bootstrap'
+import GlobalSettingsForm from './Tabs/Global_Settings/GlobalSettingsForm'
+import SettingsTable from './Tabs/Common_Settings/SettingsTable'
+import Button from 'react-bootstrap/Button'
 
 
 const Settings = ( props ) => {
-    const {settings, global_settings, createSettings, editSettings, postGlobalSettings} = props;
+    const { settings, global_settings, createSettings, editSettings, postGlobalSettings } = props
 
     return (
         <div>
@@ -30,16 +30,16 @@ const Settings = ( props ) => {
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey='settings'>
-                            <SettingsTable settings={settings} editSettings={editSettings} />
+                            <SettingsTable settings={settings} editSettings={editSettings}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey='global-settings'>
-                            <GlobalSettingsForm initialValues={global_settings} onSubmit={postGlobalSettings} />
+                            <GlobalSettingsForm initialValues={global_settings} onSubmit={postGlobalSettings}/>
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>
             </div>
         </div>
     )
-};
+}
 
-export default Settings;
+export default Settings

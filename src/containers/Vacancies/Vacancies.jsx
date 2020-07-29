@@ -1,7 +1,7 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {createNewVacancy, deleteVacancy, requestVacancies} from "../../redux/vacancies-reducer";
-import Vacancies from "../../components/Vacancies/Vacancies";
+import React from 'react'
+import { connect } from 'react-redux'
+import { createNewVacancy, deleteVacancy, requestVacancies } from '../../redux/vacancies-reducer'
+import Vacancies from '../../components/Vacancies/Vacancies'
 
 class VacanciesContainer extends React.Component {
     componentDidMount() {
@@ -10,19 +10,19 @@ class VacanciesContainer extends React.Component {
 
     createNewVacancy = () => {
         this.props.history.push(`vacancies/new`)
-    };
+    }
 
-    removeVacancy = (id) => {
+    removeVacancy = ( id ) => {
         return () => {
-            this.props.deleteVacancy(id);
+            this.props.deleteVacancy(id)
         }
-    };
+    }
 
-    changeVacancy = (id) => {
+    changeVacancy = ( id ) => {
         return () => {
             this.props.history.push(`vacancies/edit/${id}`)
         }
-    };
+    }
 
     render() {
         return <>
@@ -30,23 +30,23 @@ class VacanciesContainer extends React.Component {
             <Vacancies vacancies={this.props.vacancies}
                        createVacancy={this.createNewVacancy}
                        changeVacancy={this.changeVacancy}
-                       removeVacancy={this.removeVacancy} />
-            </>
+                       removeVacancy={this.removeVacancy}/>
+        </>
     }
 
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
         vacancies: state.vacanciesPage.vacancies,
         currentVacancy: state.vacanciesPage.currentVacancy,
-        isFetching: state.vacanciesPage.isFetching
+        isFetching: state.vacanciesPage.isFetching,
     }
-};
+}
 
-export default connect (mapStateToProps,
+export default connect(mapStateToProps,
     {
         getVacancies: requestVacancies,
         createVacancy: createNewVacancy,
-        deleteVacancy: deleteVacancy
+        deleteVacancy: deleteVacancy,
     })(VacanciesContainer)

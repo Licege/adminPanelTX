@@ -1,8 +1,8 @@
-import React from 'react';
-import {Field, reduxForm} from "redux-form";
-import {Button} from "react-bootstrap";
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+import { Button } from 'react-bootstrap'
 
-const SettingsForm = ({handleSubmit, currentSettings, cancel}) => {
+const SettingsForm = ( { handleSubmit, currentSettings, cancel } ) => {
     return (
         <div className='page'>
             <div className='page-header'>
@@ -33,7 +33,7 @@ const SettingsForm = ({handleSubmit, currentSettings, cancel}) => {
             </form>
         </div>
     )
-};
+}
 
-const SettingsReduxForm = reduxForm({form: 'settings-delivery', enableReinitialize: true})(SettingsForm);
-export default SettingsReduxForm;
+const SettingsReduxForm = reduxForm({ form: 'settings-delivery', enableReinitialize: true })(SettingsForm)
+export default SettingsReduxForm

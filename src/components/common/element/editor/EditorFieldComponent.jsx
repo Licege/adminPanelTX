@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
-import ControlledEditor from "./ControlledEditor";
+import ControlledEditor from './ControlledEditor'
 
 const EditorFieldComponent = props => {
-    const { placeholder, input: { onChange, value }, disabled, id } = props;
+    const { placeholder, input: { onChange, value }, disabled, id } = props
 
     return (
         <ControlledEditor
@@ -13,7 +13,7 @@ const EditorFieldComponent = props => {
             onChange={onChange}
             value={value}
         />
-    );
-};
+    )
+}
 
-export default EditorFieldComponent;
+export default EditorFieldComponent

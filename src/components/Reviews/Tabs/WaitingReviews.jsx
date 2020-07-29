@@ -1,9 +1,12 @@
 import React from 'react'
-import {CardReview} from "../../common/element/CardReview";
+import { CardReview } from '../../common/element/CardReview'
 
-const WaitingReviews = ({reviews, onApprove, onDisapprove}) => (
+const WaitingReviews = ( { reviews, onApprove, onDisapprove } ) => (
     <div>
-        {reviews.map((review, key) => <CardReview review={review} onApprove={onApprove} onDisapprove={onDisapprove} key={key} />)}
+        {reviews.map(( review, key ) => <CardReview review={review}
+                                                    onApprove={onApprove}
+                                                    onDisapprove={onDisapprove}
+                                                    key={key}/>)}
     </div>
 )
 

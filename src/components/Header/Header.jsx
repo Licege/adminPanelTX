@@ -1,10 +1,10 @@
-import React from 'react';
-import logo from '../../static/img/logo.ico';
-import {NavLink} from "react-router-dom";
-import LogoutBtn from "../common/element/LogoutBtn";
+import React from 'react'
+import logo from '../../static/img/logo.ico'
+import { NavLink } from 'react-router-dom'
+import LogoutBtn from '../common/element/LogoutBtn'
 
 const Header = () => {
-    return(
+    return (
         <header className='header'>
             <NavLink to='/'><img className='header-logo' src={logo} alt="logo"/></NavLink>
             <div className='header-logout'>
@@ -12,6 +12,6 @@ const Header = () => {
             </div>
         </header>
     )
-};
+}
 
-export default Header;
+export default Header

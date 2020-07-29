@@ -1,9 +1,9 @@
 import React from 'react'
-import {Field, reduxForm} from "redux-form";
-import {Button} from "react-bootstrap";
+import { Field, reduxForm } from 'redux-form'
+import { Button } from 'react-bootstrap'
 import validate from './Validate'
 
-const CategoryForm = ({category, handleSubmit, goBack}) => (
+const CategoryForm = ( { category, handleSubmit, goBack } ) => (
     <div className='page'>
         <div className='page-header'>
             <div
@@ -24,12 +24,13 @@ const CategoryForm = ({category, handleSubmit, goBack}) => (
             </div>
             <div>
                 <Button variant='outline-secondary' onClick={goBack}>Отмена</Button>
-                <Button variant='primary' type='submit'>{category ? 'Сохранить изменения' : 'Добавить категорию'}</Button>
+                <Button variant='primary'
+                        type='submit'>{category ? 'Сохранить изменения' : 'Добавить категорию'}</Button>
             </div>
         </form>
     </div>
 )
 
-let reduxCategoryForm = reduxForm({form: 'category-form', validate, enableReinitialize: true})(CategoryForm)
+let reduxCategoryForm = reduxForm({ form: 'category-form', validate, enableReinitialize: true })(CategoryForm)
 
-export default reduxCategoryForm;
+export default reduxCategoryForm

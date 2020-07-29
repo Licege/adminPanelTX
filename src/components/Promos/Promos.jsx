@@ -1,8 +1,8 @@
 import React from 'react'
-import {CardPromo} from "../common/element/CardPromo";
-import {Button} from "react-bootstrap";
+import { CardPromo } from '../common/element/CardPromo'
+import { Button } from 'react-bootstrap'
 
-const Promos = ({promos, newPromo}) => {
+const Promos = ( { promos, newPromo } ) => {
     return (
         <div>
             <div className='page-header -action'>
@@ -13,11 +13,11 @@ const Promos = ({promos, newPromo}) => {
             </div>
             <div className='promos'>
                 <div className='promos-wrapper'>
-                    {promos.map(promo => <CardPromo promo={promo} key={promo._id} />)}
+                    {promos.map(promo => <CardPromo promo={promo} key={promo._id}/>)}
                 </div>
             </div>
         </div>
     )
 }
 
-export default Promos;
+export default Promos

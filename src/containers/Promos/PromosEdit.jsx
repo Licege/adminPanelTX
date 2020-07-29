@@ -1,11 +1,11 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {requestPromoById, updatePromo} from "../../redux/promos-reducer";
-import PromoForm from '../../components/Promos/PromoForm';
-import {Promo} from '../../components/Promos/Promo';
+import { connect } from 'react-redux'
+import { requestPromoById, updatePromo } from '../../redux/promos-reducer'
+import PromoForm from '../../components/Promos/PromoForm'
+import { Promo } from '../../components/Promos/Promo'
 
 class PromosEdit extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
 
         this.state = {
@@ -25,18 +25,18 @@ class PromosEdit extends React.Component {
     }
 
     toggleChangeMode = () => {
-        this.setState(state => ({changeMode: !state.changeMode}))
+        this.setState(state => ({ changeMode: !state.changeMode }))
     }
 
-    uploadFile = (file) => {
-        this.setState({file})
+    uploadFile = ( file ) => {
+        this.setState({ file })
     }
 
-    changeDescription = (description) => {
-        this.setState({description})
+    changeDescription = ( description ) => {
+        this.setState({ description })
     }
 
-    onSubmit = (data) => {
+    onSubmit = ( data ) => {
         let formData = new FormData()
         for (let key in data) {
             if (data.hasOwnProperty(key)) formData.append(key, data[key])
@@ -45,12 +45,12 @@ class PromosEdit extends React.Component {
         formData.set('description', this.state.description)
 
         this.props.updatePromo(formData, data._id)
-        this.goBack();
+        this.goBack()
     }
 
     render() {
-        let {promo} = this.props
-        let {changeMode} = this.state
+        let { promo } = this.props
+        let { changeMode } = this.state
 
         return changeMode
             ? <PromoForm onSubmit={this.onSubmit}
@@ -58,26 +58,26 @@ class PromosEdit extends React.Component {
                          promo={promo}
                          uploadFile={this.uploadFile}
                          changeDescription={this.changeDescription}
-                         goBack={this.goBack} />
-            : <Promo promo={promo} onChange={this.toggleChangeMode} goBack={this.goBack} />
+                         goBack={this.goBack}/>
+            : <Promo promo={promo} onChange={this.toggleChangeMode} goBack={this.goBack}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        promo: state.promosPage.currentPromo
+        promo: state.promosPage.currentPromo,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getPromo: (id) => {
+        getPromo: ( id ) => {
             dispatch(requestPromoById(id))
         },
-        updatePromo: (promo, id) => {
+        updatePromo: ( promo, id ) => {
             dispatch(updatePromo(promo, id))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (PromosEdit)
+export default connect(mapStateToProps, mapDispatchToProps)(PromosEdit)

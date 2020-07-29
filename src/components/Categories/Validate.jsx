@@ -1,8 +1,8 @@
-export default function (values) {
+export default function ( values ) {
     const errors = {}
     const requiredField = [
         'title',
-        'title_en'
+        'title_en',
     ]
 
     requiredField.forEach(field => {

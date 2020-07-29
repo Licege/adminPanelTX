@@ -3,7 +3,6 @@
   background: white;
   position: relative;
   width: 300px;
- // height: 100%;
   box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
   overflow: auto;
   z-index: 1;
@@ -45,6 +44,7 @@
           color: $primary;
         }
       }
+
       &-arrow {
         width: 25px;
         height: 25px;
@@ -54,6 +54,7 @@
 
 
 }
+
 /*
 .active {
   border-left-color: $brown;

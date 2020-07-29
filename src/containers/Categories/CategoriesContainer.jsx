@@ -1,7 +1,7 @@
 import React from 'react'
-import { connect } from "react-redux";
-import { deleteCategory, requestCategories } from "../../redux/menu-reducer";
-import Categories from "../../components/Categories/Categories";
+import { connect } from 'react-redux'
+import { deleteCategory, requestCategories } from '../../redux/menu-reducer'
+import Categories from '../../components/Categories/Categories'
 
 class CategoriesContainer extends React.PureComponent {
     componentDidMount() {
@@ -10,9 +10,9 @@ class CategoriesContainer extends React.PureComponent {
 
     create = () => this.props.history.push(`categories/new`)
 
-    detail = (id) => () => this.props.history.push(`categories/edit/${id}`)
+    detail = ( id ) => () => this.props.history.push(`categories/edit/${id}`)
 
-    remove = (id) => (e) => {
+    remove = ( id ) => ( e ) => {
         e.stopPropagation()
         this.props.deleteCategory(id)
     }
@@ -22,25 +22,25 @@ class CategoriesContainer extends React.PureComponent {
         return <Categories categories={this.props.categories}
                            createCategory={this.create}
                            updateCategory={this.detail}
-                           deleteCategory={this.remove} />
+                           deleteCategory={this.remove}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     return {
-        categories: state.menuPage.categories
+        categories: state.menuPage.categories,
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
         getCategories: () => {
             dispatch(requestCategories())
         },
-        deleteCategory(id) {
+        deleteCategory( id ) {
             dispatch(deleteCategory(id))
-        }
+        },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (CategoriesContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesContainer)

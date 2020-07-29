@@ -1,9 +1,9 @@
 import React from 'react'
-import {Field, reduxForm} from "redux-form";
-import {createField, Input, Textarea} from "../common/FormsControls";
-import Button from "react-bootstrap/Button";
+import { Field, reduxForm } from 'redux-form'
+import { createField, Input, Textarea } from '../common/FormsControls'
+import Button from 'react-bootstrap/Button'
 
-const FormHall = ({hall}) => (
+const FormHall = ( { hall } ) => (
     <>
         <div className='page-header'>
             <div className='page-header-title'>
@@ -14,13 +14,13 @@ const FormHall = ({hall}) => (
                     <div className='card-body'>
                         <form>
                             <div>
-                                {createField("Название", "title",[], Input)}
+                                {createField('Название', 'title', [], Input)}
                             </div>
                             <div>
-                                {createField("Вместимость", "capacity",[], Input)}
+                                {createField('Вместимость', 'capacity', [], Input)}
                             </div>
                             <div>
-                                {createField("Описание", "description",[], Textarea)}
+                                {createField('Описание', 'description', [], Textarea)}
                             </div>
 
                             <Button variant='primary' type='submit'>Сохранить</Button>
@@ -33,5 +33,5 @@ const FormHall = ({hall}) => (
     </>
 )
 
-let HallReduxForm = reduxForm({form: 'hall-form', enableReinitialize: true}) (FormHall)
+let HallReduxForm = reduxForm({ form: 'hall-form', enableReinitialize: true })(FormHall)
 export default HallReduxForm

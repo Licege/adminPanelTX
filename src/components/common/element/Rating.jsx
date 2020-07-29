@@ -1,36 +1,36 @@
 import React from 'react'
-import {FaStar} from "react-icons/fa"
+import { FaStar } from 'react-icons/fa'
 
 export class Rating extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
         this.state = {
             value: props.value || 3,
-            hover: null
+            hover: null,
         }
     }
 
-    onChange = (value) => {
+    onChange = ( value ) => {
         return () => {
             if (!this.props.disabled) {
                 this.props.onChange && this.props.onChange(value)
-                this.setState({value})
+                this.setState({ value })
             }
         }
     }
 
-    changeFocus = (value) => {
+    changeFocus = ( value ) => {
         return () => {
-            !this.props.disabled && this.setState({hover: value})
+            !this.props.disabled && this.setState({ hover: value })
         }
     }
 
     render() {
-        const {value, hover} = this.state
+        const { value, hover } = this.state
 
         return (
             <div>
-                {[ ...Array(this.props.countStars || 5)].map((star, i) => {
+                {[ ...Array(this.props.countStars || 5) ].map(( star, i ) => {
                     const ratingValue = i + 1
 
                     return (

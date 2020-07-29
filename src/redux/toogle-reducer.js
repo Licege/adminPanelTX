@@ -1,19 +1,19 @@
-const TOGGLE = "TOGGLE";
+const TOGGLE = 'TOGGLE'
 
 let initialState = {
     active: null,
-};
+}
 
-const toggleReducer = (state = initialState, action) => {
+const toggleReducer = ( state = initialState, action ) => {
     switch (action.type) {
         case TOGGLE:
-            return { active: state.active !== action.active ? action.active : null };
+            return { active: state.active !== action.active ? action.active : null }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export const toggleAC = (active) => ({type: TOGGLE, active});
+export const toggleAC = ( active ) => ({ type: TOGGLE, active })
 
-export default toggleReducer;
+export default toggleReducer
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import Table from "react-bootstrap/Table";
+import Table from 'react-bootstrap/Table'
 
-const AdminsTable = ({admins}) => (
+const AdminsTable = ( { admins } ) => (
     <div>
         <Table>
             <thead className='table-thread'>
@@ -23,4 +23,4 @@ const AdminsTable = ({admins}) => (
     </div>
 )
 
-export default AdminsTable;
+export default AdminsTable

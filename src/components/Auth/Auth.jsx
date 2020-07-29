@@ -1,8 +1,8 @@
 import React from 'react'
-import {Field, reduxForm} from "redux-form";
-import Button from "react-bootstrap/Button";
+import { Field, reduxForm } from 'redux-form'
+import Button from 'react-bootstrap/Button'
 
-const Auth = ({handleSubmit}) => {
+const Auth = ( { handleSubmit } ) => {
     return (
         <div className='auth'>
             <div className='auth-wrapper'>
@@ -12,14 +12,14 @@ const Auth = ({handleSubmit}) => {
                         <Field name='email'
                                className='form-control mb-3'
                                component='input'
-                               placeholder='Введите логин' />
+                               placeholder='Введите логин'/>
                     </div>
                     <div>
                         <Field name='password'
                                className='form-control mb-3'
                                component='input'
                                type='password'
-                               placeholder='Введите пароль' />
+                               placeholder='Введите пароль'/>
                     </div>
                     <div className='auth-wrapper-actions'>
                         <Button className='auth-wrapper-actions-btn'
@@ -34,6 +34,6 @@ const Auth = ({handleSubmit}) => {
     )
 }
 
-let authForm = reduxForm({form: 'auth-form'})(Auth)
+let authForm = reduxForm({ form: 'auth-form' })(Auth)
 
-export default authForm;
+export default authForm

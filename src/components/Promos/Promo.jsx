@@ -1,12 +1,12 @@
 import React from 'react'
-import {Button} from "react-bootstrap";
-import {fullLink} from "../../plagins/helpers";
-import altImg from "../../static/img/dish.svg";
+import { Button } from 'react-bootstrap'
+import { fullLink } from '../../plugins/helpers'
+import altImg from '../../static/img/dish.svg'
 
-export const Promo = ({promo, onChange, goBack}) => {
+export const Promo = ( { promo, onChange, goBack } ) => {
     const style = {
         backgroundImage: `url(${promo && promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
-        backgroundSize: "cover"
+        backgroundSize: 'cover',
     }
 
     return (
@@ -19,7 +19,7 @@ export const Promo = ({promo, onChange, goBack}) => {
                 <div className='promo__wrapper'>
                     <div className='promo__wrapper-content'>
                         <div className='promo-title'>{promo.title}</div>
-                        <div className='promo-description' dangerouslySetInnerHTML={{__html: promo.description}}/>
+                        <div className='promo-description' dangerouslySetInnerHTML={{ __html: promo.description }}/>
                         <div>
                             <Button variant='secondary' onClick={goBack}>Все акции</Button>
                             <Button variant='link' onClick={onChange}>Изменить</Button>

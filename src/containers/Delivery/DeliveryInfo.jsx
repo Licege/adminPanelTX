@@ -1,21 +1,29 @@
 import React from 'react'
-import {connect} from "react-redux";
+import { connect } from 'react-redux'
 import {
-    addDishIntoListAC, changeDeliveryTypeAC, decreaseDishCountAC, increaseDishCountAC, removeDishFromListAC,
+    addDishIntoListAC,
+    changeDeliveryTypeAC,
+    decreaseDishCountAC,
+    increaseDishCountAC,
+    removeDishFromListAC,
     requestDeliverySettings,
     requestOrderDeliveryById,
-    updateOrderDelivery
-} from "../../redux/delivery-reducer";
-import DeliveryInfo from "../../components/Delivery/DeliveryInfo";
-import {requestCategories, requestDishes, requestDishesByCategory} from "../../redux/menu-reducer";
-import {formValueSelector} from "redux-form";
+    updateOrderDelivery,
+} from '../../redux/delivery-reducer'
+import DeliveryInfo from '../../components/Delivery/DeliveryInfo'
+import {
+    requestCategories,
+    requestDishes,
+    requestDishesByCategory,
+} from '../../redux/menu-reducer'
+import { formValueSelector } from 'redux-form'
 
 class DeliveryInfoContainer extends React.Component {
-    constructor(props) {
+    constructor( props ) {
         super(props)
         this.state = {
             filter: '',
-            isOpen: false
+            isOpen: false,
         }
     }
 
@@ -26,56 +34,56 @@ class DeliveryInfoContainer extends React.Component {
         if (!this.props.settings.length) this.props.getSettings()
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate( prevProps, prevState, snapshot ) {
         if (prevState.filter !== this.state.filter) {
             if (this.state.filter === '') this.props.getMenu()
             else this.props.getMenuByCategory(this.state.filter)
         }
         if (prevProps.deliveryType && prevProps.deliveryType !== this.props.deliveryType) {
-            this.changeDeliveryType(this.props.deliveryType);
+            this.changeDeliveryType(this.props.deliveryType)
         }
     }
 
-    changeDeliveryType = (dType) => {
-        console.log(dType);
+    changeDeliveryType = ( dType ) => {
+        console.log(dType)
         this.props.changeDeliveryType(dType)
     }
 
     toggleModal = () => {
-        this.setState({isOpen: !this.state.isOpen})
+        this.setState({ isOpen: !this.state.isOpen })
     }
 
     applyFilterModal = () => {
         let category = document.getElementById('select-category-modal').value
-        this.setState({filter: category})
+        this.setState({ filter: category })
     }
 
-    addDish = (dish) => {
+    addDish = ( dish ) => {
         return () => {
-            console.log(dish);
+            console.log(dish)
             this.props.addDishIntoList(dish)
         }
     }
 
-    increaseDish = (id) => {
+    increaseDish = ( id ) => {
         return () => {
             this.props.increaseDishCount(id)
         }
     }
 
-    decreaseDish = (id) => {
+    decreaseDish = ( id ) => {
         return () => {
             this.props.decreaseDishCount(id)
         }
     }
 
-    removeDish = (id) => {
+    removeDish = ( id ) => {
         return () => {
             this.props.deleteDishFromList(id)
         }
     }
 
-    update = (order) => {
+    update = ( order ) => {
         this.props.updateOrder(order)
         this.props.history.push('/delivery')
     }
@@ -93,27 +101,27 @@ class DeliveryInfoContainer extends React.Component {
                              decreaseDish={this.decreaseDish}
                              removeDish={this.removeDish}
                              currentCategory={this.state.filter}
-                             initialValues={this.props.order} />
+                             initialValues={this.props.order}/>
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = ( state ) => {
     const selector = formValueSelector('delivery-info')
     return {
         order: state.deliveryPage.currentOrder,
         dishes: state.menuPage.dishes,
         categories: state.menuPage.categories,
         settings: state.deliveryPage.settings,
-        deliveryType: selector(state, 'delivery_type')
+        deliveryType: selector(state, 'delivery_type'),
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = ( dispatch ) => {
     return {
-        getOrder: (id) => {
+        getOrder: ( id ) => {
             dispatch(requestOrderDeliveryById(id))
         },
-        updateOrder: (order) => {
+        updateOrder: ( order ) => {
             dispatch(updateOrderDelivery(order))
         },
         getMenu: () => {
@@ -122,27 +130,27 @@ let mapDispatchToProps = (dispatch) => {
         getCategories: () => {
             dispatch(requestCategories())
         },
-        getMenuByCategory: (category) => {
+        getMenuByCategory: ( category ) => {
             dispatch(requestDishesByCategory(category))
         },
-        addDishIntoList: (dish) => {
+        addDishIntoList: ( dish ) => {
             dispatch(addDishIntoListAC(dish))
         },
-        increaseDishCount: (id) => {
+        increaseDishCount: ( id ) => {
             dispatch(increaseDishCountAC(id))
         },
-        decreaseDishCount: (id) => {
+        decreaseDishCount: ( id ) => {
             dispatch(decreaseDishCountAC(id))
         },
-        deleteDishFromList: (id) => {
+        deleteDishFromList: ( id ) => {
             dispatch(removeDishFromListAC(id))
         },
-        changeDeliveryType: (dType) => {
+        changeDeliveryType: ( dType ) => {
             dispatch(changeDeliveryTypeAC(dType))
         },
         getSettings: () => {
             dispatch(requestDeliverySettings())
-        }
+        },
     }
 }
 
