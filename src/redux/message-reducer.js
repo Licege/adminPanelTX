@@ -1,4 +1,5 @@
 import { messagesAPI } from '../api/api'
+import { checkStatus } from '../plugins/checkStatus'
 
 const GET_MESSAGES = 'GET_MESSAGES'
 const GET_MESSAGE = 'GET_MESSAGE'
@@ -28,17 +29,23 @@ const deleteMessageAC = ( id ) => ({ type: DELETE_MESSAGE, id })
 
 export const requestMessages = ( messages ) => async ( dispatch ) => {
     let response = await messagesAPI.getMessages()
-    dispatch(getMessagesAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(getMessagesAC(response.data))
+    }
 }
 
 export const requestMessage = ( message ) => async ( dispatch ) => {
     let response = await messagesAPI.getMessages()
-    dispatch(getMessageAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(getMessageAC(response.data))
+    }
 }
 
 export const deleteMessage = ( id ) => async ( dispatch ) => {
-    await messagesAPI.deleteMessage(id)
-    dispatch(deleteMessageAC(id))
+    let response = await messagesAPI.deleteMessage(id)
+    if (checkStatus(response.status)) {
+        dispatch(deleteMessageAC(id))
+    }
 }
 
 export default messageReducer

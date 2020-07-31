@@ -96,39 +96,33 @@ export const usersAPI = {
 export const employeesAPI = {
     createEmployee( profile ) {
         return apiAdminRequest.post(baseUrl + `/employees/`, profile)
-                              .then(response => {
-                                  return response
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
     getEmployees() {
         return apiAdminRequest.get(baseUrl + `/employees/`)
-                              .then(response => {
-                                  return response.data
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
     getEmployeeById( id ) {
         return apiAdminRequest.get(baseUrl + `/employees/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
     updateEmployee( profile ) {
         return apiAdminRequest.put(baseUrl + `/employees/${profile.id}`, profile)
-                              .then(response => {
-                                  return response
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
     deleteEmployee( id ) {
         return apiAdminRequest.delete(baseUrl + `/employees/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
     getProfessions() {
         return apiAdminRequest.get(baseUrl + `/professions/`)
-                              .then(response => {
-                                  return response.data
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
 }
 
@@ -343,21 +337,18 @@ export const reviewsAPI = {
 export const messagesAPI = {
     getMessages() {
         return apiAdminRequest.get(baseUrl + `/messages/`)
-                              .then(response => {
-                                  return response
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
     getMessage( id ) {
         return apiAdminRequest.get(baseUrl + `/messages/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
     deleteMessage( id ) {
         return apiAdminRequest.delete(baseUrl + `/messages/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+                              .then(response => response)
+                              .catch(e => e.response)
     },
 }
 
@@ -434,22 +425,27 @@ export const banquetHallsAPI = {
     getHalls() {
         return apiAdminRequest.get(baseUrl + `/banquet-hall/`)
                               .then(response => response)
+                              .catch(e => e.response)
     },
     getHall( id ) {
         return apiAdminRequest.get(baseUrl + `/banquet-hall/${id}`)
                               .then(response => response)
+                              .catch(e => e.response)
     },
     createHall( hall ) {
         return apiAdminRequest.get(baseUrl + `/banquet-hall/`, hall)
                               .then(response => response)
+                              .catch(e => e.response)
     },
     updateHall( hall ) {
         return apiAdminRequest.patch(`/banquet-hall/${hall._id}`, hall)
                               .then(response => response)
+                              .catch(e => e.response)
     },
     deleteHall( id ) {
         return apiAdminRequest.delete(`/banquet-hall/${id}`)
                               .then(response => response)
+                              .catch(e => e.response)
     },
 }
 

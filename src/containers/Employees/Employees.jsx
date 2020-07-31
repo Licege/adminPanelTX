@@ -2,7 +2,7 @@ import React from 'react'
 import { employeesAPI } from '../../api/api'
 import Employees from '../../components/Employees/Employees'
 import { connect } from 'react-redux'
-import { deleteEmployeeAC, requestEmployees, requestProfessins } from '../../redux/employees-reducer'
+import { deleteEmployeeAC, requestEmployees, requestProfessions } from '../../redux/employees-reducer'
 
 class EmployeesContainer extends React.Component {
     componentDidMount() {
@@ -50,7 +50,7 @@ let mapDispatchToProps = ( dispatch ) => {
             dispatch(deleteEmployeeAC(id))
         },
         getProfessions: () => {
-            dispatch(requestProfessins())
+            dispatch(requestProfessions())
         },
     }
 }

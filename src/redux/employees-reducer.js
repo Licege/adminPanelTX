@@ -1,4 +1,5 @@
 import { employeesAPI } from '../api/api'
+import { checkStatus } from '../plugins/checkStatus'
 
 const CREATE_EMPLOYEE = 'CREATE_EMPLOYEE'
 const UPDATE_EMPLOYEE = 'UPDATE-EMPLOYEE'
@@ -53,32 +54,44 @@ export const getProfessionsAC = ( professions ) => ({ type: GET_PROFESSIONS, pro
 
 export const requestEmployees = () => async ( dispatch ) => {
     let response = await employeesAPI.getEmployees()
-    dispatch(getEmployeesAC(response))
+    if (checkStatus(response.status)) {
+        dispatch(getEmployeesAC(response.data))
+    }
 }
 
-export const requestProfessins = () => async ( dispatch ) => {
+export const requestProfessions = () => async ( dispatch ) => {
     let response = await employeesAPI.getProfessions()
-    dispatch(getProfessionsAC(response))
+    if (checkStatus(response.status)) {
+        dispatch(getProfessionsAC(response.data))
+    }
 }
 
 export const createNewEmployee = ( profile ) => async ( dispatch ) => {
     let response = await employeesAPI.createEmployee(profile)
-    dispatch(createEmployeeAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(createEmployeeAC(response.data))
+    }
 }
 
 export const requestCurrentEmployee = ( id ) => async ( dispatch ) => {
     let response = await employeesAPI.getEmployeeById(id)
-    dispatch(getEmployeesById(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(getEmployeesById(response.data))
+    }
 }
 
 export const updateCurrentEmployee = ( profile ) => async ( dispatch ) => {
     let response = await employeesAPI.updateEmployee(profile)
-    dispatch(updateEmployeeAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(updateEmployeeAC(response.data))
+    }
 }
 
 export const deleteEmployee = ( id ) => async ( dispatch ) => {
-    await employeesAPI.deleteEmployee(id)
-    dispatch(deleteEmployeeAC(id))
+    let response = await employeesAPI.deleteEmployee(id)
+    if (checkStatus(response.status)) {
+        dispatch(deleteEmployeeAC(id))
+    }
 }
 
 export default employeesReducer

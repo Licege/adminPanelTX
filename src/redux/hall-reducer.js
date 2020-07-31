@@ -1,4 +1,5 @@
 import { banquetHallsAPI } from '../api/api'
+import { checkStatus } from '../plugins/checkStatus'
 
 const GET_HALLS = 'BANQUET_HALL/GET_HALLS'
 const GET_HALL = 'BANQUET_HALL/GET_HALL'
@@ -38,27 +39,37 @@ const deleteHallAC = ( id ) => ({ type: DELETE_HALL, id })
 
 export const getHalls = () => async ( dispatch ) => {
     let response = await banquetHallsAPI.getHalls()
-    dispatch(getHallsAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(getHallsAC(response.data))
+    }
 }
 
 export const getHall = ( id ) => async ( dispatch ) => {
     let response = await banquetHallsAPI.getHall(id)
-    dispatch(getHallAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(getHallAC(response.data))
+    }
 }
 
 export const createHall = ( hall ) => async ( dispatch ) => {
     let response = await banquetHallsAPI.createHall(hall)
-    dispatch(createHallAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(createHallAC(response.data))
+    }
 }
 
 export const updateHall = ( hall ) => async ( dispatch ) => {
     let response = await banquetHallsAPI.updateHall(hall)
-    dispatch(updateHallAC(response.data))
+    if (checkStatus(response.status)) {
+        dispatch(updateHallAC(response.data))
+    }
 }
 
 export const deleteHall = ( id ) => async ( dispatch ) => {
-    await banquetHallsAPI.deleteHall(id)
-    dispatch(deleteHallAC(id))
+    let response = await banquetHallsAPI.deleteHall(id)
+    if (checkStatus(response.status)) {
+        dispatch(deleteHallAC(id))
+    }
 }
 
 export default hallReducer

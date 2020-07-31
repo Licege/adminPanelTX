@@ -37,7 +37,7 @@ const GlobalSettingsForm = ( { handleSubmit } ) => {
                         </div>
                     </div>
                     <div className="d_settings-block">
-                        <div className='d_settings-block-item'>Скида за самовывоз (в % от заказа)</div>
+                        <div className='d_settings-block-item'>Скидка за самовывоз (% от заказа)</div>
                         <Field name='sale_for_pickup' component='input'
                                className="filter-main-input -name form-control"/>
                     </div>
