@@ -41,8 +41,8 @@ const GlobalSettingsForm = ( { handleSubmit } ) => {
                         <Field name='sale_for_pickup' component='input'
                                className="filter-main-input -name form-control"/>
                     </div>
-                    <Button type='submit' variant='primary'>Сохранить</Button>
                     <Button type='button' variant='secondary'>Отменить</Button>
+                    <Button type='submit' variant='primary'>Сохранить</Button>
                 </form>
             </div>
         </div>

@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 
 const FormDish = ( { handleSubmit, categories, dish, openDelModal, cancel, uploadFile } ) => {
     return (
-        <div>
+        <div className='form_dish'>
             <div className={'page-header' + (dish ? ' -action' : '')}>
                 <div className='page-header-title'>
                     {dish ? dish.title : 'Добавление нового блюда'}
@@ -46,19 +46,22 @@ const FormDish = ( { handleSubmit, categories, dish, openDelModal, cancel, uploa
                             <div>
                                 {createField('Цена', 'cost', [], Input)}
                             </div>
-                            <div>
-                                <label htmlFor="is_delivery_dish">Доставка</label>
+                            <div className='form_dish__checkbox'>
                                 <Field name="is_delivery"
                                        id="is_delivery_dish"
                                        component="input"
                                        type="checkbox"
-                                       className="filter-main-input -name form-control"/>
+                                       className="filter-main-checkbox form-control"/>
+                                <label htmlFor="is_delivery_dish">Доставка</label>
                             </div>
                             <div>
                                 <ImageInput value={dish ? dish.imageSrc : ''} onChange={uploadFile} allowClear={true}/>
                             </div>
-                            <Button variant='primary' type='submit'>Сохранить</Button>
-                            <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
+                            <div className='form_dish__actions'>
+                                <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
+                                <Button variant='primary' type='submit'>Сохранить</Button>
+                            </div>
+
                         </form>
                     </div>
                 </div>

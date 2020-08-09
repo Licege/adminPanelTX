@@ -26,6 +26,13 @@
         max-width: 200px;
       }
     }
+
+    &-checkbox {
+      width: 20px;
+      margin-right: 8px;
+      box-shadow: none !important;
+      cursor: pointer;
+    }
   }
 
   &-actions {

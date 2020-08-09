@@ -4,15 +4,23 @@ import { Button } from 'react-bootstrap'
 
 const SettingsForm = ( { handleSubmit, currentSettings, cancel } ) => {
     return (
-        <div className='page'>
+        <div className='page form_delivery'>
             <div className='page-header'>
-                <div
-                    className='page-header-title'>{currentSettings ? 'Редактирование доставки в ' + currentSettings.city : 'Создание новой зоны доставки'}</div>
+                <div className='page-header-title'>{currentSettings
+                    ? 'Редактирование доставки в ' + currentSettings.city
+                    : 'Создание новой зоны доставки'}
+                </div>
             </div>
             <form onSubmit={handleSubmit} className='page-container'>
-                <div>
+                <div className='form_delivery__checkbox'>
+                    <Field name='is_delivery'
+                           id='is_delivery'
+                           className='filter-main-checkbox form-control'
+                           component='input'
+                           type='checkbox'
+                           chacked='is_delivery'
+                    />
                     <label htmlFor='is_delivery'>Доставка</label>
-                    <Field name='is_delivery' component='input' type='checkbox' chacked='is_delivery'/>
                 </div>
                 <div>
                     <Field name='city' component='input' type='text' placeholder='Город'
@@ -28,8 +36,8 @@ const SettingsForm = ( { handleSubmit, currentSettings, cancel } ) => {
                     <Field name='free_delivery' component='input' type='text' placeholder='Бесплатно с'
                            className='form-control filter-main-input -name'/>
                 </div>
-                <Button type='submit' variant='primary'>Сохранить</Button>
                 <Button type='button' variant='secondary' onClick={cancel}>Отменить</Button>
+                <Button type='submit' variant='primary'>Сохранить</Button>
             </form>
         </div>
     )
