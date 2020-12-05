@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form'
 import { createField, Input } from '../../common/FormsControls'
 import Button from 'react-bootstrap/Button'
 
-const UserEditForm = ( { handleSubmit, profile, cancel } ) => {
+const UserEditForm = ({ handleSubmit, profile, cancel }) => {
     return (
         <div>
             <div className='page-header'>
@@ -16,14 +16,11 @@ const UserEditForm = ( { handleSubmit, profile, cancel } ) => {
                     <div className='card-body'>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                {createField('ID', 'id', [], Input)}
-                            </div>
-                            <div>
                                 {createField('Фамилия', 'surname', [], Input)}
                             </div>
 
                             <div>
-                                {createField('Имя', 'name', [], Input)}
+                                {createField('Имя', 'forename', [], Input)}
                             </div>
 
                             <div>
@@ -35,7 +32,7 @@ const UserEditForm = ( { handleSubmit, profile, cancel } ) => {
                             </div>
 
                             <div>
-                                {createField('Бонус', 'bonus_points', [], Input, 'number')}
+                                {createField('Бонусы', 'bonusPoints', [], Input, 'number')}
                             </div>
                             <Button variant='primary' type='submit'>Сохранить</Button>
                             <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>

@@ -84,8 +84,32 @@ const Navbar = () => {
                     Программа лояльности
                 </CustomToggle>
                 <Accordion.Collapse eventKey="3">
-                    <NavLink activeClassName='-active' className='navbar-accordion-header-item'
-                             to='/promos'>Акции</NavLink>
+                    <NavLink activeClassName='-active'
+                             className='navbar-accordion-header-item'
+                             to='/promos'>
+                        Акции
+                    </NavLink>
+                </Accordion.Collapse>
+                <Accordion.Collapse eventKey="3">
+                    <NavLink activeClassName='-active'
+                             className='navbar-accordion-header-item'
+                             to='/bonus'>
+                        Бонусная система
+                    </NavLink>
+                </Accordion.Collapse>
+                <Accordion.Collapse eventKey="3">
+                    <NavLink activeClassName='-active'
+                             className='navbar-accordion-header-item'
+                             to='/sales'>
+                        Скидочная система
+                    </NavLink>
+                </Accordion.Collapse>
+                <Accordion.Collapse eventKey="3">
+                    <NavLink activeClassName='-active'
+                             className='navbar-accordion-header-item'
+                             to='/settings-loyalty'>
+                        Настройка системы лояльности
+                    </NavLink>
                 </Accordion.Collapse>
 
                 <CustomToggle className='navbar-accordion-header' eventKey='4'>

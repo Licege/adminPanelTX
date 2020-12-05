@@ -5,7 +5,7 @@ export function getProfessionNameById( professions, id ) {
 }
 
 export function getTitleById( arr, id ) {
-    return arr.find(item => item._id === id).title
+    return arr.find(item => item.id === id).title
 }
 
 const arrMonth = [
@@ -61,7 +61,8 @@ export function tsToDate( timestamp, type ) {
 //     return date
 // }
 
-export function cropText( text, limit = 100 ) {
+export function cropText( text = '', limit = 100 ) {
+    console.log(text);
     return text.length > limit ? text.slice(0, limit) + '...' : text
 }
 

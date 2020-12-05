@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Button } from 'react-bootstrap'
 
-const SettingsForm = ( { handleSubmit, currentSettings, cancel } ) => {
+const SettingsForm = ({ handleSubmit, currentSettings, cancel }) => {
     return (
         <div className='page form_delivery'>
             <div className='page-header'>
@@ -13,12 +13,12 @@ const SettingsForm = ( { handleSubmit, currentSettings, cancel } ) => {
             </div>
             <form onSubmit={handleSubmit} className='page-container'>
                 <div className='form_delivery__checkbox'>
-                    <Field name='is_delivery'
+                    <Field name='isDelivery'
                            id='is_delivery'
                            className='filter-main-checkbox form-control'
                            component='input'
                            type='checkbox'
-                           chacked='is_delivery'
+                           chacked='isDelivery'
                     />
                     <label htmlFor='is_delivery'>Доставка</label>
                 </div>
@@ -28,12 +28,12 @@ const SettingsForm = ( { handleSubmit, currentSettings, cancel } ) => {
                 </div>
                 <div>
                     <label>Стоимость доставки</label>
-                    <Field name='price_for_delivery' component='input' type='text' placeholder='Стоимость доставки'
+                    <Field name='priceForDelivery' component='input' type='text' placeholder='Стоимость доставки'
                            className='form-control filter-main-input -name'/>
                 </div>
                 <div>
                     <label>Бесплатно с</label>
-                    <Field name='free_delivery' component='input' type='text' placeholder='Бесплатно с'
+                    <Field name='freeDelivery' component='input' type='text' placeholder='Бесплатно с'
                            className='form-control filter-main-input -name'/>
                 </div>
                 <Button type='button' variant='secondary' onClick={cancel}>Отменить</Button>

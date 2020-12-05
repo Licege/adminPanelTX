@@ -31,7 +31,7 @@ class EditVacancy extends React.Component {
         if (this.state.file) {
             formData.append('image', this.state.file)
         }
-        this.props.updateVacancy(formData, vacancy._id)
+        this.props.updateVacancy(formData, vacancy.id)
         this.props.history.goBack()
     }
 

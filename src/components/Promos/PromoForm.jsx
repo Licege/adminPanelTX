@@ -22,7 +22,7 @@ const PromoForm = ( { handleSubmit, promo, changeDescription, uploadFile, goBack
                            placeholder='Название'/>
                 </div>
                 <div>
-                    <Field name='short_description'
+                    <Field name='shortDescription'
                            component='textarea'
                            className='form-control filter-main-input -name'
                            placeholder='Краткое описание (необязательно)'/>
@@ -42,8 +42,8 @@ const PromoForm = ( { handleSubmit, promo, changeDescription, uploadFile, goBack
                     <ImageInput value={promo ? promo.imageSrc : ''} onChange={uploadFile} allowClear={true}/>
                 </div>
                 <div>
-                    <Button variant='primary' type='submit'>Сохранить</Button>
                     <Button variant='secondary' type='button' onClick={goBack}>Отменить</Button>
+                    <Button variant='primary' type='submit'>Сохранить</Button>
                 </div>
             </form>
         </div>

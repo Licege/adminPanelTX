@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
 
-const SettingsTable = ( { settings, editSettings } ) => {
+const SettingsTable = ({ settings, editSettings }) => {
     return (
         <div className='card'>
             <div className='card-body'>
@@ -16,11 +16,11 @@ const SettingsTable = ( { settings, editSettings } ) => {
                     </thead>
                     <tbody className='table-body'>
                     {settings.map(s => (
-                        <tr key={s._id} onClick={editSettings(s._id)}>
-                            <td><input type='checkbox' checked={s.is_delivery} value={s.is_delivery} disabled/></td>
+                        <tr key={s.id} onClick={editSettings(s.id)}>
+                            <td><input type='checkbox' checked={s.isDelivery} value={s.isDelivery} disabled/></td>
                             <td>{s.city}</td>
-                            <td>{s.price_for_delivery}</td>
-                            <td>{s.free_delivery}</td>
+                            <td>{s.priceForDelivery}</td>
+                            <td>{s.freeDelivery}</td>
                         </tr>
                     ))}
                     </tbody>

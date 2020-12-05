@@ -1,7 +1,7 @@
 import React from 'react'
 import DeliveryTable from './DeliveryTable'
 
-const Delivery = ( { orders, detail, changeFilter, clearFilter, totalCount, page, onChangePage } ) => {
+const Delivery = ({ orders, detail, changeFilter, clearFilter, totalCount, page, onChangePage }) => {
     return (
         <div>
             <div className='page-header'>

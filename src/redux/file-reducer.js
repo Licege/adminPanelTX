@@ -23,7 +23,7 @@ const fileReducer = ( state = initialState, action ) => {
                 ...state,
                 loading: false,
                 buffer: {
-                    id: action.file._id,
+                    id: action.file.id,
                     preview: action.file.preview,
                     fieldName: action.file.fieldName,
                     type: action.data.type,

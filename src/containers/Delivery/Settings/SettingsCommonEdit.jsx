@@ -5,7 +5,7 @@ import SettingsForm from '../../../components/Delivery/Settings/Tabs/Common_Sett
 
 class SettingsCommonEdit extends React.Component {
     componentDidMount() {
-        if (!this.props.currentSettings || this.props.currentSettings._id !== this.props.match.params.id) this.props.getSettingsById(this.props.match.params.id)
+        if (!this.props.currentSettings || this.props.currentSettings.id !== this.props.match.params.id) this.props.getSettingsById(this.props.match.params.id)
     }
 
     onSubmit = ( settings ) => {

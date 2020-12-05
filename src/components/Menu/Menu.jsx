@@ -1,7 +1,7 @@
 import React from 'react'
 import CardDish from '../common/element/CardDish'
 
-const Menu = ( { dishes, categories, newDish, openDelModal, detail, onPhotoSelected } ) => {
+const Menu = ({ dishes, categories, newDish, openDelModal, detail, onPhotoSelected }) => {
     return (
         <div>
             <div className='page-header -action'>

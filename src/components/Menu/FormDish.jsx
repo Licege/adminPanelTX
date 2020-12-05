@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import ImageInput from '../common/imageInput'
 import Button from 'react-bootstrap/Button'
 
-const FormDish = ( { handleSubmit, categories, dish, openDelModal, cancel, uploadFile } ) => {
+const FormDish = ({ handleSubmit, categories, dish, openDelModal, cancel, uploadFile }) => {
     return (
         <div className='form_dish'>
             <div className={'page-header' + (dish ? ' -action' : '')}>
@@ -30,11 +30,11 @@ const FormDish = ( { handleSubmit, categories, dish, openDelModal, cancel, uploa
                             <div>
                                 <label>Категории</label>
                                 <div>
-                                    <Field name="category_id" component="select"
+                                    <Field name="categoryId" component="select"
                                            className="filter-main-input -name form-control">
                                         <option>Выберите категорию</option>
                                         {categories && categories.map(p => {
-                                            return <option value={p._id} key={p._id}>{p.title}</option>
+                                            return <option value={p.id} key={p.id}>{p.title}</option>
                                         })}
                                     </Field>
                                 </div>
@@ -47,7 +47,7 @@ const FormDish = ( { handleSubmit, categories, dish, openDelModal, cancel, uploa
                                 {createField('Цена', 'cost', [], Input)}
                             </div>
                             <div className='form_dish__checkbox'>
-                                <Field name="is_delivery"
+                                <Field name="isDelivery"
                                        id="is_delivery_dish"
                                        component="input"
                                        type="checkbox"

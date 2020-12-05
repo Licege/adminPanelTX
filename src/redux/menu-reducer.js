@@ -35,10 +35,10 @@ const menuReducer = ( state = initialState, action ) => {
             return { ...state, dishes: action.dishes }
 
         case UPDATE_DISH:
-            return { ...state, dishes: state.dishes.map(e => (e._id === action.dish._id ? action.dish : e)) }
+            return { ...state, dishes: state.dishes.map(e => (e.id === action.dish.id ? action.dish : e)) }
 
         case DELETE_DISH:
-            return { ...state, dishes: state.dishes.filter(e => e._id !== action.id) }
+            return { ...state, dishes: state.dishes.filter(e => e.id !== action.id) }
 
         case GET_CATEGORIES:
             return { ...state, categories: action.categories }
@@ -52,11 +52,11 @@ const menuReducer = ( state = initialState, action ) => {
         case UPDATE_CATEGORY:
             return {
                 ...state,
-                categories: state.categories.map(c => (c._id === action.category._id ? action.category : c)),
+                categories: state.categories.map(c => (c.id === action.category.id ? action.category : c)),
             }
 
         case DELETE_CATEGORY:
-            return { ...state, categories: state.categories.filter(c => c._id !== action.id) }
+            return { ...state, categories: state.categories.filter(c => c.id !== action.id) }
 
         default:
             return state

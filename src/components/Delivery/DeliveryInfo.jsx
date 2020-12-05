@@ -24,12 +24,12 @@ import { fullLink, tsToDate } from '../../plugins/helpers'
 import MenuModal from './MenuModal'
 import altImg from '../../static/img/dish.svg'
 
-const DeliveryInfo = ( { order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal, addDish, increaseDish, decreaseDish, removeDish, currentCategory } ) => {
+const DeliveryInfo = ({ order, handleSubmit, menu, categories, show, toggleModal, applyFilterModal, addDish, increaseDish, decreaseDish, removeDish, currentCategory }) => {
     return (
         order ?
             <form onSubmit={handleSubmit} className='page'>
                 <div className='page-header -action'>
-                    <div className='page-header-title'>Редактирование заказа: {order._id}</div>
+                    <div className='page-header-title'>Редактирование заказа: №{order.id}</div>
                     <div className='page-header-action'>
                         <Button variant='primary' type='submit'>Сохранить изменения</Button>
                     </div>
@@ -76,7 +76,7 @@ const DeliveryInfo = ( { order, handleSubmit, menu, categories, show, toggleModa
                         </div>
                         <div className='card delivery_info-block-card'>
                             <div className='delivery_info-block-card-title'><PersonIcon/>Информация о покупателе</div>
-                            <div className='delivery_info-block-card-item'><AccountIcon/>{order.surname}</div>
+                            <div className='delivery_info-block-card-item'><AccountIcon/>{order.name}</div>
                             <div className='delivery_info-block-card-item'>
                                 <MailIcon/>{order.email ?
                                 <a href={'mailto:' + order.email}>{order.email}</a> : 'не указан'}
@@ -100,12 +100,12 @@ const DeliveryInfo = ( { order, handleSubmit, menu, categories, show, toggleModa
                             <div className='delivery_info-block-card-item'>
                                 <AttachMoneyIcon/>{`Начислено бонусов: 0 (В разработке)`}</div>
                             <div className='delivery_info-block-card-item'>
-                                <ShippingIcon/>{`Стоимость доставки: ${order.delivery_cost} ₽`}</div>
+                                <ShippingIcon/>{`Стоимость доставки: ${order.deliveryCost} ₽`}</div>
                             <div className='delivery_info-block-card-item'>
-                                <FoodIcon/>{`Стоимость заказа: ${order.total_price} ₽`}
+                                <FoodIcon/>{`Стоимость заказа: ${order.price} ₽`}
                             </div>
                             <div className='delivery_info-block-card-item'>
-                                <ShoppingCartIcon/>{`Общая стоимость заказа: ${order.total_price + order.delivery_cost} ₽`}
+                                <ShoppingCartIcon/>{`Общая стоимость заказа: ${order.price + order.deliveryCost} ₽`}
                             </div>
                         </div>
                     </div>
@@ -121,15 +121,15 @@ const DeliveryInfo = ( { order, handleSubmit, menu, categories, show, toggleModa
                             (order.address.flat ? ', кв. ' + order.address.flat : '') + (order.address.floor ? ', ' + order.address.floor + ' этаж' : '') +
                             (order.address.intercom ? ', код домофона: ' + order.address.intercom : '')}
                             </div>
-                            {order.create_at && <div className='delivery_info-detail-info-item'>
-                                Дата и время создания заказа: {tsToDate(order.create_at, 'hh:mm dd MMMM YYYY')}
+                            {order.createdAt && <div className='delivery_info-detail-info-item'>
+                                Дата и время создания заказа: {tsToDate(order.createdAt, 'hh:mm dd MMMM YYYY')}
                             </div>}
-                            {order.time_delivery && <div className='delivery_info-detail-info-item'>
-                                Дата и время доставки заказа: {tsToDate(order.time_delivery, 'hh:mm dd MMMM YYYY')}
+                            {order.timeDelivery && <div className='delivery_info-detail-info-item'>
+                                Дата и время доставки заказа: {tsToDate(order.timeDelivery, 'hh:mm dd MMMM YYYY')}
                             </div>}
-                            {order.paymentType === 'cash' && order.odd_money !== 0 &&
+                            {order.paymentType === 'cash' && order.oddMoney !== 0 &&
                             <div className='delivery_info-detail-info-item'>
-                                Подготовить сдачу с: {order.odd_money}
+                                Подготовить сдачу с: {order.oddMoney}
                             </div>}
                             {order.comment ? <div>Комментарий к заказу: {order.comment}</div> : null}
                         </div>
@@ -147,22 +147,22 @@ const DeliveryInfo = ( { order, handleSubmit, menu, categories, show, toggleModa
                                 </thead>
                                 <tbody>
                                 {order.list.map(dish => (
-                                    <tr key={dish._id}>
+                                    <tr key={dish.id}>
                                         <td>
                                             <img
-                                                src={fullLink(menu.find(item => item._id === dish._id)?.imageSrc) || altImg}
+                                                src={fullLink(menu.find(item => item.id === dish.id)?.imageSrc) || altImg}
                                                 className='delivery_info-detail-table-img'
                                                 alt='фото'/>
                                         </td>
                                         <td>{dish.title}</td>
                                         <td>
-                                            <Button variant='outline-info' onClick={decreaseDish(dish._id)}>-</Button>
+                                            <Button variant='outline-info' onClick={decreaseDish(dish.id)}>-</Button>
                                             {dish.count}
-                                            <Button variant='outline-info' onClick={increaseDish(dish._id)}>+</Button>
+                                            <Button variant='outline-info' onClick={increaseDish(dish.id)}>+</Button>
                                         </td>
                                         <td>{dish.cost} ₽</td>
                                         <td>{dish.cost * dish.count} ₽</td>
-                                        <td><DeleteIcon onClick={removeDish(dish._id)}/></td>
+                                        <td><DeleteIcon onClick={removeDish(dish.id)}/></td>
                                     </tr>
                                 ))}
                                 </tbody>

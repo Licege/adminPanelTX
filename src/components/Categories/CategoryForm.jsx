@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Button } from 'react-bootstrap'
 import validate from './Validate'
 
-const CategoryForm = ( { category, handleSubmit, goBack } ) => (
+const CategoryForm = ({ category, handleSubmit, goBack }) => (
     <div className='page'>
         <div className='page-header'>
             <div
@@ -12,11 +12,11 @@ const CategoryForm = ( { category, handleSubmit, goBack } ) => (
         <form className='page-container' onSubmit={handleSubmit}>
             <Field name='title' component='input' className='filter-main-input -name form-control'
                    placeholder='Название категории'/>
-            <Field name='title_en' component='input' className='filter-main-input -name form-control'
+            <Field name='titleEn' component='input' className='filter-main-input -name form-control'
                    placeholder='Ссылка для адресной строки'/>
             <div>
-                <label htmlFor="is_delivery_category">Доставка</label>
-                <Field name='is_delivery'
+                <label htmlFor="isDeliveryCategory">Доставка</label>
+                <Field name='isDelivery'
                        id='is_delivery_category'
                        component='input'
                        type='checkbox'

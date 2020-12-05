@@ -21,9 +21,9 @@ const hallReducer = ( state = initialState, action ) => {
         case CREATE_HALL:
             return { ...state, halls: [ ...state.halls, action.hall ] }
         case UPDATE_HALL:
-            return { ...state, halls: state.halls.map(hall => (hall._id === action.hall._id ? action.hall : hall)) }
+            return { ...state, halls: state.halls.map(hall => (hall.id === action.hall.id ? action.hall : hall)) }
         case DELETE_HALL:
-            return { ...state, halls: state.halls.filter(hall => hall._id !== action.id) }
+            return { ...state, halls: state.halls.filter(hall => hall.id !== action.id) }
         default:
             return state
     }

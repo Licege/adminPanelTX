@@ -5,8 +5,8 @@ import SettingsTable from './Tabs/Common_Settings/SettingsTable'
 import Button from 'react-bootstrap/Button'
 
 
-const Settings = ( props ) => {
-    const { settings, global_settings, createSettings, editSettings, postGlobalSettings } = props
+const Settings = (props) => {
+    const { settings, globalSettings, createSettings, editSettings, postGlobalSettings } = props
 
     return (
         <div>
@@ -33,7 +33,7 @@ const Settings = ( props ) => {
                             <SettingsTable settings={settings} editSettings={editSettings}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey='global-settings'>
-                            <GlobalSettingsForm initialValues={global_settings} onSubmit={postGlobalSettings}/>
+                            <GlobalSettingsForm initialValues={globalSettings} onSubmit={postGlobalSettings}/>
                         </Tab.Pane>
                     </Tab.Content>
                 </Tab.Container>

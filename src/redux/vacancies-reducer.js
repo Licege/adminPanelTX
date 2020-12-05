@@ -30,14 +30,14 @@ const vacanciesReducer = ( state = initialState, action ) => {
         case UPDATE_VACANCY: {
             return {
                 ...state,
-                vacancies: state.vacancies.map(vacancy => vacancy._id === action.vacancy._id ? action.vacancy : vacancy),
+                vacancies: state.vacancies.map(vacancy => vacancy.id === action.vacancy.id ? action.vacancy : vacancy),
             }
         }
         case CLOSE_VACANCY: {
             return
         }
         case DELETE_VACANCY:
-            return { ...state, vacancies: state.vacancies.filter(e => e._id !== action.id) }
+            return { ...state, vacancies: state.vacancies.filter(e => e.id !== action.id) }
         default:
             return state
     }

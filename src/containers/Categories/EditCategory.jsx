@@ -6,10 +6,10 @@ import CategoryForm from '../../components/Categories/CategoryForm'
 class EditCategory extends React.PureComponent {
     componentDidMount() {
         let id = this.props.match.params.id
-        if (!this.props.category || this.props.category._id !== id) this.props.getCategory(id)
+        if (!this.props.category || this.props.category.id !== id) this.props.getCategory(id)
     }
 
-    onSubmit = ( category ) => {
+    onSubmit = (category) => {
         this.props.updateCategory(category)
         this.goBack()
     }

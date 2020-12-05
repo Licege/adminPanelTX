@@ -3,7 +3,7 @@ import { Button, Modal, Table } from 'react-bootstrap'
 import { fullLink } from '../../plugins/helpers'
 import altImg from '../../static/img/dish.svg'
 
-const MenuModal = ( { show, handleClose, menu, categories, applyFilterModal, addDish, currentCategory } ) => {
+const MenuModal = ({ show, handleClose, menu, categories, applyFilterModal, addDish, currentCategory }) => {
     return (
         <Modal show={show} onHide={handleClose}>
             <Modal.Header>
@@ -11,7 +11,7 @@ const MenuModal = ( { show, handleClose, menu, categories, applyFilterModal, add
                         onChange={applyFilterModal}>
                     <option value=''>Выберите категорию</option>
                     {categories.map(category => (
-                        <option value={category.title_en} key={category._id}>{category.title}</option>
+                        <option value={category.titleEn} key={category.id}>{category.title}</option>
                     ))}
                 </select>
             </Modal.Header>
@@ -27,10 +27,12 @@ const MenuModal = ( { show, handleClose, menu, categories, applyFilterModal, add
                     </thead>
                     <tbody>
                     {menu.map(dish => (
-                        <tr className='text-center' key={dish._id}>
-                            <td><img src={fullLink(dish.imageSrc) || altImg}
+                        <tr className='text-center' key={dish.id}>
+                            <td>
+                                <img src={fullLink(dish.imageSrc) || altImg}
                                      className='delivery_info-modal-img'
-                                     alt='фото'/></td>
+                                     alt='фото'/>
+                            </td>
                             <td>{dish.title}</td>
                             <td>{dish.cost} ₽</td>
                             <td><Button variant='outline-primary' onClick={addDish(dish)}>+</Button></td>

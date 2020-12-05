@@ -27,7 +27,7 @@ export const requestAdmins = () => async ( dispatch ) => {
 }
 
 export const postAdmin = ( profile ) => async ( dispatch ) => {
-    await adminAPI.postAdmin(profile._id)
+    await adminAPI.postAdmin(profile.id)
     dispatch(addAdminAC(profile))
 }
 

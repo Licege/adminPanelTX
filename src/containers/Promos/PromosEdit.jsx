@@ -44,7 +44,7 @@ class PromosEdit extends React.Component {
         this.state.file && formData.set('image', this.state.file)
         formData.set('description', this.state.description)
 
-        this.props.updatePromo(formData, data._id)
+        this.props.updatePromo(formData, data.id)
         this.goBack()
     }
 

@@ -14,7 +14,7 @@ class EmployeeContainer extends React.Component {
     onSubmit = ( profile ) => {
         let data = { ...profile }
         data.profession = parseInt(data.profession, 10)
-        data.file_id = parseInt(data.file_id, 10)
+        data.fileId = parseInt(data.fileId, 10)
         this.props.updateEmployee(data)
         this.props.history.goBack()
     }

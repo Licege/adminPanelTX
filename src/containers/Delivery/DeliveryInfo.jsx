@@ -45,7 +45,6 @@ class DeliveryInfoContainer extends React.Component {
     }
 
     changeDeliveryType = ( dType ) => {
-        console.log(dType)
         this.props.changeDeliveryType(dType)
     }
 
@@ -60,7 +59,6 @@ class DeliveryInfoContainer extends React.Component {
 
     addDish = ( dish ) => {
         return () => {
-            console.log(dish)
             this.props.addDishIntoList(dish)
         }
     }

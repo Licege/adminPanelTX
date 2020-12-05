@@ -41,12 +41,12 @@ const Users = (props) => {
                             </thead>
                             <tbody className='table-body'>
                             {props.users.map(user => (
-                                <tr key={user._id} onClick={props.detail(user._id)}>
+                                <tr key={user.id} onClick={props.detail(user.id)}>
                                     <td>{user.surname}</td>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>{user.phone}</td>
-                                    <td>{user.bonus_points}</td>
+                                    <td>{user.bonusPoints}</td>
                                 </tr>
                             ))}
                             </tbody>

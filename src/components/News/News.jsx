@@ -1,7 +1,7 @@
 import React from 'react'
 import CardNews from '../common/element/CardNews'
 
-const News = ( { news, createNews, deleteNews, detail } ) => {
+const News = ({ news, createNews, deleteNews, detail }) => {
     return (
         <div>
             <div className='page-header -action'>

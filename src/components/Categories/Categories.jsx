@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Table } from 'react-bootstrap'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-const Categories = ( { categories, createCategory, updateCategory, deleteCategory } ) => {
+const Categories = ({ categories, createCategory, updateCategory, deleteCategory }) => {
     return (
         <div className='page'>
             <div className='page-header -action'>
@@ -12,7 +12,7 @@ const Categories = ( { categories, createCategory, updateCategory, deleteCategor
                 </div>
             </div>
             <div className='page-container'>
-                {categories.length ?
+                {categories?.length ?
                     <div className='card'>
                         <Table responsive>
                             <thead className='table-thread'>
@@ -25,14 +25,14 @@ const Categories = ( { categories, createCategory, updateCategory, deleteCategor
                             </thead>
                             <tbody className='table-body'>
                             {categories.map(category => (
-                                <tr key={category._id} onClick={updateCategory(category._id)}>
+                                <tr key={category.id} onClick={updateCategory(category.id)}>
                                     <td>{category.title}</td>
-                                    <td>{category.title_en}</td>
+                                    <td>{category.titleEn}</td>
                                     <td>
-                                        <input type='checkbox' checked={category.is_delivery}
-                                               value={category.is_delivery} disabled/>
+                                        <input type='checkbox' checked={category.isDelivery}
+                                               value={category.isDelivery} disabled/>
                                     </td>
-                                    <td><DeleteIcon onClick={deleteCategory(category._id)}/></td>
+                                    <td><DeleteIcon onClick={deleteCategory(category.id)}/></td>
                                 </tr>
                             ))}
                             </tbody>

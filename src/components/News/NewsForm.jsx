@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Button } from 'react-bootstrap'
 import ImageInput from '../common/imageInput'
 
-const NewsForm = ( { handleSubmit, uploadFile, news, cancel } ) => (
+const NewsForm = ({ handleSubmit, uploadFile, news, cancel }) => (
     <div>
         <div className='page-header'>
             <div className='page-header-title'>
@@ -22,7 +22,7 @@ const NewsForm = ( { handleSubmit, uploadFile, news, cancel } ) => (
                         </div>
                         <div>
                             <Field className="filter-main-input -name form-control"
-                                   name='short_description'
+                                   name='shortDescription'
                                    placeholder='Краткое описание новости'
                                    component='textarea'/>
                         </div>

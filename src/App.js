@@ -41,6 +41,7 @@ import PromosEdit from './containers/Promos/PromosEdit'
 import AverageChecksContainer from './containers/Statistics/AverageChecksContainer'
 import LeftoversContainer from './containers/Storage/LeftoversContainer'
 import ErrorBoundary from './containers/Error/ErrorBoundary'
+import CatchErrors from './pages/Errors/CatchErrors';
 
 function App() {
     let token = useSelector(state => state.auth.accessToken)
@@ -63,7 +64,7 @@ function App() {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <ErrorBoundary>
+                    <CatchErrors>
                         <Switch>
                             <Route exact path='/' component={HomeContainer}/>
 
@@ -130,7 +131,7 @@ function App() {
 
                             <Redirect to='/'/>
                         </Switch>
-                    </ErrorBoundary>
+                    </CatchErrors>
                 </div>
             </div>
         </BrowserRouter>

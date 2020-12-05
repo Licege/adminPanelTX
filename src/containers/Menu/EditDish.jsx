@@ -15,7 +15,7 @@ class EditDishContainer extends React.Component {
 
     componentDidMount() {
         let id = this.props.match.params.id
-        if (!this.props.dish || this.props.dish._id !== id) {
+        if (!this.props.dish || this.props.dish.id !== id) {
             this.props.getDish(id)
         }
         if (!this.props.categories.length) this.props.getCategories()
@@ -23,12 +23,11 @@ class EditDishContainer extends React.Component {
 
     onSubmit = ( dish ) => {
         let formData = new FormData()
-        console.log(dish)
         for (let key in dish) {
             if (dish.hasOwnProperty(key)) formData.append(key, dish[key])
         }
         this.state.file && formData.append('image', this.state.file)
-        this.props.updateDish(formData, dish._id)
+        this.props.updateDish(formData, dish.id)
         this.props.history.push('/menu')
     }
 
@@ -71,7 +70,7 @@ class EditDishContainer extends React.Component {
                               openDelModal={this.toggleDelModal}/>
                     <DeleteModal show={openDelModal}
                                  title={dish.title}
-                                 onRemove={this.deleteDish(dish._id)}
+                                 onRemove={this.deleteDish(dish.id)}
                                  onClose={this.toggleDelModal}/>
                 </> : null
         )

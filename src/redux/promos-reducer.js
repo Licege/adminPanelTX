@@ -22,7 +22,7 @@ const promosReducer = ( state = initialState, action ) => {
         case UPDATE_PROMO:
             return {
                 ...state,
-                promos: state.promos.map(promo => promo._id === action.promo._id ? action.promo : promo),
+                promos: state.promos.map(promo => promo.id === action.promo.id ? action.promo : promo),
             }
         default:
             return state

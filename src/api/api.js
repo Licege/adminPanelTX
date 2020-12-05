@@ -167,7 +167,7 @@ export const contactsAPI = {
                               })
     },
     updateContacts( contacts ) {
-        return apiAdminRequest.patch(`/contacts/${contacts._id}`, contacts)
+        return apiAdminRequest.patch(`/contacts/${contacts.id}`, contacts)
                               .then(response => {
                                   return response
                               })
@@ -258,7 +258,7 @@ export const menuAPI = {
                               })
     },
     updateCategory( category ) {
-        return apiAdminRequest.patch(`/categories/${category._id}`, category)
+        return apiAdminRequest.patch(`/categories/${category.id}`, category)
                               .then(response => {
                                   return response
                               })
@@ -327,7 +327,7 @@ export const reviewsAPI = {
                               })
     },
     updateReview( review ) {
-        return apiAdminRequest.patch(`/reviews/${review._id}`, review)
+        return apiAdminRequest.patch(`/reviews/${review.id}`, review)
                               .then(response => {
                                   return response
                               })
@@ -366,7 +366,7 @@ export const deliveryAPI = {
                               })
     },
     updateOrder( order ) {
-        return apiAdminRequest.patch(`/delivery/${order._id}`, order)
+        return apiAdminRequest.patch(`/delivery/${order.id}`, order)
                               .then(response => {
                                   return response
                               })
@@ -387,7 +387,7 @@ export const deliverySettingsAPI = {
                               })
     },
     updateSettings( settings ) {
-        return apiAdminRequest.patch(`/delivery-settings/common/${settings._id}`, settings)
+        return apiAdminRequest.patch(`/delivery-settings/common/${settings.id}`, settings)
                               .then(response => {
                                   return response
                               })
@@ -414,7 +414,7 @@ export const deliveryGlobalSettingsAPI = {
                               })
     },
     updateSettings( settings ) {
-        return apiAdminRequest.patch(`/delivery-settings/global/${settings._id}`, settings)
+        return apiAdminRequest.patch(`/delivery-settings/global/${settings.id}`, settings)
                               .then(response => {
                                   return response
                               })
@@ -438,7 +438,7 @@ export const banquetHallsAPI = {
                               .catch(e => e.response)
     },
     updateHall( hall ) {
-        return apiAdminRequest.patch(`/banquet-hall/${hall._id}`, hall)
+        return apiAdminRequest.patch(`/banquet-hall/${hall.id}`, hall)
                               .then(response => response)
                               .catch(e => e.response)
     },

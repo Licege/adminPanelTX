@@ -18,6 +18,13 @@
     font-weight: 700;
   }
 
+  &-description {
+    max-height: 150px;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &-actions {
     position: absolute;
     bottom: 20px;

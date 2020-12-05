@@ -40,7 +40,7 @@ class MenuContainer extends React.Component {
     }
 
     deleteDish = () => {
-        this.props.deleteDish(this.state.currentDish._id)
+        this.props.deleteDish(this.state.currentDish.id)
         this.closeDelModal()
     }
 
@@ -57,21 +57,20 @@ class MenuContainer extends React.Component {
         let {isOpenDelModal} = this.state
 
         return (
-            dishes.length && categories.length
-                ? <>
-                    <Menu dishes={dishes}
-                          categories={categories}
-                          newDish={this.newDish}
-                          openDelModal={this.openDelModal}
-                          detail={this.detail}
-                          onPhotoSelected={this.onPhotoSelected}/>
-                    {this.state.currentDish
-                        ? <DeleteModal show={isOpenDelModal}
-                                       onClose={this.closeDelModal}
-                                       title={this.state.currentDish.title}
-                                       onRemove={this.deleteDish}/> : null}
-                </>
-                : null)
+            <>
+                <Menu dishes={dishes}
+                      categories={categories}
+                      newDish={this.newDish}
+                      openDelModal={this.openDelModal}
+                      detail={this.detail}
+                      onPhotoSelected={this.onPhotoSelected}/>
+                {this.state.currentDish
+                    ? <DeleteModal show={isOpenDelModal}
+                                   onClose={this.closeDelModal}
+                                   title={this.state.currentDish.title}
+                                   onRemove={this.deleteDish}/> : null}
+            </>
+        )
     }
 }
 
