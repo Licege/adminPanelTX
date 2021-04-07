@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deleteCategory, requestCategories } from '../../redux/menu-reducer'
+import { deleteCategory, requestCategories } from '../../redux/thunks/menu.thunks'
 import Categories from '../../components/Categories/Categories'
 
 class CategoriesContainer extends React.PureComponent {

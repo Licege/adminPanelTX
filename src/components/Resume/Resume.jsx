@@ -1,20 +1,17 @@
 import React from 'react'
+import {PageHeader} from '../../styledComponents/components'
 
-const Resume = ( props ) => {
-    return (
-        <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Резюме
-                </div>
-            </div>
-            <div className='page-container'>
-                <div className='card'>
-                    123
-                </div>
-            </div>
+const Resume = (props) => {
+  return (
+    <div>
+      <PageHeader title='Резюме' />
+      <div className="page-container">
+        <div className="card">
+          123
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 

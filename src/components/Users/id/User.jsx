@@ -1,15 +1,14 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
+import {PageHeader} from '../../../styledComponents/components'
 
 
 const User = ({ user, goEditMode, cancel }) => {
+    if (!user) return null;
+
     return (
-        user && <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Редактирование профиля: {user.email}
-                </div>
-            </div>
+        <div>
+            <PageHeader title={`Редактирование профиля: ${user.email}`} />
             <div className='page-container'>
                 <div className='card'>
                     <div className='card-body'>

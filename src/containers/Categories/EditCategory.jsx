@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { requestCategory, updateCategory } from '../../redux/menu-reducer'
+import { requestCategory, updateCategory } from '../../redux/thunks/menu.thunks'
 import CategoryForm from '../../components/Categories/CategoryForm'
 
 class EditCategory extends React.PureComponent {

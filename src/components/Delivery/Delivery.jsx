@@ -1,14 +1,11 @@
 import React from 'react'
 import DeliveryTable from './DeliveryTable'
+import {PageHeader} from '../../styledComponents/components'
 
 const Delivery = ({ orders, detail, changeFilter, clearFilter, totalCount, page, onChangePage }) => {
     return (
         <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Заказы
-                </div>
-            </div>
+            <PageHeader title='Заказы' />
             <div className='page-container'>
                 <div className='card filter'>
                     <div className='card-body filter-container'>

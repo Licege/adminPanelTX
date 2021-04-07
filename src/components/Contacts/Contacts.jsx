@@ -1,73 +1,77 @@
-import React from 'react'
-import { reduxForm } from 'redux-form'
-import { createField, Input } from '../common/FormsControls'
+import React, { useState, useEffect, useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Form } from 'react-final-form'
 import Button from 'react-bootstrap/Button'
+import { SCInputField } from './styledComponents'
+import { PageHeader } from '../../styledComponents/components'
+import { getContacts } from '../../redux/getters/contacts.getters'
+import { fetchContacts, updateContacts as updateContactsThunk } from '../../redux/thunks/contats.thunks'
+import InputsList from '../common/InputsList'
 
-const Contact = ( { contacts, handleSubmit, cancel, openHours, handlerInputField } ) => {
-    return (
-        contacts && <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Контакты
-                </div>
-            </div>
+const FIELDS = [
+    { name: 'phone', placeholder: 'Телефон' },
+    { name: 'address', placeholder: 'Адрес' },
+    { name: 'vk', placeholder: 'Вконтакте' },
+    { name: 'fb', placeholder: 'Facebook' },
+    { name: 'tg', placeholder: 'Телеграм' },
+    { name: 'inst', placeholder: 'Instagram' },
+    { name: 'google', placeholder: 'Google' },
+    { name: 'tw', placeholder: 'Twitter' },
+]
 
-            <div className='page-container'>
-                <div className='card'>
-                    <div className='card-body'>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                {createField('Телефон', 'phone', [], Input)}
-                            </div>
 
-                            <div>
-                                {createField('Адрес', 'address', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Вконтакте', 'vk', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Facebook', 'fb', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Телеграм', 'tg', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Instagram', 'inst', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Google', 'google', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Twitter', 'tw', [], Input)}
-                            </div>
-
-                            <div>
-                                <div className='mb-3'>Часы работы (укажите часы работы в формате ПН-ПТ: 12:00 - 01:00)
-                                </div>
-                                {openHours.map(( item, key ) => <input value={item}
-                                                                       onChange={handlerInputField(key)}
-                                                                       key={key}
-                                                                       placeholder={!item ? 'Добавьте часы работы' : ''}
-                                                                       className='filter-main-input -name form-control'/>)}
-                            </div>
-
-                            <Button variant='primary' type='submit'>Изменить</Button>
-                            <Button variant='outline-secondary' type='button'
-                                    onClick={( e ) => cancel()}>Отменить</Button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+const RenderForm = ({ handleSubmit, submitting, pristine, cancel, openHours, handleInputField }) => (
+  <form onSubmit={handleSubmit}>
+      {FIELDS.map(({ ...fieldProps }) => <SCInputField {...fieldProps} />)}
+      <div>
+        <div className="mb-3">Часы работы (укажите часы работы в формате ПН-ПТ: 12:00 - 01:00)
         </div>
-    )
+        <InputsList items={openHours} placeholder='Добавьте часы работы' onChange={handleInputField} />
+      </div>
+      <Button variant="primary" type="submit" disabled={submitting || pristine}>Изменить</Button>
+      <Button variant="outline-secondary" type="button"
+              onClick={cancel}
+      >
+          Отменить
+      </Button>
+  </form>
+)
+
+
+const Contact = () => {
+  const dispatch = useDispatch()
+  const contacts = useSelector(getContacts)
+  const [openHours, setOpenHours] = useState([''])
+
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [])
+
+  useEffect(() => {
+    console.log(contacts.openHours)
+    setOpenHours([...contacts.openHours, ''])
+  }, [contacts])
+
+  const updateContacts = useCallback(contacts => dispatch(updateContactsThunk(contacts)), [contacts])
+  const cancel = useCallback(() => console.log('Отмена не готова'), [])
+
+  const handleInputField = useCallback(list => setOpenHours(list), [])
+
+  if (!contacts) return null
+  const props = { handleInputField, cancel, openHours }
+
+  return (
+    <div>
+      <PageHeader title='Контакты' />
+      <div className="page-container">
+        <div className="card">
+          <div className="card-body">
+            <Form onSubmit={updateContacts} render={({ ...formProps }) => <RenderForm {...formProps} {...props} />} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-const ContactEditReduxForm = reduxForm({ form: 'contact', enableReinitialize: true })(Contact)
-export default ContactEditReduxForm
+export default Contact

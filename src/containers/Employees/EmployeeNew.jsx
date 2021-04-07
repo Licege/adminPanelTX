@@ -1,15 +1,12 @@
 import React from 'react'
-import CreateProfile from '../../components/Employees/new/Employee'
-import { createNewEmployee, getProfessionsAC } from '../../redux/employees-reducer'
 import { connect } from 'react-redux'
-import { employeesAPI } from '../../api/api'
+import CreateProfile from '../../components/Employees/new/Employee'
+import { createNewEmployee, requestProfessions } from '../../redux/reducers/employees.reducer'
 
 class CreateEmployee extends React.Component {
     componentDidMount() {
         if (this.props.professions.length === 0) {
-            employeesAPI.getProfessions().then(data => {
-                this.props.getProfessions(data)
-            })
+            this.props.getProfessions()
         }
     }
 
@@ -47,8 +44,8 @@ let mapDispatchToProps = ( dispatch ) => {
         createEmployee: ( profile ) => {
             dispatch(createNewEmployee(profile))
         },
-        getProfessions: ( professions ) => {
-            dispatch(getProfessionsAC(professions))
+        getProfessions: () => {
+            dispatch(requestProfessions())
         },
     }
 }

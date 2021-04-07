@@ -1,46 +1,42 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { authAPI } from '../api/api'
 
-const REGISTRATION = 'AUTH/REGISTRATION'
-const LOGIN = 'AUTH/LOGIN'
-const LOGOUT = 'AUTH/LOGOUT'
+export const registration = createAsyncThunk(
+  'auth/registration',
+  async (user) => {
+      const response = await authAPI.registration(user)
+      return response.data
+  }
+)
 
-let initialState = {
-    accessToken: localStorage.getItem('accessToken'),
-    refreshToken: localStorage.getItem('refreshToken'),
-    isAuthenticated: false,
-}
+export const login = createAsyncThunk(
+  'auth/login',
+  async (user) => {
+      const response = await authAPI.login(user)
+      return response.data
+  }
+)
 
-const authReducer = ( state = initialState, action ) => {
-    switch (action.type) {
-        case REGISTRATION:
-            return state
-        case LOGIN:
-            localStorage.setItem('accessToken', action.data.accessToken)
-            localStorage.setItem('refreshToken', action.data.refreshToken)
-            return {
-                ...state,
-                isAuthenticated: true,
-            }
-        case LOGOUT:
-            localStorage.clear()
-            return { ...state, isAuthenticated: false }
-        default:
-            return state
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: {
+        accessToken: localStorage.getItem('accessToken'),
+        refreshToken: localStorage.getItem('refreshToken'),
+        isAuthenticated: Boolean(localStorage.getItem('accessToken')),
+    },
+    reducers: {
+        logout: state => { state.isAuthenticated = false }
+    },
+    extraReducers: {
+        [registration.fulfilled]: (state, action) => {},
+        [login.fulfilled]: (state, action) => {
+            localStorage.setItem('accessToken', action.payload.accessToken)
+            localStorage.setItem('refreshToken', action.payload.refreshToken)
+            state.isAuthenticated = true
+        }
     }
-}
+})
 
-const registrationAC = ( user ) => ({ type: REGISTRATION, user })
-const loginAC = ( data ) => ({ type: LOGIN, data })
-export const logoutAC = () => ({ type: LOGOUT })
+export const { logout } = authSlice.actions
 
-export const registration = ( user ) => async ( dispatch ) => {
-    await authAPI.registration(user)
-    dispatch(registrationAC(user.data))
-}
-
-export const login = ( user ) => async ( dispatch ) => {
-    let response = await authAPI.login(user)
-    dispatch(loginAC(response.data))
-}
-
-export default authReducer
+export default authSlice.reducer

@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Menu from '../../components/Menu/Menu'
-import {deleteDish, requestCategories, requestDishes} from '../../redux/menu-reducer'
+import { deleteDish, requestCategories, requestDishes } from '../../redux/thunks/menu.thunks'
 import DeleteModal from '../../components/common/modal/DeleteModal';
+import {getMenu} from '../../redux/getters/menu.getters'
 
 class MenuContainer extends React.Component {
     constructor(props) {
@@ -76,7 +77,7 @@ class MenuContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        dishes: state.menuPage.dishes,
+        dishes: getMenu(state),
         categories: state.menuPage.categories,
     }
 };

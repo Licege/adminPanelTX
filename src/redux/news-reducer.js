@@ -1,70 +1,79 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { newsAPI } from '../api/api'
 
-const CREATE_NEWS = 'CREATE_NEWS'
-const GET_NEWS = 'GET_NEWS'
-const GET_CURRENT_NEWS = 'GET_CURRENT_NEWS'
-const UPDATE_NEWS = 'UPDATE_NEWS'
-const DELETE_NEWS = 'DELETE_NEWS'
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+export const createNewNews = createAsyncThunk(
+  'news/postNews',
+  async (news) => {
+      const response = await newsAPI.postNews(news)
+      return response.data
+  }
+)
 
-let initialState = {
-    news: [],
-    totalCount: 0,
-    currentNews: null,
-    isFetching: true,
-}
+export const getNews = createAsyncThunk(
+  'news/fetchAllNews',
+  async () => {
+      const response = await newsAPI.getNews()
+      return response.data
+  }
+)
 
-const newsReducer = ( state = initialState, action ) => {
-    switch (action.type) {
-        case CREATE_NEWS:
-            return { ...state, news: [ ...state.news, action.news ] }
-        case GET_NEWS:
-            return { ...state, news: action.news, totalCount: action.totalCount }
-        case GET_CURRENT_NEWS:
-            return { ...state, currentNews: action.currentNews }
-        case UPDATE_NEWS:
-            return { ...state, news: state.news.map(n => (n.id === action.currentNews.id ? action.currentNews : n)) }
-        case DELETE_NEWS:
-            return { ...state, news: state.news.filter(n => n.id !== action.id) }
-        case TOGGLE_IS_FETCHING:
-            return { ...state, isFetching: action.isFetching }
-        default:
-            return state
+export const getCurrentNews = createAsyncThunk(
+  'news/getNewsById',
+  async (id) => {
+      const response = await newsAPI.getCurrentNews(id)
+      return response.data
+  }
+)
+
+export const updateNews = createAsyncThunk(
+  'news/updateNews',
+  async (news, id) => {
+      const response = await newsAPI.updateNews(news, id)
+      return response.data
+  }
+)
+
+export const deleteNews = createAsyncThunk(
+  'news/deleteNews',
+  async (id) => {
+      const response = await newsAPI.deleteNews(id)
+      return response.data
+  }
+)
+
+const newsSlice = createSlice({
+    name: 'news',
+    initialState: {
+        news: [],
+        totalCount: 0,
+        currentNews: null,
+        isFetching: false,
+    },
+    extraReducers: {
+        [createNewNews.fulfilled]: (state, action) => {
+            state.news.push(action.payload)
+        },
+        [getNews.fulfilled]: (state, action) => {
+            state.news = action.payload.news
+            state.totalCount = action.payload.totalCount
+        },
+        [getCurrentNews.pending]: state => {
+            state.isFetching = true
+        },
+        [getCurrentNews.fulfilled]: (state, action) => {
+            state.currentNews = action.payload
+            state.isFetching = false
+        },
+        [getCurrentNews.rejected]: state => {
+            state.isFetching = false
+        },
+        [updateNews.fulfilled]: (state, action) => {
+            state.news = state.news.map(n => (n.id === action.currentNews.id ? action.currentNews : n))
+        },
+        [deleteNews.fulfilled]: (state, action) => {
+            state.news = state.news.filter(n => n.id !== action.payload)
+        }
     }
-}
+})
 
-const createNewsAC = ( news ) => ({ type: CREATE_NEWS, news })
-const getNewsAC = ( news, totalCount ) => ({ type: GET_NEWS, news, totalCount })
-const getCurrentNewsAC = ( currentNews ) => ({ type: GET_CURRENT_NEWS, currentNews })
-const updateNewsAC = ( currentNews ) => ({ type: UPDATE_NEWS, currentNews })
-const deleteNewsAC = ( id ) => ({ type: DELETE_NEWS, id })
-const toggleIsFetching = ( isFetching ) => ({ type: TOGGLE_IS_FETCHING, isFetching })
-
-export const createNewNews = ( news ) => async ( dispatch ) => {
-    let response = await newsAPI.postNews(news)
-    dispatch(createNewsAC(response.data))
-}
-
-export const getNews = () => async ( dispatch ) => {
-    let response = await newsAPI.getNews()
-    dispatch(getNewsAC(response.data.news, response.data.totalCount))
-}
-
-export const getCurrentNews = ( id ) => async ( dispatch ) => {
-    dispatch(toggleIsFetching(true))
-    let response = await newsAPI.getCurrentNews(id)
-    dispatch(toggleIsFetching(false))
-    dispatch(getCurrentNewsAC(response.data))
-}
-
-export const updateNews = ( news, id ) => async ( dispatch ) => {
-    let response = await newsAPI.updateNews(news, id)
-    dispatch(updateNewsAC(response.data))
-}
-
-export const deleteNews = ( id ) => async ( dispatch ) => {
-    await newsAPI.deleteNews(id)
-    dispatch(deleteNewsAC(id))
-}
-
-export default newsReducer
+export default newsSlice.reducer

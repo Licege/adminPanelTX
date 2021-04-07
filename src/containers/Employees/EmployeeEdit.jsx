@@ -1,8 +1,7 @@
 import React from 'react'
-import { getProfessionsAC, requestCurrentEmployee, updateCurrentEmployee } from '../../redux/employees-reducer'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { employeesAPI } from '../../api/api'
+import { requestCurrentEmployee, updateCurrentEmployee, requestProfessions } from '../../redux/reducers/employees.reducer'
 import ProfileEmployee from '../../components/Employees/id/ProfileEmployee'
 
 class EmployeeContainer extends React.Component {
@@ -25,20 +24,11 @@ class EmployeeContainer extends React.Component {
 
     componentDidMount() {
         if (this.props.professions.length === 0) {
-            employeesAPI.getProfessions().then(data => {
-                this.props.getProfessions(data)
-            })
+            this.props.getProfessions()
         }
         this.refreshEmployee()
     }
 
-    /*
-        componentDidUpdate(prevProps, prevState, snapshot) {
-            if (this.props.match.params.id !== prevProps.match.params.id ) {
-                this.refreshEmployee();
-            }
-        }
-    */
     render() {
         return (
             <ProfileEmployee
@@ -62,12 +52,10 @@ let mapDispatchToProps = ( dispatch ) => {
         getEmployeeById: ( id ) => {
             dispatch(requestCurrentEmployee(id))
         },
-        getProfessions: ( professions ) => {
-            dispatch(getProfessionsAC(professions))
-        },
         updateEmployee: ( profile ) => {
             dispatch(updateCurrentEmployee(profile))
         },
+        getProfessions: () => dispatch(requestProfessions())
     }
 }
 

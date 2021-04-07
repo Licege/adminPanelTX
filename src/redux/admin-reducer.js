@@ -1,34 +1,35 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { adminAPI } from '../api/api'
 
-const GET_ADMINS = 'ADMIN/GET_ADMINS'
-const POST_ADMIN = 'ADMIN/POST_ADMIN'
+export const fetchAllAdmins = createAsyncThunk(
+  'admins/fetchAllAdmins',
+  async () => {
+      const response = await adminAPI.getAdmins()
+      return response.data
+  }
+)
 
-let initialState = {
-    admins: [],
-}
+export const postAdmin = createAsyncThunk(
+  'admins/postAdmin',
+  async (profile) => {
+      const response = await adminAPI.postAdmin(profile.id)
+      return response.data
+  }
+)
 
-const adminReducer = ( state = initialState, action ) => {
-    switch (action.type) {
-        case GET_ADMINS:
-            return { ...state, admins: action.admins }
-        case POST_ADMIN:
-            return { ...state, admins: [ ...state.admins, action.admin ] }
-        default:
-            return state
+const adminSlice = createSlice({
+    name: 'admins',
+    initialState: {
+        admins: []
+    },
+    extraReducers: {
+        [fetchAllAdmins.fulfilled]: (state, action) => {
+            state.admins = action.payload
+        },
+        [postAdmin.fulfilled]: (state, action) => {
+            state.admins.push(action.payload)
+        }
     }
-}
+})
 
-const getAdminAC = ( admins ) => ({ type: GET_ADMINS, admins })
-const addAdminAC = ( admin ) => ({ type: POST_ADMIN, admin })
-
-export const requestAdmins = () => async ( dispatch ) => {
-    let response = await adminAPI.getAdmins()
-    dispatch(getAdminAC(response.data))
-}
-
-export const postAdmin = ( profile ) => async ( dispatch ) => {
-    await adminAPI.postAdmin(profile.id)
-    dispatch(addAdminAC(profile))
-}
-
-export default adminReducer
+export default adminSlice.reducer

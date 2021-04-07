@@ -1,60 +1,41 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fileAPI } from '../api/api'
 
-const UPLOAD_FILE = 'FILE/UPLOAD_FILE'
-const UPLOAD_FILE_SUCCESS = 'FILE/UPLOAD_FILE_SUCCESS'
-const UPLOAD_FILE_ERROR = 'FILE/UPLOAD_FILE_ERROR'
+export const uploadFile = createAsyncThunk(
+  'files/uploadFile',
+  async (file) => {
+      const response = await fileAPI.uploadFile(file);
+      return response.data;
+  }
+)
 
-let initialState = {
-    buffer: {},
-    loading: false,
-    error: {},
-}
-
-const fileReducer = ( state = initialState, action ) => {
-    let error
-
-    switch (action.type) {
-        case UPLOAD_FILE:
-            return { ...state, loading: true }
-        case UPLOAD_FILE_SUCCESS:
-            error = { ...state.error }
-            delete error[action.file.fieldName]
-            return {
-                ...state,
-                loading: false,
-                buffer: {
-                    id: action.file.id,
-                    preview: action.file.preview,
-                    fieldName: action.file.fieldName,
-                    type: action.data.type,
-                },
+const fileSlice = createSlice({
+    name: 'files',
+    initialState: {
+        buffer: {},
+        loading: false,
+        error: {},
+    },
+    extraReducers: {
+        [uploadFile.pending]: state => {
+            state.loading = true
+        },
+        [uploadFile.fulfilled]: (state, action) => {
+            delete state.error[action.payload.file.fieldName]
+            state.buffer = {
+                id: action.payload.file.id,
+                preview: action.payload.file.preview,
+                fieldName: action.payload.file.fieldName,
+                type: action.payload.data.type,
             }
-        case UPLOAD_FILE_ERROR:
-            return {
-                ...state,
-                error: { ...state.error, [action.file.fieldName]: 'error', loading: false },
-            }
-        default:
-            return state
+            state.loading = false
+        },
+        [uploadFile.rejected]: (state, action) => {
+            state.error[action.payload.fieldName] = 'error'
+            state.loading = false
+        }
     }
-}
+})
 
-const uploadFileAC = () => ({ type: UPLOAD_FILE })
-const uploadFileSuccessAC = ( file ) => ({ type: UPLOAD_FILE_SUCCESS, file })
-const uploadFileErrorsAC = ( error ) => ({ UPLOAD_FILE_ERROR, error })
-
-export const uploadFile = ( files ) => async ( dispatch ) => {
-    dispatch(uploadFileAC())
-    let response = fileAPI.uploadFile(files)
-    switch (response.status) {
-        case 200:
-        case 201:
-            dispatch(uploadFileSuccessAC(response.data))
-            break
-        default:
-            dispatch(uploadFileErrorsAC(response.data))
-    }
-}
-
-export default fileReducer
+export default fileSlice.reducer
 

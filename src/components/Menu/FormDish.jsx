@@ -1,74 +1,60 @@
 import React from 'react'
-import { createField, Input } from '../common/FormsControls'
-import { Field, reduxForm } from 'redux-form'
-import ImageInput from '../common/imageInput'
+import { Form } from 'react-final-form'
 import Button from 'react-bootstrap/Button'
+import { CheckboxWithLabel } from '../../styledComponents/atoms'
+import { SCInputField, SCSelectField } from './styledComponents'
+import { prepareOptions } from '../Form'
+import ImageInput from '../common/imageInput'
+import {PageHeader} from '../../styledComponents/components'
 
-const FormDish = ({ handleSubmit, categories, dish, openDelModal, cancel, uploadFile }) => {
-    return (
-        <div className='form_dish'>
-            <div className={'page-header' + (dish ? ' -action' : '')}>
-                <div className='page-header-title'>
-                    {dish ? dish.title : 'Добавление нового блюда'}
-                </div>
-                {dish
-                    ? <div className='page-header-action'>
-                        <Button variant='danger' onClick={openDelModal}>Удалить</Button>
-                    </div>
-                    : null}
-            </div>
-            <div className='page-container'>
-                <div className='card'>
-                    <div className='card-body'>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                {createField('Название', 'title', [], Input)}
-                            </div>
-                            <div>
-                                {createField('Описание', 'description', [], Input)}
-                            </div>
-                            <div>
-                                <label>Категории</label>
-                                <div>
-                                    <Field name="categoryId" component="select"
-                                           className="filter-main-input -name form-control">
-                                        <option>Выберите категорию</option>
-                                        {categories && categories.map(p => {
-                                            return <option value={p.id} key={p.id}>{p.title}</option>
-                                        })}
-                                    </Field>
-                                </div>
-                            </div>
-                            <div>
-                                {createField('Вес порции (г.)', 'weight', [], Input)}
-                            </div>
 
-                            <div>
-                                {createField('Цена', 'cost', [], Input)}
-                            </div>
-                            <div className='form_dish__checkbox'>
-                                <Field name="isDelivery"
-                                       id="is_delivery_dish"
-                                       component="input"
-                                       type="checkbox"
-                                       className="filter-main-checkbox form-control"/>
-                                <label htmlFor="is_delivery_dish">Доставка</label>
-                            </div>
-                            <div>
-                                <ImageInput value={dish ? dish.imageSrc : ''} onChange={uploadFile} allowClear={true}/>
-                            </div>
-                            <div className='form_dish__actions'>
-                                <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
-                                <Button variant='primary' type='submit'>Сохранить</Button>
-                            </div>
+const RenderForm = ({ handleSubmit, submitting, pristine, categories = [], dish, cancel, uploadFile }) => (
+  <form onSubmit={handleSubmit}>
+    <SCInputField name='title' placeholder='Название' />
+    <SCInputField name='description' placeholder='Описание' />
+    <div>
+      <label>Категории</label>
+      <SCSelectField name='categoryId'
+                     options={prepareOptions(categories, { value: 'id', name: 'title' })}
+                     withEmptyOption
+                     emptyOptionTitle='Выберите категорию'
+      />
+    </div>
+    <SCInputField name='weight' placeholder='Вес порции (г.)' />
+    <SCInputField name='cost' placeholder='Цена' />
+    <CheckboxWithLabel>
+      <label>
+        <SCInputField name="isDelivery" type="checkbox" />&nbsp;&nbsp;Доставка
+      </label>
+    </CheckboxWithLabel>
+    <div>
+        <ImageInput value={dish ? dish.imageSrc : ''} onChange={uploadFile} allowClear={true} />
+    </div>
+    <div className="form_dish__actions">
+        <Button variant="secondary" type="button" onClick={cancel} disabled={submitting}>Отменить</Button>
+        <Button variant="primary" type="submit" disabled={submitting || pristine}>Сохранить</Button>
+    </div>
+  </form>
+)
 
-                        </form>
-                    </div>
-                </div>
-            </div>
+const FormDish = ({ onSubmit, openDelModal, ...props }) => {
+  const { dish } = props;
+  return (
+    <div className="form_dish">
+      <PageHeader>
+        {dish ? <Button variant="danger" onClick={openDelModal}>Удалить</Button> : null}
+      </PageHeader>
+      <div className="page-container">
+        <div className="card">
+          <div className="card-body">
+            <Form onSubmit={onSubmit}
+                  render={({ ...formProps }) => <RenderForm {...formProps} {...props} />}
+            />
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
-const CreateDishReduxForm = reduxForm({ form: 'create-dish', enableReinitialize: true })(FormDish)
-export default CreateDishReduxForm
+export default FormDish

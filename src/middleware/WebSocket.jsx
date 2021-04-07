@@ -2,11 +2,11 @@ import React, { createContext } from 'react'
 import io from 'socket.io-client'
 import { useDispatch } from 'react-redux'
 import { WS_BASE } from '../api/api'
-import { wsUpdateOrderAC } from '../redux/delivery-reducer'
+import { wsUpdateOrderAC } from '../redux/reducers/delivery.reducer'
 
 export const WebSocket = createContext(null)
 
-export default ( { children } ) => {
+export default ({ children }) => {
     let socket
     let ws
 

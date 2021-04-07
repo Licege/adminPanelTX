@@ -1,87 +1,85 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { vacancyAPI } from '../api/api'
 
+export const requestVacancies = createAsyncThunk(
+  'vacancies/fetchAllVacancies',
+  async () => {
+      const response = await vacancyAPI.getVacancies()
+      return response.data
+  }
+)
 
-const CREATE_VACANCY = 'CREATE_VACANCY'
-const GET_VACANCIES = 'GET_VACANCIES'
-const GET_VACANCY_BY_ID = 'GET_VACANCY_BY_ID'
-const UPDATE_VACANCY = 'UPDATE_VACANCY'
-const CLOSE_VACANCY = 'CLOSE_VACANCY'
-const DELETE_VACANCY = 'DELETE_VACANCY'
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
+export const requestVacancy = createAsyncThunk(
+  'vacancies/fetchVacancyById',
+  async (id) => {
+      const response = await vacancyAPI.getVacancy(id)
+      return response.data
+  }
+)
 
-let initialState = {
-    vacancies: [],
-    newVacancy: null,
-    currentVacancy: null,
-    isFetching: false,
-}
+export const createNewVacancy = createAsyncThunk(
+  'vacancies/createVacancy',
+  async (vacancy) => {
+      const response = await vacancyAPI.createVacancy(vacancy)
+      return response.data
+  }
+)
 
-const vacanciesReducer = ( state = initialState, action ) => {
-    switch (action.type) {
-        case CREATE_VACANCY: {
-            return { ...state, vacancies: [ ...state.vacancies, action.vacancy ] }
+export const updateVacancy = createAsyncThunk(
+  'vacancies/updateVacancy',
+  async ({ vacancy, id }) => {
+      const response = await vacancyAPI.updateVacancy(vacancy, id)
+      return response.data
+  }
+)
+
+export const deleteVacancy = createAsyncThunk(
+  'vacancies/deleteVacancy',
+  async (id) => {
+      const response = await vacancyAPI.deleteVacancy(id)
+      return response.data
+  }
+)
+
+const vacanciesSlice = createSlice({
+    name: 'vacancies',
+    initialState: {
+        vacancies: [],
+        newVacancy: null,
+        currentVacancy: null,
+        isFetching: false,
+    },
+    extraReducers: {
+        [requestVacancies.pending]: state => {
+            state.isFetching = true
+        },
+        [requestVacancies.fulfilled]: (state, action) => {
+            state.vacancies = action.payload
+            state.isFetching = false
+        },
+        [requestVacancies.rejected]: state => {
+            state.isFetching = false
+        },
+        [requestVacancy.fulfilled]: (state, action) => {
+            state.currentVacancy = action.payload
+        },
+        [createNewVacancy.pending]: state => {
+            state.isFetching = true
+        },
+        [createNewVacancy.fulfilled]: (state, action) => {
+            state.vacancies.push(action.payload)
+            state.isFetching = false
+        },
+        [createNewVacancy.rejected]: state => {
+            state.isFetching = false
+        },
+        [updateVacancy.fulfilled]: (state, action) => {
+            state.vacancies = state.vacancies.map(vacancy => vacancy.id === action.vacancy.id ? action.vacancy : vacancy)
+        },
+        [deleteVacancy.fulfilled]: (state, action) => {
+            state.vacancies = state.vacancies.filter(vacancy => vacancy.id !== action.id)
         }
-        case GET_VACANCIES: {
-            return { ...state, vacancies: action.vacancies }
-        }
-        case GET_VACANCY_BY_ID: {
-            return { ...state, currentVacancy: action.vacancy }
-        }
-        case UPDATE_VACANCY: {
-            return {
-                ...state,
-                vacancies: state.vacancies.map(vacancy => vacancy.id === action.vacancy.id ? action.vacancy : vacancy),
-            }
-        }
-        case CLOSE_VACANCY: {
-            return
-        }
-        case DELETE_VACANCY:
-            return { ...state, vacancies: state.vacancies.filter(e => e.id !== action.id) }
-        default:
-            return state
     }
-}
+})
 
-const createVacancyAC = ( vacancy ) => ({ type: CREATE_VACANCY, vacancy })
-const getVacanciesAC = ( vacancies ) => ({ type: GET_VACANCIES, vacancies })
-const getVacancyById = ( vacancy ) => ({ type: GET_VACANCY_BY_ID, vacancy })
-const updateVacancyAC = ( vacancy ) => ({ type: UPDATE_VACANCY, vacancy })
-// const closeVacancyAC = (id) => ({type: CLOSE_VACANCY, id});
-const deleteVacancyAC = ( id ) => ({ type: DELETE_VACANCY, id })
-const toggleIsFetching = ( isFetching ) => ({ type: TOGGLE_IS_FETCHING, isFetching })
-
-export const requestVacancies = () => {
-    return async ( dispatch ) => {
-        dispatch(toggleIsFetching(true))
-        let response = await vacancyAPI.getVacancies()
-        dispatch(toggleIsFetching(false))
-        dispatch(getVacanciesAC(response.data))
-    }
-}
-
-export const requestVacancy = ( id ) => async ( dispatch ) => {
-    let response = await vacancyAPI.getVacancy(id)
-    dispatch(getVacancyById(response.data))
-}
-
-export const createNewVacancy = ( vacancy ) => async ( dispatch ) => {
-    dispatch(toggleIsFetching(true))
-    let response = await vacancyAPI.createVacancy(vacancy)
-    dispatch(toggleIsFetching(false))
-    dispatch(createVacancyAC(response.data))
-}
-
-export const updateVacancy = ( vacancy, id ) => async ( dispatch ) => {
-    let response = await vacancyAPI.updateVacancy(vacancy, id)
-    dispatch(updateVacancyAC(response.data))
-}
-
-export const deleteVacancy = ( id ) => async ( dispatch ) => {
-    let response = await vacancyAPI.deleteVacancy(id)
-    if (response.status === 200) {
-        dispatch(deleteVacancyAC(id))
-    }
-}
-
-export default vacanciesReducer
+export default vacanciesSlice.reducer

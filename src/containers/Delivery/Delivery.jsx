@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { requestOrdersDelivery, setPageAC } from '../../redux/delivery-reducer'
+import { requestOrdersDelivery, setPageAC } from '../../redux/reducers/delivery.reducer'
 import Delivery from '../../components/Delivery/Delivery'
 
 const fieldFilter = ['phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status']

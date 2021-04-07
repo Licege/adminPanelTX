@@ -1,15 +1,12 @@
 import React from "react";
 import {Table} from "react-bootstrap";
 import Paginator from "../common/Paginator";
+import {PageHeader} from '../../styledComponents/components'
 
 const Users = (props) => {
     return (
         <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Пользователи
-                </div>
-            </div>
+            <PageHeader title='Пользователи' />
             <div className='page-container'>
                 <div className='card filter'>
                     <div className='card-body filter-container'>

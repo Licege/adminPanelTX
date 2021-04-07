@@ -1,14 +1,15 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { createField, Input } from '../../../../common/FormsControls'
+import { Field } from 'react-final-form'
 import { Button } from 'react-bootstrap'
+import Form from '../../../../Form/form';
+import { createField, Input } from '../../../../common/FormsControls'
 
 
-const GlobalSettingsForm = ( { handleSubmit } ) => {
+const GlobalSettingsForm = ({ onSubmit }) => {
     return (
         <div className='card'>
             <div className='card-body'>
-                <form onSubmit={handleSubmit}>
+                <Form onSubmit={onSubmit}>
                     <div className='d_settings-block'>
                         <div className='d_settings-block-item'>
                             <div className='d_settings-block-item-label'>Доставка</div>
@@ -43,14 +44,10 @@ const GlobalSettingsForm = ( { handleSubmit } ) => {
                     </div>
                     <Button type='button' variant='secondary'>Отменить</Button>
                     <Button type='submit' variant='primary'>Сохранить</Button>
-                </form>
+                </Form>
             </div>
         </div>
     )
 }
 
-const GlobalSettingsReduxForm = reduxForm({
-    form: 'global-delivery-settings',
-    enableReinitialize: true,
-})(GlobalSettingsForm)
-export default GlobalSettingsReduxForm
+export default GlobalSettingsForm

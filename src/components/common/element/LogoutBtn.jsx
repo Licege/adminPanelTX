@@ -1,5 +1,5 @@
 import React from 'react'
-import { logoutAC } from '../../../redux/auth-reducer'
+import { logout } from '../../../redux/auth-reducer'
 import { connect } from 'react-redux'
 import Button from 'react-bootstrap/Button'
 
@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 class LogoutBtn extends React.Component {
     exit = () => {
         this.props.logout()
-        window.location.reload()
+        // window.location.reload()
     }
 
     render() {
@@ -24,7 +24,7 @@ let mapStateToProps = ( state ) => {
 let mapDispatchToProps = ( dispatch ) => {
     return {
         logout: () => {
-            dispatch(logoutAC())
+            dispatch(logout())
         },
     }
 }

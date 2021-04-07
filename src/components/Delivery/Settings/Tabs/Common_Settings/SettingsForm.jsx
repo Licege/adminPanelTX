@@ -1,17 +1,17 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field } from 'react-final-form'
 import { Button } from 'react-bootstrap'
+import Form from '../../../../Form/form'
+import { PageHeader } from '../../../../../styledComponents/components'
 
-const SettingsForm = ({ handleSubmit, currentSettings, cancel }) => {
+const SettingsForm = ({ onSubmit, currentSettings, cancel }) => {
+    const title = currentSettings
+      ? `Редактирование доставки в ${currentSettings.city}`
+      : 'Создание новой зоны доставки'
     return (
         <div className='page form_delivery'>
-            <div className='page-header'>
-                <div className='page-header-title'>{currentSettings
-                    ? 'Редактирование доставки в ' + currentSettings.city
-                    : 'Создание новой зоны доставки'}
-                </div>
-            </div>
-            <form onSubmit={handleSubmit} className='page-container'>
+            <PageHeader title={title} />
+            <Form onSubmit={onSubmit}>
                 <div className='form_delivery__checkbox'>
                     <Field name='isDelivery'
                            id='is_delivery'
@@ -38,10 +38,9 @@ const SettingsForm = ({ handleSubmit, currentSettings, cancel }) => {
                 </div>
                 <Button type='button' variant='secondary' onClick={cancel}>Отменить</Button>
                 <Button type='submit' variant='primary'>Сохранить</Button>
-            </form>
+            </Form>
         </div>
     )
 }
 
-const SettingsReduxForm = reduxForm({ form: 'settings-delivery', enableReinitialize: true })(SettingsForm)
-export default SettingsReduxForm
+export default SettingsForm

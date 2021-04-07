@@ -1,76 +1,44 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import Button from 'react-bootstrap/Button'
+import { Form } from 'react-final-form'
+import { Button } from 'react-bootstrap'
 import ImageInput from '../../common/imageInput'
+import { SCInputField } from '../styledComponents'
+import {PageHeader} from '../../../styledComponents/components'
 
-const Vacancy = ( { handleSubmit, uploadFile, cancel, vacancy } ) => {
-    return (
-        <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    {vacancy && vacancy.title ? 'Редактирование вакансии: ' + vacancy.title : 'Создание вакансии'}
-                </div>
-            </div>
-            <div className='page-container'>
-                <div className='card'>
-                    <div className='card-body'>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                <Field name='title'
-                                       type='text'
-                                       component='input'
-                                       placeholder='Название'
-                                       className='filter-main-input -name form-control'/>
-                            </div>
 
-                            <div>
-                                <Field name='requirements'
-                                       type='text'
-                                       component='input'
-                                       placeholder='Требования'
-                                       className='filter-main-input -name form-control'/>
-                            </div>
+const RenderForm = ({ handleSubmit, submitting, pristine, vacancy, uploadFile, cancel }) => (
+  <form onSubmit={handleSubmit}>
+    <SCInputField name='title' placeholder='Название' />
+    <SCInputField name='requirements' placeholder='Требования' />
+    <SCInputField name='description' placeholder='Описание' />
+    <SCInputField name='salary_from' placeholder='Зп от' parse={value => Number(value)} />
+    <SCInputField name='salary_to' placeholder='Зп до' parse={value => Number(value)} />
+    <div>
+      <ImageInput value={vacancy ? vacancy.imageSrc : ''} onChange={uploadFile} allowClear={true} />
+    </div>
+    <Button variant="primary" type="submit" disabled={submitting || pristine}>Сохранить</Button>
+    <Button variant="secondary" type="button" disabled={submitting} onClick={cancel}>Отменить</Button>
+  </form>
+)
 
-                            <div>
-                                <Field name='description'
-                                       type='text'
-                                       component='input'
-                                       placeholder='Описание'
-                                       className='filter-main-input -name form-control'/>
-                            </div>
+const Vacancy = ({ onSubmit, ...props }) => {
+  const { vacancy } = props
+  const title = vacancy && vacancy.title ? `Редактирование вакансии: ${vacancy.title}` : 'Создание вакансии'
 
-                            <div>
-                                <Field name='salary_from'
-                                       type='number'
-                                       component='input'
-                                       placeholder='Зп от'
-                                       parse={value => parseInt(value, 10)}
-                                       className='filter-main-input -name form-control'/>
-                            </div>
-
-                            <div>
-                                <Field name='salary_to'
-                                       type='number'
-                                       component='input'
-                                       placeholder='Зп до'
-                                       parse={value => parseInt(value, 10)}
-                                       className='filter-main-input -name form-control'/>
-                            </div>
-
-                            <div>
-                                <ImageInput value={vacancy ? vacancy.imageSrc : ''} onChange={uploadFile}
-                                            allowClear={true}/>
-                            </div>
-
-                            <Button variant='primary' type='submit'>Сохранить</Button>
-                            <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div>
+      <PageHeader title={title} />
+      <div className="page-container">
+        <div className="card">
+          <div className="card-body">
+            <Form onSubmit={onSubmit}
+                  render={({ ...formProps }) => <RenderForm {...formProps} {...props} />}
+            />
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
-const CreateVacancyReduxForm = reduxForm({ form: 'create-vacancy', enableReinitialize: true })(Vacancy)
-export default CreateVacancyReduxForm
+export default Vacancy

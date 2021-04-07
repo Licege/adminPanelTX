@@ -1,4 +1,35 @@
-import { deliveryAPI, deliveryGlobalSettingsAPI, deliverySettingsAPI } from '../api/api'
+import { createSlice } from '@reduxjs/toolkit'
+import { deliveryAPI, deliveryGlobalSettingsAPI, deliverySettingsAPI } from '../../api/api'
+import {
+    handleAddDishToOrder,
+    handleIncreaseDishToOrder,
+    handleDecreaseDishFromOrder,
+    handleRemoveDishFromOrder
+} from '../functions/delivery.functions'
+
+const deliverySlice = createSlice({
+    name: 'delivery',
+    initialState: {
+        orders: [],
+        totalCount: null,
+        currentOrder: null,
+        currentPage: 1,
+        globalSettings: {},
+        settings: [],
+        currentSettings: null,
+    },
+    reducers: {
+        addDishToOrder: handleAddDishToOrder,
+        removeDishFromOrder: handleRemoveDishFromOrder,
+        increaseDishToList: handleIncreaseDishToOrder,
+        decreaseDishFromList: handleDecreaseDishFromOrder
+    },
+    extraReducers: {
+
+    }
+})
+
+const { addDishToOrder, removeDishFromOrder, increaseDishToList, decreaseDishFromList } = deliverySlice.actions
 
 const GET_ORDERS = 'DELIVERY/GET_ORDERS'
 const GET_ORDER_BY_ID = 'DELIVERY/GET_ORDER_BY_ID'
@@ -21,7 +52,7 @@ const CREATE_DELIVERY_SETTINGS = 'DELIVERY/CREATE_DELIVERY_SETTINGS'
 const UPDATE_DELIVERY_SETTINGS = 'DELIVERY/UPDATE_DELIVERY_SETTINGS'
 const DELETE_DELIVERY_SETTINGS = 'DELIVERY/DELETE_DELIVERY_SETTINGS'
 
-let initialState = {
+const initialState = {
     orders: [],
     totalCount: null,
     currentOrder: null,

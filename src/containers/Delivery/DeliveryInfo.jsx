@@ -9,14 +9,14 @@ import {
     requestDeliverySettings,
     requestOrderDeliveryById,
     updateOrderDelivery,
-} from '../../redux/delivery-reducer'
+} from '../../redux/reducers/delivery.reducer'
 import DeliveryInfo from '../../components/Delivery/DeliveryInfo'
 import {
     requestCategories,
     requestDishes,
     requestDishesByCategory,
-} from '../../redux/menu-reducer'
-import { formValueSelector } from 'redux-form'
+} from '../../redux/thunks/menu.thunks'
+// import { formValueSelector } from 'redux-form'
 
 class DeliveryInfoContainer extends React.Component {
     constructor( props ) {
@@ -104,13 +104,14 @@ class DeliveryInfoContainer extends React.Component {
 }
 
 let mapStateToProps = ( state ) => {
-    const selector = formValueSelector('delivery-info')
+    // const selector = formValueSelector('delivery-info')
     return {
         order: state.deliveryPage.currentOrder,
         dishes: state.menuPage.dishes,
         categories: state.menuPage.categories,
         settings: state.deliveryPage.settings,
-        deliveryType: selector(state, 'delivery_type'),
+        // deliveryType: selector(state, 'delivery_type'),
+        deliveryType: 'home'
     }
 }
 

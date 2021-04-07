@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { postAdmin, requestAdmins } from '../../redux/admin-reducer'
+import { postAdmin, fetchAllAdmins } from '../../redux/admin-reducer'
 import Admin from '../../components/Admin/Admin'
 import { requestUsers } from '../../redux/users-reducer'
 import { ConfirmModal } from '../../components/Admin/ConfirmModal'
@@ -58,7 +58,7 @@ let mapStateToProps = ( state ) => {
 let mapDispatchToProps = ( dispatch ) => {
     return {
         getAdmins: () => {
-            dispatch(requestAdmins())
+            dispatch(fetchAllAdmins())
         },
         postAdmin: ( profile ) => {
             dispatch(postAdmin(profile))

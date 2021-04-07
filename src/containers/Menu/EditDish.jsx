@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deleteDish, requestCategories, requestDish, updateDish } from '../../redux/menu-reducer'
+import { deleteDish, requestCategories, requestDish, updateDish } from '../../redux/thunks/menu.thunks'
 import FormDish from '../../components/Menu/FormDish'
 import DeleteModal from '../../components/common/modal/DeleteModal'
 

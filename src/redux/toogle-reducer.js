@@ -1,19 +1,18 @@
-const TOGGLE = 'TOGGLE'
+import { createSlice } from '@reduxjs/toolkit'
 
-let initialState = {
-    active: null,
-}
-
-const toggleReducer = ( state = initialState, action ) => {
-    switch (action.type) {
-        case TOGGLE:
-            return { active: state.active !== action.active ? action.active : null }
-        default:
-            return state
+const toggleSlice = createSlice({
+    name: 'toggle',
+    initialState: {
+        active: null
+    },
+    reducers: {
+        toggle: (state, action) => {
+            state.active = !state.active
+        }
     }
-}
+})
 
-export const toggleAC = ( active ) => ({ type: TOGGLE, active })
+export const { toggle } = toggleSlice.actions
 
-export default toggleReducer
+export default toggleSlice.reducer
 

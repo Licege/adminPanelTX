@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-    createDeliverySettings, deleteDeliverySettings,
+    createDeliverySettings,
+    deleteDeliverySettings,
     requestDeliverySettings,
-    requestGlobalDeliverySettings, updateDeliverySettings,
+    requestGlobalDeliverySettings,
+    updateDeliverySettings,
     updateGlobalDeliverySettings,
-} from '../../../redux/delivery-reducer'
+} from '../../../redux/thunks/delivery.thunks'
 import Settings from '../../../components/Delivery/Settings/Settings'
 
 class SettingsContainer extends React.Component {

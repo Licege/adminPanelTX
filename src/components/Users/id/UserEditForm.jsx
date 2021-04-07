@@ -1,49 +1,35 @@
 import React from 'react'
-import { reduxForm } from 'redux-form'
-import { createField, Input } from '../../common/FormsControls'
-import Button from 'react-bootstrap/Button'
+import { Button } from 'react-bootstrap'
+import { Form } from 'react-final-form'
+import { SCInputField } from '../styledComponents'
+import {PageHeader} from '../../../styledComponents/components'
 
-const UserEditForm = ({ handleSubmit, profile, cancel }) => {
-    return (
-        <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Редактирование пользователя: {profile.email}
-                </div>
-            </div>
-            <div className='page-container'>
-                <div className='card'>
-                    <div className='card-body'>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                {createField('Фамилия', 'surname', [], Input)}
-                            </div>
 
-                            <div>
-                                {createField('Имя', 'forename', [], Input)}
-                            </div>
+const RenderForm = ({ handleSubmit, submitting, pristine, cancel }) => (
+  <form onSubmit={handleSubmit}>
+      <SCInputField name='surname' placeholder='Фамилия' />
+      <SCInputField name='forename' placeholder='Имя' />
+      <SCInputField name='email' placeholder='E-mail' />
+      <SCInputField name='phone' placeholder='Телефон' />
+      <SCInputField name='bonusPoints' placeholder='Бонусы' parse={value => Number(value)} />
+      <Button variant="primary" type="submit" disabled={submitting || pristine}>Сохранить</Button>
+      <Button variant="secondary" type="button" onClick={cancel} disabled={submitting}>Отменить</Button>
+  </form>
+)
 
-                            <div>
-                                {createField('E-mail', 'email', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Телефон', 'phone', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Бонусы', 'bonusPoints', [], Input, 'number')}
-                            </div>
-                            <Button variant='primary' type='submit'>Сохранить</Button>
-                            <Button variant='secondary' type='button' onClick={cancel}>Отменить</Button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+const UserEditForm = ({ onSubmit, profile, ...props }) => {
+  return (
+    <div>
+      <PageHeader title={`Редактирование пользователя: ${profile.email}`} />
+      <div className="page-container">
+        <div className="card">
+          <div className="card-body">
+            <Form onSubmit={onSubmit} render={({ ...formProps }) => <RenderForm {...formProps} {...props} />} />
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
-const UserEditReduxForm = reduxForm({ form: 'edit-user', enableReinitialize: true })(UserEditForm)
-
-export default UserEditReduxForm
+export default UserEditForm

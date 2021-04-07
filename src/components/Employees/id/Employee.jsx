@@ -1,14 +1,13 @@
 import React from 'react'
 import { getProfessionNameById } from '../../../plugins/helpers'
+import {PageHeader} from '../../../styledComponents/components'
 
-const Employee = ( { employee, professions, goEditMode, cancel } ) => {
+const Employee = ({ employee, professions, goEditMode, cancel }) => {
+    if (!employee) return null
+
     return (
-        employee && <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    Редактирование профиля: {employee.surname + ' ' + employee.name}
-                </div>
-            </div>
+        <div>
+            <PageHeader title={`Редактирование профиля: ${employee.surname} ${employee.name}`} />
             <div className='page-container'>
                 <div className='card'>
                     <div className='card-body'>

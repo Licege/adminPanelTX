@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
-export const ConfirmModal = ( { user, show, onConfirm, cancel } ) => (
+export const ConfirmModal = ({ user, show, onConfirm, cancel }) => (
     <Modal show={show} onHide={cancel}>
         <Modal.Header closeButton>
             <Modal.Title>Вы действительно хотите назначить {user && user.email} администратором?</Modal.Title>

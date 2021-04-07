@@ -1,56 +1,52 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Form } from 'react-final-form'
+import { Button } from 'react-bootstrap'
 //import EditorFieldComponent from "../common/element/editor/EditorFieldComponent";
-import Button from 'react-bootstrap/Button'
 import ImageInput from '../common/imageInput'
 import ControlledEditor from '../common/element/editor/ControlledEditor'
+import { SCInputField, SCTextareaField } from './styledComponents'
+import { CheckboxWithLabel } from '../../styledComponents/atoms'
+import {PageHeader} from '../../styledComponents/components'
 
-const PromoForm = ( { handleSubmit, promo, changeDescription, uploadFile, goBack } ) => {
-    return (
-        <div>
-            <div className='page-header'>
-                <div className='page-header-title'>
-                    {promo ? `Редактирование акции ${promo.title}` : 'Создание акции'}
-                </div>
-            </div>
-            <form onSubmit={handleSubmit} className='page-container'>
-                <div>
-                    <Field name='title'
-                           component='input'
-                           type='text'
-                           className='form-control filter-main-input -name'
-                           placeholder='Название'/>
-                </div>
-                <div>
-                    <Field name='shortDescription'
-                           component='textarea'
-                           className='form-control filter-main-input -name'
-                           placeholder='Краткое описание (необязательно)'/>
-                </div>
-                <div className='promos-form-wysivyg'>
-                    <ControlledEditor value={promo ? promo.description : ''} onChange={changeDescription}/>
-                </div>
-                <div>
-                    <label htmlFor='isShow'>Показывать акцию</label>
-                    <Field name='show'
-                           id='show'
-                           component='input'
-                           type='checkbox'
-                           className="filter-main-input -name form-control"/>
-                </div>
-                <div>
-                    <ImageInput value={promo ? promo.imageSrc : ''} onChange={uploadFile} allowClear={true}/>
-                </div>
-                <div>
-                    <Button variant='secondary' type='button' onClick={goBack}>Отменить</Button>
-                    <Button variant='primary' type='submit'>Сохранить</Button>
-                </div>
-            </form>
+
+const RenderForm = ({ handleSubmit, submitting, pristine, promo, changeDescription, uploadFile, goBack }) => (
+  <form onSubmit={handleSubmit}>
+    <SCInputField name='title' placeholder='Название' />
+    <SCTextareaField name='shortDescription' placeholder='Краткое описание (необязательно)' />
+    <div className="promos-form-wysivyg">
+      <ControlledEditor value={promo ? promo.description : ''} onChange={changeDescription} />
+    </div>
+    <CheckboxWithLabel>
+        <label>
+            Показывать акцию&nbsp;&nbsp;<SCInputField type='checkbox' name='show' />
+        </label>
+    </CheckboxWithLabel>
+    <div>
+      <ImageInput value={promo ? promo.imageSrc : ''} onChange={uploadFile} allowClear={true} />
+    </div>
+    <div>
+      <Button variant="secondary" type="button" onClick={goBack} disabled={submitting}>Отменить</Button>
+      <Button variant="primary" type="submit" disabled={submitting || pristine}>Сохранить</Button>
+    </div>
+  </form>
+)
+
+const PromoForm = ({ onSubmit, ...props }) => {
+  const { promo } = props
+  return (
+    <div>
+      <PageHeader title={`promo ? Редактирование акции ${promo.title} : Создание акции`} />
+      <div className="page-header">
+        <div className="page-header-title">
+          {promo ? `Редактирование акции ${promo.title}` : 'Создание акции'}
         </div>
+      </div>
+      <div className="page-container">
+        <Form onSubmit={onSubmit} render={({ ...formProps }) => <RenderForm {...formProps} {...props} />} />
+      </div>
+    </div>
 
-    )
+  )
 }
 
-let reduxPromoForm = reduxForm({ form: 'promo-form', enableReinitialize: true })(PromoForm)
-
-export default reduxPromoForm
+export default PromoForm

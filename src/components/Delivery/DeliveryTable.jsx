@@ -1,8 +1,6 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
 import { format } from 'date-fns'
-
-
 import { deliveryHD } from '../../plugins/hardData'
 import Paginator from '../common/Paginator'
 

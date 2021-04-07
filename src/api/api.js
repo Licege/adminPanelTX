@@ -1,4 +1,5 @@
 import axios from 'axios'
+import request from '../lib/request'
 
 export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://localhost:9091/`
 
@@ -100,9 +101,7 @@ export const employeesAPI = {
                               .catch(e => e.response)
     },
     getEmployees() {
-        return apiAdminRequest.get(baseUrl + `/employees/`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(baseUrl + `/employees/`)
     },
     getEmployeeById( id ) {
         return apiAdminRequest.get(baseUrl + `/employees/${id}`)

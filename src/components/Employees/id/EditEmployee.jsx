@@ -1,10 +1,33 @@
 import React from 'react'
-import { createField, Input } from '../../common/FormsControls'
-import { Field, reduxForm } from 'redux-form'
+import { Form } from 'react-final-form'
+import { SCInputField, SCSelectField } from '../styledComponents'
+import { prepareOptions } from '../../Form'
 
 
-const EditEmployee = ( { employee, handleSubmit, professions, cancel } ) => {
-    console.log(handleSubmit)
+const RenderForm = ({ handleSubmit, submitting, pristine, professions, cancel }) => (
+  <form onSubmit={handleSubmit}>
+      <SCInputField name='surname' placeholder='Фамилия' />
+      <SCInputField name='name' placeholder='Имя' />
+      <div>
+          <label>Должность</label>
+          <div>
+              <SCSelectField name="profession"
+                           options={prepareOptions(professions, { value: 'id', name: 'profession' })}
+              />
+          </div>
+      </div>
+      <SCInputField name='phone' placeholder='Телефон' />
+      <SCInputField name='address' placeholder='Адрес' />
+      <SCInputField name='file_id' placeholder='file_id' />
+      <button type='submit' disabled={submitting || pristine}>Сохранить</button>
+      <button type='button'
+              onClick={cancel}
+              disabled={submitting || pristine}
+      >Отменить</button>
+  </form>
+)
+
+const EditEmployee = ({ employee, onSubmit, ...props }) => {
     return (
         employee && <div>
             <div className='page-header'>
@@ -15,41 +38,9 @@ const EditEmployee = ( { employee, handleSubmit, professions, cancel } ) => {
             <div className='page-container'>
                 <div className='card'>
                     <div className='card-body'>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                {createField('Фамилия', 'surname', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Имя', 'name', [], Input)}
-                            </div>
-
-                            <div>
-                                <label>Должность</label>
-                                <div>
-                                    <Field name="profession" component="select">
-                                        {professions.map(p => {
-                                            return <option value={p.id} key={p.id}>{p.profession}</option>
-                                        })}
-                                    </Field>
-                                </div>
-                            </div>
-
-                            <div>
-                                {createField('Телефон', 'phone', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('Адрес', 'address', [], Input)}
-                            </div>
-
-                            <div>
-                                {createField('file_id', 'file_id', [], Input)}
-                            </div>
-
-                            <button type='submit'>Сохранить</button>
-                            <button type='button' onClick={( e ) => cancel()}>Отменить</button>
-                        </form>
+                        <Form onSubmit={onSubmit}
+                              render={({ ...formProps }) => <RenderForm {...formProps} {...props} />}
+                        />
                     </div>
                 </div>
             </div>
@@ -57,5 +48,4 @@ const EditEmployee = ( { employee, handleSubmit, professions, cancel } ) => {
     )
 }
 
-const EmployeeEditReduxForm = reduxForm({ form: 'edit-employee', enableReinitialize: true })(EditEmployee)
-export default EmployeeEditReduxForm
+export default EditEmployee

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createCategory } from '../../redux/menu-reducer'
+import { createCategory } from '../../redux/thunks/menu.thunks'
 import CategoryForm from '../../components/Categories/CategoryForm'
 
 class CreateCategory extends React.PureComponent {

@@ -1,17 +1,13 @@
 import React from 'react'
 import CardDish from '../common/element/CardDish'
+import {PageHeader} from '../../styledComponents/components'
 
 const Menu = ({ dishes, categories, newDish, openDelModal, detail, onPhotoSelected }) => {
     return (
         <div>
-            <div className='page-header -action'>
-                <div className='page-header-title'>
-                    Меню
-                </div>
-                <div className='page-header-action'>
-                    <button className='btn btn-primary' onClick={newDish}>Добавить блюдо</button>
-                </div>
-            </div>
+            <PageHeader title='Меню'>
+                <button className='btn btn-primary' onClick={newDish}>Добавить блюдо</button>
+            </PageHeader>
             <div className='page-container'>
                 <div className='card mb-4'>
                     <div className='card-body'>
