@@ -1,14 +1,13 @@
 import React from 'react'
 import { Form } from 'react-final-form'
 import Button from 'react-bootstrap/Button'
-import { CheckboxWithLabel } from '../../styledComponents/atoms'
-import { SCInputField, SCSelectField } from './styledComponents'
-import { prepareOptions } from '../Form'
-import ImageInput from '../common/imageInput'
-import {PageHeader} from '../../styledComponents/components'
+import { CheckboxWithLabel } from '../../../styledComponents/atoms'
+import { SCInputField, SCSelectField } from '../styledComponents'
+import { prepareOptions } from '../../Form'
+import ImageInput from '../../common/imageInput'
 
 
-const RenderForm = ({ handleSubmit, submitting, pristine, categories = [], dish, cancel, uploadFile }) => (
+const RenderForm = ({ handleSubmit, submitting, pristine, categories = [], dishImageSrc = '', onCancel, uploadFile }) => (
   <form onSubmit={handleSubmit}>
     <SCInputField name='title' placeholder='Название' />
     <SCInputField name='description' placeholder='Описание' />
@@ -28,33 +27,20 @@ const RenderForm = ({ handleSubmit, submitting, pristine, categories = [], dish,
       </label>
     </CheckboxWithLabel>
     <div>
-        <ImageInput value={dish ? dish.imageSrc : ''} onChange={uploadFile} allowClear={true} />
+        <ImageInput value={dishImageSrc} onChange={uploadFile} allowClear={true} />
     </div>
     <div className="form_dish__actions">
-        <Button variant="secondary" type="button" onClick={cancel} disabled={submitting}>Отменить</Button>
+        <Button variant="secondary" type="button" onClick={onCancel} disabled={submitting}>Отменить</Button>
         <Button variant="primary" type="submit" disabled={submitting || pristine}>Сохранить</Button>
     </div>
   </form>
 )
 
-const FormDish = ({ onSubmit, openDelModal, ...props }) => {
-  const { dish } = props;
-  return (
-    <div className="form_dish">
-      <PageHeader>
-        {dish ? <Button variant="danger" onClick={openDelModal}>Удалить</Button> : null}
-      </PageHeader>
-      <div className="page-container">
-        <div className="card">
-          <div className="card-body">
+const FormDish = ({ onSubmit, initialValues, ...props }) => (
             <Form onSubmit={onSubmit}
+                  initialValues={initialValues}
                   render={({ ...formProps }) => <RenderForm {...formProps} {...props} />}
             />
-          </div>
-        </div>
-      </div>
-    </div>
   )
-}
 
 export default FormDish

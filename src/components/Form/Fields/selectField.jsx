@@ -4,9 +4,9 @@ import { Field } from '../../../styledComponents/atoms'
 const EmptyOption = ({ withEmptyOption = false, emptyOptionTitle = '' }) =>
   Boolean(withEmptyOption) && <option>{emptyOptionTitle}</option>
 
-const SelectField = ({ options, ...props }) => (
+const SelectField = ({ options, emptyOptionTitle, withEmptyOption, ...props }) => (
   <Field component='select' {...props}>
-    <EmptyOption />
+    <EmptyOption emptyOptionTitle={emptyOptionTitle} withEmptyOption={withEmptyOption} />
     {options.map(({ value, name }) => (
       <option value={value} key={value}>{name}</option>
     ))}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { deleteDish, requestCategories, requestDish, updateDish } from '../../redux/thunks/menu.thunks'
-import FormDish from '../../components/Menu/FormDish'
-import DeleteModal from '../../components/common/modal/DeleteModal'
+import FormDish from '../../components/Menu/Form/FormDish'
+import ModalDelete from '../../components/Modals/ModalDelete'
 
 class EditDishContainer extends React.Component {
     constructor( props ) {
@@ -68,7 +68,7 @@ class EditDishContainer extends React.Component {
                               cancel={this.goToMenu}
                               uploadFile={this.uploadFile}
                               openDelModal={this.toggleDelModal}/>
-                    <DeleteModal show={openDelModal}
+                    <ModalDelete show={openDelModal}
                                  title={dish.title}
                                  onRemove={this.deleteDish(dish.id)}
                                  onClose={this.toggleDelModal}/>

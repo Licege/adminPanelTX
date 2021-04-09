@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Menu from '../../components/Menu/Menu'
 import { deleteDish, requestCategories, requestDishes } from '../../redux/thunks/menu.thunks'
-import DeleteModal from '../../components/common/modal/DeleteModal';
+import ModalDelete from '../../components/Modals/ModalDelete';
 import {getMenu} from '../../redux/getters/menu.getters'
 
 class MenuContainer extends React.Component {
@@ -66,7 +66,7 @@ class MenuContainer extends React.Component {
                       detail={this.detail}
                       onPhotoSelected={this.onPhotoSelected}/>
                 {this.state.currentDish
-                    ? <DeleteModal show={isOpenDelModal}
+                    ? <ModalDelete show={isOpenDelModal}
                                    onClose={this.closeDelModal}
                                    title={this.state.currentDish.title}
                                    onRemove={this.deleteDish}/> : null}

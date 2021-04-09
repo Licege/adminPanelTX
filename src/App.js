@@ -4,7 +4,8 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import './App.scss'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
-import MenuContainer from './containers/Menu/Menu'
+import Modal from './components/Modals/ModalRoot'
+// import MenuContainer from './containers/Menu/Menu'
 import UsersContainer from './containers/Users/Users'
 // import EmployeesContainer from './containers/Employees/Employees'
 import Resume from './components/Resume/Resume'
@@ -46,6 +47,9 @@ import Auth from './components/Auth/Auth'
 import Categories from './components/Categories/Categories'
 import Contacts from './components/Contacts/Contacts'
 import Employees from './components/Employees/Employees'
+import Menu from './components/Menu/Menu'
+import CreateDish from './components/Menu/CreateDish'
+import EditDish from './components/Menu/EditDish'
 
 function App() {
     // const token = useSelector(state => state.auth.accessToken)
@@ -76,9 +80,9 @@ function App() {
                         <Route exact path='/admin' component={Admin}/>
 
                         {/*Меню*/}
-                        <Route exact path='/menu' component={MenuContainer}/>
-                        <Route exact path='/menu/new' component={CreateDishContainer}/>
-                        <Route exact path='/menu/edit/:id' component={EditDishContainer}/>
+                        <Route exact path='/menu' component={Menu}/>
+                        <Route exact path='/menu/new' component={CreateDish}/>
+                        <Route exact path='/menu/edit/:id' component={EditDish}/>
                         <Route exact path='/categories' component={Categories}/>
                         <Route exact path='/categories/new' component={CreateCategory}/>
                         <Route exact path='/categories/edit/:id' component={EditCategory}/>
@@ -136,6 +140,7 @@ function App() {
                         <Redirect to='/'/>
                     </Switch>
                 </div>
+                <Modal />
             </div>
         </BrowserRouter>
     )

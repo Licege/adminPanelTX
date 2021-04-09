@@ -16,6 +16,7 @@ import adminReducer from './admin-reducer'
 import hallReducer from './hall-reducer'
 import fileReducer from './file-reducer'
 import averageChecksReducer from './Statistics/average-checks-reducer'
+import modalReducer from './reducers/modals.reducer'
 
 const middleware = getDefaultMiddleware({
     immutableCheck: false,
@@ -35,5 +36,6 @@ export default configureStore({
         employeesPage: employeesReducer,
         file: fileReducer,
         menuPage: menuReducer,
+        modal: modalReducer
     }
 })

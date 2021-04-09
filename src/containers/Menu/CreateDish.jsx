@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createDish, requestCategories } from '../../redux/thunks/menu.thunks'
-import FormDish from '../../components/Menu/FormDish'
+import FormDish from '../../components/Menu/Form/FormDish'
 
 class CreateDishContainer extends React.Component {
     constructor( props ) {
