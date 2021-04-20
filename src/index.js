@@ -5,7 +5,6 @@ import {Provider} from 'react-redux'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import store from './redux/redux-store'
-import WebSocketProvider from './middleware/WebSocket'
 import CatchErrors from './pages/Errors/CatchErrors'
 import { ThemeProvider } from 'styled-components'
 import theme from './styledComponents/theme'
@@ -17,12 +16,10 @@ let rerenderEntireTree = () => {
     <BrowserRouter>
       <CatchErrors>
         <Provider store={store}>
-          <WebSocketProvider>
             <ThemeProvider theme={theme}>
               <App />
               <GlobalStyles />
             </ThemeProvider>
-          </WebSocketProvider>
         </Provider>
       </CatchErrors>
     </BrowserRouter>, document.getElementById('root'))

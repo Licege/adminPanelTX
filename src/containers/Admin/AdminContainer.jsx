@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { postAdmin, fetchAllAdmins } from '../../redux/admin-reducer'
-import Admin from '../../components/Admin/Admin'
+import Admin from '../../pages/Admin/Admin'
 import { requestUsers } from '../../redux/users-reducer'
-import { ConfirmModal } from '../../components/Admin/ConfirmModal'
+import { ConfirmModal } from '../../pages/Admin/ConfirmModal'
 
 class AdminContainer extends React.Component {
     constructor( props ) {

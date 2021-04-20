@@ -10,7 +10,7 @@ import {
     requestOrderDeliveryById,
     updateOrderDelivery,
 } from '../../redux/reducers/delivery.reducer'
-import DeliveryInfo from '../../components/Delivery/DeliveryInfo'
+import Index from '../../pages/Delivery/delivery-info'
 import {
     requestCategories,
     requestDishes,
@@ -87,19 +87,19 @@ class DeliveryInfoContainer extends React.Component {
     }
 
     render() {
-        return <DeliveryInfo order={this.props.order}
-                             onSubmit={this.update}
-                             menu={this.props.dishes}
-                             categories={this.props.categories}
-                             show={this.state.isOpen}
-                             toggleModal={this.toggleModal}
-                             applyFilterModal={this.applyFilterModal}
-                             addDish={this.addDish}
-                             increaseDish={this.increaseDish}
-                             decreaseDish={this.decreaseDish}
-                             removeDish={this.removeDish}
-                             currentCategory={this.state.filter}
-                             initialValues={this.props.order}/>
+        return <Index order={this.props.order}
+                      onSubmit={this.update}
+                      menu={this.props.dishes}
+                      categories={this.props.categories}
+                      show={this.state.isOpen}
+                      toggleModal={this.toggleModal}
+                      applyFilterModal={this.applyFilterModal}
+                      addDish={this.addDish}
+                      increaseDish={this.increaseDish}
+                      decreaseDish={this.decreaseDish}
+                      removeDish={this.removeDish}
+                      currentCategory={this.state.filter}
+                      initialValues={this.props.order}/>
     }
 }
 

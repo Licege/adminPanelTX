@@ -1,8 +1,8 @@
 import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { requestOrders } from '../../redux/orders-reducer'
-import Orders from '../../components/Orders/Orders'
+import { requestOrders } from '../../redux/reducers/orders.reducer'
+import Orders from '../../pages/Orders/Orders'
 
 class OrdersContainer extends React.Component {
     componentDidMount() {

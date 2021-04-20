@@ -3,53 +3,47 @@ import { useSelector } from 'react-redux'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import './App.scss'
 import Header from './components/Header/Header'
-import Navbar from './components/Navbar/Navbar'
+import NavigationSidebar from './components/NavigationSidebar'
 import Modal from './components/Modals/ModalRoot'
-// import MenuContainer from './containers/Menu/Menu'
 import UsersContainer from './containers/Users/Users'
-// import EmployeesContainer from './containers/Employees/Employees'
-import Resume from './components/Resume/Resume'
+import Resume from './pages/Resume/Resume'
 import UserContainer from './containers/Users/UserEdit'
-import ContainerPromos from './containers/Promos/Promos'
-import VacanciesContainer from './containers/Vacancies/Vacancies'
-import NewsContainer from './containers/News/News'
-// import EmployeeContainer from './containers/Employees/EmployeeEdit'
-// import CreateEmployee from './containers/Employees/EmployeeNew'
-import CreateVacancy from './containers/Vacancies/CreateVacancy'
-import EditVacancy from './containers/Vacancies/EditVacancy'
-// import ContactsContainer from './containers/Contacts/Contacts'
-import CreateDishContainer from './containers/Menu/CreateDish'
-import EditDishContainer from './containers/Menu/EditDish'
 import HomeContainer from './containers/Home/Home'
-import OrdersContainer from './containers/Orders/Orders'
-import DetailNewsContainer from './containers/News/NewsEdit'
-import CreateNewsContainer from './containers/News/CreateNews'
+// import OrdersContainer from './containers/Orders/Orders'
 import MessagesContainer from './containers/Messages/Messages'
-import SettingsDelivery from './containers/Delivery/Settings/Settings'
-import SettingsDeliveryCommonNew from './containers/Delivery/Settings/SettingsCommonNew'
-import SettingsDeliveryCommonEdit from './containers/Delivery/Settings/SettingsCommonEdit'
-import DeliveryContainer from './containers/Delivery/Delivery'
-import DeliveryInfoContainer from './containers/Delivery/DeliveryInfo'
-// import AuthContainer from './containers/Auth/AuthContainer'
-// import AdminContainer from './containers/Admin/AdminContainer'
-import PromosNewContainer from './containers/Promos/PromosNew'
-// import CategoriesContainer from './containers/Categories/CategoriesContainer'
-import CreateCategory from './containers/Categories/CreateCategory'
-import EditCategory from './containers/Categories/EditCategory'
+// import SettingsDelivery from './containers/Delivery/Settings/Settings'
+// import SettingsDeliveryCommonNew from './containers/Delivery/Settings/SettingsCommonNew'
+// import SettingsDeliveryCommonEdit from './containers/Delivery/Settings/SettingsCommonEdit'
 import ReviewsContainer from './containers/Reviews/Reviews'
 import HallsContainer from './containers/Halls/HallsContainer'
-import PromosEdit from './containers/Promos/PromosEdit'
 import AverageChecksContainer from './containers/Statistics/AverageChecksContainer'
 import LeftoversContainer from './containers/Storage/LeftoversContainer'
 
-import Admin from './components/Admin/Admin'
-import Auth from './components/Auth/Auth'
-import Categories from './components/Categories/Categories'
-import Contacts from './components/Contacts/Contacts'
-import Employees from './components/Employees/Employees'
-import Menu from './components/Menu/Menu'
-import CreateDish from './components/Menu/CreateDish'
-import EditDish from './components/Menu/EditDish'
+import Admin from './pages/Admin/Admin'
+import Auth from './pages/Auth/Auth'
+import Contacts from './pages/Contacts/Contacts'
+import Employees from './pages/Employees/Employees'
+import Menu from './pages/Menu/main/Menu'
+import CreateDish from './pages/Menu/CreateDish'
+import EditDish from './pages/Menu/EditDish'
+import News from './pages/News/main/News'
+import CreateNews from './pages/News/CreateNews'
+import EditNews from './pages/News/EditNews'
+import Promos from './pages/Promos/main/Promos'
+import CreatePromo from './pages/Promos/CreatePromo'
+import ShowPromo from './pages/Promos/Promo'
+import EditPromo from './pages/Promos/EditPromo'
+import DeliveryInfo from './pages/Delivery/delivery-info'
+import Delivery from './pages/Delivery/main/Delivery'
+import SettingsDelivery from './pages/Delivery/Settings/Settings'
+import SettingsDeliveryCommonNew from './pages/Delivery/Settings/Tabs/Common_Settings/create'
+import SettingsDeliveryCommonEdit from './pages/Delivery/Settings/Tabs/Common_Settings/edit'
+import Vacancies from './pages/Vacancies/all'
+import CreateVacancy from './pages/Vacancies/new'
+import EditVacancy from './pages/Vacancies/edit'
+import Categories from './pages/Categories/all'
+import CreateCategory from './pages/Categories/create'
+import EditCategory from './pages/Categories/edit'
 
 function App() {
     // const token = useSelector(state => state.auth.accessToken)
@@ -71,7 +65,7 @@ function App() {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                <NavigationSidebar />
                 <div className='app-wrapper-content'>
                     <Switch>
                         <Route exact path='/' component={HomeContainer}/>
@@ -100,26 +94,27 @@ function App() {
                         <Route exact path='/resume' component={Resume}/>
 
                         {/*Вакансии*/}
-                        <Route exact path='/vacancies' component={VacanciesContainer}/>
+                        <Route exact path='/vacancies' component={Vacancies}/>
                         <Route exact path='/vacancies/edit/:id' component={EditVacancy}/>
                         <Route exact path='/vacancies/new' component={CreateVacancy}/>
 
                         {/*Новости*/}
-                        <Route exact path='/news' component={NewsContainer}/>
-                        <Route exact path='/news/edit/:id' component={DetailNewsContainer}/>
-                        <Route exact path='/news/new' component={CreateNewsContainer}/>
+                        <Route exact path='/news' component={News}/>
+                        <Route exact path='/news/new' component={CreateNews}/>
+                        <Route exact path='/news/edit/:id' component={EditNews}/>
 
                         {/*Доставка*/}
-                        <Route exact path='/delivery' component={DeliveryContainer}/>
-                        <Route exact path='/delivery/:id' component={DeliveryInfoContainer}/>
+                        <Route exact path='/delivery' component={Delivery}/>
+                        <Route exact path='/delivery/:id' component={DeliveryInfo}/>
                         <Route exact path='/delivery-settings' component={SettingsDelivery}/>
                         <Route exact path='/delivery-settings/new' component={SettingsDeliveryCommonNew}/>
                         <Route exact path='/delivery-settings/edit/:id' component={SettingsDeliveryCommonEdit}/>
 
                         {/*Акции*/}
-                        <Route exact path='/promos' component={ContainerPromos}/>
-                        <Route exact path='/promos/new' component={PromosNewContainer}/>
-                        <Route exact path='/promos/edit/:id' component={PromosEdit}/>
+                        <Route exact path='/promos' component={Promos}/>
+                        <Route exact path='/promos/new' component={CreatePromo}/>
+                        <Route exact path='/promos/show/:id' component={ShowPromo}/>
+                        <Route exact path='/promos/edit/:id' component={EditPromo}/>
 
                         {/*Отзывы*/}
                         <Route exact path='/reviews' component={ReviewsContainer}/>
@@ -135,7 +130,7 @@ function App() {
 
                         <Route exact path='/messages' component={MessagesContainer}/>
                         <Route exact path='/contacts' component={Contacts}/>
-                        <Route exact path='/orders' component={OrdersContainer}/>
+                        {/*<Route exact path='/orders' component={OrdersContainer}/>*/}
 
                         <Redirect to='/'/>
                     </Switch>

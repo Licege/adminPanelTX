@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { deliveryAPI, deliveryGlobalSettingsAPI, deliverySettingsAPI } from '../../api/api'
 import {
     handleAddDishToOrder,
     handleIncreaseDishToOrder,
     handleDecreaseDishFromOrder,
-    handleRemoveDishFromOrder
+    handleRemoveDishFromOrder, handleChangeDeliveryType
 } from '../functions/delivery.functions'
+import { requestOrdersDelivery, requestOrderDeliveryById, updateOrderDelivery, requestGlobalDeliverySettings, updateGlobalDeliverySettings, requestDeliverySettings, requestDeliverySettingsById, createDeliverySettings, updateDeliverySettings, deleteDeliverySettings  } from '../thunks/delivery.thunks'
+import {removeValue, updateValue} from '../functions/common'
 
 const deliverySlice = createSlice({
     name: 'delivery',
@@ -21,265 +22,32 @@ const deliverySlice = createSlice({
     reducers: {
         addDishToOrder: handleAddDishToOrder,
         removeDishFromOrder: handleRemoveDishFromOrder,
-        increaseDishToList: handleIncreaseDishToOrder,
-        decreaseDishFromList: handleDecreaseDishFromOrder
+        increaseDishFromList: handleIncreaseDishToOrder,
+        decreaseDishFromList: handleDecreaseDishFromOrder,
+        setCurrentPage: (state, action) => { state.currentPage = action.payload },
+        wsUpdateOrder: (state, action) => {
+            state.orders.push(action.payload)
+            state.totalCount++
+        },
+        changeDeliveryType: handleChangeDeliveryType
     },
     extraReducers: {
-
+        [requestOrdersDelivery.fulfilled]: (state, action) => {
+            state.orders = action.payload.deliveries
+            state.totalCount = action.payload.totalCount
+        },
+        [requestOrderDeliveryById.fulfilled]: (state, action) => { state.currentOrder = action.payload },
+        [updateOrderDelivery.fulfilled]: updateValue('orders'),
+        [requestGlobalDeliverySettings.fulfilled]: (state, action) => { state.globalSettings = action.payload },
+        [updateGlobalDeliverySettings.fulfilled]: (state, action) => { state.globalSettings = action.payload },
+        [requestDeliverySettings.fulfilled]: (state, action) => { state.settings = action.payload },
+        [requestDeliverySettingsById.fulfilled]: (state, action) => { state.currentSettings = action.payload },
+        [createDeliverySettings.fulfilled]: (state, action) => { state.settings.push(action.payload) },
+        [updateDeliverySettings.fulfilled]: updateValue('settings'),
+        [deleteDeliverySettings.fulfilled]: removeValue('settings')
     }
 })
 
-const { addDishToOrder, removeDishFromOrder, increaseDishToList, decreaseDishFromList } = deliverySlice.actions
+export const { addDishToOrder, removeDishFromOrder, increaseDishFromList, decreaseDishFromList, setCurrentPage } = deliverySlice.actions
 
-const GET_ORDERS = 'DELIVERY/GET_ORDERS'
-const GET_ORDER_BY_ID = 'DELIVERY/GET_ORDER_BY_ID'
-const UPDATE_ORDER = 'DELIVERY/UPRATE_ORDER'
-const SET_CURRENT_PAGE = 'DELIVERY/SET_CURRENT_PAGE'
-const WS_UPDATE_ORDERS = 'DELIVERY/WS_UPDATE_ORDERS'
-
-const ADD_DISH_INTO_LIST = 'DELIVERY/ADD_DISH_INTO_LIST'
-const INCREASE_ORDERS_LIST = 'DELIVERY/INCREASE_ORDERS_LIST'
-const DECREASE_ORDERS_LIST = 'DELIVERY/DECREASE_ORDERS_LIST'
-const REMOVE_DISH_FROM_LIST = 'DELIVERY/REMOVE_DISH_FROM_LIST'
-const CHANGE_DELIVERY_TYPE = 'DELIVERY/CHANGE_DELIVERY_TYPE'
-
-const GET_GLOBAL_DELIVERY_SETTINGS = 'DELIVERY/GET_GLOBAL_DELIVERY_SETTINGS'
-const UPDATE_GLOBAL_DELIVERY_SETTINGS = 'DELIVERY/UPDATE_GLOBAL_DELIVERY_SETTINGS'
-
-const GET_DELIVERY_SETTINGS = 'DELIVERY/GET_DELIVERY_SETTINGS'
-const GET_DELIVERY_SETTINGS_BY_ID = 'DELIVERY/GET_DELIVERY_SETTINGS_BY_ID'
-const CREATE_DELIVERY_SETTINGS = 'DELIVERY/CREATE_DELIVERY_SETTINGS'
-const UPDATE_DELIVERY_SETTINGS = 'DELIVERY/UPDATE_DELIVERY_SETTINGS'
-const DELETE_DELIVERY_SETTINGS = 'DELIVERY/DELETE_DELIVERY_SETTINGS'
-
-const initialState = {
-    orders: [],
-    totalCount: null,
-    currentOrder: null,
-    currentPage: 1,
-    globalSettings: {},
-    settings: [],
-    currentSettings: null,
-}
-
-const deliveryReducer = ( state = initialState, action ) => {
-    let totalPrice = ''
-    let orderList = []
-    let position = {}
-
-    const calcDeliveryCost = ( price ) => {
-        if (state.currentOrder.deliveryType === 'home') {
-            let setting = state.settings.find(s => s.city === state.currentOrder.address.city)
-            if (price >= setting.freeDelivery) {
-                return 0
-            } else return setting.priceForDelivery
-        }
-        return 0
-    }
-
-    switch (action.type) {
-        case WS_UPDATE_ORDERS:
-            return { ...state, orders: [ action.order, ...state.orders ], totalCount: state.totalCount + 1 }
-        case GET_ORDERS:
-            return { ...state, orders: action.orders, totalCount: action.totalCount }
-        case GET_ORDER_BY_ID:
-            return { ...state, currentOrder: action.order }
-        case UPDATE_ORDER:
-            return {
-                ...state,
-                orders: state.orders.map(order => order.id === action.order.id ? action.order : order),
-            }
-        case SET_CURRENT_PAGE:
-            return { ...state, currentPage: action.page }
-        case ADD_DISH_INTO_LIST:
-            position = {
-                id: action.dish.id,
-                title: action.dish.title,
-                cost: action.dish.cost,
-                count: 1,
-            }
-
-            const addDish = ( item, itemList ) => {
-                let index = itemList.findIndex(d => d.id === item.id)
-                if (index === -1) {
-                    return [ ...state.currentOrder.list, item ]
-                } else {
-                    let data = [ ...itemList ]
-                    data[index].count += 1
-                    return data
-                }
-            }
-
-            totalPrice = state.currentOrder.price + position.cost
-
-            return {
-                ...state,
-                currentOrder: {
-                    ...state.currentOrder,
-                    list: addDish(position, state.currentOrder.list),
-                    price: totalPrice,
-                    deliveryCost: calcDeliveryCost(totalPrice),
-                },
-            }
-
-        case INCREASE_ORDERS_LIST:
-            position = state.currentOrder.list.find(order => order.id === action.id)
-            position.count += 1
-            orderList = state.currentOrder.list.map(order => order.id === position.id ? position : order)
-            totalPrice = state.currentOrder.price + position.cost
-
-            return {
-                ...state,
-                currentOrder: {
-                    ...state.currentOrder,
-                    list: orderList,
-                    price: totalPrice,
-                    deliveryCost: calcDeliveryCost(totalPrice),
-                },
-            }
-
-        case DECREASE_ORDERS_LIST:
-            position = state.currentOrder.list.find(order => order.id === action.id)
-            if (position.count === 1) {
-                orderList = state.currentOrder.list.filter(order => order.id !== action.id)
-            } else {
-                position.count -= 1
-                orderList = state.currentOrder.list.map(order => order.id === action.id ? position : order)
-            }
-            totalPrice = state.currentOrder.price - position.cost
-
-            return {
-                ...state,
-                currentOrder: {
-                    ...state.currentOrder,
-                    list: orderList,
-                    price: totalPrice,
-                    deliveryCost: calcDeliveryCost(totalPrice),
-                },
-            }
-
-        case REMOVE_DISH_FROM_LIST:
-            position = state.currentOrder.list.find(order => order.id === action.id)
-            totalPrice = state.currentOrder.price - (position.cost * position.count)
-
-            return {
-                ...state,
-                currentOrder: {
-                    ...state.currentOrder,
-                    list: state.currentOrder.list.filter(order => order.id !== action.id),
-                    price: totalPrice,
-                    deliveryCost: calcDeliveryCost(totalPrice),
-                },
-            }
-        case CHANGE_DELIVERY_TYPE:
-            let deliveryCost = 0
-
-            if (action.dType === 'home') {
-                let setting = state.settings.find(s => s.city === state.currentOrder.address.city)
-                if (state.currentOrder.price >= setting.freeDelivery) {
-                    deliveryCost = 0
-                } else deliveryCost = setting.priceForDelivery
-            }
-            return {
-                ...state,
-                currentOrder: {
-                    ...state.currentOrder,
-                    deliveryType: action.dType,
-                    deliveryCost: deliveryCost,
-                },
-            }
-        case GET_GLOBAL_DELIVERY_SETTINGS:
-            return { ...state, globalSettings: action.settings }
-        case UPDATE_GLOBAL_DELIVERY_SETTINGS:
-            return { ...state, globalSettings: action.settings }
-        case GET_DELIVERY_SETTINGS:
-            return { ...state, settings: action.settings }
-        case GET_DELIVERY_SETTINGS_BY_ID:
-            return { ...state, currentSettings: action.settings }
-        case CREATE_DELIVERY_SETTINGS:
-            return { ...state, settings: [ ...state.settings, action.settings ] }
-        case UPDATE_DELIVERY_SETTINGS:
-            return {
-                ...state,
-                settings: state.settings.map(s => (s.id === action.settings.id ? action.settings : s)),
-            }
-        case DELETE_DELIVERY_SETTINGS:
-            return { ...state, settings: state.settings.filter(s => s.id !== action.id) }
-        default:
-            return { ...state }
-    }
-}
-
-export const wsUpdateOrderAC = ( order ) => ({ type: WS_UPDATE_ORDERS, order })
-const getOrdersAC = ( orders, totalCount ) => ({ type: GET_ORDERS, orders, totalCount })
-const getOrderByIdAC = ( order ) => ({ type: GET_ORDER_BY_ID, order })
-const updateOrderAC = ( order ) => ({ type: UPDATE_ORDER, order })
-export const setPageAC = ( page ) => ({ type: SET_CURRENT_PAGE, page })
-
-export const addDishIntoListAC = ( dish ) => ({ type: ADD_DISH_INTO_LIST, dish })
-export const removeDishFromListAC = ( id ) => ({ type: REMOVE_DISH_FROM_LIST, id })
-export const increaseDishCountAC = ( id ) => ({ type: INCREASE_ORDERS_LIST, id })
-export const decreaseDishCountAC = ( id ) => ({ type: DECREASE_ORDERS_LIST, id })
-export const changeDeliveryTypeAC = ( dType ) => ({ type: CHANGE_DELIVERY_TYPE, dType })
-
-const getGlobalDeliverySettingsAC = ( settings ) => ({ type: GET_GLOBAL_DELIVERY_SETTINGS, settings })
-const updateGlobalDeliverySettingsAC = ( settings ) => ({ type: UPDATE_GLOBAL_DELIVERY_SETTINGS, settings })
-
-const getDeliverySettingsAC = ( settings ) => ({ type: GET_DELIVERY_SETTINGS, settings })
-const getDeliverySettingsByIdAC = ( settings ) => ({ type: GET_DELIVERY_SETTINGS_BY_ID, settings })
-const createDeliverySettingsAC = ( settings ) => ({ type: CREATE_DELIVERY_SETTINGS, settings })
-const updateDeliverySettingsAC = ( settings ) => ({ type: UPDATE_DELIVERY_SETTINGS, settings })
-const deleteDeliverySettingsAC = ( id ) => ({ type: DELETE_DELIVERY_SETTINGS, id })
-
-
-export const requestOrdersDelivery = ( filter, page = 1 ) => async ( dispatch ) => {
-    const response = await deliveryAPI.getOrders(filter, page)
-    dispatch(getOrdersAC(response.data.deliveries, response.data.totalCount))
-}
-
-export const requestOrderDeliveryById = ( id ) => async ( dispatch ) => {
-    const response = await deliveryAPI.getOrderById(id)
-    dispatch(getOrderByIdAC(response.data))
-}
-
-export const updateOrderDelivery = ( order ) => async ( dispatch ) => {
-    const response = await deliveryAPI.updateOrder(order)
-    dispatch(updateOrderAC(response.data))
-}
-
-export const requestGlobalDeliverySettings = () => async ( dispatch ) => {
-    const response = await deliveryGlobalSettingsAPI.getSettings()
-    dispatch(getGlobalDeliverySettingsAC(response.data))
-}
-
-export const updateGlobalDeliverySettings = ( settings ) => async ( dispatch ) => {
-    const response = await deliveryGlobalSettingsAPI.updateSettings(settings)
-    dispatch(updateGlobalDeliverySettingsAC(response.data))
-}
-
-export const requestDeliverySettings = () => async ( dispatch ) => {
-    const response = await deliverySettingsAPI.getSettings()
-    dispatch(getDeliverySettingsAC(response.data))
-}
-
-export const requestDeliverySettingsById = ( id ) => async ( dispatch ) => {
-    const response = await deliverySettingsAPI.getSettingsById(id)
-    dispatch(getDeliverySettingsByIdAC(response.data))
-}
-
-export const createDeliverySettings = ( settings ) => async ( dispatch ) => {
-    const response = await deliverySettingsAPI.createSettings(settings)
-    dispatch(createDeliverySettingsAC(response.data))
-}
-
-export const updateDeliverySettings = ( settings ) => async ( dispatch ) => {
-    const response = await deliverySettingsAPI.updateSettings(settings)
-    dispatch(updateDeliverySettingsAC(response.data))
-}
-
-export const deleteDeliverySettings = ( id ) => async ( dispatch ) => {
-    await deliverySettingsAPI.deleteSettings(id)
-    dispatch(deleteDeliverySettingsAC(id))
-}
-
-export default deliveryReducer
+export default deliverySlice.reducer

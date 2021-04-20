@@ -1,5 +1,5 @@
 import React from 'react'
-import Contacts from '../../components/Contacts/Contacts'
+import Contacts from '../../pages/Contacts/Contacts'
 import { fetchContacts, updateContacts } from '../../redux/reducers/contacts.reducer'
 import { connect } from 'react-redux'
 

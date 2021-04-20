@@ -1,7 +1,7 @@
 import React from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import Home from '../../components/Home/Home'
+import Home from '../../pages/Home/Home'
 
 class HomeContainer extends React.Component {
     componentDidMount() {

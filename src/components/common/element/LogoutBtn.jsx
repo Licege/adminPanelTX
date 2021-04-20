@@ -1,5 +1,5 @@
 import React from 'react'
-import { logout } from '../../../redux/auth-reducer'
+import { logout } from '../../../redux/reducers/auth.reducer'
 import { connect } from 'react-redux'
 import Button from 'react-bootstrap/Button'
 

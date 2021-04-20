@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Menu from '../../components/Menu/Menu'
+import Menu from '../../pages/Menu/main/Menu'
 import { deleteDish, requestCategories, requestDishes } from '../../redux/thunks/menu.thunks'
 import ModalDelete from '../../components/Modals/ModalDelete';
 import {getMenu} from '../../redux/getters/menu.getters'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AverageChecks } from '../../components/Statistics/AverageChecks'
+import { AverageChecks } from '../../pages/Statistics/AverageChecks'
 import { requestAvgChecks } from '../../redux/Statistics/average-checks-reducer'
 import { connect } from 'react-redux'
 

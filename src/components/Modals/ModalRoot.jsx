@@ -3,9 +3,11 @@ import { useSelector } from 'react-redux'
 import { getCurrentModal } from '../../redux/getters/modals.getters'
 
 import ModalDelete from './ModalDelete'
+import ModalMenu from './ModalMenu'
 
 const MODALS = {
-  SIMPLE_DELETE: ModalDelete
+  SIMPLE_DELETE: ModalDelete,
+  MENU: ModalMenu
 }
 
 const ModalRoot = () => {

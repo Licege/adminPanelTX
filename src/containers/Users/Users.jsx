@@ -1,5 +1,5 @@
 import React from 'react'
-import Users from '../../components/Users/Users'
+import Users from '../../pages/Users/Users'
 import { connect } from 'react-redux'
 import { requestUsers, setCurrentPage } from '../../redux/users-reducer'
 

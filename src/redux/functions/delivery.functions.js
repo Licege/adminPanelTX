@@ -1,6 +1,8 @@
-const calcDeliveryCost = (state, price) => {
-  if (state.currentOrder.deliveryType === 'home') {
-    const setting = state.settings.find(settings => settings.city === state.currentOrder.address.city)
+const calcDeliveryCost = state => {
+  const { deliveryType, address, price } = state.currentOrder
+
+  if (deliveryType === 'home') {
+    const setting = state.settings.find(settings => settings.city === address.city)
     if (price >= setting.freeDelivery) {
       return 0
     } else {
@@ -25,30 +27,27 @@ export function handleAddDishToOrder(state, action) {
   const { id, title, cost } = action.payload
 
   const position = { id, title, cost, count: 1 }
-  const price = state.currentOrder.price + position.cost
-  const list = addDishIntoList(state.currentOrder.list, position)
-  const deliveryCost = calcDeliveryCost(state, price)
 
-  return { ...state, currentOrder: { ...state.currentOrder, list, price, deliveryCost } }
+  state.currentOrder.price += position.cost
+  state.currentOrder.list = addDishIntoList(state.currentOrder.list, position)
+  state.currentOrder.deliveryCost = calcDeliveryCost(state)
 }
 
 export function handleRemoveDishFromOrder(state, action) {
   const position = state.currentOrder.list.find(order => order.id === action.payload)
-  const list = state.currentOrder.list.filter(order => order.id !== action.payload)
-  const price = state.currentOrder.price - (position.cost * position.count)
-  const deliveryCost = calcDeliveryCost(state, price)
 
-  return { ...state, currentOrder: { ...state.currentOrder, list, price, deliveryCost } }
+  state.currentOrder.list = state.currentOrder.list.filter(order => order.id !== action.payload)
+  state.currentOrder.price -= (position.cost * position.count)
+  state.currentOrder.deliveryCost = calcDeliveryCost(state)
 }
 
 export function handleIncreaseDishToOrder(state, action) {
   const position = state.currentOrder.list.find(order => order.id === action.payload)
   position.count += 1
-  const list = state.currentOrder.list.map(order => order.id === position.id ? position : order)
-  const price = state.currentOrder.price + position.cost
-  const deliveryCost = calcDeliveryCost(state, price)
 
-  return { ...state, currentOrder: { ...state.currentOrder, list, price, deliveryCost } }
+  state.currentOrder.list =  state.currentOrder.list.map(order => order.id === position.id ? position : order)
+  state.currentOrder.price += position.cost
+  state.currentOrder.deliveryCost = calcDeliveryCost(state)
 }
 
 export function handleDecreaseDishFromOrder(state, action) {
@@ -62,8 +61,18 @@ export function handleDecreaseDishFromOrder(state, action) {
     list = state.currentOrder.list.map(order => order.id === action.payload ? position : order)
   }
 
-  const price = state.currentOrder.price - position.cost
-  const deliveryCost = calcDeliveryCost(state, price)
+  state.currentOrder.list = list
+  state.currentOrder.price -= position.cost
+  state.currentOrder.deliveryCost = calcDeliveryCost(state)
+}
 
-  return { ...state, currentOrder: { ...state.currentOrder, list, price, deliveryCost } }
+export function handleChangeDeliveryType(state, action) {
+  state.currentOrder.deliveryType = action.payload
+
+  if (action.payload === 'home') {
+    const settings = state.settings.find(s => s.city === state.currentOrder.address.city)
+    state.currentOrder.deliveryCost = state.currentOrder.price >= settings.freeDelivery ? 0 : settings.priceForDelivery
+  } else {
+    state.currentOrder.deliveryCost = 0
+  }
 }

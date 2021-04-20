@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { requestCurrentEmployee, updateCurrentEmployee, requestProfessions } from '../../redux/reducers/employees.reducer'
-import ProfileEmployee from '../../components/Employees/id/ProfileEmployee'
+import ProfileEmployee from '../../pages/Employees/id/ProfileEmployee'
 
 class EmployeeContainer extends React.Component {
     refreshEmployee() {

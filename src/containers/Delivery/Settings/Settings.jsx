@@ -8,7 +8,7 @@ import {
     updateDeliverySettings,
     updateGlobalDeliverySettings,
 } from '../../../redux/thunks/delivery.thunks'
-import Settings from '../../../components/Delivery/Settings/Settings'
+import Settings from '../../../pages/Delivery/Settings/Settings'
 
 class SettingsContainer extends React.Component {
     componentDidMount() {

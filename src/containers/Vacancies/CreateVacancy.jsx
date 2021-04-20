@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createNewVacancy } from '../../redux/vacancies-reducer'
-import Vacancy from '../../components/Vacancies/new/Vacancy'
+import { createNewVacancy } from '../../redux/reducers/vacancies.reducer'
+import CreateVacancy from '../../pages/Vacancies/new'
 
 class CreateVacancy extends React.Component {
     constructor( props ) {
@@ -31,7 +31,7 @@ class CreateVacancy extends React.Component {
 
     render() {
         return (
-            <Vacancy onSubmit={this.postVacancy} uploadFile={this.uploadFile} cancel={this.cancel}/>
+            <CreateVacancy onSubmit={this.postVacancy} uploadFile={this.uploadFile} cancel={this.cancel}/>
         )
     }
 }

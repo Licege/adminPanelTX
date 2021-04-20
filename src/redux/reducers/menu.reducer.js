@@ -29,7 +29,7 @@ const menuSlice = createSlice({
         [requestDish.fulfilled]: (state, action) => { state.dish = action.payload },
         [requestDishesByCategory.fulfilled]: (state, action) => { state.dishes = action.payload },
         [requestCategories.fulfilled]: (state, action) => { state.categories = action.payload },
-        [requestCategory.fulfilled]: (state, action) => { state.category = action.category },
+        [requestCategory.fulfilled]: (state, action) => { state.category = action.payload },
         [createCategory.fulfilled]: (state, action) => { state.categories.push(action.payload) },
         [updateDish.fulfilled]: (state, action) => {
             state.dishes = state.dishes.map(dish => dish.id === action.payload.id ? action.payload : dish)

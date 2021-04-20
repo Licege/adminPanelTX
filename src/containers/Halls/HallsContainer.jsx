@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Halls from '../../components/Halls/Halls'
+import Halls from '../../pages/Halls/Halls'
 import { createHall, deleteHall, getHall, getHalls, updateHall } from '../../redux/hall-reducer'
 import { uploadFile } from '../../redux/file-reducer'
 

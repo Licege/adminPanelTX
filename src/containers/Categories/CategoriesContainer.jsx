@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { deleteCategory, requestCategories } from '../../redux/thunks/menu.thunks'
-import Categories from '../../components/Categories/Categories'
+import Index from '../../pages/Categories/all'
 
 class CategoriesContainer extends React.PureComponent {
     componentDidMount() {
@@ -19,10 +19,10 @@ class CategoriesContainer extends React.PureComponent {
 
 
     render() {
-        return <Categories categories={this.props.categories}
-                           createCategory={this.create}
-                           updateCategory={this.detail}
-                           deleteCategory={this.remove}/>
+        return <Index categories={this.props.categories}
+                      createCategory={this.create}
+                      updateCategory={this.detail}
+                      deleteCategory={this.remove}/>
     }
 }
 

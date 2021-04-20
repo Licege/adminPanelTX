@@ -20,6 +20,7 @@ export const requestOrderDeliveryById = createAsyncThunk(
 export const updateOrderDelivery = createAsyncThunk(
   'delivery/updateOrder',
   async (order) => {
+    console.log(order)
     const response = await deliveryAPI.updateOrder(order)
     return response.data
   }

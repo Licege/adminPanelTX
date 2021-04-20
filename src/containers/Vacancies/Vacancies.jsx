@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createNewVacancy, deleteVacancy, requestVacancies } from '../../redux/vacancies-reducer'
-import Vacancies from '../../components/Vacancies/Vacancies'
+import { createNewVacancy, deleteVacancy, requestVacancies } from '../../redux/reducers/vacancies.reducer'
+import Vacancies from '../../pages/Vacancies/all'
 
 class VacanciesContainer extends React.Component {
     componentDidMount() {

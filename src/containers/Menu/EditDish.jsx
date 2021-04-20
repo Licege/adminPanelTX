@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { deleteDish, requestCategories, requestDish, updateDish } from '../../redux/thunks/menu.thunks'
-import FormDish from '../../components/Menu/Form/FormDish'
+import FormDish from '../../pages/Menu/form/FormDish'
 import ModalDelete from '../../components/Modals/ModalDelete'
 
 class EditDishContainer extends React.Component {

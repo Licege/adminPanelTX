@@ -1,8 +1,8 @@
 import React from 'react'
-import { getCurrentNews, updateNews } from '../../redux/news-reducer'
+import { requestNewsById, updateNews } from '../../redux/thunks/news.thunks'
 import { connect } from 'react-redux'
 import Preloader from '../../components/common/Preloader/Preloader'
-import NewsForm from '../../components/News/NewsForm'
+import NewsForm from '../../pages/News/NewsForm'
 
 class EditNewsContainer extends React.Component {
     constructor( props ) {
@@ -66,7 +66,7 @@ let mapStateToProps = ( state ) => {
 let mapDispatchToProps = ( dispatch ) => {
     return {
         getCurrentNews: ( id ) => {
-            dispatch(getCurrentNews(id))
+            dispatch(requestNewsById(id))
         },
         updateCurrentNews: ( currentNews, id ) => {
             dispatch(updateNews(currentNews, id))

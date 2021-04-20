@@ -2,7 +2,7 @@ import React from 'react'
 import altImg from '../../../static/img/vacancy.png'
 import { cropText, fullLink } from '../../../plugins/helpers'
 
-let CardVacancy = ( { card, change, remove } ) => {
+let CardVacancy = ({ card, change, remove }) => {
     return (
         <div className='card card_vacancy'>
             <img className='card_vacancy-img' src={card.imageSrc ? fullLink((card.imageSrc)) : altImg}
@@ -16,8 +16,8 @@ let CardVacancy = ( { card, change, remove } ) => {
                     : card.salary_from || card.salary_to
                         ? <p>Заработная плата: {card.salary_from || card.salary_to} ₽</p> : ''}
                 <div className='card_vacancy-button'>
-                    <button className='btn btn-primary mr-2' onClick={change(card._id)}>Изменить</button>
-                    <button className='btn btn-danger' onClick={remove(card._id)}>Удалить</button>
+                    <button className='btn btn-primary mr-2' onClick={change(card.id)}>Изменить</button>
+                    <button className='btn btn-danger' onClick={remove(card.id)}>Удалить</button>
                 </div>
             </div>
         </div>

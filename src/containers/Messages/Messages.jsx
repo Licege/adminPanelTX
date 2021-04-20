@@ -2,7 +2,7 @@ import React from 'react'
 import { deleteMessage, requestMessages } from '../../redux/message-reducer'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import Messages from '../../components/Messages/Messages'
+import Messages from '../../pages/Messages/Messages'
 
 class MessagesContainer extends React.Component {
     componentDidMount() {
