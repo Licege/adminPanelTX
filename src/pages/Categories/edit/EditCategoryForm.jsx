@@ -7,7 +7,7 @@ const EditCategoryForm = () => {
   const { category, validate, editCategory, cancel } = useEditCategoryLogic()
 
   return (
-    <Form onSubmit={editCategory} initialValues={category} validate={validate} render={({ ...formProps }) => <CategoryForm {...formProps} cancel={cancel} />} />
+    <Form onSubmit={editCategory} initialValues={category} validate={validate} render={formProps => <CategoryForm {...formProps} cancel={cancel} />} />
   )
 }
 

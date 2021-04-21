@@ -15,7 +15,7 @@ const RenderForm = ({ handleSubmit, pristine }) => (
       <div>
           <label>Телефон для SMS-уведомлений (В разработке)</label>
           <div>
-              <Field name='phone' type='phone' placeholder='+79999999999' />
+              <Field name='phone' component='input' type='text' className="filter-main-input -name form-control" placeholder='+79999999999' />
           </div>
       </div>
       <div className='d_settings-block'>

@@ -6,7 +6,7 @@ import {useEditDeliverySettingsLogic} from './logic'
 const EditSettings = () => {
   const { currentSettings, editSettings, cancel } = useEditDeliverySettingsLogic()
 
-  if (currentSettings) return <div />
+  if (!currentSettings) return <div />
 
   const title = `Редактирование доставки в ${currentSettings.city}`
 
