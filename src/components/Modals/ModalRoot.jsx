@@ -13,7 +13,7 @@ const MODALS = {
 const ModalRoot = () => {
   const currentModal = useSelector(getCurrentModal)
 
-  if (!currentModal) return <></>
+  if (!currentModal) return null
 
   const CurrentModal = MODALS[currentModal.name]
 
