@@ -11,6 +11,7 @@
     "draftjs-to-html": "^0.9.1",
     "final-form": "^4.20.2",
     "html-to-draftjs": "latest",
+    "isomorphic-fetch": "^2.2.1",
     "mdbreact": "^4.6.1",
     "node-emoji": "^1.10.0",
     "node-sass": "^5.0.0",

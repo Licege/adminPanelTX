@@ -4,6 +4,7 @@ import request from '../lib/request'
 export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://localhost:9091/`
 
 export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://localhost:9090/`
+const authUrl = process.env.NODE_ENV === 'production' ? '//auth.tri-xolma.ru/' : `http://${hostname}:9092/api`
 const baseUrl = serverUrl + 'api/private'
 export const secret = 'dev-jwt'
 
@@ -45,419 +46,374 @@ apiAdminRequest.interceptors.response.use(function ( response ) {
 
 export const authAPI = {
     login( user ) {
-        return axios.post(baseUrl + `/auth/login/`, user)
-                    .then(response => {
-                        return response
-                    })
+      return request.post(`${authUrl}/login/`, user)
+        .then(response => response)
+        .catch(reason => console.error(reason))
     },
     registration( user ) {
-        return axios.post(baseUrl + `/auth/registration/`, user)
-                    .then(response => {
-                        return response
-                    })
+      return request.post(`${authUrl}/registration/`, user)
+        .then(response => response)
+        .catch(reason => console.error(reason))
     },
 }
 
 export const adminAPI = {
     getAdmins() {
-        return apiAdminRequest.get(`/admin/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/admin/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     postAdmin( id ) {
-        return apiAdminRequest.post(`/admin/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.post(`${baseUrl}/admin/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const usersAPI = {
     getUsers( currentPage = 1, filters ) {
-        return apiAdminRequest.get(`/users/?page=${currentPage}`, { params: filters })
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/users/?page=${currentPage}`, { params: filters })
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getUserById( id ) {
-        return apiAdminRequest.get(`/users/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/users/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateUser( profile ) {
-        return apiAdminRequest.patch(`/users/${profile.id}`, profile)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/users/${profile.id}`, profile)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const employeesAPI = {
     createEmployee( profile ) {
-        return apiAdminRequest.post(baseUrl + `/employees/`, profile)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.post(`${baseUrl}/employees/`, profile)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getEmployees() {
-        return request.get(baseUrl + `/employees/`)
+        return request.get(`${baseUrl}/employees/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getEmployeeById( id ) {
-        return apiAdminRequest.get(baseUrl + `/employees/${id}`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(`${baseUrl}/employees/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateEmployee( profile ) {
-        return apiAdminRequest.put(baseUrl + `/employees/${profile.id}`, profile)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.put(`${baseUrl}/employees/${profile.id}`, profile)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteEmployee( id ) {
-        return apiAdminRequest.delete(baseUrl + `/employees/${id}`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.delete(`${baseUrl}/employees/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getProfessions() {
-        return apiAdminRequest.get(baseUrl + `/professions/`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(`${baseUrl}/professions/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const vacancyAPI = {
     getVacancies() {
-        return apiAdminRequest.get(baseUrl + `/vacancies/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/vacancies/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getVacancy( id ) {
-        return apiAdminRequest.get(baseUrl + `/vacancies/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/vacancies/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     createVacancy( vacancy ) {
-        return apiAdminRequest.post(`/vacancies/`, vacancy)
-                              .then(response => {
-                                  return response
-                              })
+        return request.post(`${baseUrl}/vacancies/`, vacancy)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateVacancy( vacancy, id ) {
-        return apiAdminRequest.patch(`/vacancies/${id}`, vacancy)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/vacancies/${id}`, vacancy)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteVacancy( id ) {
-        return apiAdminRequest.delete(`/vacancies/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.delete(`${baseUrl}/vacancies/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const contactsAPI = {
     getContacts() {
-        return apiAdminRequest.get(baseUrl + `/contacts/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/contacts/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateContacts( contacts ) {
-        return apiAdminRequest.patch(`/contacts/${contacts.id}`, contacts)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/contacts/${contacts.id}`, contacts)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const promoAPI = {
     getPromos() {
-        return apiAdminRequest.get(baseUrl + `/promos/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/promos/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getPromo( id ) {
-        return apiAdminRequest.get(baseUrl + `/promos/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/promos/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     postPromo( promo ) {
-        return apiAdminRequest.post(baseUrl + `/promos/`, promo)
-                              .then(response => {
-                                  return response
-                              })
+        return request.post(`${baseUrl}/promos/`, promo)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updatePromo( promo, id ) {
-        return apiAdminRequest.patch(baseUrl + `/promos/${id}`, promo)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/promos/${id}`, promo)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const menuAPI = {
     createDish( dish ) {
-        return apiAdminRequest.post(`/menu/`, dish)
-                              .then(response => {
-                                  return response
-                              })
+        return request.post(`${baseUrl}/menu/`, dish)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getDishes() {
-        return apiAdminRequest.get(baseUrl + `/menu/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/menu/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getDishesByCategory( category ) {
-        return apiAdminRequest.get(baseUrl + `/menu/${category}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/menu/${category}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getDish( id ) {
-        return apiAdminRequest.get(baseUrl + `/menu/dish/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/menu/dish/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateDish( dish, id ) {
-        return apiAdminRequest.patch(`/menu/${id}`, dish)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/menu/${id}`, dish)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteDish( id ) {
-        return apiAdminRequest.delete(`/menu/${id}`)
-                              .then(response => {
-                                  return response
-                              })
-                              .catch(e => console.log(e))
+        return request.delete(`${baseUrl}/menu/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getCategories() {
-        return apiAdminRequest.get(baseUrl + `/categories/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/categories/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getCategory( id ) {
-        return apiAdminRequest.get(baseUrl + `/categories/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/categories/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     createCategory( category ) {
-        return apiAdminRequest.post(`/categories/`, category)
-                              .then(response => {
-                                  return response
-                              })
+        return request.post(`${baseUrl}/categories/`, category)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateCategory( category ) {
-        return apiAdminRequest.patch(`/categories/${category.id}`, category)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/categories/${category.id}`, category)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteCategory( id ) {
-        return apiAdminRequest.delete(`/categories/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.delete(`${baseUrl}/categories/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const newsAPI = {
     getNews() {
-        return apiAdminRequest.get(baseUrl + `/news/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/news/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getCurrentNews( id ) {
-        return apiAdminRequest.get(baseUrl + `/news/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/news/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     postNews( news ) {
-        return apiAdminRequest.post(baseUrl + `/news/`, news)
-                              .then(response => {
-                                  return response
-                              })
+        return request.post(`${baseUrl}/news/`, news)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateNews( news, id ) {
-        return apiAdminRequest.patch(baseUrl + `/news/${id}`, news)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/news/${id}`, news)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteNews( id ) {
-        return apiAdminRequest.delete(baseUrl + `/news/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.delete(`${baseUrl}/news/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const ordersAPI = {
     getOrders() {
-        return apiAdminRequest.get(`/orders/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/orders/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const reviewsAPI = {
     getReviews() {
-        return apiAdminRequest.get(`/reviews/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/reviews/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getReview( id ) {
-        return apiAdminRequest.get(`/reviews/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/reviews/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateReview( review ) {
-        return apiAdminRequest.patch(`/reviews/${review.id}`, review)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/reviews/${review.id}`, review)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const messagesAPI = {
     getMessages() {
-        return apiAdminRequest.get(baseUrl + `/messages/`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(`${baseUrl}/messages/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getMessage( id ) {
-        return apiAdminRequest.get(baseUrl + `/messages/${id}`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(`${baseUrl}/messages/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteMessage( id ) {
-        return apiAdminRequest.delete(baseUrl + `/messages/${id}`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.delete(`${baseUrl}/messages/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const deliveryAPI = {
     getOrders( filter, page ) {
-        return apiAdminRequest.get(`/delivery/?offset=${page}`, { params: filter })
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/delivery/?offset=${page}`, { params: filter })
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getOrderById( id ) {
-        return apiAdminRequest.get(`/delivery/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/delivery/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateOrder( order ) {
-        return apiAdminRequest.patch(`/delivery/${order.id}`, order)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/delivery/${order.id}`, order)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const deliverySettingsAPI = {
     getSettings() {
-        return apiAdminRequest.get(baseUrl + `/delivery-settings/common/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/delivery-settings/common/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getSettingsById( id ) {
-        return apiAdminRequest.get(`/delivery-settings/common/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/delivery-settings/common/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateSettings( settings ) {
-        return apiAdminRequest.patch(`/delivery-settings/common/${settings.id}`, settings)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/delivery-settings/common/${settings.id}`, settings)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     createSettings( settings ) {
-        return apiAdminRequest.post(`/delivery-settings/common/`, settings)
-                              .then(response => {
-                                  return response
-                              })
+        return request.post(`${baseUrl}/delivery-settings/common/`, settings)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteSettings( id ) {
-        return apiAdminRequest.delete(`/delivery-settings/common/${id}`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.delete(`${baseUrl}/delivery-settings/common/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const deliveryGlobalSettingsAPI = {
     getSettings() {
-        return apiAdminRequest.get(baseUrl + `/delivery-settings/global/`)
-                              .then(response => {
-                                  return response
-                              })
+        return request.get(`${baseUrl}/delivery-settings/global/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateSettings( settings ) {
-        return apiAdminRequest.patch(`/delivery-settings/global/${settings.id}`, settings)
-                              .then(response => {
-                                  return response
-                              })
+        return request.patch(`${baseUrl}/delivery-settings/global/${settings.id}`, settings)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const banquetHallsAPI = {
     getHalls() {
-        return apiAdminRequest.get(baseUrl + `/banquet-hall/`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(`${baseUrl}/banquet-hall/`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     getHall( id ) {
-        return apiAdminRequest.get(baseUrl + `/banquet-hall/${id}`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(`${baseUrl}/banquet-hall/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     createHall( hall ) {
-        return apiAdminRequest.get(baseUrl + `/banquet-hall/`, hall)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.get(`${baseUrl}/banquet-hall/`, hall)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     updateHall( hall ) {
-        return apiAdminRequest.patch(`/banquet-hall/${hall.id}`, hall)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.patch(`${baseUrl}/banquet-hall/${hall.id}`, hall)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
     deleteHall( id ) {
-        return apiAdminRequest.delete(`/banquet-hall/${id}`)
-                              .then(response => response)
-                              .catch(e => e.response)
+        return request.delete(`${baseUrl}/banquet-hall/${id}`)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const fileAPI = {
     uploadFile( file ) {
-        return apiAdminRequest.post(`/file/`, file)
-                              .then(response => response)
+        return request.post(`${baseUrl}/file/`, file)
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }
 
 export const averageChecksAPI = {
     getAverageChecks( filter ) {
-        return apiAdminRequest.get(`/statistics/average-checks/`, { params: filter })
-                              .then(response => response)
+        return request.get(`${baseUrl}/statistics/average-checks/`, { params: filter })
+          .then(response => response)
+          .catch(reason => console.error(reason))
     },
 }

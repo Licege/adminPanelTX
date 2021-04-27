@@ -1,4 +1,4 @@
-import axios from 'axios'
+import fetch from 'isomorphic-fetch'
 
 const downloadFileHandler = response => {
   const filename = response.headers
@@ -45,9 +45,9 @@ const responseHandler = async response => {
 
 const generalOptions = {
   headers: {
-    'Content-Type': 'application/json',
-    'Authorization': localStorage.getItem('accessToken')
-  }
+    'Content-Type': 'application/json'
+  },
+  credentials: 'include'
 }
 
 const request = method => async (url, body, options = {}) => {
@@ -55,7 +55,7 @@ const request = method => async (url, body, options = {}) => {
   if (body) {
     init.body = JSON.stringify(body)
   }
-  const response = axios(url, init)
+  const response = await fetch(url, init)
   return responseHandler(response)
 }
 
