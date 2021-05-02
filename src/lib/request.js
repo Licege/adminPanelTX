@@ -53,7 +53,12 @@ const generalOptions = {
 const request = method => async (url, body, options = {}) => {
   const init = { ...generalOptions, ...options, method }
   if (body) {
-    init.body = JSON.stringify(body)
+    if (body instanceof FormData) {
+      init.body = body
+      delete init.headers
+    } else {
+      init.body = JSON.stringify(body)
+    }
   }
   const response = await fetch(url, init)
   return responseHandler(response)

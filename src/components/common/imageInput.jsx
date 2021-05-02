@@ -1,5 +1,4 @@
 import React from 'react'
-import { fullLink } from '../../plugins/helpers'
 
 
 class ImageInput extends React.Component {
@@ -7,15 +6,15 @@ class ImageInput extends React.Component {
         super(props)
         this.state = {
             error: !!props.error,
-            value: props.value && fullLink(props.value),
+            value: props.value,
             type: null,
             id: props.id | 'FileInput' + Math.round(1000000 * Math.random()),
         }
     }
 
-    componentDidUpdate( prevProps, prevState, snapshot ) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.value !== this.props.value) {
-            this.setState({ value: this.props.value ? fullLink(this.props.value) : '' })
+            this.setState({ value: this.props.value || '' })
         }
     }
 

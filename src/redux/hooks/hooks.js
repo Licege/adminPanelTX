@@ -1,24 +1,24 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import {requestAllOrders} from './thunks/orders.thunks'
-import {getOrders} from './getters/orders.getters'
-import {requestCategories, requestCategory, requestDishes} from './thunks/menu.thunks'
-import {getCategories, getCurrentCategory, getMenu} from './getters/menu.getters'
+import {requestAllOrders} from '../thunks/orders.thunks'
+import {getOrders} from '../getters/orders.getters'
+import {requestCategories, requestCategory, requestDishes} from '../thunks/menu.thunks'
+import {getCategories, getCurrentCategory, getMenu} from '../getters/menu.getters'
 import {
   requestDeliverySettings, requestDeliverySettingsById,
   requestGlobalDeliverySettings,
   requestOrderDeliveryById,
   requestOrdersDelivery
-} from './thunks/delivery.thunks'
+} from '../thunks/delivery.thunks'
 import {
   getCurrentDeliveryOrder,
   getDeliveryCommonSettings, getDeliveryCurrentCommonSettings,
   getDeliveryGlobalSettings,
   getDeliveryOrders
-} from './getters/delivery.getters'
-import {requestVacancies, requestVacancy} from './thunks/vacancies.thunks'
-import {getAllVacancies, getCurrentVacancy} from './getters/vacancies.getters'
+} from '../getters/delivery.getters'
+import {requestVacancies, requestVacancy} from '../thunks/vacancies.thunks'
+import {getAllVacancies, getCurrentVacancy} from '../getters/vacancies.getters'
 
 export const useOrders = () => {
   const dispatch = useDispatch()
@@ -49,26 +49,6 @@ export const useCurrentDeliveryOrder = () => {
   }, [id])
 
   return useSelector(getCurrentDeliveryOrder)
-}
-
-export const useDishes = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(requestDishes())
-  }, [])
-
-  return useSelector(getMenu)
-}
-
-export const useCategories = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(requestCategories())
-  }, [])
-
-  return useSelector(getCategories)
 }
 
 export const useDeliveryCommonSettings = () => {
@@ -108,17 +88,6 @@ export const useCurrentVacancy = () => {
   }, [])
 
   return useSelector(getCurrentVacancy)
-}
-
-export const useCurrentCategory = () => {
-  const { id } = useParams()
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(requestCategory(id))
-  }, [])
-
-  return useSelector(getCurrentCategory)
 }
 
 export const useCurrentDeliverySettings = () => {

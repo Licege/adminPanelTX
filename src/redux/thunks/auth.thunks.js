@@ -16,3 +16,11 @@ export const login = createAsyncThunk(
     return response.data
   }
 )
+
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async () => {
+    const response = await authAPI.logout()
+    return response.data
+  }
+)

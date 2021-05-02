@@ -1,10 +1,10 @@
 import React from 'react'
 import altImg from '../../../static/img/dish.svg'
-import { cropText, fullLink, getTitleById } from '../../../plugins/helpers'
+import { cropText, getTitleById } from '../../../plugins/helpers'
 
 let CardDish = ({ dish, categories, remove, detail }) => {
     const style = {
-        backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
+        backgroundImage: `url(${dish.imageSrc || altImg})`,
         backgroundSize: 'cover',
     }
 

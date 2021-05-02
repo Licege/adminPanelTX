@@ -1,46 +1,13 @@
-import {useEffect, useState} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import {getCategories, getCurrentDish, getMenu} from '../../redux/getters/menu.getters'
 import {
   createDish as createDishThunk,
   deleteDish,
-  requestCategories,
-  requestDish,
-  requestDishes,
   updateDish
 } from '../../redux/thunks/menu.thunks'
 import {showModal} from '../../redux/reducers/modals.reducer'
-
-const useDishes = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(requestDishes())
-  }, [])
-
-  return useSelector(getMenu)
-}
-
-const useDish = id => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(requestDish(id))
-  }, [])
-
-  return useSelector(getCurrentDish)
-}
-
-const useCategories = () => {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(requestCategories())
-  }, [])
-
-  return useSelector(getCategories)
-}
+import { useCategories, useCurrentDish, useDishes } from '../../redux/hooks/menu.hooks'
 
 export const useMenuLogic = () => {
   const history = useHistory()
@@ -108,7 +75,7 @@ export const useEditDishLogic = () => {
   const { id } = useParams()
 
   const [file, setFile] = useState('')
-  const dish = useDish(id)
+  const dish = useCurrentDish()
   const categories = useCategories()
 
   const onRemove = () => dispatch(deleteDish(id))
@@ -118,8 +85,9 @@ export const useEditDishLogic = () => {
   const uploadFile = file => setFile(file)
 
   const editDish = dish => {
-    let formData = new FormData()
-    for (let key in dish) {
+    const formData = new FormData()
+    for (const key in dish) {
+      console.log(dish.hasOwnProperty(key))
       if (dish.hasOwnProperty(key)) formData.append(key, dish[key])
     }
     formData.append('image', file)

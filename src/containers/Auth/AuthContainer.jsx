@@ -31,7 +31,7 @@ let mapDispatchToProps = ( dispatch ) => {
     return {
         login: ( data ) => {
             dispatch(login(data))
-        },
+        }
     }
 }
 

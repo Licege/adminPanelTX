@@ -1,7 +1,7 @@
 import {useCallback} from 'react'
 import {useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import {useCurrentVacancy} from '../../../redux/hooks'
+import {useCurrentVacancy} from '../../../redux/hooks/hooks'
 import {useFileLogic} from '../../../hooks'
 import {updateVacancy} from '../../../redux/thunks/vacancies.thunks'
 

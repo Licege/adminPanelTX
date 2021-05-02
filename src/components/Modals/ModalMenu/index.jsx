@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Modal, Table } from 'react-bootstrap'
 import {useModalMenuLogic} from './logic'
-import { fullLink } from '../../../plugins/helpers'
 import altImg from '../../../static/img/dish.svg'
 
 const ModalMenu = () => {
@@ -32,7 +31,7 @@ const ModalMenu = () => {
                     {dishes.map(dish => (
                         <tr className='text-center' key={dish.id}>
                             <td>
-                                <img src={fullLink(dish.imageSrc) || altImg}
+                                <img src={dish.imageSrc || altImg}
                                      className='delivery_info-modal-img'
                                      alt='фото'/>
                             </td>

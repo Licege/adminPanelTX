@@ -1,6 +1,6 @@
 import React from 'react'
 import altImg from '../../../static/img/news.jpg'
-import { fullLink, tsToDate } from '../../../plugins/helpers'
+import { tsToDate } from '../../../plugins/helpers'
 import Button from 'react-bootstrap/Button'
 
 const CardNews = ({ news, deleteNews, detail }) => {
@@ -10,7 +10,7 @@ const CardNews = ({ news, deleteNews, detail }) => {
                 <div className='card-body card_news-content'>
                     {news.createdAt &&
                     <div className='card_news-content-date'>{tsToDate(news.createdAt, 'dd MMMM')}</div>}
-                    <img className='card_news-content-img' src={news.imageSrc ? fullLink(news.imageSrc) : altImg}
+                    <img className='card_news-content-img' src={news.imageSrc || altImg}
                          alt=''/>
                     <div className='card_news-content-info'>
                         <div className='card_news-content-info-header'>

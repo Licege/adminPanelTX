@@ -1,7 +1,6 @@
 import React from 'react'
 import {Button, Table} from 'react-bootstrap'
 import {useTableProductsPositionsLogic} from '../logic'
-import {fullLink} from '../../../plugins/helpers'
 import altImg from '../../../static/img/dish.svg'
 
 const TableProductsPositions = ({ order = {} }) => {
@@ -25,7 +24,7 @@ const TableProductsPositions = ({ order = {} }) => {
           <tr key={dish.id}>
             <td>
               <img
-                src={fullLink(dishes.find(item => item.id === dish.id)?.imageSrc) || altImg}
+                src={dishes.find(item => item.id === dish.id)?.imageSrc || altImg}
                 className='delivery_info-detail-table-img'
                 alt='img'/>
             </td>

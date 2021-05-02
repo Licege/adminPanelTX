@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom'
-import {useDeliveryCommonSettings} from '../../../../../redux/hooks'
+import {useDeliveryCommonSettings} from '../../../../../redux/hooks/hooks'
 
 export const useDeliverySettingsTableLogic = () => {
   const history = useHistory()

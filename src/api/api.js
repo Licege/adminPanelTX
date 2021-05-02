@@ -14,6 +14,11 @@ export const authAPI = {
         .then(response => response)
         .catch(reason => console.error(reason))
     },
+    logout() {
+       return request.get(`${authUrl}/logout/`)
+         .then(response => response)
+         .catch(reason => console.error(reason))
+    },
     registration( user ) {
       return request.post(`${authUrl}/registration/`, user)
         .then(response => response)
@@ -173,7 +178,6 @@ export const menuAPI = {
     updateDish( dish, id ) {
         return request.patch(`${baseUrl}/menu/${id}`, dish)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     deleteDish( id ) {
         return request.delete(`${baseUrl}/menu/${id}`)
@@ -370,7 +374,6 @@ export const fileAPI = {
     uploadFile( file ) {
         return request.post(`${baseUrl}/file/`, file)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 

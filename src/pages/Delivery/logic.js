@@ -4,9 +4,8 @@ import { useHistory } from 'react-router-dom'
 import {
   useCurrentDeliveryOrder,
   useDeliveryOrders,
-  useDishes,
   useRequestDeliveryCommonSettings
-} from '../../redux/hooks'
+} from '../../redux/hooks/hooks'
 import {
   decreaseDishFromList,
   increaseDishFromList,
@@ -15,6 +14,7 @@ import {
 import {requestOrdersDelivery, updateOrderDelivery} from '../../redux/thunks/delivery.thunks'
 import {showModal} from '../../redux/reducers/modals.reducer'
 import {getCurrentDeliveryPage, getDeliveryOrdersTotal} from '../../redux/getters/delivery.getters'
+import { useDishes } from '../../redux/hooks/menu.hooks'
 
 export const useDeliveryInfoLogic = () => {
   const dispatch = useDispatch()

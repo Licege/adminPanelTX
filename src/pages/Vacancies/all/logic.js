@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import {useVacancies} from '../../../redux/hooks'
+import {useVacancies} from '../../../redux/hooks/hooks'
 import {deleteVacancy} from '../../../redux/thunks/vacancies.thunks'
 
 export const useHeaderVacanciesLogic = () => {

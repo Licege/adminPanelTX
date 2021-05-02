@@ -1,9 +1,10 @@
 import {useCallback, useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {hideModal} from '../../../redux/reducers/modals.reducer'
-import {useCategories, useDishes, useRequestDeliveryCommonSettings} from '../../../redux/hooks'
+import {useRequestDeliveryCommonSettings} from '../../../redux/hooks/hooks'
 import {addDishToOrder} from '../../../redux/reducers/delivery.reducer'
 import {requestDishesByCategory} from '../../../redux/thunks/menu.thunks'
+import { useCategories, useDishes } from '../../../redux/hooks/menu.hooks'
 
 const useFilterDishesByCategory = () => {
   const dispatch = useDispatch()

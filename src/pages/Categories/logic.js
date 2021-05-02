@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import {useDispatch} from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {createCategory, deleteCategory, updateCategory} from '../../redux/thunks/menu.thunks'
-import {useCategories, useCurrentCategory} from '../../redux/hooks'
+import { useCategories, useCurrentCategory } from '../../redux/hooks/menu.hooks'
 
 const validate = values => {
   const errors = {}

@@ -39,7 +39,7 @@ const RenderForm = ({ handleSubmit, submitting, pristine, categories = [], dishI
 const FormDish = ({ onSubmit, initialValues, ...props }) => (
             <Form onSubmit={onSubmit}
                   initialValues={initialValues}
-                  render={({ ...formProps }) => <RenderForm {...formProps} {...props} />}
+                  render={formProps => <RenderForm {...formProps} {...props} />}
             />
   )
 

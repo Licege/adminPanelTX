@@ -1,12 +1,11 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import {useShowPromoLogic} from './logic'
-import { fullLink } from '../../plugins/helpers'
 import altImg from '../../static/img/dish.svg'
 import {PageHeader} from '../../styledComponents/components'
 
 const getStyle = image => ({
-  backgroundImage: `url(${image ? fullLink(image) : altImg})`,
+  backgroundImage: `url(${image || altImg})`,
   backgroundSize: 'cover'
 })
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import altImg from '../../../static/img/vacancy.png'
-import { cropText, fullLink } from '../../../plugins/helpers'
+import { cropText } from '../../../plugins/helpers'
 
 let CardVacancy = ({ card, change, remove }) => {
     return (
         <div className='card card_vacancy'>
-            <img className='card_vacancy-img' src={card.imageSrc ? fullLink((card.imageSrc)) : altImg}
+            <img className='card_vacancy-img' src={card.imageSrc || altImg}
                  alt={card.title}/>
             <div className='card-body pt-0'>
                 <h3 className='card_vacancy-title'>{card.title ? card.title : 'Вакансия'}</h3>

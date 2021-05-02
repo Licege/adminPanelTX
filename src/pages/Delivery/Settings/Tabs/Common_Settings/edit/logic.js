@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import {useCurrentDeliverySettings} from '../../../../../../redux/hooks'
+import {useCurrentDeliverySettings} from '../../../../../../redux/hooks/hooks'
 import {updateDeliverySettings} from '../../../../../../redux/thunks/delivery.thunks'
 
 export const useEditDeliverySettingsLogic = () => {

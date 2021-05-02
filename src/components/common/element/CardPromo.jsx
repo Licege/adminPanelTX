@@ -1,13 +1,12 @@
 import React from 'react'
 import altImg from '../../../static/img/dish.svg'
-import { cropText, fullLink } from '../../../plugins/helpers'
 import { Link } from 'react-router-dom'
 
 export const CardPromo = ({ promo }) => {
     const { id, title, shortDescription = '', imageSrc } = promo
 
     const style = {
-        backgroundImage: `url(${imageSrc ? fullLink(imageSrc) : altImg})`,
+        backgroundImage: `url(${imageSrc || altImg})`,
         backgroundSize: 'cover',
     }
 
