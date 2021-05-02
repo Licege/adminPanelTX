@@ -1,48 +1,12 @@
-import axios from 'axios'
 import request from '../lib/request'
 
-export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://localhost:9091/`
+const hostname = window.location.hostname
+export const WS_BASE = process.env.NODE_ENV === 'production' ? '//server.tri-xolma.ru/' : `http://${hostname}:9091/`
 
-export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://localhost:9090/`
-const authUrl = process.env.NODE_ENV === 'production' ? '//auth.tri-xolma.ru/' : `http://${hostname}:9092/api`
+export const serverUrl = process.env.NODE_ENV === 'production' ? '//api.tri-xolma.ru/' : `http://${hostname}:9090/`
+const authUrl = process.env.NODE_ENV === 'production' ? '//auth.tri-xolma.ru/auth' : `http://${hostname}:9092/api/auth`
 const baseUrl = serverUrl + 'api/private'
 export const secret = 'dev-jwt'
-
-const apiAdminRequest = axios.create({
-    baseURL: baseUrl,
-    headers: {
-        'Authorization': localStorage.getItem('accessToken'),
-    },
-})
-
-apiAdminRequest.interceptors.response.use(function ( response ) {
-    return response
-}, function ( error ) {
-
-    const originalRequest = error.config
-
-    if (error.response.status === 401 && !originalRequest._retry) {
-
-        originalRequest._retry = true
-
-        const refreshToken = window.localStorage.getItem('refreshToken')
-        return axios.post(baseUrl + `/auth/refresh-token/`, { refreshToken })
-                    .then(( { data } ) => {
-                        window.localStorage.setItem('accessToken', data.accessToken)
-                        window.localStorage.setItem('refreshToken', data.refreshToken)
-                        //apiAdminRequest.defaults.headers.common['Authorization'] = data.accessToken;
-                        apiAdminRequest.defaults.headers['Authorization'] = data.accessToken
-                        originalRequest.headers['Authorization'] = data.accessToken
-                        return apiAdminRequest(originalRequest)
-                    })
-                    .catch(error => {
-                        window.localStorage.clear()
-                        window.location.reload()
-                    })
-    }
-
-    return Promise.reject(error)
-})
 
 export const authAPI = {
     login( user ) {
