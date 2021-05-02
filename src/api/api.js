@@ -12,17 +12,14 @@ export const authAPI = {
     login( user ) {
       return request.post(`${authUrl}/login/`, user)
         .then(response => response)
-        .catch(reason => console.error(reason))
     },
     logout() {
        return request.get(`${authUrl}/logout/`)
          .then(response => response)
-         .catch(reason => console.error(reason))
     },
     registration( user ) {
       return request.post(`${authUrl}/registration/`, user)
         .then(response => response)
-        .catch(reason => console.error(reason))
     },
 }
 
@@ -30,12 +27,10 @@ export const adminAPI = {
     getAdmins() {
         return request.get(`${baseUrl}/admin/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     postAdmin( id ) {
         return request.post(`${baseUrl}/admin/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -43,17 +38,14 @@ export const usersAPI = {
     getUsers( currentPage = 1, filters ) {
         return request.get(`${baseUrl}/users/?page=${currentPage}`, { params: filters })
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getUserById( id ) {
         return request.get(`${baseUrl}/users/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updateUser( profile ) {
         return request.patch(`${baseUrl}/users/${profile.id}`, profile)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -61,32 +53,26 @@ export const employeesAPI = {
     createEmployee( profile ) {
         return request.post(`${baseUrl}/employees/`, profile)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getEmployees() {
         return request.get(`${baseUrl}/employees/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getEmployeeById( id ) {
         return request.get(`${baseUrl}/employees/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updateEmployee( profile ) {
         return request.put(`${baseUrl}/employees/${profile.id}`, profile)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     deleteEmployee( id ) {
         return request.delete(`${baseUrl}/employees/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getProfessions() {
         return request.get(`${baseUrl}/professions/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -99,22 +85,18 @@ export const vacancyAPI = {
     getVacancy( id ) {
         return request.get(`${baseUrl}/vacancies/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     createVacancy( vacancy ) {
         return request.post(`${baseUrl}/vacancies/`, vacancy)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updateVacancy( vacancy, id ) {
         return request.patch(`${baseUrl}/vacancies/${id}`, vacancy)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     deleteVacancy( id ) {
         return request.delete(`${baseUrl}/vacancies/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -122,12 +104,10 @@ export const contactsAPI = {
     getContacts() {
         return request.get(`${baseUrl}/contacts/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updateContacts( contacts ) {
         return request.patch(`${baseUrl}/contacts/${contacts.id}`, contacts)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -135,22 +115,18 @@ export const promoAPI = {
     getPromos() {
         return request.get(`${baseUrl}/promos/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getPromo( id ) {
         return request.get(`${baseUrl}/promos/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     postPromo( promo ) {
         return request.post(`${baseUrl}/promos/`, promo)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updatePromo( promo, id ) {
         return request.patch(`${baseUrl}/promos/${id}`, promo)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -158,22 +134,18 @@ export const menuAPI = {
     createDish( dish ) {
         return request.post(`${baseUrl}/menu/`, dish)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getDishes() {
         return request.get(`${baseUrl}/menu/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getDishesByCategory( category ) {
         return request.get(`${baseUrl}/menu/${category}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getDish( id ) {
         return request.get(`${baseUrl}/menu/dish/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updateDish( dish, id ) {
         return request.patch(`${baseUrl}/menu/${id}`, dish)
@@ -182,32 +154,26 @@ export const menuAPI = {
     deleteDish( id ) {
         return request.delete(`${baseUrl}/menu/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getCategories() {
         return request.get(`${baseUrl}/categories/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getCategory( id ) {
         return request.get(`${baseUrl}/categories/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     createCategory( category ) {
         return request.post(`${baseUrl}/categories/`, category)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updateCategory( category ) {
         return request.patch(`${baseUrl}/categories/${category.id}`, category)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     deleteCategory( id ) {
         return request.delete(`${baseUrl}/categories/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 
@@ -215,27 +181,22 @@ export const newsAPI = {
     getNews() {
         return request.get(`${baseUrl}/news/`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     getCurrentNews( id ) {
         return request.get(`${baseUrl}/news/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     postNews( news ) {
         return request.post(`${baseUrl}/news/`, news)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     updateNews( news, id ) {
         return request.patch(`${baseUrl}/news/${id}`, news)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
     deleteNews( id ) {
         return request.delete(`${baseUrl}/news/${id}`)
           .then(response => response)
-          .catch(reason => console.error(reason))
     },
 }
 

@@ -51,8 +51,10 @@ export const useCreateDishLogic = () => {
 
   const createDish = dish => {
     let formData = new FormData()
-    for (let key in dish) {
-      formData.append(key, dish[key])
+    for (const key in dish) {
+      if (dish.hasOwnProperty(key)) {
+        formData.append(key, dish[key])
+      }
     }
     formData.weight = parseInt(formData.weight, 10)
     formData.price = parseInt(formData.price, 10)
@@ -87,7 +89,6 @@ export const useEditDishLogic = () => {
   const editDish = dish => {
     const formData = new FormData()
     for (const key in dish) {
-      console.log(dish.hasOwnProperty(key))
       if (dish.hasOwnProperty(key)) formData.append(key, dish[key])
     }
     formData.append('image', file)

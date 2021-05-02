@@ -26,7 +26,7 @@ export const requestDishesByCategory = createAsyncThunk(
 )
 
 export const requestDish = createAsyncThunk(
-  'menu/createDish',
+  'menu/fetchCurrentDish',
   async (id) => {
     const response = await menuAPI.getDish(id);
     return response

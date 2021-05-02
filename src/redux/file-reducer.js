@@ -16,6 +16,7 @@ const fileSlice = createSlice({
         loading: false,
         error: {},
     },
+    reducers: {},
     extraReducers: {
         [uploadFile.pending]: state => {
             state.loading = true
