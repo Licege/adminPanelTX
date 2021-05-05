@@ -23,7 +23,7 @@ export const fetchAllProfessions = createAsyncThunk(
   'employees/fetchAllProfessions',
   async () => {
     const response = await employeesAPI.getProfessions()
-    return response.data
+    return response
   }
 )
 
@@ -31,7 +31,7 @@ export const createNewEmployee = createAsyncThunk(
   'employees/createNewEmployee',
   async (profile) => {
     const response = await employeesAPI.createEmployee(profile)
-    return response.data;
+    return response
   }
 )
 
@@ -39,7 +39,7 @@ export const fetchCurrentEmployee = createAsyncThunk(
   'employees/fetchEmployeeById',
   async (id) => {
     const response = await employeesAPI.getEmployeeById(id)
-    return response.data
+    return response
   }
 )
 
@@ -47,7 +47,7 @@ export const updateCurrentEmployee = createAsyncThunk(
   'employees/updateEmployeeById',
   async (profile) => {
     const response = await employeesAPI.updateEmployee(profile)
-    return response.data
+    return response
   }
 )
 
@@ -55,6 +55,6 @@ export const deleteEmployee = createAsyncThunk(
   'employees/deleteEmployeeById',
   async (id) => {
     const response = await employeesAPI.deleteEmployee(id)
-    return response.data
+    return response
   }
 )

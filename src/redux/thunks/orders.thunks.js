@@ -5,6 +5,6 @@ export const requestAllOrders = createAsyncThunk(
   'orders/fetchAllOrders',
   async () => {
     const response = await ordersAPI.getOrders()
-    return response.data
+    return response
   }
 )

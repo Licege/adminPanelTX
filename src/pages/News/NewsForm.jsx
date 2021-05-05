@@ -26,7 +26,7 @@ const RenderForm = ({ handleSubmit, pristine, submitting, news, uploadFile, canc
 const NewsForm = ({ onSubmit, initialValues, ...props }) => (
   <Form onSubmit={onSubmit}
         initialValues={initialValues}
-        render={({ ...formProps }) => <RenderForm { ...formProps} {...props } />} />
+        render={formProps => <RenderForm { ...formProps} {...props } />} />
 )
 
 export default NewsForm

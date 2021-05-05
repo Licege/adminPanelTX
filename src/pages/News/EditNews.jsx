@@ -17,7 +17,7 @@ const EditNews = () => {
       <div className='page-container'>
         <div className='card'>
           <div className='card-body'>
-            <NewsForm onSubmit={updateNews} initialValues={currentNews} uploadFile={uploadFile} cancel={cancel} />
+            <NewsForm onSubmit={updateNews} initialValues={currentNews} news={currentNews} uploadFile={uploadFile} cancel={cancel} />
           </div>
         </div>
       </div>

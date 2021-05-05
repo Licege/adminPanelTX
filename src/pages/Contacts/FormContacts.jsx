@@ -32,8 +32,8 @@ const RenderForm = ({ handleSubmit, submitting, pristine, cancel, openHours, han
   </form>
 )
 
-const FormContacts = ({ onSubmit, ...props }) => (
-  <Form onSubmit={onSubmit} render={({ ...formProps }) => <RenderForm {...formProps} {...props} />} />
+const FormContacts = ({ onSubmit, initialValues, ...props }) => (
+  <Form onSubmit={onSubmit} initialValues={initialValues} render={formProps => <RenderForm {...formProps} {...props} />} />
 )
 
 export default FormContacts

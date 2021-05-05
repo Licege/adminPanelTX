@@ -246,7 +246,7 @@ export const messagesAPI = {
 
 export const deliveryAPI = {
     getOrders( filter, page ) {
-        return request.get(`${baseUrl}/delivery/?offset=${page}`, { params: filter })
+        return request.get(`${baseUrl}/delivery/?offset=${page}`, null, { params: filter })
           .then(response => response)
           .catch(reason => console.error(reason))
     },

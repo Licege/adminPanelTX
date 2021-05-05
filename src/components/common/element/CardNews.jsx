@@ -10,8 +10,7 @@ const CardNews = ({ news, deleteNews, detail }) => {
                 <div className='card-body card_news-content'>
                     {news.createdAt &&
                     <div className='card_news-content-date'>{tsToDate(news.createdAt, 'dd MMMM')}</div>}
-                    <img className='card_news-content-img' src={news.imageSrc || altImg}
-                         alt=''/>
+                    <img className='card_news-content-img' src={news.imageSrc || altImg} alt=''/>
                     <div className='card_news-content-info'>
                         <div className='card_news-content-info-header'>
                             {news.title && <a href={'news/edit/' + news.id}
@@ -22,7 +21,7 @@ const CardNews = ({ news, deleteNews, detail }) => {
                         {news.description && !news.shortDescription &&
                         <div className='card_news-content-info-description'>{news.description}</div>}
                         <div className='card_news-content-info-link'>
-                            <Button onClick={detail(news.id)}>Подробнее...</Button>
+                            <Button onClick={detail(news.id)}>Подробнее</Button>
                             <Button onClick={deleteNews(news.id)}>Удалить</Button>
                         </div>
                     </div>

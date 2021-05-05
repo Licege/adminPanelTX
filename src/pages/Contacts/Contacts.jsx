@@ -15,7 +15,7 @@ const Contact = () => {
       <div className="page-container">
         <div className="card">
           <div className="card-body">
-            <FormContacts onSubmit={updateContacts} {...props} />
+            <FormContacts onSubmit={updateContacts} initialValues={contacts} {...props} />
           </div>
         </div>
       </div>

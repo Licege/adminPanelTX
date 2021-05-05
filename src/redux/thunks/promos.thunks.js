@@ -5,7 +5,7 @@ export const requestAllPromos = createAsyncThunk(
   'promos/fetchAllPromos',
   async () => {
     const response = await promoAPI.getPromos()
-    return response.data
+    return response
   }
 )
 
@@ -13,7 +13,7 @@ export const requestPromoById = createAsyncThunk(
   'promos/fetchPromoById',
   async (id) => {
     const response = await promoAPI.getPromo(id)
-    return response.data
+    return response
   }
 )
 
@@ -21,7 +21,7 @@ export const postPromo = createAsyncThunk(
   'promos/createPromo',
   async (promo) => {
     const response = await promoAPI.postPromo(promo)
-    return response.data
+    return response
   }
 )
 
@@ -29,6 +29,6 @@ export const updatePromo = createAsyncThunk(
   'promos/updatePromo',
   async ({ id, promo }) => {
     const response = await promoAPI.updatePromo(promo, id)
-    return response.data
+    return response
   }
 )

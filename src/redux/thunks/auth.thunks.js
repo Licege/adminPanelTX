@@ -5,7 +5,7 @@ export const registration = createAsyncThunk(
   'auth/registration',
   async (user) => {
     const response = await authAPI.registration(user)
-    return response.data
+    return response
   }
 )
 

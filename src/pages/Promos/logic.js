@@ -5,14 +5,16 @@ import { useFileLogic } from '../../hooks'
 import {requestAllPromos, requestPromoById, postPromo, updatePromo} from '../../redux/thunks/promos.thunks'
 import {getAllPromos, getCurrentPromo} from '../../redux/getters/promos.getters'
 
-const usePromos = () => {
+const usePromos = ({ force = false } = {}) => {
   const dispatch = useDispatch()
+  const promos = useSelector(getAllPromos)
 
   useEffect(() => {
+    if (!promos.length || force)
     dispatch(requestAllPromos())
   }, [])
 
-  return useSelector(getAllPromos)
+  return promos
 }
 
 export const useCurrentPromo = () => {

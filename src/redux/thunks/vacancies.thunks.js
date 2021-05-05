@@ -5,7 +5,7 @@ export const requestVacancies = createAsyncThunk(
   'vacancies/fetchAllVacancies',
   async () => {
     const response = await vacancyAPI.getVacancies()
-    return response.data
+    return response
   }
 )
 
@@ -13,7 +13,7 @@ export const requestVacancy = createAsyncThunk(
   'vacancies/fetchVacancyById',
   async (id) => {
     const response = await vacancyAPI.getVacancy(id)
-    return response.data
+    return response
   }
 )
 
@@ -21,7 +21,7 @@ export const createNewVacancy = createAsyncThunk(
   'vacancies/createVacancy',
   async (vacancy) => {
     const response = await vacancyAPI.createVacancy(vacancy)
-    return response.data
+    return response
   }
 )
 
@@ -32,7 +32,7 @@ export const updateVacancy = createAsyncThunk(
     console.log(id)
     console.log(vacancy)
     const response = await vacancyAPI.updateVacancy(vacancy, id)
-    return response.data
+    return response
   }
 )
 
@@ -40,6 +40,6 @@ export const deleteVacancy = createAsyncThunk(
   'vacancies/deleteVacancy',
   async (id) => {
     const response = await vacancyAPI.deleteVacancy(id)
-    return response.data
+    return response
   }
 )
