@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeReviewStatus, requestReviews } from '../../redux/reviews-reducer'
-import Reviews from '../../components/Reviews/Reviews'
+import Reviews from '../../pages/Reviews/Reviews'
 
 class ReviewsContainer extends React.PureComponent {
     componentDidMount() {

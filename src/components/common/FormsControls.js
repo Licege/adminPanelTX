@@ -1,7 +1,7 @@
 import React from 'react'
-import { Field } from 'redux-form'
+import { Field } from 'react-final-form'
 
-const FormControl = ( { input, meta: { touched, error }, children } ) => {
+const FormControl = ({ input, meta: { touched, error }, children }) => {
     //const hasError = touched && error;
     return (
         <div>
@@ -27,8 +27,8 @@ export const Textarea = ( props ) => {
 
 export const createField = ( placeholder, name, validators, component, type = 'text', props = {}, text = '' ) => (
     <div>
-        <Field placeholder={placeholder} name={name}
-               validate={validators}
+        <Field placeholder={placeholder}
+               name={name}
                component={component}
                className="filter-main-input -name form-control"
                type={type}

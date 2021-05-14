@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Promos from '../../components/Promos/Promos'
-import { requestPromos } from '../../redux/promos-reducer'
+import Promos from '../../pages/Promos/main/Promos'
+import { requestPromos } from '../../redux/reducers/promos.reducer'
 
 class PromosContainer extends React.Component {
     componentDidMount() {

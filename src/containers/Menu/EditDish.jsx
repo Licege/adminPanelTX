@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deleteDish, requestCategories, requestDish, updateDish } from '../../redux/menu-reducer'
-import FormDish from '../../components/Menu/FormDish'
-import DeleteModal from '../../components/common/modal/DeleteModal'
+import { deleteDish, requestCategories, requestDish, updateDish } from '../../redux/thunks/menu.thunks'
+import FormDish from '../../pages/Menu/form/FormDish'
+import ModalDelete from '../../components/Modals/ModalDelete'
 
 class EditDishContainer extends React.Component {
     constructor( props ) {
@@ -15,7 +15,7 @@ class EditDishContainer extends React.Component {
 
     componentDidMount() {
         let id = this.props.match.params.id
-        if (!this.props.dish || this.props.dish._id !== id) {
+        if (!this.props.dish || this.props.dish.id !== id) {
             this.props.getDish(id)
         }
         if (!this.props.categories.length) this.props.getCategories()
@@ -23,12 +23,11 @@ class EditDishContainer extends React.Component {
 
     onSubmit = ( dish ) => {
         let formData = new FormData()
-        console.log(dish)
         for (let key in dish) {
             if (dish.hasOwnProperty(key)) formData.append(key, dish[key])
         }
         this.state.file && formData.append('image', this.state.file)
-        this.props.updateDish(formData, dish._id)
+        this.props.updateDish(formData, dish.id)
         this.props.history.push('/menu')
     }
 
@@ -69,9 +68,9 @@ class EditDishContainer extends React.Component {
                               cancel={this.goToMenu}
                               uploadFile={this.uploadFile}
                               openDelModal={this.toggleDelModal}/>
-                    <DeleteModal show={openDelModal}
+                    <ModalDelete show={openDelModal}
                                  title={dish.title}
-                                 onRemove={this.deleteDish(dish._id)}
+                                 onRemove={this.deleteDish(dish.id)}
                                  onClose={this.toggleDelModal}/>
                 </> : null
         )

@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { requestDeliverySettingsById, updateDeliverySettings } from '../../../redux/delivery-reducer'
-import SettingsForm from '../../../components/Delivery/Settings/Tabs/Common_Settings/SettingsForm'
+import { requestDeliverySettingsById, updateDeliverySettings } from '../../../redux/reducers/delivery.reducer'
+import SettingsForm from '../../../pages/Delivery/Settings/Tabs/Common_Settings/SettingsForm'
 
 class SettingsCommonEdit extends React.Component {
     componentDidMount() {
-        if (!this.props.currentSettings || this.props.currentSettings._id !== this.props.match.params.id) this.props.getSettingsById(this.props.match.params.id)
+        if (!this.props.currentSettings || this.props.currentSettings.id !== this.props.match.params.id) this.props.getSettingsById(this.props.match.params.id)
     }
 
     onSubmit = ( settings ) => {

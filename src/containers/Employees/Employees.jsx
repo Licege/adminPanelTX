@@ -1,10 +1,9 @@
 import React from 'react'
-import { employeesAPI } from '../../api/api'
-import Employees from '../../components/Employees/Employees'
 import { connect } from 'react-redux'
-import { deleteEmployeeAC, requestEmployees, requestProfessions } from '../../redux/employees-reducer'
+import Employees from '../../pages/Employees/Employees'
+import { requestEmployees, requestProfessions, deleteEmployee } from '../../redux/reducers/employees.reducer'
 
-class EmployeesContainer extends React.Component {
+  class EmployeesContainer extends React.Component {
     componentDidMount() {
         if (!this.props.employees.length) this.props.getEmployees()
         if (!this.props.professions.length) this.props.getProfessions()
@@ -20,18 +19,13 @@ class EmployeesContainer extends React.Component {
         this.props.history.push(`employees/new`)
     }
 
-    delete = ( id ) => {
-        employeesAPI.deleteEmployee(id)
-        this.props.deleteEmployee(id)
-    }
-
     render() {
         return <Employees
             employees={this.props.employees}
             professions={this.props.professions}
             detail={this.detail}
             createNewEmployee={this.createNewEmployee}
-            delete={this.delete}/>
+            delete={this.props.deleteEmployee}/>
     }
 }
 
@@ -47,7 +41,7 @@ let mapDispatchToProps = ( dispatch ) => {
             dispatch(requestEmployees())
         },
         deleteEmployee: ( id ) => {
-            dispatch(deleteEmployeeAC(id))
+            dispatch(deleteEmployee(id))
         },
         getProfessions: () => {
             dispatch(requestProfessions())

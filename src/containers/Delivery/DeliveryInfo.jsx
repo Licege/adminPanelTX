@@ -9,14 +9,14 @@ import {
     requestDeliverySettings,
     requestOrderDeliveryById,
     updateOrderDelivery,
-} from '../../redux/delivery-reducer'
-import DeliveryInfo from '../../components/Delivery/DeliveryInfo'
+} from '../../redux/reducers/delivery.reducer'
+import Index from '../../pages/Delivery/delivery-info'
 import {
     requestCategories,
     requestDishes,
     requestDishesByCategory,
-} from '../../redux/menu-reducer'
-import { formValueSelector } from 'redux-form'
+} from '../../redux/thunks/menu.thunks'
+// import { formValueSelector } from 'redux-form'
 
 class DeliveryInfoContainer extends React.Component {
     constructor( props ) {
@@ -45,7 +45,6 @@ class DeliveryInfoContainer extends React.Component {
     }
 
     changeDeliveryType = ( dType ) => {
-        console.log(dType)
         this.props.changeDeliveryType(dType)
     }
 
@@ -60,7 +59,6 @@ class DeliveryInfoContainer extends React.Component {
 
     addDish = ( dish ) => {
         return () => {
-            console.log(dish)
             this.props.addDishIntoList(dish)
         }
     }
@@ -89,30 +87,31 @@ class DeliveryInfoContainer extends React.Component {
     }
 
     render() {
-        return <DeliveryInfo order={this.props.order}
-                             onSubmit={this.update}
-                             menu={this.props.dishes}
-                             categories={this.props.categories}
-                             show={this.state.isOpen}
-                             toggleModal={this.toggleModal}
-                             applyFilterModal={this.applyFilterModal}
-                             addDish={this.addDish}
-                             increaseDish={this.increaseDish}
-                             decreaseDish={this.decreaseDish}
-                             removeDish={this.removeDish}
-                             currentCategory={this.state.filter}
-                             initialValues={this.props.order}/>
+        return <Index order={this.props.order}
+                      onSubmit={this.update}
+                      menu={this.props.dishes}
+                      categories={this.props.categories}
+                      show={this.state.isOpen}
+                      toggleModal={this.toggleModal}
+                      applyFilterModal={this.applyFilterModal}
+                      addDish={this.addDish}
+                      increaseDish={this.increaseDish}
+                      decreaseDish={this.decreaseDish}
+                      removeDish={this.removeDish}
+                      currentCategory={this.state.filter}
+                      initialValues={this.props.order}/>
     }
 }
 
 let mapStateToProps = ( state ) => {
-    const selector = formValueSelector('delivery-info')
+    // const selector = formValueSelector('delivery-info')
     return {
         order: state.deliveryPage.currentOrder,
         dishes: state.menuPage.dishes,
         categories: state.menuPage.categories,
         settings: state.deliveryPage.settings,
-        deliveryType: selector(state, 'delivery_type'),
+        // deliveryType: selector(state, 'delivery_type'),
+        deliveryType: 'home'
     }
 }
 

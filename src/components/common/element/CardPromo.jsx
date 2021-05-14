@@ -1,11 +1,12 @@
 import React from 'react'
 import altImg from '../../../static/img/dish.svg'
-import { cropText, fullLink } from '../../../plugins/helpers'
 import { Link } from 'react-router-dom'
 
-export const CardPromo = ( { promo } ) => {
+export const CardPromo = ({ promo }) => {
+    const { id, title, shortDescription = '', imageSrc } = promo
+
     const style = {
-        backgroundImage: `url(${promo.imageSrc ? fullLink(promo.imageSrc) : altImg})`,
+        backgroundImage: `url(${imageSrc || altImg})`,
         backgroundSize: 'cover',
     }
 
@@ -13,10 +14,10 @@ export const CardPromo = ( { promo } ) => {
         <div className='card card_promo'>
             <div className='card_promo-img' style={style}/>
             <div className='card-body card_promo__wrapper'>
-                <div className='card_promo-title'>{promo.title}</div>
-                <div className='card_promo-description'>{cropText(promo.short_description, 60)}</div>
+                <div className='card_promo-title'>{title}</div>
+                <div className='card_promo-description'>{shortDescription}</div>
                 <div className='card_promo-actions'>
-                    <Link to={`/promos/edit/${promo._id}`}>Изменить</Link>
+                    <Link to={`/promos/edit/${id}`}>Изменить</Link>
                 </div>
             </div>
         </div>

@@ -1,10 +1,10 @@
 import React from 'react'
 import altImg from '../../../static/img/dish.svg'
-import { cropText, fullLink, getTitleById } from '../../../plugins/helpers'
+import { cropText, getTitleById } from '../../../plugins/helpers'
 
-let CardDish = ( { dish, categories, remove, detail } ) => {
+let CardDish = ({ dish, categories, remove, detail }) => {
     const style = {
-        backgroundImage: `url(${dish.imageSrc ? fullLink(dish.imageSrc) : altImg})`,
+        backgroundImage: `url(${dish.imageSrc || altImg})`,
         backgroundSize: 'cover',
     }
 
@@ -16,10 +16,10 @@ let CardDish = ( { dish, categories, remove, detail } ) => {
                 {dish.description && <p><b>Описание:</b> {cropText(dish.description, 70)} </p>}
                 {dish.weight && <p><b>Вес:</b> {dish.weight + ' г.'} </p>}
                 {dish.cost && <p><b>Цена:</b> {dish.cost + ' ₽'} </p>}
-                {dish.category_id && categories.length &&
-                <p>Категория: {getTitleById(categories, dish.category_id)}</p>}
+                {dish.categoryId && categories.length &&
+                <p>Категория: {getTitleById(categories, dish.categoryId)}</p>}
                 <div className='card_vacancy-button'>
-                    <button className='btn btn-primary mr-2' onClick={detail(dish._id)}>Изменить</button>
+                    <button className='btn btn-primary mr-2' onClick={detail(dish.id)}>Изменить</button>
                     <button className='btn btn-danger' onClick={remove}>Удалить</button>
                 </div>
             </div>

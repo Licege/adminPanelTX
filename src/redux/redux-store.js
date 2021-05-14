@@ -1,47 +1,44 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux'
-import authReducer from './auth-reducer'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import authReducer from './reducers/auth.reducer'
 import usersReducer from './users-reducer'
-import employeesReducer from './employees-reducer'
-import { reducer as formReducer } from 'redux-form'
-import thunkMiddleWare from 'redux-thunk'
-import vacanciesReducer from './vacancies-reducer'
-import promosReducer from './promos-reducer'
-import contactsReducer from './contacts-reducer'
-import menuReducer from './menu-reducer'
-import newsReducer from './news-reducer'
-import ordersReducer from './orders-reducer'
+import employeesReducer from './reducers/employees.reducer'
+import vacanciesReducer from './reducers/vacancies.reducer'
+import promosReducer from './reducers/promos.reducer'
+import contactsReducer from './reducers/contacts.reducer'
+import menuReducer from './reducers/menu.reducer'
+import newsReducer from './reducers/news.reducer'
+import ordersReducer from './reducers/orders.reducer'
 import reviewsReducer from './reviews-reducer'
 import messageReducer from './message-reducer'
-import toggleReducer from './toogle-reducer'
-import deliveryReducer from './delivery-reducer'
+import toggleReducer from './reducers/toogle.reducer'
+import deliveryReducer from './reducers/delivery.reducer'
 import adminReducer from './admin-reducer'
 import hallReducer from './hall-reducer'
 import fileReducer from './file-reducer'
 import averageChecksReducer from './Statistics/average-checks-reducer'
+import modalReducer from './reducers/modals.reducer'
 
-let rootReducer = combineReducers({
-    auth: authReducer,
-    adminPage: adminReducer,
-    usersPage: usersReducer,
-    employeesPage: employeesReducer,
-    vacanciesPage: vacanciesReducer,
-    promosPage: promosReducer,
-    contactsPage: contactsReducer,
-    menuPage: menuReducer,
-    newsPage: newsReducer,
-    ordersPage: ordersReducer,
-    reviewsPage: reviewsReducer,
-    messagesPage: messageReducer,
-    toggleComponent: toggleReducer,
-    deliveryPage: deliveryReducer,
-    hallPage: hallReducer,
-    file: fileReducer,
-    avgChecksPage: averageChecksReducer,
-    form: formReducer,
+const middleware = getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+    thunk: true
 })
 
-let store = createStore(rootReducer, applyMiddleware(thunkMiddleWare))
-
-window.store = store
-
-export default store
+export default configureStore({
+    middleware,
+    reducer: {
+        auth: authReducer,
+        file: fileReducer,
+        modal: modalReducer,
+        contactsPage: contactsReducer,
+        toggleComponent: toggleReducer,
+        newsPage: newsReducer,
+        vacanciesPage: vacanciesReducer,
+        usersPage: usersReducer,
+        employeesPage: employeesReducer,
+        menuPage: menuReducer,
+        promosPage: promosReducer,
+        deliveryPage: deliveryReducer,
+        ordersPage: ordersReducer
+    }
+})

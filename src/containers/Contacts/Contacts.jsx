@@ -1,6 +1,6 @@
 import React from 'react'
-import Contacts from '../../components/Contacts/Contacts'
-import { getContacts, updateContacts } from '../../redux/contacts-reducer'
+import Contacts from '../../pages/Contacts/Contacts'
+import { fetchContacts, updateContacts } from '../../redux/reducers/contacts.reducer'
 import { connect } from 'react-redux'
 
 class ContactsContainer extends React.Component {
@@ -66,7 +66,7 @@ let mapStateToProps = ( state ) => {
 let mapDispatchToProps = ( dispatch ) => {
     return {
         getContacts: () => {
-            dispatch(getContacts())
+            dispatch(fetchContacts())
         },
         updateContacts: ( contacts ) => {
             dispatch(updateContacts(contacts))

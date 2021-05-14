@@ -1,9 +1,9 @@
 import React from 'react'
-import { requestOrdersDelivery, setPageAC } from '../../redux/delivery-reducer'
-import Delivery from '../../components/Delivery/Delivery'
 import { connect } from 'react-redux'
+import { requestOrdersDelivery, setPageAC } from '../../redux/reducers/delivery.reducer'
+import Delivery from '../../pages/Delivery/main/Delivery'
 
-const fieldFilter = [ 'phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status' ]
+const fieldFilter = ['phone', 'total_price_start', 'total_price_end', 'payment_type', 'delivery_type', 'payment_status', 'status']
 
 class DeliveryContainer extends React.Component {
     constructor( props ) {
@@ -62,7 +62,7 @@ class DeliveryContainer extends React.Component {
     }
 }
 
-let mapStateToProps = ( state ) => {
+let mapStateToProps = (state) => {
     return {
         orders: state.deliveryPage.orders,
         page: state.deliveryPage.currentPage,
@@ -70,12 +70,12 @@ let mapStateToProps = ( state ) => {
     }
 }
 
-let mapDispatchToProps = ( dispatch ) => {
+let mapDispatchToProps = (dispatch) => {
     return {
-        getOrders: ( filter, page ) => {
+        getOrders: (filter, page) => {
             dispatch(requestOrdersDelivery(filter, page))
         },
-        setPage: ( page ) => {
+        setPage: (page) => {
             dispatch(setPageAC(page))
         },
     }

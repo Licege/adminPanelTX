@@ -1,5 +1,5 @@
 import React from 'react'
-import { Leftovers } from '../../components/Storage/Leftovers'
+import { Leftovers } from '../../pages/Storage/Leftovers'
 
 class LeftoversContainer extends React.Component {
     render() {

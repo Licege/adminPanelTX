@@ -1,6 +1,6 @@
 import React from 'react'
-import News from '../../components/News/News'
-import { createNewNews, deleteNews, getNews } from '../../redux/news-reducer'
+import News from '../../pages/News/main/News'
+import { createNewNews, deleteNews, requestAllNews } from '../../redux/thunks/news.thunks'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import Preloader from '../../components/common/Preloader/Preloader'
@@ -48,7 +48,7 @@ let mapDispatchToProps = ( dispatch ) => {
             dispatch(createNewNews(news))
         },
         getNews: () => {
-            dispatch(getNews())
+            dispatch(requestAllNews())
         },
         deleteNews: ( id ) => {
             dispatch(deleteNews(id))

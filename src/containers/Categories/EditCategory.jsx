@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { requestCategory, updateCategory } from '../../redux/menu-reducer'
-import CategoryForm from '../../components/Categories/CategoryForm'
+import { requestCategory, updateCategory } from '../../redux/thunks/menu.thunks'
+import CategoryForm from '../../pages/Categories/CategoryForm'
 
 class EditCategory extends React.PureComponent {
     componentDidMount() {
         let id = this.props.match.params.id
-        if (!this.props.category || this.props.category._id !== id) this.props.getCategory(id)
+        if (!this.props.category || this.props.category.id !== id) this.props.getCategory(id)
     }
 
-    onSubmit = ( category ) => {
+    onSubmit = (category) => {
         this.props.updateCategory(category)
         this.goBack()
     }

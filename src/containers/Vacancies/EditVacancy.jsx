@@ -1,7 +1,7 @@
 import React from 'react'
-import { requestVacancy, updateVacancy } from '../../redux/vacancies-reducer'
+import { requestVacancy, updateVacancy } from '../../redux/reducers/vacancies.reducer'
 import { connect } from 'react-redux'
-import Vacancy from '../../components/Vacancies/new/Vacancy'
+import CreateVacancy from '../../pages/Vacancies/new'
 
 class EditVacancy extends React.Component {
     constructor( props ) {
@@ -31,16 +31,16 @@ class EditVacancy extends React.Component {
         if (this.state.file) {
             formData.append('image', this.state.file)
         }
-        this.props.updateVacancy(formData, vacancy._id)
+        this.props.updateVacancy(formData, vacancy.id)
         this.props.history.goBack()
     }
 
     render() {
-        return <Vacancy initialValues={this.props.currentVacancy}
-                        onSubmit={this.onSubmit}
-                        uploadFile={this.uploadFile}
-                        cancel={this.goBack}
-                        vacancy={this.props.currentVacancy}/>
+        return <CreateVacancy initialValues={this.props.currentVacancy}
+                              onSubmit={this.onSubmit}
+                              uploadFile={this.uploadFile}
+                              cancel={this.goBack}
+                              vacancy={this.props.currentVacancy}/>
     }
 }
 

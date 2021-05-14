@@ -1,9 +1,8 @@
 import React from 'react'
-import { getProfessionsAC, requestCurrentEmployee, updateCurrentEmployee } from '../../redux/employees-reducer'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { employeesAPI } from '../../api/api'
-import ProfileEmployee from '../../components/Employees/id/ProfileEmployee'
+import { requestCurrentEmployee, updateCurrentEmployee, requestProfessions } from '../../redux/reducers/employees.reducer'
+import ProfileEmployee from '../../pages/Employees/id/ProfileEmployee'
 
 class EmployeeContainer extends React.Component {
     refreshEmployee() {
@@ -14,7 +13,7 @@ class EmployeeContainer extends React.Component {
     onSubmit = ( profile ) => {
         let data = { ...profile }
         data.profession = parseInt(data.profession, 10)
-        data.file_id = parseInt(data.file_id, 10)
+        data.fileId = parseInt(data.fileId, 10)
         this.props.updateEmployee(data)
         this.props.history.goBack()
     }
@@ -25,20 +24,11 @@ class EmployeeContainer extends React.Component {
 
     componentDidMount() {
         if (this.props.professions.length === 0) {
-            employeesAPI.getProfessions().then(data => {
-                this.props.getProfessions(data)
-            })
+            this.props.getProfessions()
         }
         this.refreshEmployee()
     }
 
-    /*
-        componentDidUpdate(prevProps, prevState, snapshot) {
-            if (this.props.match.params.id !== prevProps.match.params.id ) {
-                this.refreshEmployee();
-            }
-        }
-    */
     render() {
         return (
             <ProfileEmployee
@@ -62,12 +52,10 @@ let mapDispatchToProps = ( dispatch ) => {
         getEmployeeById: ( id ) => {
             dispatch(requestCurrentEmployee(id))
         },
-        getProfessions: ( professions ) => {
-            dispatch(getProfessionsAC(professions))
-        },
         updateEmployee: ( profile ) => {
             dispatch(updateCurrentEmployee(profile))
         },
+        getProfessions: () => dispatch(requestProfessions())
     }
 }
 

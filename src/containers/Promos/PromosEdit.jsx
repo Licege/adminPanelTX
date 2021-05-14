@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { requestPromoById, updatePromo } from '../../redux/promos-reducer'
-import PromoForm from '../../components/Promos/PromoForm'
-import { Promo } from '../../components/Promos/Promo'
+import { requestPromoById, updatePromo } from '../../redux/reducers/promos.reducer'
+import PromoForm from '../../pages/Promos/form/PromoForm'
+import { Promo } from '../../pages/Promos/Promo'
 
 class PromosEdit extends React.Component {
     constructor( props ) {
@@ -44,7 +44,7 @@ class PromosEdit extends React.Component {
         this.state.file && formData.set('image', this.state.file)
         formData.set('description', this.state.description)
 
-        this.props.updatePromo(formData, data._id)
+        this.props.updatePromo(formData, data.id)
         this.goBack()
     }
 

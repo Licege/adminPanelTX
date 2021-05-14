@@ -1,6 +1,6 @@
 import React from 'react'
-import Auth from '../../components/Auth/Auth'
-import { login } from '../../redux/auth-reducer'
+import Auth from '../../pages/Auth/Auth'
+import { login } from '../../redux/thunks/auth.thunks'
 import { connect } from 'react-redux'
 
 class AuthContainer extends React.Component {
@@ -31,7 +31,7 @@ let mapDispatchToProps = ( dispatch ) => {
     return {
         login: ( data ) => {
             dispatch(login(data))
-        },
+        }
     }
 }
 

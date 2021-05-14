@@ -1,28 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import store from './redux/redux-store'
-import WebSocketProvider from './middleware/WebSocket'
+import CatchErrors from './pages/Errors/CatchErrors'
+import { ThemeProvider } from 'styled-components'
+import theme from './styledComponents/theme'
+import GlobalStyles from './styledComponents/globalStyles'
 import './index.css'
 
 let rerenderEntireTree = () => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <WebSocketProvider>
-                    <App/>
-                </WebSocketProvider>
-            </Provider>
-        </BrowserRouter>, document.getElementById('root'))
+  ReactDOM.render(
+    <BrowserRouter>
+      <CatchErrors>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+              <App />
+              <GlobalStyles />
+            </ThemeProvider>
+        </Provider>
+      </CatchErrors>
+    </BrowserRouter>, document.getElementById('root'))
 }
 
 rerenderEntireTree()
 
 store.subscribe(() => {
-    rerenderEntireTree()
+  rerenderEntireTree()
 })
 
 

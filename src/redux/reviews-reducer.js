@@ -21,7 +21,7 @@ const reviewsReducer = ( state = initialState, action ) => {
         case CHANGE_REVIEW_STATUS:
             return {
                 ...state,
-                reviews: state.reviews.map(review => review._id === action.review._id ? action.review : review),
+                reviews: state.reviews.map(review => review.id === action.review.id ? action.review : review),
             }
         case POST_ANSWER:
             return

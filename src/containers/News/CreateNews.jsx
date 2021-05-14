@@ -1,7 +1,7 @@
 import React from 'react'
-import { createNewNews } from '../../redux/news-reducer'
+import { createNewNews } from '../../redux/thunks/news.thunks'
 import { connect } from 'react-redux'
-import NewsForm from '../../components/News/NewsForm'
+import NewsForm from '../../pages/News/NewsForm'
 
 class CreateNewsContainer extends React.Component {
     constructor( props ) {

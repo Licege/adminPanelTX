@@ -1,6 +1,6 @@
 import React from 'react'
-import PromoForm from '../../components/Promos/PromoForm'
-import { postPromo } from '../../redux/promos-reducer'
+import PromoForm from '../../pages/Promos/form/PromoForm'
+import { postPromo } from '../../redux/reducers/promos.reducer'
 import { connect } from 'react-redux'
 
 class PromosNewContainer extends React.Component {
